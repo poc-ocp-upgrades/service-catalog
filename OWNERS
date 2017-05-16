@@ -1,9 +1,9 @@
+reviewers:
+  - jpeeler
+  - deads2k
+  - smarterclayton
+  - aveshagarwal
 approvers:
-- arschles
-- bmelville
-- duglin
-- jpeeler
-- krancour
-- mhbauer
-- pmorie
-- vaikas-google
+  - deads2k
+  - pmorie
+  - smarterclayton
