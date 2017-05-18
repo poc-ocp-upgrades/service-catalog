@@ -11,7 +11,7 @@ readonly OS_LOCAL_RELEASEPATH="${OS_OUTPUT}/releases"
 readonly OS_OUTPUT_BINPATH="${OS_OUTPUT}/bin"
 readonly OS_OUTPUT_PKGDIR="${OS_OUTPUT}/pkgdir"
 
-readonly OS_GO_PACKAGE=github.com/openshift/origin
+readonly OS_GO_PACKAGE=github.com/kubernetes-incubator/service-catalog
 
 readonly OS_SDN_COMPILE_TARGETS_LINUX=(
   pkg/sdn/plugin/sdn-cni-plugin
@@ -30,8 +30,9 @@ readonly OS_SCRATCH_IMAGE_COMPILE_TARGETS_LINUX=(
 readonly OS_IMAGE_COMPILE_BINARIES=("${OS_SCRATCH_IMAGE_COMPILE_TARGETS_LINUX[@]##*/}" "${OS_IMAGE_COMPILE_TARGETS_LINUX[@]##*/}")
 
 readonly OS_CROSS_COMPILE_TARGETS=(
-  cmd/openshift
-  cmd/oc
+  #cmd/openshift
+  #cmd/oc
+  cmd/service-catalog
 )
 readonly OS_CROSS_COMPILE_BINARIES=("${OS_CROSS_COMPILE_TARGETS[@]##*/}")
 
@@ -46,6 +47,9 @@ readonly OPENSHIFT_BINARY_SYMLINKS=(
   openshift-recycle
   openshift-sti-build
   openshift-docker-build
+  openshift-git-clone
+  openshift-manage-dockerfile
+  openshift-extract-image-content
   origin
   osc
   oadm
