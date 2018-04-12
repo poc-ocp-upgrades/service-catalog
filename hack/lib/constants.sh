@@ -63,7 +63,7 @@ function os::build::ldflags() {
   ldflags+=($(os::build::ldflag "${OS_GO_PACKAGE}/pkg/version.commitFromGit" "${OS_GIT_COMMIT}"))
   ldflags+=($(os::build::ldflag "${OS_GO_PACKAGE}/pkg/version.buildDate" "${buildDate}"))
 
-  ldflags+=($(os::build::ldflag "${OS_GO_PACKAGE}/pkg.VERSION" "${OS_GIT_VERSION}"))
+  ldflags+=($(os::build::ldflag "${OS_GO_PACKAGE}/pkg.VERSION" "$OS_GIT_VERSION;Upstream:$(<${OS_ROOT}/UPSTREAM-VERSION)"))
 
   # The -ldflags parameter takes a single string, so join the output.
   echo "${ldflags[*]-}"
