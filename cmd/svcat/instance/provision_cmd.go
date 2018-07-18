@@ -19,7 +19,6 @@ package instance
 import (
 	"fmt"
 
-	"github.com/golang/glog"
 	"github.com/kubernetes-incubator/service-catalog/cmd/svcat/command"
 	"github.com/kubernetes-incubator/service-catalog/cmd/svcat/output"
 	"github.com/kubernetes-incubator/service-catalog/cmd/svcat/parameters"
@@ -28,7 +27,7 @@ import (
 
 type provisonCmd struct {
 	*command.Namespaced
-	*command.WaitableCommand
+	*command.Waitable
 
 	instanceName string
 	externalID   string
@@ -44,13 +43,13 @@ type provisonCmd struct {
 // NewProvisionCmd builds a "svcat provision" command
 func NewProvisionCmd(cxt *command.Context) *cobra.Command {
 	provisionCmd := &provisonCmd{
-		Namespaced:      command.NewNamespacedCommand(cxt),
-		WaitableCommand: command.NewWaitableCommand(),
+		Namespaced: command.NewNamespaced(cxt),
+		Waitable:   command.NewWaitable(),
 	}
 	cmd := &cobra.Command{
 		Use:   "provision NAME --plan PLAN --class CLASS",
 		Short: "Create a new instance of a service",
-		Example: `
+		Example: command.NormalizeExamples(`
   svcat provision wordpress-mysql-instance --class mysqldb --plan free -p location=eastus -p sslEnforcement=disabled
   svcat provision wordpress-mysql-instance --external-id a7c00676-4398-11e8-842f-0ed5f89f718b --class mysqldb --plan free
   svcat provision wordpress-mysql-instance --class mysqldb --plan free -s mysecret[dbparams]
@@ -61,20 +60,14 @@ func NewProvisionCmd(cxt *command.Context) *cobra.Command {
             "name": "AllowSome",
             "startIPAddress": "75.70.113.50",
             "endIPAddress" : "75.70.113.131"
-        },
-        {
-            "name": "AllowMore",
-            "startIPAddress": "13.54.0.0",
-            "endIPAddress" : "13.56.0.0"
         }
     ]
-}
-'
-`,
+  }'
+`),
 		PreRunE: command.PreRunE(provisionCmd),
 		RunE:    command.RunE(provisionCmd),
 	}
-	command.AddNamespaceFlags(cmd.Flags(), false)
+	provisionCmd.AddNamespaceFlags(cmd.Flags(), false)
 	cmd.Flags().StringVar(&provisionCmd.externalID, "external-id", "",
 		"The ID of the instance for use with the OSB SB API (Optional)")
 	cmd.Flags().StringVar(&provisionCmd.className, "class", "",
@@ -84,7 +77,7 @@ func NewProvisionCmd(cxt *command.Context) *cobra.Command {
 		"The plan name (Required)")
 	cmd.MarkFlagRequired("plan")
 	cmd.Flags().StringSliceVarP(&provisionCmd.rawParams, "param", "p", nil,
-		"Additional parameter to use when provisioning the service, format: NAME=VALUE. Cannot be combined with --params-json")
+		"Additional parameter to use when provisioning the service, format: NAME=VALUE. Cannot be combined with --params-json, Sensitive information should be placed in a secret and specified with --secret")
 	cmd.Flags().StringSliceVarP(&provisionCmd.rawSecrets, "secret", "s", nil,
 		"Additional parameter, whose value is stored in a secret, to use when provisioning the service, format: SECRET[KEY]")
 	cmd.Flags().StringVar(&provisionCmd.jsonParams, "params-json", "",
@@ -137,7 +130,7 @@ func (c *provisonCmd) Provision() error {
 	}
 
 	if c.Wait {
-		glog.V(2).Info("Waiting for the instance to be provisioned...")
+		fmt.Fprintln(c.Output, "Waiting for the instance to be provisioned...")
 		finalInstance, err := c.App.WaitForInstance(instance.Namespace, instance.Name, c.Interval, c.Timeout)
 		if err == nil {
 			instance = finalInstance

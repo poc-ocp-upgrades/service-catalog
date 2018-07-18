@@ -19,7 +19,6 @@ package binding
 import (
 	"fmt"
 
-	"github.com/golang/glog"
 	"github.com/kubernetes-incubator/service-catalog/cmd/svcat/command"
 	"github.com/kubernetes-incubator/service-catalog/cmd/svcat/output"
 	"github.com/kubernetes-incubator/service-catalog/cmd/svcat/parameters"
@@ -28,7 +27,7 @@ import (
 
 type bindCmd struct {
 	*command.Namespaced
-	*command.WaitableCommand
+	*command.Waitable
 
 	instanceName string
 	bindingName  string
@@ -44,13 +43,13 @@ type bindCmd struct {
 // NewBindCmd builds a "svcat bind" command
 func NewBindCmd(cxt *command.Context) *cobra.Command {
 	bindCmd := &bindCmd{
-		Namespaced:      command.NewNamespacedCommand(cxt),
-		WaitableCommand: command.NewWaitableCommand(),
+		Namespaced: command.NewNamespaced(cxt),
+		Waitable:   command.NewWaitable(),
 	}
 	cmd := &cobra.Command{
 		Use:   "bind INSTANCE_NAME",
 		Short: "Binds an instance's metadata to a secret, which can then be used by an application to connect to the instance",
-		Example: `
+		Example: command.NormalizeExamples(`
   svcat bind wordpress
   svcat bind wordpress-mysql-instance --name wordpress-mysql-binding --secret-name wordpress-mysql-secret
   svcat bind wordpress-mysql-instance --name wordpress-mysql-binding --external-id c8ca2fcc-4398-11e8-842f-0ed5f89f718b
@@ -62,13 +61,12 @@ func NewBindCmd(cxt *command.Context) *cobra.Command {
 		"weather",
 		"sports"
 	]
-}
-'
-`,
+  }'
+`),
 		PreRunE: command.PreRunE(bindCmd),
 		RunE:    command.RunE(bindCmd),
 	}
-	command.AddNamespaceFlags(cmd.Flags(), false)
+	bindCmd.AddNamespaceFlags(cmd.Flags(), false)
 	cmd.Flags().StringVarP(
 		&bindCmd.bindingName,
 		"name",
@@ -87,7 +85,7 @@ func NewBindCmd(cxt *command.Context) *cobra.Command {
 		"The name of the secret. Defaults to the name of the instance.",
 	)
 	cmd.Flags().StringSliceVarP(&bindCmd.rawParams, "param", "p", nil,
-		"Additional parameter to use when binding the instance, format: NAME=VALUE. Cannot be combined with --params-json")
+		"Additional parameter to use when binding the instance, format: NAME=VALUE. Cannot be combined with --params-json, Sensitive information should be placed in a secret and specified with --secret")
 	cmd.Flags().StringSliceVarP(&bindCmd.rawSecrets, "secret", "s", nil,
 		"Additional parameter, whose value is stored in a secret, to use when binding the instance, format: SECRET[KEY]")
 	cmd.Flags().StringVar(&bindCmd.jsonParams, "params-json", "",
@@ -139,7 +137,7 @@ func (c *bindCmd) bind() error {
 	}
 
 	if c.Wait {
-		glog.V(2).Info("Waiting for binding to be injected...")
+		fmt.Fprintln(c.Output, "Waiting for binding to be injected...")
 		finalBinding, err := c.App.WaitForBinding(binding.Namespace, binding.Name, c.Interval, c.Timeout)
 		if err == nil {
 			binding = finalBinding

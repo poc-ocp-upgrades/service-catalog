@@ -20,14 +20,11 @@ import (
 	stderrors "errors"
 	"fmt"
 	"net/url"
+	"time"
 
 	"github.com/golang/glog"
 	osb "github.com/pmorie/go-open-service-broker-client/v2"
-	utilfeature "k8s.io/apiserver/pkg/util/feature"
 
-	"github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/v1beta1"
-	scfeatures "github.com/kubernetes-incubator/service-catalog/pkg/features"
-	"github.com/kubernetes-incubator/service-catalog/pkg/pretty"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -35,8 +32,12 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/apimachinery/pkg/util/wait"
+	utilfeature "k8s.io/apiserver/pkg/util/feature"
 	"k8s.io/client-go/tools/cache"
-	"time"
+
+	"github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/v1beta1"
+	scfeatures "github.com/kubernetes-incubator/service-catalog/pkg/features"
+	"github.com/kubernetes-incubator/service-catalog/pkg/pretty"
 )
 
 const (
@@ -64,14 +65,23 @@ const (
 	errorNonexistentClusterServiceClassMessage string = "ReferencesNonexistentServiceClass"
 	errorNonexistentClusterServicePlanReason   string = "ReferencesNonexistentServicePlan"
 	errorNonexistentClusterServiceBrokerReason string = "ReferencesNonexistentBroker"
+	errorNonexistentServiceClassReason         string = "ReferencesNonexistentServiceClass"
+	errorNonexistentServiceClassMessage        string = "ReferencesNonexistentServiceClass"
+	errorNonexistentServicePlanReason          string = "ReferencesNonexistentServicePlan"
+	errorNonexistentServiceBrokerReason        string = "ReferencesNonexistentBroker"
 	errorDeletedClusterServiceClassReason      string = "ReferencesDeletedServiceClass"
 	errorDeletedClusterServiceClassMessage     string = "ReferencesDeletedServiceClass"
 	errorDeletedClusterServicePlanReason       string = "ReferencesDeletedServicePlan"
 	errorDeletedClusterServicePlanMessage      string = "ReferencesDeletedServicePlan"
+	errorDeletedServiceClassReason             string = "ReferencesDeletedServiceClass"
+	errorDeletedServiceClassMessage            string = "ReferencesDeletedServiceClass"
+	errorDeletedServicePlanReason              string = "ReferencesDeletedServicePlan"
+	errorDeletedServicePlanMessage             string = "ReferencesDeletedServicePlan"
 	errorFindingNamespaceServiceInstanceReason string = "ErrorFindingNamespaceForInstance"
 	errorOrphanMitigationFailedReason          string = "OrphanMitigationFailed"
 	errorInvalidDeprovisionStatusReason        string = "InvalidDeprovisionStatus"
 	errorInvalidDeprovisionStatusMessage       string = "The deprovision status is invalid"
+	errorAmbiguousPlanReferenceScope           string = "Couldn't determine if the instance refers to a Cluster or Namespaced ServiceClass/Plan"
 
 	asyncProvisioningReason                 string = "Provisioning"
 	asyncProvisioningMessage                string = "The instance is being provisioned asynchronously"
@@ -119,7 +129,7 @@ func (c *controller) instanceDelete(obj interface{}) {
 		return
 	}
 
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 	glog.V(4).Info(pcb.Message("Received delete event; no further processing will occur"))
 }
 
@@ -158,7 +168,7 @@ func (c *controller) requeueServiceInstanceForPoll(key string) error {
 func (c *controller) beginPollingServiceInstance(instance *v1beta1.ServiceInstance) error {
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(instance)
 	if err != nil {
-		pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+		pcb := pretty.NewInstanceContextBuilder(instance)
 		s := fmt.Sprintf("Couldn't create a key for object %+v: %v", instance, err)
 		glog.Errorf(pcb.Message(s))
 		return fmt.Errorf(s)
@@ -180,7 +190,7 @@ func (c *controller) continuePollingServiceInstance(instance *v1beta1.ServiceIns
 func (c *controller) finishPollingServiceInstance(instance *v1beta1.ServiceInstance) error {
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(instance)
 	if err != nil {
-		pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+		pcb := pretty.NewInstanceContextBuilder(instance)
 		s := fmt.Sprintf("Couldn't create a key for object %+v: %v", instance, err)
 		glog.Errorf(pcb.Message(s))
 		return fmt.Errorf(s)
@@ -196,7 +206,7 @@ func (c *controller) finishPollingServiceInstance(instance *v1beta1.ServiceInsta
 func (c *controller) resetPollingRateLimiterForServiceInstance(instance *v1beta1.ServiceInstance) {
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(instance)
 	if err != nil {
-		pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+		pcb := pretty.NewInstanceContextBuilder(instance)
 		s := fmt.Sprintf("Couldn't create a key for object %+v: %v", instance, err)
 		glog.Errorf(pcb.Message(s))
 		return
@@ -227,7 +237,7 @@ func (c *controller) reconcileServiceInstanceKey(key string) error {
 	if err != nil {
 		return err
 	}
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, namespace, name)
+	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, namespace, name, "")
 	instance, err := c.instanceLister.ServiceInstances(namespace).Get(name)
 	if errors.IsNotFound(err) {
 		glog.Info(pcb.Messagef("Not doing work for %v because it has been deleted", key))
@@ -265,6 +275,8 @@ func (c *controller) reconcileServiceInstance(instance *v1beta1.ServiceInstance)
 	}
 	reconciliationAction := getReconciliationActionForServiceInstance(instance)
 	switch reconciliationAction {
+
+	// ERIK CP
 	case reconcileAdd:
 		return c.reconcileServiceInstanceAdd(instance)
 	case reconcileUpdate:
@@ -274,7 +286,7 @@ func (c *controller) reconcileServiceInstance(instance *v1beta1.ServiceInstance)
 	case reconcilePoll:
 		return c.pollServiceInstance(instance)
 	default:
-		pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+		pcb := pretty.NewInstanceContextBuilder(instance)
 		return fmt.Errorf(pcb.Messagef("Unknown reconciliation action %v", reconciliationAction))
 	}
 }
@@ -332,7 +344,7 @@ func (c *controller) initOrphanMitigationCondition(instance *v1beta1.ServiceInst
 // reconcileServiceInstanceAdd is responsible for handling the provisioning
 // of new service instances.
 func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstance) error {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 
 	if isServiceInstanceProcessedAlready(instance) {
 		glog.V(4).Info(pcb.Message("Not processing event because status showed there is no work to do"))
@@ -345,7 +357,7 @@ func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstan
 		c.prepareObservedGeneration(instance)
 	}
 
-	// Update references to ClusterServicePlan / ClusterServiceClass if necessary.
+	// Update references to Plan/Class if necessary.
 	modified, err := c.resolveReferences(instance)
 	if err != nil {
 		return err
@@ -357,18 +369,7 @@ func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstan
 
 	glog.V(4).Info(pcb.Message("Processing adding event"))
 
-	serviceClass, servicePlan, brokerName, brokerClient, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
-	if err != nil {
-		return c.handleServiceInstanceReconciliationError(instance, err)
-	}
-
-	// Check if the ServiceClass or ServicePlan has been deleted and do not allow
-	// creation of new ServiceInstances.
-	if err := c.checkForRemovedClassAndPlan(instance, serviceClass, servicePlan); err != nil {
-		return c.handleServiceInstanceReconciliationError(instance, err)
-	}
-
-	request, inProgressProperties, err := c.prepareProvisionRequest(instance, serviceClass, servicePlan)
+	request, inProgressProperties, err := c.prepareProvisionRequest(instance)
 	if err != nil {
 		return c.handleServiceInstanceReconciliationError(instance, err)
 	}
@@ -384,9 +385,22 @@ func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstan
 		return nil
 	}
 
+	var prettyClass string
+	var brokerName string
+	var brokerClient osb.Client
+	if instance.Spec.ClusterServiceClassSpecified() {
+		var serviceClass *v1beta1.ClusterServiceClass
+		serviceClass, _, brokerName, brokerClient, _ = c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
+		prettyClass = pretty.ClusterServiceClassName(serviceClass)
+	} else {
+		var serviceClass *v1beta1.ServiceClass
+		serviceClass, _, brokerName, brokerClient, _ = c.getServiceClassPlanAndServiceBroker(instance)
+		prettyClass = pretty.ServiceClassName(serviceClass)
+	}
+
 	glog.V(4).Info(pcb.Messagef(
-		"Provisioning a new ServiceInstance of %s at ClusterServiceBroker %q",
-		pretty.ClusterServiceClassName(serviceClass), brokerName,
+		"Provisioning a new ServiceInstance of %s at Broker %q",
+		prettyClass, brokerName,
 	))
 
 	response, err := brokerClient.ProvisionInstance(request)
@@ -394,7 +408,7 @@ func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstan
 		if httpErr, ok := osb.IsHTTPError(err); ok {
 			msg := fmt.Sprintf(
 				"Error provisioning ServiceInstance of %s at ClusterServiceBroker %q: %s",
-				pretty.ClusterServiceClassName(serviceClass), brokerName, httpErr,
+				prettyClass, brokerName, httpErr,
 			)
 			readyCond := newServiceInstanceReadyCondition(v1beta1.ConditionFalse, errorProvisionCallFailedReason, msg)
 			// Depending on the specific response, we may need to initiate orphan mitigation.
@@ -442,7 +456,7 @@ func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstan
 // reconcileServiceInstanceUpdate is responsible for handling updating the plan
 // or parameters of a service instance.
 func (c *controller) reconcileServiceInstanceUpdate(instance *v1beta1.ServiceInstance) error {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 
 	if isServiceInstanceProcessedAlready(instance) {
 		glog.V(4).Info(pcb.Message("Not processing event because status showed there is no work to do"))
@@ -467,42 +481,88 @@ func (c *controller) reconcileServiceInstanceUpdate(instance *v1beta1.ServiceIns
 
 	glog.V(4).Info(pcb.Message("Processing updating event"))
 
-	serviceClass, servicePlan, brokerName, brokerClient, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
-	if err != nil {
-		return c.handleServiceInstanceReconciliationError(instance, err)
-	}
+	var brokerClient osb.Client
+	var request *osb.UpdateInstanceRequest
 
-	// Check if the ServiceClass or ServicePlan has been deleted. If so, do
-	// not allow plan upgrades, but do allow parameter changes.
-	if err := c.checkForRemovedClassAndPlan(instance, serviceClass, servicePlan); err != nil {
-		return c.handleServiceInstanceReconciliationError(instance, err)
-	}
+	if instance.Spec.ClusterServiceClassSpecified() {
 
-	request, inProgressProperties, err := c.prepareUpdateInstanceRequest(instance, serviceClass, servicePlan)
-	if err != nil {
-		return c.handleServiceInstanceReconciliationError(instance, err)
-	}
-
-	if instance.Status.CurrentOperation == "" || !isServiceInstancePropertiesStateEqual(instance.Status.InProgressProperties, inProgressProperties) {
-		instance, err = c.recordStartOfServiceInstanceOperation(instance, v1beta1.ServiceInstanceOperationUpdate, inProgressProperties)
+		serviceClass, servicePlan, brokerName, bClient, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
 		if err != nil {
-			// There has been an update to the instance. Start reconciliation
-			// over with a fresh view of the instance.
-			return err
+			return c.handleServiceInstanceReconciliationError(instance, err)
 		}
-		// recordStartOfServiceInstanceOperation has updated the instance, so we need to continue in the next iteration
-		return nil
-	}
 
-	glog.V(4).Info(pcb.Messagef(
-		"Updating ServiceInstance of %s at ClusterServiceBroker %q",
-		pretty.ClusterServiceClassName(serviceClass), brokerName,
-	))
+		brokerClient = bClient
+
+		// Check if the ServiceClass or ServicePlan has been deleted. If so, do
+		// not allow plan upgrades, but do allow parameter changes.
+		if err := c.checkForRemovedClusterClassAndPlan(instance, serviceClass, servicePlan); err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		req, inProgressProperties, err := c.prepareUpdateInstanceRequest(instance)
+		if err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+		request = req
+
+		if instance.Status.CurrentOperation == "" || !isServiceInstancePropertiesStateEqual(instance.Status.InProgressProperties, inProgressProperties) {
+			instance, err = c.recordStartOfServiceInstanceOperation(instance, v1beta1.ServiceInstanceOperationUpdate, inProgressProperties)
+			if err != nil {
+				// There has been an update to the instance. Start reconciliation
+				// over with a fresh view of the instance.
+				return err
+			}
+			// recordStartOfServiceInstanceOperation has updated the instance, so we need to continue in the next iteration
+			return nil
+		}
+
+		glog.V(4).Info(pcb.Messagef(
+			"Updating ServiceInstance of %s at ClusterServiceBroker %q",
+			pretty.ClusterServiceClassName(serviceClass), brokerName,
+		))
+
+	} else if instance.Spec.ServiceClassSpecified() {
+
+		serviceClass, servicePlan, brokerName, bClient, err := c.getServiceClassPlanAndServiceBroker(instance)
+		if err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		brokerClient = bClient
+
+		// Check if the ServiceClass or ServicePlan has been deleted. If so, do
+		// not allow plan upgrades, but do allow parameter changes.
+		if err := c.checkForRemovedClassAndPlan(instance, serviceClass, servicePlan); err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		req, inProgressProperties, err := c.prepareUpdateInstanceRequest(instance)
+		if err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+		request = req
+
+		if instance.Status.CurrentOperation == "" || !isServiceInstancePropertiesStateEqual(instance.Status.InProgressProperties, inProgressProperties) {
+			instance, err = c.recordStartOfServiceInstanceOperation(instance, v1beta1.ServiceInstanceOperationUpdate, inProgressProperties)
+			if err != nil {
+				// There has been an update to the instance. Start reconciliation
+				// over with a fresh view of the instance.
+				return err
+			}
+			// recordStartOfServiceInstanceOperation has updated the instance, so we need to continue in the next iteration
+			return nil
+		}
+
+		glog.V(4).Info(pcb.Messagef(
+			"Updating ServiceInstance of %s at ServiceBroker %q",
+			pretty.ServiceClassName(serviceClass), brokerName,
+		))
+	}
 
 	response, err := brokerClient.UpdateInstance(request)
 	if err != nil {
 		if httpErr, ok := osb.IsHTTPError(err); ok {
-			msg := fmt.Sprintf("ClusterServiceBroker returned a failure for update call; update will not be retried: %v", httpErr)
+			msg := fmt.Sprintf("ServiceBroker returned a failure for update call; update will not be retried: %v", httpErr)
 			readyCond := newServiceInstanceReadyCondition(v1beta1.ConditionFalse, errorUpdateInstanceCallFailedReason, msg)
 
 			if isRetriableHTTPStatus(httpErr.StatusCode) {
@@ -517,7 +577,7 @@ func (c *controller) reconcileServiceInstanceUpdate(instance *v1beta1.ServiceIns
 		reason := errorErrorCallingUpdateInstanceReason
 
 		if urlErr, ok := err.(*url.Error); ok && urlErr.Timeout() {
-			msg := fmt.Sprintf("Communication with the ClusterServiceBroker timed out; update will be retried: %v", urlErr)
+			msg := fmt.Sprintf("Communication with the ServiceBroker timed out; update will be retried: %v", urlErr)
 			readyCond := newServiceInstanceReadyCondition(v1beta1.ConditionFalse, reason, msg)
 			return c.processTemporaryUpdateServiceInstanceFailure(instance, readyCond)
 		}
@@ -559,7 +619,7 @@ func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceIns
 		return nil
 	}
 
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 
 	// If deprovisioning has already failed, do not do anything more
 	if instance.Status.DeprovisionStatus == v1beta1.ServiceInstanceDeprovisionStatusFailed {
@@ -567,7 +627,11 @@ func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceIns
 		return nil
 	}
 
-	glog.V(4).Info(pcb.Message("Processing deleting event"))
+	if instance.Status.OrphanMitigationInProgress {
+		glog.V(4).Info(pcb.Message("Performing orphan mitigation"))
+	} else {
+		glog.V(4).Info(pcb.Message("Processing deleting event"))
+	}
 
 	instance = instance.DeepCopy()
 	// Any status updates from this point should have an updated observed generation
@@ -600,12 +664,32 @@ func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceIns
 		return c.handleServiceInstanceReconciliationError(instance, err)
 	}
 
-	serviceClass, brokerName, brokerClient, err := c.getClusterServiceClassAndClusterServiceBroker(instance)
-	if err != nil {
-		return c.handleServiceInstanceReconciliationError(instance, err)
+	var prettyName string
+	var brokerName string
+	var brokerClient osb.Client
+	if instance.Spec.ClusterServiceClassSpecified() {
+		serviceClass, name, bClient, err := c.getClusterServiceClassAndClusterServiceBroker(instance)
+		if err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		brokerName = name
+		brokerClient = bClient
+		// we need the serviceClass SOLELY to get a value for a msg string >:(
+		prettyName = pretty.ClusterServiceClassName(serviceClass)
+	} else if instance.Spec.ServiceClassSpecified() {
+		serviceClass, name, bClient, err := c.getServiceClassAndServiceBroker(instance)
+		if err != nil {
+			return c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		brokerName = name
+		brokerClient = bClient
+		// we need the serviceClass SOLELY to get a value for a msg string >:(
+		prettyName = pretty.ServiceClassName(serviceClass)
 	}
 
-	request, inProgressProperties, err := c.prepareDeprovisionRequest(instance, serviceClass)
+	request, inProgressProperties, err := c.prepareDeprovisionRequest(instance)
 	if err != nil {
 		return c.handleServiceInstanceReconciliationError(instance, err)
 	}
@@ -641,7 +725,7 @@ func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceIns
 	if err != nil {
 		msg := fmt.Sprintf(
 			`Error deprovisioning, %s at ClusterServiceBroker %q: %v`,
-			pretty.ClusterServiceClassName(serviceClass), brokerName, err,
+			prettyName, brokerName, err,
 		)
 		if httpErr, ok := osb.IsHTTPError(err); ok {
 			msg = fmt.Sprintf("Deprovision call failed; received error response from broker: %v", httpErr)
@@ -666,12 +750,18 @@ func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceIns
 }
 
 func (c *controller) pollServiceInstance(instance *v1beta1.ServiceInstance) error {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
-	glog.V(4).Info(pcb.Message("Processing"))
+	pcb := pretty.NewInstanceContextBuilder(instance)
+	glog.V(4).Info(pcb.Message("Processing poll event"))
 
 	instance = instance.DeepCopy()
 
-	serviceClass, servicePlan, _, brokerClient, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
+	var brokerClient osb.Client
+	var err error
+	if instance.Spec.ClusterServiceClassSpecified() {
+		_, _, _, brokerClient, err = c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
+	} else {
+		_, _, _, brokerClient, err = c.getServiceClassPlanAndServiceBroker(instance)
+	}
 	if err != nil {
 		return c.handleServiceInstanceReconciliationError(instance, err)
 	}
@@ -683,7 +773,7 @@ func (c *controller) pollServiceInstance(instance *v1beta1.ServiceInstance) erro
 	provisioning := instance.Status.CurrentOperation == v1beta1.ServiceInstanceOperationProvision && !mitigatingOrphan
 	deleting := instance.Status.CurrentOperation == v1beta1.ServiceInstanceOperationDeprovision || mitigatingOrphan
 
-	request, err := c.prepareServiceInstanceLastOperationRequest(instance, serviceClass, servicePlan)
+	request, err := c.prepareServiceInstanceLastOperationRequest(instance)
 	if err != nil {
 		return c.handleServiceInstanceReconciliationError(instance, err)
 	}
@@ -716,7 +806,11 @@ func (c *controller) pollServiceInstance(instance *v1beta1.ServiceInstance) erro
 		return c.continuePollingServiceInstance(instance)
 	}
 
-	glog.V(4).Info(pcb.Messagef("Poll returned %q: Response description: %v", response.State, response.Description))
+	description := "(no description provided)"
+	if response.Description != nil {
+		description = *response.Description
+	}
+	glog.V(4).Info(pcb.Messagef("Poll returned %q : %q", response.State, description))
 
 	switch response.State {
 	case osb.StateInProgress:
@@ -770,11 +864,6 @@ func (c *controller) pollServiceInstance(instance *v1beta1.ServiceInstance) erro
 		}
 		return c.finishPollingServiceInstance(instance)
 	case osb.StateFailed:
-		description := "(no description provided)"
-		if response.Description != nil {
-			description = *response.Description
-		}
-
 		var err error
 		switch {
 		case deleting:
@@ -865,12 +954,22 @@ func (c *controller) processServiceInstancePollingFailureRetryTimeout(instance *
 	return c.finishPollingServiceInstance(instance)
 }
 
-// resolveReferences checks to see if ClusterServiceClassRef and/or ClusterServicePlanRef are
+// resolveReferences checks to see if (Cluster)ServiceClassRef and/or (Cluster)ServicePlanRef are
 // nil and if so, will resolve the references and update the instance.
 // If references needed to be resolved, and the instance status was successfully updated, the method returns true
 // If either can not be resolved, returns an error and sets the InstanceCondition
 // with the appropriate error message.
 func (c *controller) resolveReferences(instance *v1beta1.ServiceInstance) (bool, error) {
+	if instance.Spec.ClusterServiceClassSpecified() {
+		return c.resolveClusterReferences(instance)
+	} else if instance.Spec.ServiceClassSpecified() {
+		return c.resolveNamespacedReferences(instance)
+	}
+
+	return false, stderrors.New(errorAmbiguousPlanReferenceScope)
+}
+
+func (c *controller) resolveClusterReferences(instance *v1beta1.ServiceInstance) (bool, error) {
 	if instance.Spec.ClusterServiceClassRef != nil && instance.Spec.ClusterServicePlanRef != nil {
 		return false, nil
 	}
@@ -901,17 +1000,48 @@ func (c *controller) resolveReferences(instance *v1beta1.ServiceInstance) (bool,
 	return err == nil, err
 }
 
+func (c *controller) resolveNamespacedReferences(instance *v1beta1.ServiceInstance) (bool, error) {
+	if instance.Spec.ServiceClassRef != nil && instance.Spec.ServicePlanRef != nil {
+		return false, nil
+	}
+
+	var sc *v1beta1.ServiceClass
+	var err error
+	if instance.Spec.ServiceClassRef == nil {
+		instance, sc, err = c.resolveServiceClassRef(instance)
+		if err != nil {
+			return false, err
+		}
+	}
+
+	if instance.Spec.ServicePlanRef == nil {
+		if sc == nil {
+			sc, err = c.serviceClassLister.ServiceClasses(instance.Namespace).Get(instance.Spec.ServiceClassRef.Name)
+			if err != nil {
+				return false, fmt.Errorf(`Couldn't find ServiceClass (K8S: %s)": %v`, instance.Spec.ServiceClassRef.Name, err.Error())
+			}
+		}
+
+		instance, err = c.resolveServicePlanRef(instance, sc.Spec.ServiceBrokerName)
+		if err != nil {
+			return false, err
+		}
+	}
+	_, err = c.updateServiceInstanceReferences(instance)
+	return err == nil, err
+}
+
 // resolveClusterServiceClassRef resolves a reference  to a ClusterServiceClass
 // and updates the instance.
 // If ClusterServiceClass can not be resolved, returns an error, records an
 // Event, and sets the InstanceCondition with the appropriate error message.
 func (c *controller) resolveClusterServiceClassRef(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, *v1beta1.ClusterServiceClass, error) {
-	if !instance.Spec.ClassSpecified() {
+	if !instance.Spec.ClusterServiceClassSpecified() {
 		// ServiceInstance is in invalid state, should not ever happen. check
 		return nil, nil, fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ClusterServiceClassExternalName, ClusterServiceClassExternalID, nor ClusterServiceClassName is set", instance.Namespace, instance.Name)
 	}
 
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 	var sc *v1beta1.ClusterServiceClass
 
 	if instance.Spec.ClusterServiceClassName != "" {
@@ -944,8 +1074,8 @@ func (c *controller) resolveClusterServiceClassRef(instance *v1beta1.ServiceInst
 			return nil, nil, fmt.Errorf(s)
 		}
 	} else {
-		filterField := instance.Spec.GetClassFilterFieldName()
-		filterValue := instance.Spec.GetSpecifiedClass()
+		filterField := instance.Spec.GetClusterServiceClassFilterFieldName()
+		filterValue := instance.Spec.GetSpecifiedClusterServiceClass()
 
 		glog.V(4).Info(pcb.Messagef("looking up a ClusterServiceClass from %s: %q", filterField, filterValue))
 		listOpts := metav1.ListOptions{
@@ -982,17 +1112,98 @@ func (c *controller) resolveClusterServiceClassRef(instance *v1beta1.ServiceInst
 	return instance, sc, nil
 }
 
+// resolveServiceClassRef resolves a reference to a ServiceClass
+// and updates the instance.
+// If ServiceClass can not be resolved, returns an error, records an
+// Event, and sets the InstanceCondition with the appropriate error message.
+func (c *controller) resolveServiceClassRef(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, *v1beta1.ServiceClass, error) {
+	if !instance.Spec.ServiceClassSpecified() {
+		// ServiceInstance is in invalid state, should not ever happen. check
+		return nil, nil, fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ServiceClassExternalName, ServiceClassExternalID, nor ServiceClassName is set", instance.Namespace, instance.Name)
+	}
+
+	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name, "")
+	var sc *v1beta1.ServiceClass
+
+	if instance.Spec.ServiceClassName != "" {
+		glog.V(4).Info(pcb.Messagef("looking up a ServiceClass from K8S Name: %q", instance.Spec.ServiceClassName))
+
+		var err error
+		sc, err = c.serviceClassLister.ServiceClasses(instance.Namespace).Get(instance.Spec.ServiceClassName)
+		if err == nil {
+			instance.Spec.ServiceClassRef = &v1beta1.LocalObjectReference{
+				Name: sc.Name,
+			}
+			glog.V(4).Info(pcb.Messagef(
+				"resolved ServiceClass %c to ServiceClass with external Name %q",
+				instance.Spec.PlanReference, sc.Spec.ExternalName,
+			))
+		} else {
+			s := fmt.Sprintf(
+				"References a non-existent ServiceClass %c",
+				instance.Spec.PlanReference,
+			)
+			glog.Warning(pcb.Message(s))
+			c.updateServiceInstanceCondition(
+				instance,
+				v1beta1.ServiceInstanceConditionReady,
+				v1beta1.ConditionFalse,
+				errorNonexistentServiceClassReason,
+				"The instance references a ServiceClass that does not exist. "+s,
+			)
+			c.recorder.Event(instance, corev1.EventTypeWarning, errorNonexistentServiceClassReason, s)
+			return nil, nil, fmt.Errorf(s)
+		}
+	} else {
+		filterField := instance.Spec.GetServiceClassFilterFieldName()
+		filterValue := instance.Spec.GetSpecifiedServiceClass()
+
+		glog.V(4).Info(pcb.Messagef("looking up a ServiceClass from %s: %q", filterField, filterValue))
+		listOpts := metav1.ListOptions{
+			FieldSelector: fields.OneTermEqualSelector(filterField, filterValue).String(),
+		}
+		serviceClasses, err := c.serviceCatalogClient.ServiceClasses(instance.Namespace).List(listOpts)
+		if err == nil && len(serviceClasses.Items) == 1 {
+			sc = &serviceClasses.Items[0]
+			instance.Spec.ServiceClassRef = &v1beta1.LocalObjectReference{
+				Name: sc.Name,
+			}
+			glog.V(4).Info(pcb.Messagef(
+				"resolved %c to K8S ServiceClass %q",
+				instance.Spec.PlanReference, sc.Name,
+			))
+		} else {
+			s := fmt.Sprintf(
+				"References a non-existent ServiceClass %c or there is more than one (found: %d)",
+				instance.Spec.PlanReference, len(serviceClasses.Items),
+			)
+			glog.Warning(pcb.Message(s))
+			c.updateServiceInstanceCondition(
+				instance,
+				v1beta1.ServiceInstanceConditionReady,
+				v1beta1.ConditionFalse,
+				errorNonexistentServiceClassReason,
+				"The instance references a ServiceClass that does not exist. "+s,
+			)
+			c.recorder.Event(instance, corev1.EventTypeWarning, errorNonexistentServiceClassReason, s)
+			return nil, nil, fmt.Errorf(s)
+		}
+	}
+
+	return instance, sc, nil
+}
+
 // resolveClusterServicePlanRef resolves a reference  to a ClusterServicePlan
 // and updates the instance.
 // If ClusterServicePlan can not be resolved, returns an error, records an
 // Event, and sets the InstanceCondition with the appropriate error message.
 func (c *controller) resolveClusterServicePlanRef(instance *v1beta1.ServiceInstance, brokerName string) (*v1beta1.ServiceInstance, error) {
-	if !instance.Spec.PlanSpecified() {
+	if !instance.Spec.ClusterServicePlanSpecified() {
 		// ServiceInstance is in invalid state, should not ever happen. check
 		return nil, fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ClusterServicePlanExternalName, ClusterServicePlanExternalID, nor ClusterServicePlanName is set", instance.Namespace, instance.Name)
 	}
 
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 
 	if instance.Spec.ClusterServicePlanName != "" {
 		sp, err := c.clusterServicePlanLister.Get(instance.Spec.ClusterServicePlanName)
@@ -1022,9 +1233,9 @@ func (c *controller) resolveClusterServicePlanRef(instance *v1beta1.ServiceInsta
 		}
 	} else {
 		fieldSet := fields.Set{
-			instance.Spec.GetPlanFilterFieldName(): instance.Spec.GetSpecifiedPlan(),
-			"spec.clusterServiceClassRef.name":     instance.Spec.ClusterServiceClassRef.Name,
-			"spec.clusterServiceBrokerName":        brokerName,
+			instance.Spec.GetClusterServicePlanFilterFieldName(): instance.Spec.GetSpecifiedClusterServicePlan(),
+			"spec.clusterServiceClassRef.name":                   instance.Spec.ClusterServiceClassRef.Name,
+			"spec.clusterServiceBrokerName":                      brokerName,
 		}
 		fieldSelector := fields.SelectorFromSet(fieldSet).String()
 		listOpts := metav1.ListOptions{FieldSelector: fieldSelector}
@@ -1056,6 +1267,120 @@ func (c *controller) resolveClusterServicePlanRef(instance *v1beta1.ServiceInsta
 	}
 
 	return instance, nil
+}
+
+// resolveServicePlanRef resolves a reference  to a ServicePlan
+// and updates the instance.
+// If ServicePlan can not be resolved, returns an error, records an
+// Event, and sets the InstanceCondition with the appropriate error message.
+func (c *controller) resolveServicePlanRef(instance *v1beta1.ServiceInstance, brokerName string) (*v1beta1.ServiceInstance, error) {
+	if !instance.Spec.ServicePlanSpecified() {
+		// ServiceInstance is in invalid state, should not ever happen. check
+		return nil, fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ServicePlanExternalName, ServicePlanExternalID, nor ServicePlanName is set", instance.Namespace, instance.Name)
+	}
+
+	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name, "")
+
+	if instance.Spec.ServicePlanName != "" {
+		sp, err := c.servicePlanLister.ServicePlans(instance.Namespace).Get(instance.Spec.ServicePlanName)
+		if err == nil {
+			instance.Spec.ServicePlanRef = &v1beta1.LocalObjectReference{
+				Name: sp.Name,
+			}
+			glog.V(4).Info(pcb.Messagef(
+				"resolved ServicePlan with K8S name %q to ServicePlan with external name %q",
+				instance.Spec.ServicePlanName, sp.Spec.ExternalName,
+			))
+		} else {
+			s := fmt.Sprintf(
+				"References a non-existent ServicePlan %v",
+				instance.Spec.PlanReference,
+			)
+			glog.Warning(pcb.Message(s))
+			c.updateServiceInstanceCondition(
+				instance,
+				v1beta1.ServiceInstanceConditionReady,
+				v1beta1.ConditionFalse,
+				errorNonexistentServicePlanReason,
+				"The instance references a ServicePlan that does not exist. "+s,
+			)
+			c.recorder.Event(instance, corev1.EventTypeWarning, errorNonexistentServicePlanReason, s)
+			return nil, fmt.Errorf(s)
+		}
+	} else {
+		fieldSet := fields.Set{
+			instance.Spec.GetServicePlanFilterFieldName(): instance.Spec.GetSpecifiedServicePlan(),
+			"spec.serviceClassRef.name":                   instance.Spec.ServiceClassRef.Name,
+			"spec.serviceBrokerName":                      brokerName,
+		}
+		fieldSelector := fields.SelectorFromSet(fieldSet).String()
+		listOpts := metav1.ListOptions{FieldSelector: fieldSelector}
+		servicePlans, err := c.serviceCatalogClient.ServicePlans(instance.Namespace).List(listOpts)
+		if err == nil && len(servicePlans.Items) == 1 {
+			sp := &servicePlans.Items[0]
+			instance.Spec.ServicePlanRef = &v1beta1.LocalObjectReference{
+				Name: sp.Name,
+			}
+			glog.V(4).Info(pcb.Messagef("resolved %v to ServicePlan (K8S: %q)",
+				instance.Spec.PlanReference, sp.Name,
+			))
+		} else {
+			s := fmt.Sprintf(
+				"References a non-existent ServicePlan %b on ServiceClass %s %c or there is more than one (found: %d)",
+				instance.Spec.PlanReference, instance.Spec.ServiceClassRef.Name, instance.Spec.PlanReference, len(servicePlans.Items),
+			)
+			glog.Warning(pcb.Message(s))
+			c.updateServiceInstanceCondition(
+				instance,
+				v1beta1.ServiceInstanceConditionReady,
+				v1beta1.ConditionFalse,
+				errorNonexistentServicePlanReason,
+				"The instance references a ServicePlan that does not exist. "+s,
+			)
+			c.recorder.Event(instance, corev1.EventTypeWarning, errorNonexistentServicePlanReason, s)
+			return nil, fmt.Errorf(s)
+		}
+	}
+
+	return instance, nil
+}
+
+func (c *controller) prepareProvisionRequest(instance *v1beta1.ServiceInstance) (*osb.ProvisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
+	if instance.Spec.ClusterServiceClassSpecified() {
+		serviceClass, servicePlan, _, _, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
+		if err != nil {
+			return nil, nil, err
+		}
+		// Check if the ClusterServiceClass or ClusterServicePlan has been deleted and do not allow
+		// creation of new ServiceInstances.
+		if err = c.checkForRemovedClusterClassAndPlan(instance, serviceClass, servicePlan); err != nil {
+			return nil, nil, err
+		}
+		request, inProgressProperties, err := c.innerPrepareProvisionRequest(instance, serviceClass.Spec.CommonServiceClassSpec, servicePlan.Spec.CommonServicePlanSpec)
+		if err != nil {
+			return nil, nil, err
+		}
+		return request, inProgressProperties, nil
+	} else if instance.Spec.ServiceClassSpecified() {
+		serviceClass, servicePlan, _, _, err := c.getServiceClassPlanAndServiceBroker(instance)
+		if err != nil {
+			return nil, nil, err
+		}
+		// Check if the ServiceClass or ServicePlan has been deleted and do not allow
+		// creation of new ServiceInstances.
+		if err = c.checkForRemovedClassAndPlan(instance, serviceClass, servicePlan); err != nil {
+			return nil, nil, err
+		}
+		request, inProgressProperties, err := c.innerPrepareProvisionRequest(instance, serviceClass.Spec.CommonServiceClassSpec, servicePlan.Spec.CommonServicePlanSpec)
+		if err != nil {
+			return nil, nil, err
+		}
+		return request, inProgressProperties, nil
+	}
+
+	// If we're hitting this retun, it means we couldn't tell whether the class
+	// and plan were cluster or namespace scoped
+	return nil, nil, stderrors.New(errorAmbiguousPlanReferenceScope)
 }
 
 // newServiceInstanceCondition is a helper function that returns a
@@ -1096,7 +1421,7 @@ func newServiceInstanceOrphanMitigationCondition(status v1beta1.ConditionStatus,
 // instance's status if it exists.
 func removeServiceInstanceCondition(toUpdate *v1beta1.ServiceInstance,
 	conditionType v1beta1.ServiceInstanceConditionType) {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, toUpdate.Namespace, toUpdate.Name)
+	pcb := pretty.NewInstanceContextBuilder(toUpdate)
 	glog.V(5).Info(pcb.Messagef(
 		"Removing condition %q", conditionType,
 	))
@@ -1139,7 +1464,7 @@ func setServiceInstanceConditionInternal(toUpdate *v1beta1.ServiceInstance,
 	message string,
 	t metav1.Time) {
 
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, toUpdate.Namespace, toUpdate.Name)
+	pcb := pretty.NewInstanceContextBuilder(toUpdate)
 	glog.Info(pcb.Message(message))
 	glog.V(5).Info(pcb.Messagef(
 		"Setting condition %q to %v",
@@ -1189,7 +1514,7 @@ func setServiceInstanceConditionInternal(toUpdate *v1beta1.ServiceInstance,
 
 // updateServiceInstanceReferences updates the refs for the given instance.
 func (c *controller) updateServiceInstanceReferences(toUpdate *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, error) {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, toUpdate.Namespace, toUpdate.Name)
+	pcb := pretty.NewInstanceContextBuilder(toUpdate)
 	glog.V(4).Info(pcb.Message("Updating references"))
 	status := toUpdate.Status
 	updatedInstance, err := c.serviceCatalogClient.ServiceInstances(toUpdate.Namespace).UpdateReferences(toUpdate)
@@ -1207,8 +1532,23 @@ func (c *controller) updateServiceInstanceReferences(toUpdate *v1beta1.ServiceIn
 // Note: objects coming from informers should never be mutated; the instance
 // passed to this method should always be a deep copy.
 func (c *controller) updateServiceInstanceStatus(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, error) {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
-	glog.V(4).Info(pcb.Message("Updating status"))
+	return c.updateServiceInstanceStatusWithRetries(instance, nil)
+}
+
+// updateServiceInstanceStatusWithRetries updates the status
+// and automatically retries if a 409 Conflict error is
+// returned by the API server.
+// If a conflict occurs, the function overrides the new
+// version's status with the status on the ServiceInstance passed
+// to it; it also runs the provided postConflictUpdateFunc,
+// allowing the caller to make additional changes to the
+// new version of the instance - to other parts of the object
+// (e.g. finalizers).
+func (c *controller) updateServiceInstanceStatusWithRetries(
+	instance *v1beta1.ServiceInstance,
+	postConflictUpdateFunc func(*v1beta1.ServiceInstance)) (*v1beta1.ServiceInstance, error) {
+
+	pcb := pretty.NewInstanceContextBuilder(instance)
 
 	const interval = 100 * time.Millisecond
 	const timeout = 10 * time.Second
@@ -1216,17 +1556,22 @@ func (c *controller) updateServiceInstanceStatus(instance *v1beta1.ServiceInstan
 
 	instanceToUpdate := instance
 	err := wait.PollImmediate(interval, timeout, func() (bool, error) {
+		glog.V(4).Info(pcb.Message("Updating status"))
 		upd, err := c.serviceCatalogClient.ServiceInstances(instanceToUpdate.Namespace).UpdateStatus(instanceToUpdate)
 		if err != nil {
 			if !errors.IsConflict(err) {
 				return false, err
 			}
+			glog.V(4).Info(pcb.Message("Couldn't update status because the resource was stale"))
 			// Fetch a fresh instance to resolve the update conflict and retry
 			instanceToUpdate, err = c.serviceCatalogClient.ServiceInstances(instance.Namespace).Get(instance.Name, metav1.GetOptions{})
 			if err != nil {
 				return false, err
 			}
 			instanceToUpdate.Status = instance.Status
+			if postConflictUpdateFunc != nil {
+				postConflictUpdateFunc(instanceToUpdate)
+			}
 			return false, nil
 		}
 
@@ -1249,7 +1594,7 @@ func (c *controller) updateServiceInstanceCondition(
 	status v1beta1.ConditionStatus,
 	reason,
 	message string) error {
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 	toUpdate := instance.DeepCopy()
 
 	setServiceInstanceCondition(toUpdate, conditionType, status, reason, message)
@@ -1352,10 +1697,10 @@ func (c *controller) recordStartOfServiceInstanceOperation(toUpdate *v1beta1.Ser
 	return c.updateServiceInstanceStatus(toUpdate)
 }
 
-// checkForRemovedClassAndPlan looks at serviceClass and servicePlan and
-// if either has been deleted, will block a new instance creation. If
-//
-func (c *controller) checkForRemovedClassAndPlan(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass, servicePlan *v1beta1.ClusterServicePlan) error {
+// checkForRemovedClusterClassAndPlan looks at clusterServiceClass and
+// clusterServicePlan and if either has been deleted, will block a new instance
+// creation.
+func (c *controller) checkForRemovedClusterClassAndPlan(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass, servicePlan *v1beta1.ClusterServicePlan) error {
 	classDeleted := serviceClass.Status.RemovedFromBrokerCatalog
 	planDeleted := servicePlan.Status.RemovedFromBrokerCatalog
 
@@ -1386,6 +1731,43 @@ func (c *controller) checkForRemovedClassAndPlan(instance *v1beta1.ServiceInstan
 	return &operationError{
 		reason:  errorDeletedClusterServiceClassReason,
 		message: fmt.Sprintf("%s has been deleted; cannot provision.", pretty.ClusterServiceClassName(serviceClass)),
+	}
+}
+
+// checkForRemovedClassAndPlan looks at serviceClass and
+// servicePlan and if either has been deleted, will block a new instance
+// creation.
+func (c *controller) checkForRemovedClassAndPlan(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ServiceClass, servicePlan *v1beta1.ServicePlan) error {
+	classDeleted := serviceClass.Status.RemovedFromBrokerCatalog
+	planDeleted := servicePlan.Status.RemovedFromBrokerCatalog
+
+	if !classDeleted && !planDeleted {
+		// Neither has been deleted, life's good.
+		return nil
+	}
+
+	isProvisioning := instance.Status.ProvisionStatus != v1beta1.ServiceInstanceProvisionStatusProvisioned
+
+	// Regardless of what's been deleted, you can always update
+	// parameters (ie, not change plans)
+	if !isProvisioning && instance.Status.ExternalProperties != nil &&
+		servicePlan.Spec.ExternalID == instance.Status.ExternalProperties.ServicePlanExternalID {
+		// Service Instance has already been provisioned and we're only
+		// updating parameters, so let it through.
+		return nil
+	}
+
+	// At this point we know that plan is being changed
+	if planDeleted {
+		return &operationError{
+			reason:  errorDeletedServicePlanReason,
+			message: fmt.Sprintf("%s has been deleted; cannot provision.", pretty.ServicePlanName(servicePlan)),
+		}
+	}
+
+	return &operationError{
+		reason:  errorDeletedServiceClassReason,
+		message: fmt.Sprintf("%s has been deleted; cannot provision.", pretty.ServiceClassName(serviceClass)),
 	}
 }
 
@@ -1438,7 +1820,7 @@ type requestHelper struct {
 
 // prepareRequestHelper is a helper function that generates a struct with
 // properties common to multiple request types.
-func (c *controller) prepareRequestHelper(instance *v1beta1.ServiceInstance, servicePlan *v1beta1.ClusterServicePlan, setInProgressProperties bool) (*requestHelper, error) {
+func (c *controller) prepareRequestHelper(instance *v1beta1.ServiceInstance, planName string, planID string, setInProgressProperties bool) (*requestHelper, error) {
 	rh := &requestHelper{}
 
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity) {
@@ -1483,11 +1865,17 @@ func (c *controller) prepareRequestHelper(instance *v1beta1.ServiceInstance, ser
 		rh.parameters = parameters
 
 		rh.inProgressProperties = &v1beta1.ServiceInstancePropertiesState{
-			ClusterServicePlanExternalName: servicePlan.Spec.ExternalName,
-			ClusterServicePlanExternalID:   servicePlan.Spec.ExternalID,
-			Parameters:                     rawParametersWithRedaction,
-			ParametersChecksum:             parametersChecksum,
-			UserInfo:                       instance.Spec.UserInfo,
+			Parameters:         rawParametersWithRedaction,
+			ParametersChecksum: parametersChecksum,
+			UserInfo:           instance.Spec.UserInfo,
+		}
+
+		if instance.Spec.ClusterServiceClassSpecified() {
+			rh.inProgressProperties.ClusterServicePlanExternalName = planName
+			rh.inProgressProperties.ClusterServicePlanExternalID = planID
+		} else {
+			rh.inProgressProperties.ServicePlanExternalName = planName
+			rh.inProgressProperties.ServicePlanExternalID = planID
 		}
 	}
 
@@ -1502,10 +1890,11 @@ func (c *controller) prepareRequestHelper(instance *v1beta1.ServiceInstance, ser
 	return rh, nil
 }
 
-// prepareProvisionRequest creates a provision request object to be passed to
-// the broker client to provision the given instance.
-func (c *controller) prepareProvisionRequest(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass, servicePlan *v1beta1.ClusterServicePlan) (*osb.ProvisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
-	rh, err := c.prepareRequestHelper(instance, servicePlan, true)
+// innerPrepareProvisionRequest creates a provision request object to be passed to
+// the broker client to provision the given instance, with a cluster scoped
+// class and plan
+func (c *controller) innerPrepareProvisionRequest(instance *v1beta1.ServiceInstance, classCommon v1beta1.CommonServiceClassSpec, planCommon v1beta1.CommonServicePlanSpec) (*osb.ProvisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
+	rh, err := c.prepareRequestHelper(instance, planCommon.ExternalName, planCommon.ExternalID, true)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -1513,10 +1902,10 @@ func (c *controller) prepareProvisionRequest(instance *v1beta1.ServiceInstance, 
 	request := &osb.ProvisionRequest{
 		AcceptsIncomplete:   true,
 		InstanceID:          instance.Spec.ExternalID,
-		ServiceID:           serviceClass.Spec.ExternalID,
-		PlanID:              servicePlan.Spec.ExternalID,
+		ServiceID:           classCommon.ExternalID,
+		PlanID:              planCommon.ExternalID,
 		Parameters:          rh.parameters,
-		OrganizationGUID:    string(rh.ns.UID),
+		OrganizationGUID:    c.getClusterID(),
 		SpaceGUID:           string(rh.ns.UID),
 		Context:             rh.requestContext,
 		OriginatingIdentity: rh.originatingIdentity,
@@ -1527,34 +1916,81 @@ func (c *controller) prepareProvisionRequest(instance *v1beta1.ServiceInstance, 
 
 // prepareUpdateInstanceRequest creates an update instance request object to be
 // passed to the broker client to update the given instance.
-func (c *controller) prepareUpdateInstanceRequest(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass, servicePlan *v1beta1.ClusterServicePlan) (*osb.UpdateInstanceRequest, *v1beta1.ServiceInstancePropertiesState, error) {
-	rh, err := c.prepareRequestHelper(instance, servicePlan, true)
-	if err != nil {
-		return nil, nil, err
-	}
+func (c *controller) prepareUpdateInstanceRequest(instance *v1beta1.ServiceInstance) (*osb.UpdateInstanceRequest, *v1beta1.ServiceInstancePropertiesState, error) {
 
-	request := &osb.UpdateInstanceRequest{
-		AcceptsIncomplete:   true,
-		InstanceID:          instance.Spec.ExternalID,
-		ServiceID:           serviceClass.Spec.ExternalID,
-		Context:             rh.requestContext,
-		OriginatingIdentity: rh.originatingIdentity,
-	}
+	var rh *requestHelper
+	var request *osb.UpdateInstanceRequest
 
-	// Only send the plan ID if the plan ID has changed from what the Broker has
-	if instance.Status.ExternalProperties == nil ||
-		servicePlan.Spec.ExternalID != instance.Status.ExternalProperties.ClusterServicePlanExternalID {
-		planID := servicePlan.Spec.ExternalID
-		request.PlanID = &planID
-	}
-	// Only send the parameters if they have changed from what the Broker has
-	if instance.Status.ExternalProperties == nil ||
-		rh.inProgressProperties.ParametersChecksum != instance.Status.ExternalProperties.ParametersChecksum {
-		if rh.parameters != nil {
-			request.Parameters = rh.parameters
-		} else {
-			request.Parameters = make(map[string]interface{})
+	if instance.Spec.ClusterServiceClassSpecified() {
+		serviceClass, servicePlan, _, _, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
+		if err != nil {
+			return nil, nil, c.handleServiceInstanceReconciliationError(instance, err)
 		}
+
+		rh, err = c.prepareRequestHelper(instance, servicePlan.Spec.ExternalName, servicePlan.Spec.ExternalID, true)
+		if err != nil {
+			return nil, nil, err
+		}
+
+		request = &osb.UpdateInstanceRequest{
+			AcceptsIncomplete:   true,
+			InstanceID:          instance.Spec.ExternalID,
+			ServiceID:           serviceClass.Spec.ExternalID,
+			Context:             rh.requestContext,
+			OriginatingIdentity: rh.originatingIdentity,
+		}
+
+		// Only send the plan ID if the plan ID has changed from what the Broker has
+		if instance.Status.ExternalProperties == nil ||
+			servicePlan.Spec.ExternalID != instance.Status.ExternalProperties.ClusterServicePlanExternalID {
+			planID := servicePlan.Spec.ExternalID
+			request.PlanID = &planID
+		}
+		// Only send the parameters if they have changed from what the Broker has
+		if instance.Status.ExternalProperties == nil ||
+			rh.inProgressProperties.ParametersChecksum != instance.Status.ExternalProperties.ParametersChecksum {
+			if rh.parameters != nil {
+				request.Parameters = rh.parameters
+			} else {
+				request.Parameters = make(map[string]interface{})
+			}
+		}
+
+	} else if instance.Spec.ServiceClassSpecified() {
+		serviceClass, servicePlan, _, _, err := c.getServiceClassPlanAndServiceBroker(instance)
+		if err != nil {
+			return nil, nil, c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		rh, err = c.prepareRequestHelper(instance, servicePlan.Spec.ExternalName, servicePlan.Spec.ExternalID, true)
+		if err != nil {
+			return nil, nil, err
+		}
+
+		request = &osb.UpdateInstanceRequest{
+			AcceptsIncomplete:   true,
+			InstanceID:          instance.Spec.ExternalID,
+			ServiceID:           serviceClass.Spec.ExternalID,
+			Context:             rh.requestContext,
+			OriginatingIdentity: rh.originatingIdentity,
+		}
+
+		// Only send the plan ID if the plan ID has changed from what the Broker has
+		if instance.Status.ExternalProperties == nil ||
+			servicePlan.Spec.ExternalID != instance.Status.ExternalProperties.ServicePlanExternalID {
+			planID := servicePlan.Spec.ExternalID
+			request.PlanID = &planID
+		}
+		// Only send the parameters if they have changed from what the Broker has
+		if instance.Status.ExternalProperties == nil ||
+			rh.inProgressProperties.ParametersChecksum != instance.Status.ExternalProperties.ParametersChecksum {
+			if rh.parameters != nil {
+				request.Parameters = rh.parameters
+			} else {
+				request.Parameters = make(map[string]interface{})
+			}
+		}
+
 	}
 
 	return request, rh.inProgressProperties, nil
@@ -1562,10 +1998,27 @@ func (c *controller) prepareUpdateInstanceRequest(instance *v1beta1.ServiceInsta
 
 // prepareDeprovisionRequest creates a deprovision request object to be passed
 // to the broker client to deprovision the given instance.
-func (c *controller) prepareDeprovisionRequest(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass) (*osb.DeprovisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
-	rh, err := c.prepareRequestHelper(instance, nil, false)
+func (c *controller) prepareDeprovisionRequest(instance *v1beta1.ServiceInstance) (*osb.DeprovisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
+	rh, err := c.prepareRequestHelper(instance, "", "", true)
 	if err != nil {
 		return nil, nil, err
+	}
+
+	// Get the appropriate external id based for the cluster or namespaced
+	// service class
+	var scExternalID string
+	if instance.Spec.ClusterServiceClassSpecified() {
+		serviceClass, _, _, err := c.getClusterServiceClassAndClusterServiceBroker(instance)
+		if err != nil {
+			return nil, nil, c.handleServiceInstanceReconciliationError(instance, err)
+		}
+		scExternalID = serviceClass.Spec.ExternalID
+	} else if instance.Spec.ServiceClassSpecified() {
+		serviceClass, _, _, err := c.getServiceClassAndServiceBroker(instance)
+		if err != nil {
+			return nil, nil, c.handleServiceInstanceReconciliationError(instance, err)
+		}
+		scExternalID = serviceClass.Spec.ExternalID
 	}
 
 	// The plan reference in the spec might be updated since the latest
@@ -1583,10 +2036,18 @@ func (c *controller) prepareDeprovisionRequest(instance *v1beta1.ServiceInstance
 		rh.inProgressProperties = instance.Status.ExternalProperties
 	}
 
+	// Should come from rh.inProgressProperties.(Cluster)ServicePlanExternalID
+	var planExternalID string
+	if instance.Spec.ClusterServiceClassSpecified() {
+		planExternalID = rh.inProgressProperties.ClusterServicePlanExternalID
+	} else if instance.Spec.ServiceClassSpecified() {
+		planExternalID = rh.inProgressProperties.ServicePlanExternalID
+	}
+
 	request := &osb.DeprovisionRequest{
 		InstanceID:          instance.Spec.ExternalID,
-		ServiceID:           serviceClass.Spec.ExternalID,
-		PlanID:              rh.inProgressProperties.ClusterServicePlanExternalID,
+		ServiceID:           scExternalID,
+		PlanID:              planExternalID,
 		OriginatingIdentity: rh.originatingIdentity,
 		AcceptsIncomplete:   true,
 	}
@@ -1596,23 +2057,68 @@ func (c *controller) prepareDeprovisionRequest(instance *v1beta1.ServiceInstance
 
 // preparePollServiceInstanceRequest creates a request object to be passed to
 // the broker client to query the given instance's last operation endpoint.
-func (c *controller) prepareServiceInstanceLastOperationRequest(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass, servicePlan *v1beta1.ClusterServicePlan) (*osb.LastOperationRequest, error) {
-	rh, err := c.prepareRequestHelper(instance, servicePlan, false)
-	if err != nil {
-		return nil, err
-	}
+func (c *controller) prepareServiceInstanceLastOperationRequest(instance *v1beta1.ServiceInstance) (*osb.LastOperationRequest, error) {
 
 	if instance.Status.InProgressProperties == nil {
-		pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
-		err = stderrors.New("Instance.Status.InProgressProperties can not be nil")
+		pcb := pretty.NewInstanceContextBuilder(instance)
+		err := stderrors.New("Instance.Status.InProgressProperties can not be nil")
 		glog.Errorf(pcb.Message(err.Error()))
 		return nil, err
 	}
 
+	var rh *requestHelper
+	var scExternalID string
+	var spExternalID string
+
+	if instance.Spec.ClusterServiceClassSpecified() {
+		serviceClass, servicePlan, _, _, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
+		if err != nil {
+			return nil, c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		scExternalID = serviceClass.Spec.ExternalID
+
+		var spExternalName string
+		if servicePlan != nil {
+			spExternalName = servicePlan.Spec.ExternalName
+			spExternalID = servicePlan.Spec.ExternalID
+		} else {
+			// If the ServicePlan is nil, pull from the InProgressProperties
+			spExternalID = instance.Status.InProgressProperties.ClusterServicePlanExternalID
+		}
+
+		rh, err = c.prepareRequestHelper(instance, spExternalName, spExternalID, false)
+		if err != nil {
+			return nil, err
+		}
+	} else if instance.Spec.ServiceClassSpecified() {
+		serviceClass, servicePlan, _, _, err := c.getServiceClassPlanAndServiceBroker(instance)
+		if err != nil {
+			return nil, c.handleServiceInstanceReconciliationError(instance, err)
+		}
+
+		scExternalID = serviceClass.Spec.ExternalID
+
+		// Sometimes the servicePlan is nil (deprovision)
+		var spExternalName string
+		if servicePlan != nil {
+			spExternalName = servicePlan.Spec.ExternalName
+			spExternalID = servicePlan.Spec.ExternalID
+		} else {
+			// If the ServicePlan is nil, pull from the InProgressProperties
+			spExternalID = instance.Status.InProgressProperties.ServicePlanExternalID
+		}
+
+		rh, err = c.prepareRequestHelper(instance, spExternalName, spExternalID, false)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	request := &osb.LastOperationRequest{
 		InstanceID:          instance.Spec.ExternalID,
-		ServiceID:           &serviceClass.Spec.ExternalID,
-		PlanID:              &instance.Status.InProgressProperties.ClusterServicePlanExternalID,
+		ServiceID:           &scExternalID,
+		PlanID:              &spExternalID,
 		OriginatingIdentity: rh.originatingIdentity,
 	}
 	if instance.Status.LastOperation != nil && *instance.Status.LastOperation != "" {
@@ -1627,18 +2133,21 @@ func (c *controller) prepareServiceInstanceLastOperationRequest(instance *v1beta
 // updating of a ServiceInstance that has successfully finished graceful
 // deletion.
 func (c *controller) processServiceInstanceGracefulDeletionSuccess(instance *v1beta1.ServiceInstance) error {
-	finalizers := sets.NewString(instance.Finalizers...)
-	finalizers.Delete(v1beta1.FinalizerServiceCatalog)
-	instance.Finalizers = finalizers.List()
-
-	if _, err := c.updateServiceInstanceStatus(instance); err != nil {
+	c.removeFinalizer(instance)
+	if _, err := c.updateServiceInstanceStatusWithRetries(instance, c.removeFinalizer); err != nil {
 		return err
 	}
 
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 	glog.Info(pcb.Message("Cleared finalizer"))
 
 	return nil
+}
+
+func (c *controller) removeFinalizer(instance *v1beta1.ServiceInstance) {
+	finalizers := sets.NewString(instance.Finalizers...)
+	finalizers.Delete(v1beta1.FinalizerServiceCatalog)
+	instance.Finalizers = finalizers.List()
 }
 
 // handleServiceInstanceReconciliationError is a helper function that handles
@@ -1953,7 +2462,7 @@ func (c *controller) handleServiceInstancePollingError(instance *v1beta1.Service
 	//	2) attempt to requeue in the polling queue
 	//		- if successful, we can return nil to avoid regular queue
 	//		- if failure, return err to fall back to regular queue
-	pcb := pretty.NewContextBuilder(pretty.ServiceInstance, instance.Namespace, instance.Name)
+	pcb := pretty.NewInstanceContextBuilder(instance)
 	glog.V(4).Info(pcb.Messagef("Error during polling: %v", err))
 	return c.continuePollingServiceInstance(instance)
 }
