@@ -57,7 +57,7 @@ STAT           = stat -c '%Y %n'
 endif
 
 TYPES_FILES    = $(shell find pkg/apis -name types.go)
-GO_VERSION    ?= 1.9
+GO_VERSION    ?= 1.10
 
 ALL_ARCH=amd64 arm arm64 ppc64le s390x
 ALL_CLIENT_PLATFORM=darwin linux windows
@@ -77,7 +77,7 @@ endif
 BASEIMAGE?=gcr.io/google-containers/debian-base-$(ARCH):0.3
 
 GO_BUILD       = env CGO_ENABLED=0 GOOS=$(PLATFORM) GOARCH=$(ARCH) \
-                  go build -i $(GOFLAGS) -a -tags netgo -installsuffix netgo \
+                  go build $(GOFLAGS) -a -tags netgo -installsuffix netgo \
                   -ldflags '-s -w -X $(SC_PKG)/pkg.VERSION=$(VERSION) $(BUILD_LDFLAGS)'
 
 BASE_PATH      = $(ROOT:/src/github.com/kubernetes-incubator/service-catalog/=)
@@ -110,7 +110,9 @@ ifdef NO_DOCKER
 	scBuildImageTarget =
 else
 	# Mount .pkg as pkg so that we save our cached "go build" output files
-	DOCKER_CMD = docker run --security-opt label:disable --rm -v $(CURDIR):/go/src/$(SC_PKG) \
+	DOCKER_CMD = docker run --security-opt label:disable --rm \
+	  -v $(CURDIR):/go/src/$(SC_PKG) \
+	  -v $(CURDIR)/.cache:/root/.cache/ \
 	  -v $(CURDIR)/.pkg:/go/pkg --env AZURE_STORAGE_CONNECTION_STRING scbuildimage
 	scBuildImageTarget = .scBuildImage
 endif
@@ -196,6 +198,8 @@ $(BINDIR):
 	mkdir -p $@
 
 .scBuildImage: build/build-image/Dockerfile
+	mkdir -p .cache
+	mkdir -p .pkg
 	sed -i "s/GO_VERSION/$(GO_VERSION)/g" build/build-image/Dockerfile
 	docker build -t scbuildimage -f build/build-image/Dockerfile .
 	touch $@
@@ -235,7 +239,7 @@ verify: .init verify-generated verify-client-gen verify-docs verify-vendor
 	@echo Running tag verification:
 	@$(DOCKER_CMD) build/verify-tags.sh
 
-verify-docs: .init docs
+verify-docs: .init
 	@echo Running href checker$(SKIP_COMMENT):
 	@$(DOCKER_CMD) verify-links.sh -s .pkg -s .bundler -s _plugins -s _includes -t $(SKIP_HTTP) .
 
@@ -273,6 +277,10 @@ test-unit: .init build
 	$(DOCKER_CMD) go test -race $(UNIT_TEST_FLAGS) \
 	  $(addprefix $(SC_PKG)/,$(TEST_DIRS)) $(UNIT_TEST_LOG_FLAGS)
 
+test-update-goldenfiles: .init
+	@echo Updating golden files to match current test output
+	$(DOCKER_CMD) go test ./cmd/svcat/... -update
+
 build-integration: .generate_files
 	$(DOCKER_CMD) go test -race github.com/kubernetes-incubator/service-catalog/test/integration/... -c
 
@@ -281,7 +289,7 @@ test-integration: .init $(scBuildImageTarget) build build-integration
 	contrib/hack/setup-kubectl.sh
 	contrib/hack/test-apiserver.sh
 	# golang integration tests
-	$(DOCKER_CMD) test/integration.sh $(INT_TEST_FLAGS)
+	$(DOCKER_CMD) ./integration.test -test.v $(INT_TEST_FLAGS)
 
 clean-e2e: .init $(scBuildImageTarget)
 	$(DOCKER_CMD) rm -f $(BINDIR)/e2e.test
