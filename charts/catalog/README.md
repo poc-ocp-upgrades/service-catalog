@@ -40,7 +40,7 @@ chart and their default values.
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `image` | apiserver image to use | `quay.io/kubernetes-service-catalog/service-catalog:v0.1.27` |
+| `image` | apiserver image to use | `quay.io/kubernetes-service-catalog/service-catalog:v0.1.29` |
 | `imagePullPolicy` | `imagePullPolicy` for the service catalog | `Always` |
 | `apiserver.annotations` | Annotations for apiserver pods | `{}` |
 | `apiserver.nodeSelector` | A nodeSelector value to apply to the apiserver pods. If not specified, no nodeSelector will be applied | |
@@ -84,6 +84,7 @@ chart and their default values.
 | `rbacEnable` | If true, create & use RBAC resources | `true` |
 | `originatingIdentityEnabled` | Whether the OriginatingIdentity alpha feature should be enabled | `false` |
 | `asyncBindingOperationsEnabled` | Whether or not alpha support for async binding operations is enabled | `false` |
+| `namespacedServiceBrokerDisabled` | Whether or not alpha support for namespace scoped brokers is disabled | `false` |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to
 `helm install`.
