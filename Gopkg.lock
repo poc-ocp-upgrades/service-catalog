@@ -514,8 +514,8 @@
     "v2/fake",
     "v2/generator"
   ]
-  revision = "dca737037ce636eb282e84e3a1c7479c9692e884"
-  version = "0.0.10"
+  revision = "79b374a2302fe4a2c05c6f469262d195b765152f"
+  version = "0.0.12"
 
 [[projects]]
   name = "github.com/prometheus/client_golang"
