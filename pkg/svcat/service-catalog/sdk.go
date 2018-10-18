@@ -44,18 +44,19 @@ type SvcatClient interface {
 	Unbind(string, string) ([]types.NamespacedName, error)
 	WaitForBinding(string, string, time.Duration, *time.Duration) (*apiv1beta1.ServiceBinding, error)
 
-	Deregister(string) error
+	Deregister(string, *ScopeOptions) error
 	RetrieveBrokers(opts ScopeOptions) ([]Broker, error)
 	RetrieveBroker(string) (*apiv1beta1.ClusterServiceBroker, error)
 	RetrieveBrokerByClass(*apiv1beta1.ClusterServiceClass) (*apiv1beta1.ClusterServiceBroker, error)
-	Register(string, string, *RegisterOptions) (*apiv1beta1.ClusterServiceBroker, error)
-	Sync(string, int) error
+	Register(string, string, *RegisterOptions, *ScopeOptions) (Broker, error)
+	Sync(string, ScopeOptions, int) error
+	WaitForBroker(string, time.Duration, *time.Duration) (Broker, error)
 
 	RetrieveClasses(ScopeOptions) ([]Class, error)
-	RetrieveClassByName(string) (*apiv1beta1.ClusterServiceClass, error)
+	RetrieveClassByName(string, ScopeOptions) (Class, error)
 	RetrieveClassByID(string) (*apiv1beta1.ClusterServiceClass, error)
 	RetrieveClassByPlan(*apiv1beta1.ClusterServicePlan) (*apiv1beta1.ClusterServiceClass, error)
-	CreateClass(*apiv1beta1.ClusterServiceClass) (*apiv1beta1.ClusterServiceClass, error)
+	CreateClassFrom(CreateClassFromOptions) (Class, error)
 
 	Deprovision(string, string) error
 	InstanceParentHierarchy(*apiv1beta1.ServiceInstance) (*apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, *apiv1beta1.ClusterServiceBroker, error)

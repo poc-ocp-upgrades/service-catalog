@@ -515,6 +515,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/peterbourgon/mergemap"
+  packages = ["."]
+  revision = "e21c03b7a721e413718d2703181ead350d3c9d6f"
+
+[[projects]]
+  branch = "master"
   name = "github.com/pivotal-cf/brokerapi"
   packages = [
     ".",
@@ -534,8 +540,8 @@
     "v2/fake",
     "v2/generator"
   ]
-  revision = "dca737037ce636eb282e84e3a1c7479c9692e884"
-  version = "0.0.10"
+  revision = "9cc214e88d00504888af633376c9462e0ab2bd8b"
+  version = "0.0.11"
 
 [[projects]]
   name = "github.com/prometheus/client_golang"
@@ -788,6 +794,7 @@
   revision = "53feefa2559fb8dfa8d81baad31be332c97d6c77"
 
 [[projects]]
+  branch = "release-1.11"
   name = "k8s.io/api"
   packages = [
     "admission/v1beta1",
@@ -821,8 +828,7 @@
     "storage/v1alpha1",
     "storage/v1beta1"
   ]
-  revision = "072894a440bdee3a891dea811fe42902311cd2a3"
-  version = "kubernetes-1.11.0"
+  revision = "4e7be11eab3ffcfc1876898b8272df53785a9504"
 
 [[projects]]
   branch = "release-1.11"
@@ -883,9 +889,10 @@
     "third_party/forked/golang/json",
     "third_party/forked/golang/reflect"
   ]
-  revision = "103fd098999dc9c0c88536f5c9ad2e5da39373ae"
+  revision = "def12e63c512da17043b4f0293f52d1006603d9f"
 
 [[projects]]
+  branch = "release-1.11"
   name = "k8s.io/apiserver"
   packages = [
     "pkg/admission",
@@ -978,10 +985,10 @@
     "plugin/pkg/authenticator/token/webhook",
     "plugin/pkg/authorizer/webhook"
   ]
-  revision = "01459b68eb5fee2dcf5ca0e29df8bcac89ead47b"
-  version = "kubernetes-1.11.0"
+  revision = "d296c96c12b7d15d7fb5fea7a05fb165f8fd4014"
 
 [[projects]]
+  branch = "release-8.0"
   name = "k8s.io/client-go"
   packages = [
     "discovery",
@@ -1151,8 +1158,7 @@
     "util/retry",
     "util/workqueue"
   ]
-  revision = "7d04d0e2a0a1a4d4a1cd6baa432a2301492e4e65"
-  version = "kubernetes-1.11.0"
+  revision = "f2f85107cac6fe04c30435ca0ac0c3318fd1b94c"
 
 [[projects]]
   branch = "release-1.11"
@@ -1183,7 +1189,7 @@
     "cmd/openapi-gen/args",
     "pkg/util"
   ]
-  revision = "6702109cc68eb6fe6350b83e14407c8d7309fd1a"
+  revision = "8c97d6ab64da020f8b151e9d3ed8af3172f5c390"
 
 [[projects]]
   branch = "master"
@@ -1221,6 +1227,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "18c14a2444b3d1edffdea1eba30f21a69343dd8331a58ce2b8899ccd7b25aa5c"
+  inputs-digest = "254db3e7a1c37caaf86adb1b514cc81ad6ffbc79998f9548dfd44f76a7a8b08d"
   solver-name = "gps-cdcl"
   solver-version = 1
