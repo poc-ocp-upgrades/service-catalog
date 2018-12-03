@@ -18,6 +18,7 @@ limitations under the License.
 package app
 
 import (
+	"bytes"
 	"fmt"
 	"net"
 	"net/http"
@@ -166,7 +167,13 @@ func Run(controllerManagerOptions *options.ControllerManagerServer) error {
 				ClientConfig: serviceCatalogKubeconfig,
 			},
 		}
-		healthz.InstallHandler(mux, healthz.PingHealthz, apiAvailableChecker)
+		// liveness registered at /healthz indicates if the container is responding
+		healthz.InstallHandler(mux, healthz.PingHealthz)
+
+		// readiness registered at /healthz/ready indicates if traffic should be routed to this container
+		//healthz.InstallPathHandler(mux, "/healthz/ready", apiAvailableChecker)
+		mux.Handle("/healthz/ready", handleRootHealthz(apiAvailableChecker))
+
 		configz.InstallHandler(mux)
 		metrics.RegisterMetricsAndInstallHandler(mux)
 
@@ -423,4 +430,35 @@ func (c checkAPIAvailableResources) Check(_ *http.Request) error {
 		return fmt.Errorf("failed to get API GroupVersion %q; found: %#v", catalogGVR, availableResources)
 	}
 	return nil
+}
+// handleRootHealthz returns an http.HandlerFunc that serves the provided checks.
+func handleRootHealthz(checks ...healthz.HealthzChecker) http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		failed := false
+		var verboseOut bytes.Buffer
+		for _, check := range checks {
+			if err := check.Check(r); err != nil {
+				// don't include the error since this endpoint is public.  If someone wants more detail
+				// they should have explicit permission to the detailed checks.
+				glog.V(6).Infof("healthz check %v failed: %v", check.Name(), err)
+				fmt.Fprintf(&verboseOut, "[-]%v failed: reason withheld\n", check.Name())
+				failed = true
+			} else {
+				fmt.Fprintf(&verboseOut, "[+]%v ok\n", check.Name())
+			}
+		}
+		// always be verbose on failure
+		if failed {
+			http.Error(w, fmt.Sprintf("%vhealthz check failed", verboseOut.String()), http.StatusInternalServerError)
+			return
+		}
+
+		if _, found := r.URL.Query()["verbose"]; !found {
+			fmt.Fprint(w, "ok")
+			return
+		}
+
+		verboseOut.WriteTo(w)
+		fmt.Fprint(w, "healthz check passed\n")
+	})
 }

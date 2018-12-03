@@ -17,10 +17,12 @@ limitations under the License.
 package server
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 
 	"github.com/kubernetes-incubator/service-catalog/pkg/api"
+	"k8s.io/apiserver/pkg/server/healthz"
 	genericapiserverstorage "k8s.io/apiserver/pkg/server/storage"
 	"k8s.io/apiserver/pkg/storage/etcd3/preflight"
 
@@ -111,9 +113,16 @@ func runEtcdServer(opts *ServiceCatalogServerOptions, stopCh <-chan struct{}) er
 	etcdChecker := checkEtcdConnectable{
 		ServerList: etcdOpts.StorageConfig.ServerList,
 	}
-	// PingHealtz is installed by the default config, so it will
-	// run in addition the checkers being installed here.
-	server.GenericAPIServer.AddHealthzChecks(etcdChecker)
+
+	// The liveness probe is registered at /healthz for us by the k8s genericapiserver and indicates
+	// if the container is responding to http requests (we don't need to register it, it is done
+	// for us).
+
+	// The readiness probe will be registered at /healthz/ready and indicates if traffic should
+	// be routed to this container.  Add the etcdChecker as we only want to handle requests
+	// if we have connectivity with etcd
+	server.GenericAPIServer.Handler.NonGoRestfulMux.Handle("/healthz/ready", handleRootHealthz(etcdChecker))
+
 
 	// do we need to do any post api installation setup? We should have set up the api already?
 	glog.Infoln("Running the API server")
@@ -146,4 +155,37 @@ func (c checkEtcdConnectable) Check(_ *http.Request) error {
 		return fmt.Errorf(msg)
 	}
 	return nil
+}
+
+// This function copied from K8s k8s.io/apiserver/pkg/server/healthz
+// handleRootHealthz returns an http.HandlerFunc that serves the provided checks.
+func handleRootHealthz(checks ...healthz.HealthzChecker) http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		failed := false
+		var verboseOut bytes.Buffer
+		for _, check := range checks {
+			if err := check.Check(r); err != nil {
+				// don't include the error since this endpoint is public.  If someone wants more detail
+				// they should have explicit permission to the detailed checks.
+				glog.V(6).Infof("healthz check %v failed: %v", check.Name(), err)
+				fmt.Fprintf(&verboseOut, "[-]%v failed: reason withheld\n", check.Name())
+				failed = true
+			} else {
+				fmt.Fprintf(&verboseOut, "[+]%v ok\n", check.Name())
+			}
+		}
+		// always be verbose on failure
+		if failed {
+			http.Error(w, fmt.Sprintf("%vhealthz check failed", verboseOut.String()), http.StatusInternalServerError)
+			return
+		}
+
+		if _, found := r.URL.Query()["verbose"]; !found {
+			fmt.Fprint(w, "ok")
+			return
+		}
+
+		verboseOut.WriteTo(w)
+		fmt.Fprint(w, "healthz check passed\n")
+	})
 }
