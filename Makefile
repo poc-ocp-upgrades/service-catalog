@@ -122,3 +122,13 @@ build-rpms:
 build-images: build-rpms
 	hack/build-images.sh
 .PHONY: build-images
+
+# Build e2e test executable
+#
+# Args:
+#
+# Example:
+#   make build-images
+build-e2e:
+	go test -c -o bin/e2e.test github.com/kubernetes-incubator/service-catalog/test/e2e
+.PHONY: build-e2e
