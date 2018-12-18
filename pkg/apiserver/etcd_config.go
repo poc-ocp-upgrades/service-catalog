@@ -18,7 +18,6 @@ package apiserver
 
 import (
 	"github.com/golang/glog"
-	"github.com/kubernetes-incubator/service-catalog/pkg/registry/servicecatalog/server"
 	"k8s.io/apiserver/pkg/registry/generic"
 	"k8s.io/apiserver/pkg/registry/generic/registry"
 	"k8s.io/apiserver/pkg/registry/rest"
@@ -99,7 +98,7 @@ func (c completedEtcdConfig) NewServer(stopCh <-chan struct{}) (*ServiceCatalogA
 
 	glog.V(4).Infoln("Installing API groups")
 	// default namespace doesn't matter for etcd
-	providers := restStorageProviders("" /* default namespace */, server.StorageTypeEtcd, nil)
+	providers := restStorageProviders("" /* default namespace */, nil)
 	for _, provider := range providers {
 		groupInfo, err := provider.NewRESTStorage(c.apiResourceConfigSource, roFactory)
 		if IsErrAPIGroupDisabled(err) {
@@ -114,7 +113,7 @@ func (c completedEtcdConfig) NewServer(stopCh <-chan struct{}) (*ServiceCatalogA
 		if err := s.GenericAPIServer.InstallAPIGroup(groupInfo); err != nil {
 			glog.Fatalf("Error installing API group %v: %v", provider.GroupName(), err)
 		} else {
-			// we've sucessfully installed, so hook the stopCh to the destroy func of all the sucessfully installed apigroups
+			// we've successfully installed, so hook the stopCh to the destroy func of all the sucessfully installed apigroups
 			for _, mappings := range groupInfo.VersionedResourcesStorageMap { // gv to resource mappings
 				for _, storage := range mappings { // resource name (brokers, brokers/status) to backing storage
 					go func(store rest.Storage) {
