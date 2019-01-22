@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: svcat
+  namespace: kube-service-catalog
+spec:
+  channel: alpha
+  name: svcat
+  source: community-operators

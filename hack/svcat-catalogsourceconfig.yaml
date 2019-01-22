@@ -1,0 +1,8 @@
+apiVersion: "marketplace.redhat.com/v1alpha1"
+kind: "CatalogSourceConfig"
+metadata:
+  name: "service-catalog"
+  namespace: "openshift-marketplace"
+spec:
+  targetNamespace: "kube-service-catalog"
+  packages: "svcat"
