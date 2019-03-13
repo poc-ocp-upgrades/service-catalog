@@ -57,7 +57,9 @@ if [ "${NOW}" -ge "${TARGET}" ];then
     # could fail out here with an exit 1, leave it to fail e2e for now.
 fi
 
+set +e
 oc get pods -l app=apiserver -n openshift-service-catalog-apiserver  -o name |  xargs -I{} oc logs {} -n openshift-service-catalog-apiserver  | grep -o "Service Catalog version.*" > /tmp/artifacts/service-catalog-version.txt
+set -e
 cat /tmp/artifacts/service-catalog-version.txt
 
 
