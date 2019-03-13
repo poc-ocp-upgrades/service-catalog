@@ -44,16 +44,23 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"gopkg.in/yaml.v2"
 	k8serrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	clientgotesting "k8s.io/client-go/testing"
 	k8stesting "k8s.io/client-go/testing"
+	"k8s.io/klog"
+	"sigs.k8s.io/yaml"
 )
 
 var catalogRequestRegex = regexp.MustCompile("/apis/servicecatalog.k8s.io/v1beta1/(.*)")
 var coreRequestRegex = regexp.MustCompile("/api/v1/(.*)")
+
+func TestMain(m *testing.M) {
+	// Init klog flags because tests rely on flags to be globally registered
+	klog.InitFlags(nil)
+	os.Exit(m.Run())
+}
 
 // Verify that svcat gracefully handles when the namespaced broker feature flag is disabled
 // TODO: Once we take Namespaced brokers out from behind the feature flag, this test won't be necessary
