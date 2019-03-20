@@ -189,7 +189,7 @@ RunAgain:
 
 	logs.InitLogs()
 	defer logs.FlushLogs()
-	klog.Infof("Service Catalog version %s (built %s)", version.Get().String(), version.Get().BuildDate)
+	klog.Infof("Service Catalog version %s (built %s)", pkg.VERSION, version.Get().BuildDate)
 	if !s.RespectsStopCh {
 		// For commands that do not respect the stopCh, we run them in a go
 		// routine and leave them running when stopCh is closed.
