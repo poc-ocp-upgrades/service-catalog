@@ -1,24 +1,7 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package integration
 
 import (
 	"log"
-
 	"github.com/kubernetes-incubator/service-catalog/pkg/api"
 	"github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog"
 	_ "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/install"
@@ -28,23 +11,15 @@ import (
 )
 
 func serviceCatalogAPIGroup() testapi.TestGroup {
-	// OOPS: didn't register the right group version
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	groupVersion := schema.GroupVersion{Group: servicecatalog.GroupName, Version: "v1beta1"}
-
-	externalGroupVersion := schema.GroupVersion{
-		Group:   servicecatalog.GroupName,
-		Version: api.Scheme.PrioritizedVersionsForGroup(servicecatalog.GroupName)[0].Version,
-	}
-
-	return testapi.NewTestGroup(
-		groupVersion,
-		servicecatalog.SchemeGroupVersion,
-		api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion),
-		api.Scheme.KnownTypes(externalGroupVersion),
-	)
+	externalGroupVersion := schema.GroupVersion{Group: servicecatalog.GroupName, Version: api.Scheme.PrioritizedVersionsForGroup(servicecatalog.GroupName)[0].Version}
+	return testapi.NewTestGroup(groupVersion, servicecatalog.SchemeGroupVersion, api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion), api.Scheme.KnownTypes(externalGroupVersion))
 }
-
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	log.SetFlags(log.Lshortfile)
 	testapi.Groups[servicecatalog.GroupName] = serviceCatalogAPIGroup()
 }

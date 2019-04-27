@@ -1,27 +1,9 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package rest
 
 import (
 	"fmt"
-
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apiserver/pkg/registry/generic"
@@ -31,7 +13,6 @@ import (
 	"k8s.io/apiserver/pkg/storage/storagebackend"
 	"k8s.io/apiserver/pkg/storage/storagebackend/factory"
 	utilfeature "k8s.io/apiserver/pkg/util/feature"
-
 	scfeatures "github.com/kubernetes-incubator/service-catalog/pkg/features"
 	"github.com/kubernetes-incubator/service-catalog/pkg/registry/servicecatalog/binding"
 	"github.com/kubernetes-incubator/service-catalog/pkg/registry/servicecatalog/clusterservicebroker"
@@ -45,12 +26,9 @@ import (
 
 var _ = Describe("ensure that our storage types implement the appropriate interfaces", func() {
 	It("checks v1beta1 standard storage", func() {
-
 		defer utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=false", scfeatures.NamespacedServiceBroker))
 		Expect(utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))).Should(Succeed())
-
 		checkStorageType := func(t GinkgoTInterface, s rest.Storage) {
-			// Our normal stores are all of these things
 			if _, isStorageType := s.(rest.Storage); !isStorageType {
 				t.Errorf("%q not compliant to storage interface", s)
 			}
@@ -79,44 +57,21 @@ var _ = Describe("ensure that our storage types implement the appropriate interf
 				t.Errorf("%q not compliant to StandardStorage interface", s)
 			}
 		}
-
-		provider := StorageProvider{
-			DefaultNamespace: "test-default",
-			RESTClient:       nil,
-		}
+		provider := StorageProvider{DefaultNamespace: "test-default", RESTClient: nil}
 		configSource := serverstorage.NewResourceConfig()
-		roGetter := testRESTOptionsGetter(nil, func() {})
+		roGetter := testRESTOptionsGetter(nil, func() {
+		})
 		storageMap, err := provider.v1beta1Storage(configSource, roGetter)
 		Expect(err).Should(BeNil())
-
-		storages := [...]string{
-			"clusterservicebrokers",
-			"clusterserviceclasses",
-			"clusterserviceplans",
-			"serviceinstances",
-			"servicebindings",
-			"serviceclasses",
-			"serviceplans",
-			"servicebrokers",
-		}
-
+		storages := [...]string{"clusterservicebrokers", "clusterserviceclasses", "clusterserviceplans", "serviceinstances", "servicebindings", "serviceclasses", "serviceplans", "servicebrokers"}
 		for _, storage := range storages {
 			s, storageExists := storageMap[storage]
 			Expect(storageExists).Should(BeTrue(), "no %q storage found", storage)
 			checkStorageType(GinkgoT(), s)
 		}
 	})
-
-	// TestCheckStatusRESTTypes ensures that our Status storage types fulfill the
-	// specific interfaces that are expected and no more. This is similar to what is
-	// done internally to the apiserver when it is deciding what http verbs to
-	// expose on each resource. For status, we only want to support GET and a form
-	// of update like PATCH. This could partly be done by type var type-assertions
-	// at the site of declaration, but because we want to explicitly determine that
-	// an object does NOT implement some interface, it has to be done at runtime.
 	It("checks v1beta1 StatusREST storage", func() {
 		checkStatusStorageType := func(t GinkgoTInterface, s rest.Storage) {
-			// Status is New & Get & Update ONLY
 			if _, isStandardStorage := s.(rest.Storage); !isStandardStorage {
 				t.Errorf("not compliant to storage interface for %q", s)
 			}
@@ -126,7 +81,6 @@ var _ = Describe("ensure that our storage types implement the appropriate interf
 			if _, isStandardStorage := s.(rest.Getter); !isStandardStorage {
 				t.Errorf("not compliant to getter interface for %q", s)
 			}
-			// NONE of these things
 			if _, isStandardStorage := s.(rest.Lister); isStandardStorage {
 				t.Errorf("%q was a lister but should not be", s)
 			}
@@ -146,7 +100,6 @@ var _ = Describe("ensure that our storage types implement the appropriate interf
 				t.Errorf("%q was a StandardStorage but should not be", s)
 			}
 		}
-
 		checkStatusStorageType(GinkgoT(), &clusterservicebroker.StatusREST{})
 		checkStatusStorageType(GinkgoT(), &servicebroker.StatusREST{})
 		checkStatusStorageType(GinkgoT(), &clusterserviceclass.StatusREST{})
@@ -159,30 +112,19 @@ var _ = Describe("ensure that our storage types implement the appropriate interf
 })
 
 type GetRESTOptionsHelper struct {
-	retStorageInterface storage.Interface
-	retDestroyFunc      func()
+	retStorageInterface	storage.Interface
+	retDestroyFunc		func()
 }
 
 func (g GetRESTOptionsHelper) GetRESTOptions(resource schema.GroupResource) (generic.RESTOptions, error) {
-	return generic.RESTOptions{
-		ResourcePrefix: resource.Group + "/" + resource.Resource,
-		StorageConfig:  &storagebackend.Config{},
-		Decorator: generic.StorageDecorator(func(
-			config *storagebackend.Config,
-			objectType runtime.Object,
-			resourcePrefix string,
-			keyFunc func(obj runtime.Object) (string, error),
-			newListFunc func() runtime.Object,
-			getAttrsFunc storage.AttrFunc,
-			trigger storage.TriggerPublisherFunc,
-		) (storage.Interface, factory.DestroyFunc) {
-			return g.retStorageInterface, g.retDestroyFunc
-		})}, nil
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	return generic.RESTOptions{ResourcePrefix: resource.Group + "/" + resource.Resource, StorageConfig: &storagebackend.Config{}, Decorator: generic.StorageDecorator(func(config *storagebackend.Config, objectType runtime.Object, resourcePrefix string, keyFunc func(obj runtime.Object) (string, error), newListFunc func() runtime.Object, getAttrsFunc storage.AttrFunc, trigger storage.TriggerPublisherFunc) (storage.Interface, factory.DestroyFunc) {
+		return g.retStorageInterface, g.retDestroyFunc
+	})}, nil
 }
-
-func testRESTOptionsGetter(
-	retStorageInterface storage.Interface,
-	retDestroyFunc func(),
-) generic.RESTOptionsGetter {
+func testRESTOptionsGetter(retStorageInterface storage.Interface, retDestroyFunc func()) generic.RESTOptionsGetter {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return GetRESTOptionsHelper{retStorageInterface, retDestroyFunc}
 }

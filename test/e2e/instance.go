@@ -1,66 +1,39 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package e2e
 
 import (
 	"time"
-
 	v1beta1 "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	"github.com/kubernetes-incubator/service-catalog/pkg/client/clientset_generated/clientset"
 	"github.com/kubernetes-incubator/service-catalog/test/e2e/framework"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/wait"
-
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
 
 const (
-	// how long to wait for an instance to be deleted.
 	instanceDeleteTimeout = 60 * time.Second
 )
 
 func newTestInstance(name, serviceClassName, planName string) *v1beta1.ServiceInstance {
-	return &v1beta1.ServiceInstance{
-		ObjectMeta: metav1.ObjectMeta{
-			Name: name,
-		},
-		Spec: v1beta1.ServiceInstanceSpec{
-			PlanReference: v1beta1.PlanReference{
-				ClusterServicePlanExternalName:  planName,
-				ClusterServiceClassExternalName: serviceClassName,
-			},
-		},
-	}
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	return &v1beta1.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: name}, Spec: v1beta1.ServiceInstanceSpec{PlanReference: v1beta1.PlanReference{ClusterServicePlanExternalName: planName, ClusterServiceClassExternalName: serviceClassName}}}
 }
-
-// createInstance in the specified namespace
 func createInstance(c clientset.Interface, namespace string, instance *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServicecatalogV1beta1().ServiceInstances(namespace).Create(instance)
 }
-
-// deleteInstance with the specified namespace and name
 func deleteInstance(c clientset.Interface, namespace, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServicecatalogV1beta1().ServiceInstances(namespace).Delete(name, nil)
 }
-
-// waitForInstanceToBeDeleted waits for the instance to be removed.
 func waitForInstanceToBeDeleted(c clientset.Interface, namespace, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.Poll(framework.Poll, instanceDeleteTimeout, func() (bool, error) {
 		_, err := c.ServicecatalogV1beta1().ServiceInstances(namespace).Get(name, metav1.GetOptions{})
 		if err == nil {
@@ -77,7 +50,6 @@ func waitForInstanceToBeDeleted(c clientset.Interface, namespace, name string) e
 
 var _ = framework.ServiceCatalogDescribe("ServiceInstance", func() {
 	f := framework.NewDefaultFramework("service-instance")
-
 	It("should verify an Instance can be deleted if referenced service class does not exist.", func() {
 		By("Creating an Instance")
 		instance := newTestInstance("test-instance", "no-service-class", "no-plan")

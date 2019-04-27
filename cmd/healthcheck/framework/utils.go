@@ -1,25 +1,8 @@
-/*
-Copyright 2018 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package framework
 
 import (
 	"fmt"
 	"time"
-
 	corev1 "k8s.io/api/core/v1"
 	apierrs "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -33,15 +16,13 @@ import (
 )
 
 const (
-	// Poll determines how often to poll for conditions
-	poll = 2 * time.Second
-
-	// Default time to wait for operations to complete
-	defaultTimeout = 30 * time.Second
+	poll		= 2 * time.Second
+	defaultTimeout	= 30 * time.Second
 )
 
-// RestclientConfig builds a Config object
 func RestclientConfig(config, context string) (*api.Config, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if config == "" {
 		return nil, fmt.Errorf("Config file must be specified to load client config")
 	}
@@ -54,25 +35,19 @@ func RestclientConfig(config, context string) (*api.Config, error) {
 	}
 	return c, nil
 }
-
-// LoadConfig parses the config and context and returns a new Config
 func LoadConfig(config, context string) (*rest.Config, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c, err := RestclientConfig(config, context)
 	if err != nil {
 		return nil, err
 	}
 	return clientcmd.NewDefaultClientConfig(*c, &clientcmd.ConfigOverrides{}).ClientConfig()
 }
-
-// CreateKubeNamespace create a new K8s namespace with a unique name
 func CreateKubeNamespace(c kubernetes.Interface) (*corev1.Namespace, error) {
-	ns := &corev1.Namespace{
-		ObjectMeta: metav1.ObjectMeta{
-			GenerateName: fmt.Sprintf("svc-catalog-health-check-%v-", uuid.NewUUID()),
-		},
-	}
-
-	// Be robust about making the namespace creation call.
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	ns := &corev1.Namespace{ObjectMeta: metav1.ObjectMeta{GenerateName: fmt.Sprintf("svc-catalog-health-check-%v-", uuid.NewUUID())}}
 	var got *corev1.Namespace
 	err := wait.PollImmediate(poll, defaultTimeout, func() (bool, error) {
 		var err error
@@ -88,18 +63,19 @@ func CreateKubeNamespace(c kubernetes.Interface) (*corev1.Namespace, error) {
 	}
 	return got, nil
 }
-
-// DeleteKubeNamespace deletes the specified K8s namespace
 func DeleteKubeNamespace(c kubernetes.Interface, namespace string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.CoreV1().Namespaces().Delete(namespace, nil)
 }
-
-// WaitForEndpoint waits for 'defaultTimeout' interval for an endpoint to be available
 func WaitForEndpoint(c kubernetes.Interface, namespace, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(poll, defaultTimeout, endpointAvailable(c, namespace, name))
 }
-
 func endpointAvailable(c kubernetes.Interface, namespace, name string) wait.ConditionFunc {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func() (bool, error) {
 		endpoint, err := c.CoreV1().Endpoints(namespace).Get(name, metav1.GetOptions{})
 		if err != nil {
@@ -108,11 +84,9 @@ func endpointAvailable(c kubernetes.Interface, namespace, name string) wait.Cond
 			}
 			return false, err
 		}
-
 		if len(endpoint.Subsets) == 0 || len(endpoint.Subsets[0].Addresses) == 0 {
 			return false, nil
 		}
-
 		return true, nil
 	}
 }

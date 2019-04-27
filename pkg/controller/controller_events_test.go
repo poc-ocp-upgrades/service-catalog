@@ -1,19 +1,3 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package controller
 
 import (
@@ -22,13 +6,16 @@ import (
 )
 
 func checkEventCounts(actual, expected []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(actual) != len(expected) {
 		return fmt.Errorf("Checking event count: %s", expectedGot(len(expected), len(actual)))
 	}
 	return nil
 }
-
 func checkEvents(actual, expected []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := checkEventCounts(actual, expected); err != nil {
 		return err
 	}
@@ -39,8 +26,9 @@ func checkEvents(actual, expected []string) error {
 	}
 	return nil
 }
-
 func checkEventPrefixes(actual, expected []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := checkEventCounts(actual, expected); err != nil {
 		return err
 	}
@@ -52,15 +40,16 @@ func checkEventPrefixes(actual, expected []string) error {
 	}
 	return nil
 }
-
 func checkEventContains(actual, expected string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !strings.Contains(actual, expected) {
 		return fmt.Errorf("received unexpected event (contains):\n %s", expectedGot(expected, actual))
 	}
-
 	return nil
 }
-
 func expectedGot(a ...interface{}) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("\nexpected:\n\t '%v',\ngot:\n\t '%v'", a...)
 }

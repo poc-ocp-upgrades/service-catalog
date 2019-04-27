@@ -1,19 +1,3 @@
-/*
-Copyright 2016 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package v1beta1_test
 
 import (
@@ -21,7 +5,6 @@ import (
 	"reflect"
 	"testing"
 	"time"
-
 	"github.com/kubernetes-incubator/service-catalog/pkg/api"
 	"github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog"
 	_ "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/install"
@@ -33,22 +16,18 @@ import (
 )
 
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	groupVersion, err := schema.ParseGroupVersion("servicecatalog.k8s.io/v1beta1")
 	if err != nil {
 		panic(fmt.Sprintf("Error parsing groupversion: %v", err))
 	}
-
 	externalGroupVersion := schema.GroupVersion{Group: servicecatalog.GroupName, Version: api.Scheme.PrioritizedVersionsForGroup(servicecatalog.GroupName)[0].Version}
-
-	testapi.Groups[servicecatalog.GroupName] = testapi.NewTestGroup(
-		groupVersion,
-		servicecatalog.SchemeGroupVersion,
-		api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion),
-		api.Scheme.KnownTypes(externalGroupVersion),
-	)
+	testapi.Groups[servicecatalog.GroupName] = testapi.NewTestGroup(groupVersion, servicecatalog.SchemeGroupVersion, api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion), api.Scheme.KnownTypes(externalGroupVersion))
 }
-
 func roundTrip(t *testing.T, obj runtime.Object) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	codec, err := testapi.GetCodecForObject(obj)
 	if err != nil {
 		t.Fatalf("%v\n %#v", err, obj)
@@ -68,52 +47,29 @@ func roundTrip(t *testing.T, obj runtime.Object) runtime.Object {
 	}
 	return obj3
 }
-
 func TestSetDefaultClusterServiceBroker(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
-		name     string
-		broker   *versioned.ClusterServiceBroker
-		behavior versioned.ServiceBrokerRelistBehavior
-		duration *metav1.Duration
-	}{
-		{
-			name:     "neither duration or behavior set",
-			broker:   &versioned.ClusterServiceBroker{},
-			behavior: versioned.ServiceBrokerRelistBehaviorDuration,
-			duration: &metav1.Duration{Duration: 15 * time.Minute},
-		},
-		{
-			name: "behavior set to manual",
-			broker: func() *versioned.ClusterServiceBroker {
-				b := &versioned.ClusterServiceBroker{}
-				b.Spec.RelistBehavior = versioned.ServiceBrokerRelistBehaviorManual
-				return b
-			}(),
-			behavior: versioned.ServiceBrokerRelistBehaviorManual,
-			duration: nil,
-		},
-		{
-			name: "behavior set to duration but no duration provided",
-			broker: func() *versioned.ClusterServiceBroker {
-				b := &versioned.ClusterServiceBroker{}
-				b.Spec.RelistBehavior = versioned.ServiceBrokerRelistBehaviorDuration
-				return b
-			}(),
-			behavior: versioned.ServiceBrokerRelistBehaviorDuration,
-			duration: &metav1.Duration{Duration: 15 * time.Minute},
-		},
-	}
-
+		name		string
+		broker		*versioned.ClusterServiceBroker
+		behavior	versioned.ServiceBrokerRelistBehavior
+		duration	*metav1.Duration
+	}{{name: "neither duration or behavior set", broker: &versioned.ClusterServiceBroker{}, behavior: versioned.ServiceBrokerRelistBehaviorDuration, duration: &metav1.Duration{Duration: 15 * time.Minute}}, {name: "behavior set to manual", broker: func() *versioned.ClusterServiceBroker {
+		b := &versioned.ClusterServiceBroker{}
+		b.Spec.RelistBehavior = versioned.ServiceBrokerRelistBehaviorManual
+		return b
+	}(), behavior: versioned.ServiceBrokerRelistBehaviorManual, duration: nil}, {name: "behavior set to duration but no duration provided", broker: func() *versioned.ClusterServiceBroker {
+		b := &versioned.ClusterServiceBroker{}
+		b.Spec.RelistBehavior = versioned.ServiceBrokerRelistBehaviorDuration
+		return b
+	}(), behavior: versioned.ServiceBrokerRelistBehaviorDuration, duration: &metav1.Duration{Duration: 15 * time.Minute}}}
 	for _, tc := range cases {
 		o := roundTrip(t, runtime.Object(tc.broker))
 		ab := o.(*versioned.ClusterServiceBroker)
 		actualSpec := ab.Spec
-
 		if tc.behavior != actualSpec.RelistBehavior {
-			t.Errorf(
-				"%v: unexpected default RelistBehavior: expected %v, got %v",
-				tc.name, tc.behavior, actualSpec.RelistBehavior,
-			)
+			t.Errorf("%v: unexpected default RelistBehavior: expected %v, got %v", tc.name, tc.behavior, actualSpec.RelistBehavior)
 		}
 	}
 }

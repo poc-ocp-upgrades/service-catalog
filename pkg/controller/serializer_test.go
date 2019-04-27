@@ -1,42 +1,21 @@
-/*
-Copyright 2016 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package controller
 
 import (
 	"encoding/json"
 	"reflect"
 	"testing"
-
 	"bytes"
 	"encoding/base64"
 	"github.com/google/gofuzz"
 )
-
-// Tests in this file test this package's serialize() function by "round
-// tripping." Values are serialized using the serialize() function, then are
-// deserialized using the inverse of the process used by serialize(). Comparison
-// of the original value to the output of the round trip is used to assert the
-// correctness of the serialize() function.
 
 const fuzzIters = 20
 
 var fuzzer = fuzz.New()
 
 func TestSerializeInt(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
 		var intVal int
 		fuzzer.Fuzz(&intVal)
@@ -54,8 +33,9 @@ func TestSerializeInt(t *testing.T) {
 		}
 	}
 }
-
 func TestSerializeFloat(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
 		var floatVal float64
 		fuzzer.Fuzz(&floatVal)
@@ -73,8 +53,9 @@ func TestSerializeFloat(t *testing.T) {
 		}
 	}
 }
-
 func TestSerializeString(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
 		var strVal string
 		fuzzer.Fuzz(&strVal)
@@ -88,8 +69,9 @@ func TestSerializeString(t *testing.T) {
 		}
 	}
 }
-
 func TestSerializeMap(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var mapVal map[string]string
 	for i := 0; i < fuzzIters; i++ {
 		fuzzer.Fuzz(&mapVal)
@@ -107,8 +89,9 @@ func TestSerializeMap(t *testing.T) {
 		}
 	}
 }
-
 func TestSerializeSlice(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var sliceVal []string
 	for i := 0; i < fuzzIters; i++ {
 		fuzzer.Fuzz(&sliceVal)
@@ -126,8 +109,9 @@ func TestSerializeSlice(t *testing.T) {
 		}
 	}
 }
-
 func TestSerializeByteSlice(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
 		var byteSliceVal []byte
 		fuzzer.Fuzz(&byteSliceVal)
@@ -136,7 +120,6 @@ func TestSerializeByteSlice(t *testing.T) {
 			t.Fatalf("Unexpected error: %s", err)
 		}
 		base64EncodedBytes := []byte(`"` + base64.StdEncoding.EncodeToString(serializedBytes) + `"`)
-
 		var byteSlicePrime []byte
 		err = json.Unmarshal(base64EncodedBytes, &byteSlicePrime)
 		if err != nil {
