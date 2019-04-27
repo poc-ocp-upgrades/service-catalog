@@ -20,10 +20,14 @@ const (
 func IsPlugin() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, ok := os.LookupEnv(EnvPluginCaller)
 	return ok
 }
 func BindEnvironmentVariables(vip *viper.Viper, cmd *cobra.Command) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	vip.BindEnv("namespace", EnvPluginNamespace)

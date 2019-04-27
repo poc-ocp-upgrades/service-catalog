@@ -15,6 +15,8 @@ import (
 func buildParameters(kubeClient kubernetes.Interface, namespace string, parametersFrom []v1beta1.ParametersFromSource, parameters *runtime.RawExtension) (map[string]interface{}, map[string]interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	params := make(map[string]interface{})
 	paramsWithSecretsRedacted := make(map[string]interface{})
 	if parametersFrom != nil {
@@ -56,6 +58,8 @@ func buildParameters(kubeClient kubernetes.Interface, namespace string, paramete
 func fetchParametersFromSource(kubeClient kubernetes.Interface, namespace string, parametersFrom *v1beta1.ParametersFromSource) (map[string]interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var params map[string]interface{}
 	if parametersFrom.SecretKeyRef != nil {
 		data, err := fetchSecretKeyValue(kubeClient, namespace, parametersFrom.SecretKeyRef)
@@ -73,6 +77,8 @@ func fetchParametersFromSource(kubeClient kubernetes.Interface, namespace string
 func UnmarshalRawParameters(in []byte) (map[string]interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	parameters := make(map[string]interface{})
 	if len(in) > 0 {
 		if err := yaml.Unmarshal(in, &parameters); err != nil {
@@ -84,12 +90,16 @@ func UnmarshalRawParameters(in []byte) (map[string]interface{}, error) {
 func MarshalRawParameters(in map[string]interface{}) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if in == nil || len(in) == 0 {
 		return nil, nil
 	}
 	return json.Marshal(in)
 }
 func unmarshalJSON(in []byte) (map[string]interface{}, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	parameters := make(map[string]interface{})
@@ -101,6 +111,8 @@ func unmarshalJSON(in []byte) (map[string]interface{}, error) {
 func fetchSecretKeyValue(kubeClient kubernetes.Interface, namespace string, secretKeyRef *v1beta1.SecretKeyReference) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	secret, err := kubeClient.CoreV1().Secrets(namespace).Get(secretKeyRef.Name, metav1.GetOptions{})
 	if err != nil {
 		return nil, err
@@ -108,6 +120,8 @@ func fetchSecretKeyValue(kubeClient kubernetes.Interface, namespace string, secr
 	return secret.Data[secretKeyRef.Key], nil
 }
 func generateChecksumOfParameters(params map[string]interface{}) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if params == nil || len(params) == 0 {
@@ -121,6 +135,8 @@ func generateChecksumOfParameters(params map[string]interface{}) (string, error)
 	return fmt.Sprintf("%x", hash), nil
 }
 func prepareInProgressPropertyParameters(kubeClient kubernetes.Interface, namespace string, specParameters *runtime.RawExtension, specParametersFrom []v1beta1.ParametersFromSource) (map[string]interface{}, string, *runtime.RawExtension, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	parameters, parametersWithSecretsRedacted, err := buildParameters(kubeClient, namespace, specParametersFrom, specParameters)
@@ -142,6 +158,8 @@ func prepareInProgressPropertyParameters(kubeClient kubernetes.Interface, namesp
 	return parameters, parametersChecksum, rawParametersWithRedaction, err
 }
 func mergeParameters(params *runtime.RawExtension, defaultParams *runtime.RawExtension) (*runtime.RawExtension, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if defaultParams == nil || defaultParams.Raw == nil || string(defaultParams.Raw) == "" {

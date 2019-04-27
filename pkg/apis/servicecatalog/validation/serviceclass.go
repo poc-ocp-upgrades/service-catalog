@@ -13,6 +13,8 @@ const guidMaxLength int = 63
 func validateCommonServiceClassName(value string, prefix bool) []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var errs []string
 	if len(value) > commonServiceClassNameMaxLength {
 		errs = append(errs, utilvalidation.MaxLenError(commonServiceClassNameMaxLength))
@@ -23,6 +25,8 @@ func validateCommonServiceClassName(value string, prefix bool) []string {
 	return errs
 }
 func validateExternalID(value string) []string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var errs []string
@@ -37,9 +41,13 @@ func validateExternalID(value string) []string {
 func ValidateClusterServiceClass(serviceclass *sc.ClusterServiceClass) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return internalValidateClusterServiceClass(serviceclass)
 }
 func ValidateClusterServiceClassUpdate(new *sc.ClusterServiceClass, old *sc.ClusterServiceClass) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -49,12 +57,16 @@ func ValidateClusterServiceClassUpdate(new *sc.ClusterServiceClass, old *sc.Clus
 func internalValidateClusterServiceClass(clusterserviceclass *sc.ClusterServiceClass) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, apivalidation.ValidateObjectMeta(&clusterserviceclass.ObjectMeta, false, validateCommonServiceClassName, field.NewPath("metadata"))...)
 	allErrs = append(allErrs, validateClusterServiceClassSpec(&clusterserviceclass.Spec, field.NewPath("spec"), true)...)
 	return allErrs
 }
 func validateClusterServiceClassSpec(spec *sc.ClusterServiceClassSpec, fldPath *field.Path, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -70,9 +82,13 @@ func validateClusterServiceClassSpec(spec *sc.ClusterServiceClassSpec, fldPath *
 func ValidateServiceClass(serviceclass *sc.ServiceClass) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return internalValidateServiceClass(serviceclass)
 }
 func ValidateServiceClassUpdate(new *sc.ServiceClass, old *sc.ServiceClass) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -82,12 +98,16 @@ func ValidateServiceClassUpdate(new *sc.ServiceClass, old *sc.ServiceClass) fiel
 func internalValidateServiceClass(clusterserviceclass *sc.ServiceClass) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, apivalidation.ValidateObjectMeta(&clusterserviceclass.ObjectMeta, true, validateCommonServiceClassName, field.NewPath("metadata"))...)
 	allErrs = append(allErrs, validateServiceClassSpec(&clusterserviceclass.Spec, field.NewPath("spec"), true)...)
 	return allErrs
 }
 func validateServiceClassSpec(spec *sc.ServiceClassSpec, fldPath *field.Path, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -101,6 +121,8 @@ func validateServiceClassSpec(spec *sc.ServiceClassSpec, fldPath *field.Path, cr
 	return allErrs
 }
 func validateCommonServiceClassSpec(spec *sc.CommonServiceClassSpec, fldPath *field.Path, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	commonErrs := field.ErrorList{}

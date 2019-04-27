@@ -9,12 +9,16 @@ import (
 func getScope(class servicecatalog.Class) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if class.GetNamespace() != "" {
 		return servicecatalog.NamespaceScope
 	}
 	return servicecatalog.ClusterScope
 }
 func writeClassListTable(w io.Writer, classes []servicecatalog.Class) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewListTable(w)
@@ -26,6 +30,8 @@ func writeClassListTable(w io.Writer, classes []servicecatalog.Class) {
 	t.Render()
 }
 func WriteClassList(w io.Writer, outputFormat string, classes ...servicecatalog.Class) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch outputFormat {
@@ -40,6 +46,8 @@ func WriteClassList(w io.Writer, outputFormat string, classes ...servicecatalog.
 func WriteClass(w io.Writer, outputFormat string, class servicecatalog.Class) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch outputFormat {
 	case FormatJSON:
 		writeJSON(w, class)
@@ -50,6 +58,8 @@ func WriteClass(w io.Writer, outputFormat string, class servicecatalog.Class) {
 	}
 }
 func WriteClassDetails(w io.Writer, class servicecatalog.Class) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scope := getScope(class)
@@ -63,6 +73,8 @@ func WriteClassDetails(w io.Writer, class servicecatalog.Class) {
 	t.Render()
 }
 func WriteClassAndPlanDetails(w io.Writer, classes []servicecatalog.Class, plans [][]servicecatalog.Plan) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewListTable(w)

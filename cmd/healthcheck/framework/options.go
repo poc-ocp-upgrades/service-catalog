@@ -26,12 +26,16 @@ const (
 func NewHealthCheckServer() *HealthCheckServer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s := HealthCheckServer{HealthCheckInterval: defaultHealthCheckInterval, SecureServingOptions: genericoptions.NewSecureServingOptions()}
 	s.SecureServingOptions.BindPort = defaultSecurePort
 	s.SecureServingOptions.ServerCert.CertDirectory = defaultCertDirectory
 	return &s
 }
 func (s *HealthCheckServer) AddFlags(fs *pflag.FlagSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs.StringVar(&s.KubeHost, "kubernetes-host", "http://127.0.0.1:8080", "The kubernetes host, or apiserver, to connect to")

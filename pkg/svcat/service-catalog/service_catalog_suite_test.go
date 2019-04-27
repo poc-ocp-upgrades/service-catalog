@@ -9,6 +9,8 @@ import (
 func TestServiceCatalog(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	RegisterFailHandler(Fail)
 	RunSpecs(t, "ServiceCatalog Suite")
 }

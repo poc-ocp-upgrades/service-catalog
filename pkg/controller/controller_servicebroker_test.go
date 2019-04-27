@@ -22,6 +22,8 @@ import (
 func TestShouldReconcileServiceBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
 	broker.Spec.RelistDuration = &metav1.Duration{Duration: 3 * time.Minute}
 	if !shouldReconcileClusterServiceBroker(broker, time.Now(), 24*time.Hour) {
@@ -29,6 +31,8 @@ func TestShouldReconcileServiceBroker(t *testing.T) {
 	}
 }
 func TestReconcileServiceBrokerUpdatesBrokerClient(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestServiceBroker()
@@ -43,11 +47,15 @@ func TestReconcileServiceBrokerUpdatesBrokerClient(t *testing.T) {
 func getServiceBrokerReactor(broker *v1beta1.ServiceBroker) (string, string, clientgotesting.ReactionFunc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "get", "servicebrokers", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		return true, broker, nil
 	}
 }
 func listServiceClassesReactor(classes []v1beta1.ServiceClass) (string, string, clientgotesting.ReactionFunc) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return "list", "serviceclasses", func(action clientgotesting.Action) (bool, runtime.Object, error) {
@@ -57,11 +65,15 @@ func listServiceClassesReactor(classes []v1beta1.ServiceClass) (string, string, 
 func listServicePlansReactor(plans []v1beta1.ServicePlan) (string, string, clientgotesting.ReactionFunc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "list", "serviceplans", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		return true, &v1beta1.ServicePlanList{Items: plans}, nil
 	}
 }
 func reconcileServiceBroker(t *testing.T, testController *controller, broker *v1beta1.ServiceBroker) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clone := broker.DeepCopy()
@@ -72,6 +84,8 @@ func reconcileServiceBroker(t *testing.T, testController *controller, broker *v1
 	return err
 }
 func TestReconcileServiceBrokerDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -128,6 +142,8 @@ func TestReconcileServiceBrokerDelete(t *testing.T) {
 	}
 }
 func TestReconcileServiceClassFromServiceBrokerCatalog(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	updatedClass := func() *v1beta1.ServiceClass {
@@ -193,6 +209,8 @@ func TestReconcileServiceClassFromServiceBrokerCatalog(t *testing.T) {
 	}
 }
 func TestReconcileServicePlanFromServiceBrokerCatalog(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	updatedPlan := func() *v1beta1.ServicePlan {

@@ -14,6 +14,8 @@ import (
 func TestGetClusterIDDefaulting(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, _, _, tc, _ := newTestController(t, noFakeActions())
 	tc.setClusterID("")
 	if tc.getClusterID() == "" {
@@ -22,6 +24,8 @@ func TestGetClusterIDDefaulting(t *testing.T) {
 	t.Log(tc.getClusterID())
 }
 func TestGetClusterIDConcurrently(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, _, _, tc, _ := newTestController(t, noFakeActions())
@@ -49,6 +53,8 @@ func TestGetClusterIDConcurrently(t *testing.T) {
 func TestGetClusterIDRoundTrip(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, _, _, tc, _ := newTestController(t, noFakeActions())
 	tc.setClusterID("")
 	tc.setClusterID(testClusterID)
@@ -57,6 +63,8 @@ func TestGetClusterIDRoundTrip(t *testing.T) {
 	}
 }
 func TestMonitorConfigMapNoConfigmap(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kc, _, _, tc, _ := newTestController(t, noFakeActions())
@@ -82,6 +90,8 @@ func TestMonitorConfigMapNoConfigmap(t *testing.T) {
 func TestMonitorConfigMapNoConfigmapNoExistingClusterID(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kc, _, _, tc, _ := newTestController(t, noFakeActions())
 	kc.AddReactor("get", "configmaps", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		m := make(map[string]string)
@@ -105,6 +115,8 @@ func TestMonitorConfigMapNoConfigmapNoExistingClusterID(t *testing.T) {
 func TestMonitorConfigMapConfigmapOverride(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kc, _, _, tc, _ := newTestController(t, noFakeActions())
 	kc.AddReactor("get", "configmaps", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		m := make(map[string]string)
@@ -118,6 +130,8 @@ func TestMonitorConfigMapConfigmapOverride(t *testing.T) {
 	}
 }
 func TestMonitorConfigMapConfigmapWithNoData(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kc, _, _, tc, _ := newTestController(t, noFakeActions())
@@ -143,6 +157,8 @@ func TestMonitorConfigMapConfigmapWithNoData(t *testing.T) {
 	}
 }
 func TestMonitorConfigMapConfigmapWithOtherData(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kc, _, _, tc, _ := newTestController(t, noFakeActions())

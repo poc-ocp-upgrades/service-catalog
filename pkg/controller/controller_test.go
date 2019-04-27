@@ -381,14 +381,20 @@ type testTimeoutError struct{}
 func (e testTimeoutError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "timed out"
 }
 func (e testTimeoutError) Timeout() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func getTestTimeoutError() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return testTimeoutError{}
@@ -416,15 +422,21 @@ var testOriginatingIdentity = &osb.OriginatingIdentity{Platform: originatingIden
 func getTestClusterServiceBroker() *v1beta1.ClusterServiceBroker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceBroker{ObjectMeta: metav1.ObjectMeta{Name: testClusterServiceBrokerName}, Spec: v1beta1.ClusterServiceBrokerSpec{CommonServiceBrokerSpec: v1beta1.CommonServiceBrokerSpec{URL: "https://example.com", RelistBehavior: v1beta1.ServiceBrokerRelistBehaviorDuration, RelistDuration: &metav1.Duration{Duration: 15 * time.Minute}}}}
 }
 func getTestClusterServiceBrokerWithStatus(status v1beta1.ConditionStatus) *v1beta1.ClusterServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := metav1.NewTime(time.Now().Add(-5 * time.Minute))
 	return getTestClusterServiceBrokerWithStatusAndTime(status, t, t)
 }
 func getTestClusterServiceBrokerWithStatusAndTime(status v1beta1.ConditionStatus, lastTransitionTime, lastRelistTime metav1.Time) *v1beta1.ClusterServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
@@ -434,6 +446,8 @@ func getTestClusterServiceBrokerWithStatusAndTime(status v1beta1.ConditionStatus
 func getTestClusterServiceBrokerWithAuth(authInfo *v1beta1.ClusterServiceBrokerAuthInfo) *v1beta1.ClusterServiceBroker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
 	broker.Spec.AuthInfo = authInfo
 	return broker
@@ -441,9 +455,13 @@ func getTestClusterServiceBrokerWithAuth(authInfo *v1beta1.ClusterServiceBrokerA
 func getTestClusterBrokerBasicAuthInfo() *v1beta1.ClusterServiceBrokerAuthInfo {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceBrokerAuthInfo{Basic: &v1beta1.ClusterBasicAuthConfig{SecretRef: &v1beta1.ObjectReference{Namespace: "test-ns", Name: "auth-secret"}}}
 }
 func getTestClusterBrokerBearerAuthInfo() *v1beta1.ClusterServiceBrokerAuthInfo {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceBrokerAuthInfo{Bearer: &v1beta1.ClusterBearerTokenAuthConfig{SecretRef: &v1beta1.ObjectReference{Namespace: "test-ns", Name: "auth-secret"}}}
@@ -451,14 +469,20 @@ func getTestClusterBrokerBearerAuthInfo() *v1beta1.ClusterServiceBrokerAuthInfo 
 func getTestBasicAuthSecret() *corev1.Secret {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &corev1.Secret{Data: map[string][]byte{v1beta1.BasicAuthUsernameKey: []byte("foo"), v1beta1.BasicAuthPasswordKey: []byte("bar")}}
 }
 func getTestBearerAuthSecret() *corev1.Secret {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &corev1.Secret{Data: map[string][]byte{v1beta1.BearerTokenKey: []byte("token")}}
 }
 func getTestClusterServiceClass() *v1beta1.ClusterServiceClass {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
@@ -469,12 +493,16 @@ func getTestClusterServiceClass() *v1beta1.ClusterServiceClass {
 func getTestMarkedAsRemovedClusterServiceClass() *v1beta1.ClusterServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
 	class := &v1beta1.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testRemovedClusterServiceClassGUID}, Spec: v1beta1.ClusterServiceClassSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServiceClassSpec: v1beta1.CommonServiceClassSpec{Description: "a test service that has been marked as removed", ExternalName: testRemovedClusterServiceClassName, ExternalID: testRemovedClusterServiceClassGUID, Bindable: true}}, Status: v1beta1.ClusterServiceClassStatus{CommonServiceClassStatus: v1beta1.CommonServiceClassStatus{RemovedFromBrokerCatalog: true}}}
 	markAsServiceCatalogManagedResource(class, broker)
 	return class
 }
 func getTestRemovedClusterServiceClass() *v1beta1.ClusterServiceClass {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
@@ -485,14 +513,20 @@ func getTestRemovedClusterServiceClass() *v1beta1.ClusterServiceClass {
 func getTestBindingRetrievableClusterServiceClass() *v1beta1.ClusterServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testClusterServiceClassGUID}, Spec: v1beta1.ClusterServiceClassSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServiceClassSpec: v1beta1.CommonServiceClassSpec{Description: "a test service", ExternalName: testClusterServiceClassName, ExternalID: testClusterServiceClassGUID, BindingRetrievable: true, Bindable: true}}}
 }
 func getTestBindingRetrievableServiceClass() *v1beta1.ServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testServiceClassGUID, Namespace: testNamespace}, Spec: v1beta1.ServiceClassSpec{ServiceBrokerName: testServiceBrokerName, CommonServiceClassSpec: v1beta1.CommonServiceClassSpec{Description: "a test service", ExternalName: testServiceClassName, ExternalID: testServiceClassGUID, BindingRetrievable: true, Bindable: true}}}
 }
 func getTestClusterServicePlan() *v1beta1.ClusterServicePlan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
@@ -503,12 +537,16 @@ func getTestClusterServicePlan() *v1beta1.ClusterServicePlan {
 func getTestMarkedAsRemovedClusterServicePlan() *v1beta1.ClusterServicePlan {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
 	plan := &v1beta1.ClusterServicePlan{ObjectMeta: metav1.ObjectMeta{Name: testRemovedClusterServicePlanGUID}, Spec: v1beta1.ClusterServicePlanSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServicePlanSpec: v1beta1.CommonServicePlanSpec{ExternalID: testRemovedClusterServicePlanGUID, ExternalName: testRemovedClusterServicePlanName, Bindable: truePtr()}, ClusterServiceClassRef: v1beta1.ClusterObjectReference{Name: testClusterServiceClassGUID}}, Status: v1beta1.ClusterServicePlanStatus{CommonServicePlanStatus: v1beta1.CommonServicePlanStatus{RemovedFromBrokerCatalog: true}}}
 	markAsServiceCatalogManagedResource(plan, broker)
 	return plan
 }
 func getTestRemovedClusterServicePlan() *v1beta1.ClusterServicePlan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
@@ -519,6 +557,8 @@ func getTestRemovedClusterServicePlan() *v1beta1.ClusterServicePlan {
 func getTestClusterServicePlanNonbindable() *v1beta1.ClusterServicePlan {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := getTestClusterServiceBroker()
 	plan := &v1beta1.ClusterServicePlan{ObjectMeta: metav1.ObjectMeta{Name: testNonbindableClusterServicePlanGUID}, Spec: v1beta1.ClusterServicePlanSpec{CommonServicePlanSpec: v1beta1.CommonServicePlanSpec{ExternalName: testNonbindableClusterServicePlanName, ExternalID: testNonbindableClusterServicePlanGUID, Bindable: falsePtr()}, ClusterServiceClassRef: v1beta1.ClusterObjectReference{Name: testClusterServiceClassGUID}}}
 	markAsServiceCatalogManagedResource(plan, broker)
@@ -527,14 +567,20 @@ func getTestClusterServicePlanNonbindable() *v1beta1.ClusterServicePlan {
 func getTestNonbindableClusterServiceClass() *v1beta1.ClusterServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testNonbindableClusterServiceClassGUID}, Spec: v1beta1.ClusterServiceClassSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServiceClassSpec: v1beta1.CommonServiceClassSpec{ExternalName: testNonbindableClusterServiceClassName, ExternalID: testNonbindableClusterServiceClassGUID, Bindable: false}}}
 }
 func getTestCatalog() *osb.CatalogResponse {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &osb.CatalogResponse{Services: []osb.Service{{Name: testClusterServiceClassName, ID: testClusterServiceClassGUID, Description: "a test service", Bindable: true, Plans: []osb.Plan{{Name: testClusterServicePlanName, Free: truePtr(), ID: testClusterServicePlanGUID, Description: "a test plan"}, {Name: testNonbindableClusterServicePlanName, Free: truePtr(), ID: testNonbindableClusterServicePlanGUID, Description: "a test plan", Bindable: falsePtr()}}}}}
 }
 func getTestServiceInstanceWithClusterRefs() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc := getTestServiceInstance()
@@ -545,12 +591,16 @@ func getTestServiceInstanceWithClusterRefs() *v1beta1.ServiceInstance {
 func getTestServiceInstanceWithNamespacedRefs() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sc := getTestServiceInstanceNamespacedPlanRef()
 	sc.Spec.ServiceClassRef = &v1beta1.LocalObjectReference{Name: testServiceClassGUID}
 	sc.Spec.ServicePlanRef = &v1beta1.LocalObjectReference{Name: testServicePlanGUID}
 	return sc
 }
 func getTestServiceInstanceWithRefsAndExternalProperties() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc := getTestServiceInstanceWithClusterRefs()
@@ -560,9 +610,13 @@ func getTestServiceInstanceWithRefsAndExternalProperties() *v1beta1.ServiceInsta
 func getTestServiceInstance() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: testServiceInstanceName, Namespace: testNamespace, Generation: 1}, Spec: v1beta1.ServiceInstanceSpec{PlanReference: v1beta1.PlanReference{ClusterServiceClassExternalName: testClusterServiceClassName, ClusterServicePlanExternalName: testClusterServicePlanName}, ExternalID: testServiceInstanceGUID}, Status: v1beta1.ServiceInstanceStatus{DeprovisionStatus: v1beta1.ServiceInstanceDeprovisionStatusRequired}}
 }
 func getTestServiceInstanceNamespacedPlanRef() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1beta1.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: testServiceInstanceName, Namespace: testNamespace, Generation: 1}, Spec: v1beta1.ServiceInstanceSpec{PlanReference: v1beta1.PlanReference{ServiceClassExternalName: testServiceClassName, ServicePlanExternalName: testServicePlanName}, ExternalID: testServiceInstanceGUID}, Status: v1beta1.ServiceInstanceStatus{DeprovisionStatus: v1beta1.ServiceInstanceDeprovisionStatusRequired}}
@@ -570,9 +624,13 @@ func getTestServiceInstanceNamespacedPlanRef() *v1beta1.ServiceInstance {
 func getTestServiceInstanceK8SNames() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: testServiceInstanceName, Namespace: testNamespace, Generation: 1}, Spec: v1beta1.ServiceInstanceSpec{PlanReference: v1beta1.PlanReference{ClusterServiceClassName: testClusterServiceClassGUID, ClusterServicePlanName: testClusterServicePlanGUID}, ExternalID: testServiceInstanceGUID}}
 }
 func getTestNonbindableServiceInstance() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	i := getTestServiceInstance()
@@ -585,12 +643,16 @@ func getTestNonbindableServiceInstance() *v1beta1.ServiceInstance {
 func getTestServiceInstanceNonbindableServiceBindablePlan() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	i := getTestNonbindableServiceInstance()
 	i.Spec.ClusterServicePlanExternalName = testClusterServicePlanName
 	i.Spec.ClusterServicePlanRef = &v1beta1.ClusterObjectReference{Name: testClusterServicePlanGUID}
 	return i
 }
 func getTestServiceInstanceBindableServiceNonbindablePlan() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	i := getTestServiceInstanceWithClusterRefs()
@@ -601,6 +663,8 @@ func getTestServiceInstanceBindableServiceNonbindablePlan() *v1beta1.ServiceInst
 func getTestServiceInstanceWithStatus(status v1beta1.ConditionStatus) *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithRefsAndExternalProperties()
 	instance.Status.Conditions = []v1beta1.ServiceInstanceCondition{{Type: v1beta1.ServiceInstanceConditionReady, Status: status, LastTransitionTime: metav1.NewTime(time.Now().Add(-5 * time.Minute))}}
 	return instance
@@ -608,11 +672,15 @@ func getTestServiceInstanceWithStatus(status v1beta1.ConditionStatus) *v1beta1.S
 func getTestServiceInstanceWithFailedStatus() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithClusterRefs()
 	instance.Status = v1beta1.ServiceInstanceStatus{Conditions: []v1beta1.ServiceInstanceCondition{{Type: v1beta1.ServiceInstanceConditionFailed, Status: v1beta1.ConditionTrue}}}
 	return instance
 }
 func getTestServiceInstanceUpdatingPlan() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithClusterRefs()
@@ -623,12 +691,16 @@ func getTestServiceInstanceUpdatingPlan() *v1beta1.ServiceInstance {
 func getTestServiceInstanceUpdatingParametersOfDeletedPlan() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithClusterRefs()
 	instance.Generation = 2
 	instance.Status = v1beta1.ServiceInstanceStatus{Conditions: []v1beta1.ServiceInstanceCondition{{Type: v1beta1.ServiceInstanceConditionReady, Status: v1beta1.ConditionTrue}}, ExternalProperties: &v1beta1.ServiceInstancePropertiesState{ClusterServicePlanExternalName: testRemovedClusterServicePlanName, ClusterServicePlanExternalID: testRemovedClusterServicePlanGUID}, ReconciledGeneration: 1, ObservedGeneration: 1, ProvisionStatus: v1beta1.ServiceInstanceProvisionStatusProvisioned, DeprovisionStatus: v1beta1.ServiceInstanceDeprovisionStatusRequired}
 	return instance
 }
 func getTestServiceInstanceAsyncProvisioning(operation string) *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithClusterRefs()
@@ -642,6 +714,8 @@ func getTestServiceInstanceAsyncProvisioning(operation string) *v1beta1.ServiceI
 func getTestServiceInstanceAsyncUpdating(operation string) *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithClusterRefs()
 	instance.Generation = 2
 	operationStartTime := metav1.NewTime(time.Now().Add(-1 * time.Hour))
@@ -652,6 +726,8 @@ func getTestServiceInstanceAsyncUpdating(operation string) *v1beta1.ServiceInsta
 	return instance
 }
 func getTestServiceInstanceAsyncDeprovisioning(operation string) *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithClusterRefs()
@@ -668,6 +744,8 @@ func getTestServiceInstanceAsyncDeprovisioning(operation string) *v1beta1.Servic
 func getTestServiceInstanceAsyncDeprovisioningWithFinalizer(operation string) *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := getTestServiceInstanceAsyncDeprovisioning(operation)
 	instance.ObjectMeta.Finalizers = []string{v1beta1.FinalizerServiceCatalog}
 	return instance
@@ -675,14 +753,20 @@ func getTestServiceInstanceAsyncDeprovisioningWithFinalizer(operation string) *v
 func getTestServiceBinding() *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Name: testServiceBindingName, Namespace: testNamespace, Finalizers: []string{v1beta1.FinalizerServiceCatalog}, Generation: 1}, Spec: v1beta1.ServiceBindingSpec{InstanceRef: v1beta1.LocalObjectReference{Name: testServiceInstanceName}, ExternalID: testServiceBindingGUID}, Status: v1beta1.ServiceBindingStatus{UnbindStatus: v1beta1.ServiceBindingUnbindStatusRequired}}
 }
 func getTestServiceInactiveBinding() *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Name: testServiceBindingName, Namespace: testNamespace, Finalizers: []string{v1beta1.FinalizerServiceCatalog}, Generation: 1}, Spec: v1beta1.ServiceBindingSpec{InstanceRef: v1beta1.LocalObjectReference{Name: testServiceInstanceName}, ExternalID: testServiceBindingGUID}, Status: v1beta1.ServiceBindingStatus{Conditions: []v1beta1.ServiceBindingCondition{}, UnbindStatus: v1beta1.ServiceBindingUnbindStatusNotRequired}}
 }
 func getTestServiceBindingUnbinding() *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding := &v1beta1.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Name: testServiceBindingName, Namespace: testNamespace, DeletionTimestamp: &metav1.Time{}, Finalizers: []string{v1beta1.FinalizerServiceCatalog}, Generation: 2}, Spec: v1beta1.ServiceBindingSpec{InstanceRef: v1beta1.LocalObjectReference{Name: testServiceInstanceName}, ExternalID: testServiceBindingGUID, SecretName: testServiceBindingSecretName}, Status: v1beta1.ServiceBindingStatus{ReconciledGeneration: 1, ExternalProperties: &v1beta1.ServiceBindingPropertiesState{}, UnbindStatus: v1beta1.ServiceBindingUnbindStatusRequired}}
@@ -691,11 +775,15 @@ func getTestServiceBindingUnbinding() *v1beta1.ServiceBinding {
 func getTestServiceBindingWithFailedStatus() *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding := getTestServiceBinding()
 	binding.Status = v1beta1.ServiceBindingStatus{Conditions: []v1beta1.ServiceBindingCondition{{Type: v1beta1.ServiceBindingConditionFailed, Status: v1beta1.ConditionTrue}}, UnbindStatus: v1beta1.ServiceBindingUnbindStatusNotRequired}
 	return binding
 }
 func getTestServiceBindingAsyncBinding(operation string) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding := getTestServiceBinding()
@@ -709,6 +797,8 @@ func getTestServiceBindingAsyncBinding(operation string) *v1beta1.ServiceBinding
 func getTestServiceBindingAsyncBindingRetryDurationExceeded(operation string) *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding := getTestServiceBindingAsyncBinding(operation)
 	var startTime metav1.Time
 	startTime = metav1.NewTime(time.Now().Add(-7 * 24 * time.Hour))
@@ -716,6 +806,8 @@ func getTestServiceBindingAsyncBindingRetryDurationExceeded(operation string) *v
 	return binding
 }
 func getTestServiceBindingAsyncUnbinding(operation string) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding := getTestServiceBinding()
@@ -730,6 +822,8 @@ func getTestServiceBindingAsyncUnbinding(operation string) *v1beta1.ServiceBindi
 func getTestServiceBindingAsyncUnbindingRetryDurationExceeded(operation string) *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding := getTestServiceBindingAsyncUnbinding(operation)
 	var startTime metav1.Time
 	startTime = metav1.NewTime(time.Now().Add(-7 * 24 * time.Hour))
@@ -737,6 +831,8 @@ func getTestServiceBindingAsyncUnbindingRetryDurationExceeded(operation string) 
 	return binding
 }
 func getTestServiceBindingAsyncOrphanMitigation(operation string) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding := getTestServiceBinding()
@@ -748,6 +844,8 @@ func getTestServiceBindingAsyncOrphanMitigation(operation string) *v1beta1.Servi
 	return binding
 }
 func getTestServiceBindingAsyncOrphanMitigationRetryDurationExceeded(operation string) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding := getTestServiceBindingAsyncOrphanMitigation(operation)
@@ -769,6 +867,8 @@ type bindingParameters struct {
 func TestEmptyCatalogConversion(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serviceClasses, servicePlans, err := convertAndFilterCatalog(&osb.CatalogResponse{}, nil, emptyServiceClasses, emptyServicePlans)
 	if err != nil {
 		t.Fatalf("Failed to convertAndFilterCatalog: %v", err)
@@ -781,6 +881,8 @@ func TestEmptyCatalogConversion(t *testing.T) {
 	}
 }
 func TestCatalogConversion(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	catalog := &osb.CatalogResponse{}
@@ -802,6 +904,8 @@ func TestCatalogConversion(t *testing.T) {
 	checkPlan(servicePlans[1], "0f4008b5-xxxx-xxxx-xxxx-dace631cd648", "0f4008b5-xxxx-xxxx-xxxx-dace631cd648", "fake-plan-2", "Shared fake Server, 5tb persistent disk, 40 max concurrent connections. 100 async", t)
 }
 func TestCatalogConversionWithPreexistingClassesAndPlans(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	catalog := &osb.CatalogResponse{}
@@ -837,6 +941,8 @@ func TestCatalogConversionWithPreexistingClassesAndPlans(t *testing.T) {
 	checkPlan(servicePlans[1], "0f4008b5-xxxx-xxxx-xxxx-dace631cd648", "0f4008b5-xxxx-xxxx-xxxx-dace631cd648", "fake-plan-2", "Shared fake Server, 5tb persistent disk, 40 max concurrent connections. 100 async", t)
 }
 func TestCatalogConversionWithParameterSchemas(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.ResponseSchema))
@@ -901,6 +1007,8 @@ func TestCatalogConversionWithParameterSchemas(t *testing.T) {
 func checkClass(class *v1beta1.ClusterServiceClass, classK8sName, classID, className, classDescription string, t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if class.Name != classK8sName {
 		t.Errorf("Expected class name to be %q, but was: %q", classK8sName, class.Name)
 	}
@@ -915,6 +1023,8 @@ func checkClass(class *v1beta1.ClusterServiceClass, classK8sName, classID, class
 	}
 }
 func checkPlan(plan *v1beta1.ClusterServicePlan, planK8sName, planID, planName, planDescription string, t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if plan.Name != planK8sName {
@@ -933,8 +1043,12 @@ func checkPlan(plan *v1beta1.ClusterServicePlan, planK8sName, planID, planName, 
 func TestCatalogConversionMultipleClusterServiceClasses(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 }
 func TestConvertAndFilterCatalog(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -981,6 +1095,8 @@ func TestConvertAndFilterCatalog(t *testing.T) {
 func contains(list []string, c string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, l := range list {
 		if l == c {
 			return true
@@ -989,6 +1105,8 @@ func contains(list []string, c string) bool {
 	return false
 }
 func TestFilterServicePlans(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -1061,10 +1179,14 @@ const testCatalogForClusterServicePlanBindableOverride = `{
 func truePtr() *bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := true
 	return &b
 }
 func falsePtr() *bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b := false
@@ -1073,9 +1195,13 @@ func falsePtr() *bool {
 func strPtr(s string) *string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &s
 }
 func TestCatalogConversionClusterServicePlanBindable(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	catalog := &osb.CatalogResponse{}
@@ -1148,6 +1274,8 @@ const testCatalogForClusterServiceClassAndPlanWithInvalidExternalIDCharacters = 
 func TestCatalogConversionInvalidCharactersInExternalID(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	catalog := &osb.CatalogResponse{}
 	err := json.Unmarshal([]byte(testCatalogForClusterServiceClassAndPlanWithInvalidExternalIDCharacters), &catalog)
 	if err != nil {
@@ -1169,6 +1297,8 @@ func TestCatalogConversionInvalidCharactersInExternalID(t *testing.T) {
 func TestGenerateEscapedName(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	externalIDs := []string{"simple", "contains-escape-char-z", "ContainsCaps", ".starts-and-ends-with-periods.", "-starts-and-ends-with-hyphens-", "adjacent.-specialchars", "otherorderadjacent-.specialchars", "waytoomany-.-.-.-.-adjacentspecialchars", "thisnameisreallyreallywaytoolonghowcouldanyonepossiblyreadthisplansname", "thisnameisreallyreallywaytool.onghowcouldanyonepossiblyreadthisplansnamewithproblemperiod"}
 	eEscapedNames := []string{"simple", "contains-escape-char-z7az", "z43zontainsz43zaps", "z2ezstarts-and-ends-with-periodsz2ez", "z2dzstarts-and-ends-with-hyphensz2dz", "adjacent.z2dzspecialchars", "otherorderadjacent-z2ezspecialchars", "waytoomany-z2ez-z2ez-z2ez-z2ez-adjacentspecialchars", "thisnameisreallyreallywaytoolo-3f54131bf8c96c7d946ee1d7a32136dd", "thisnameisreallyreallywaytool-84b392d072a2cbe3a18f87e7f7776d94"}
 	for i, v := range externalIDs {
@@ -1179,6 +1309,8 @@ func TestGenerateEscapedName(t *testing.T) {
 	}
 }
 func TestIsClusterServiceBrokerReady(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -1193,6 +1325,8 @@ func TestIsClusterServiceBrokerReady(t *testing.T) {
 	}
 }
 func TestIsPlanBindable(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass := func(bindable bool) *v1beta1.ClusterServiceClass {
@@ -1220,6 +1354,8 @@ func TestIsPlanBindable(t *testing.T) {
 func newTestController(t *testing.T, config fakeosb.FakeClientConfiguration) (*clientgofake.Clientset, *fake.Clientset, *fakeosb.FakeClient, *controller, v1beta1informers.Interface) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient := &clientgofake.Clientset{}
 	fakeCatalogClient := &fake.Clientset{Clientset: &servicecatalogclientset.Clientset{}}
 	fakeOSBClient := fakeosb.NewFakeClient(config)
@@ -1244,6 +1380,8 @@ func newTestController(t *testing.T, config fakeosb.FakeClientConfiguration) (*c
 func getRecordedEvents(testController *controller) []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	source := testController.recorder.(*record.FakeRecorder).Events
 	done := false
 	events := []string{}
@@ -1260,6 +1398,8 @@ func getRecordedEvents(testController *controller) []string {
 func assertNumEvents(t *testing.T, strings []string, number int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := number, len(strings); e != a {
 		fatalf(t, "Unexpected number of events: expected %v, got %v;\nevents: %+v", e, a, strings)
 	}
@@ -1267,10 +1407,14 @@ func assertNumEvents(t *testing.T, strings []string, number int) {
 func fatalf(t *testing.T, msg string, args ...interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Log(string(debug.Stack()))
 	t.Fatalf(msg, args...)
 }
 func assertNumberOfActions(t *testing.T, actions []clientgotesting.Action, number int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := number, len(actions); e != a {
@@ -1281,9 +1425,13 @@ func assertNumberOfActions(t *testing.T, actions []clientgotesting.Action, numbe
 func assertGet(t *testing.T, action clientgotesting.Action, obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertActionFor(t, action, "get", "", obj)
 }
 func assertList(t *testing.T, action clientgotesting.Action, obj interface{}, listRestrictions clientgotesting.ListRestrictions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertActionFor(t, action, "list", "", obj)
@@ -1292,9 +1440,13 @@ func assertList(t *testing.T, action clientgotesting.Action, obj interface{}, li
 func assertCreate(t *testing.T, action clientgotesting.Action, obj interface{}) runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return assertActionFor(t, action, "create", "", obj)
 }
 func assertUpdate(t *testing.T, action clientgotesting.Action, obj interface{}) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return assertActionFor(t, action, "update", "", obj)
@@ -1302,9 +1454,13 @@ func assertUpdate(t *testing.T, action clientgotesting.Action, obj interface{}) 
 func assertUpdateStatus(t *testing.T, action clientgotesting.Action, obj interface{}) runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return assertActionFor(t, action, "update", "status", obj)
 }
 func assertUpdateReference(t *testing.T, action clientgotesting.Action, obj interface{}) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return assertActionFor(t, action, "update", "reference", obj)
@@ -1312,9 +1468,13 @@ func assertUpdateReference(t *testing.T, action clientgotesting.Action, obj inte
 func assertDelete(t *testing.T, action clientgotesting.Action, obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertActionFor(t, action, "delete", "", obj)
 }
 func assertActionFor(t *testing.T, action clientgotesting.Action, verb, subresource string, obj interface{}) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := verb, action.GetVerb(); e != a {
@@ -1432,14 +1592,20 @@ func assertActionFor(t *testing.T, action clientgotesting.Action, verb, subresou
 func assertClassRemovedFromBrokerCatalogFalse(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertClassRemovedFromBrokerCatalog(t, obj, false)
 }
 func assertClassRemovedFromBrokerCatalogTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertClassRemovedFromBrokerCatalog(t, obj, true)
 }
 func assertClassRemovedFromBrokerCatalog(t *testing.T, obj runtime.Object, condition bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clusterServiceClass, ok := obj.(*v1beta1.ClusterServiceClass)
@@ -1453,14 +1619,20 @@ func assertClassRemovedFromBrokerCatalog(t *testing.T, obj runtime.Object, condi
 func assertPlanRemovedFromBrokerCatalogFalse(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertPlanRemovedFromBrokerCatalog(t, obj, false)
 }
 func assertPlanRemovedFromBrokerCatalogTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertPlanRemovedFromBrokerCatalog(t, obj, true)
 }
 func assertPlanRemovedFromBrokerCatalog(t *testing.T, obj runtime.Object, condition bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clusterServicePlan, ok := obj.(*v1beta1.ClusterServicePlan)
@@ -1474,14 +1646,20 @@ func assertPlanRemovedFromBrokerCatalog(t *testing.T, obj runtime.Object, condit
 func assertClusterServiceBrokerReadyTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertClusterServiceBrokerCondition(t, obj, v1beta1.ServiceBrokerConditionReady, v1beta1.ConditionTrue)
 }
 func assertClusterServiceBrokerReadyFalse(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertClusterServiceBrokerCondition(t, obj, v1beta1.ServiceBrokerConditionReady, v1beta1.ConditionFalse)
 }
 func assertClusterServiceBrokerCondition(t *testing.T, obj runtime.Object, conditionType v1beta1.ServiceBrokerConditionType, status v1beta1.ConditionStatus) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, ok := obj.(*v1beta1.ClusterServiceBroker)
@@ -1495,6 +1673,8 @@ func assertClusterServiceBrokerCondition(t *testing.T, obj runtime.Object, condi
 	}
 }
 func assertClusterServiceBrokerOperationStartTimeSet(t *testing.T, obj runtime.Object, isOperationStartTimeSet bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, ok := obj.(*v1beta1.ClusterServiceBroker)
@@ -1512,9 +1692,13 @@ func assertClusterServiceBrokerOperationStartTimeSet(t *testing.T, obj runtime.O
 func assertServiceInstanceReadyTrue(t *testing.T, obj runtime.Object, reason ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceReadyCondition(t, obj, v1beta1.ConditionTrue, reason...)
 }
 func assertServiceInstanceReadyFalse(t *testing.T, obj runtime.Object, reason ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceInstanceReadyCondition(t, obj, v1beta1.ConditionFalse, reason...)
@@ -1522,14 +1706,20 @@ func assertServiceInstanceReadyFalse(t *testing.T, obj runtime.Object, reason ..
 func assertServiceInstanceReadyCondition(t *testing.T, obj runtime.Object, status v1beta1.ConditionStatus, reason ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceCondition(t, obj, v1beta1.ServiceInstanceConditionReady, status, reason...)
 }
 func assertServiceInstanceOrphanMitigationTrue(t *testing.T, obj runtime.Object, reason string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceCondition(t, obj, v1beta1.ServiceInstanceConditionOrphanMitigation, v1beta1.ConditionTrue, reason)
 }
 func assertServiceInstanceCondition(t *testing.T, obj runtime.Object, conditionType v1beta1.ServiceInstanceConditionType, status v1beta1.ConditionStatus, reason ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1555,9 +1745,13 @@ func assertServiceInstanceCondition(t *testing.T, obj runtime.Object, conditionT
 func assertServiceInstanceOrphanMitigationMissing(t *testing.T, obj runtime.Object, reason ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceConditionMissing(t, obj, v1beta1.ServiceInstanceConditionOrphanMitigation)
 }
 func assertServiceInstanceConditionMissing(t *testing.T, obj runtime.Object, conditionType v1beta1.ServiceInstanceConditionType) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1574,6 +1768,8 @@ func assertServiceInstanceConditionMissing(t *testing.T, obj runtime.Object, con
 func assertServiceInstanceConditionsCount(t *testing.T, obj runtime.Object, count int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -1585,9 +1781,13 @@ func assertServiceInstanceConditionsCount(t *testing.T, obj runtime.Object, coun
 func assertServiceInstanceCurrentOperationClear(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceCurrentOperation(t, obj, "")
 }
 func assertServiceInstanceCurrentOperation(t *testing.T, obj runtime.Object, currentOperation v1beta1.ServiceInstanceOperation) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1601,6 +1801,8 @@ func assertServiceInstanceCurrentOperation(t *testing.T, obj runtime.Object, cur
 func assertServiceInstanceReconciledGeneration(t *testing.T, obj runtime.Object, reconciledGeneration int64) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -1610,6 +1812,8 @@ func assertServiceInstanceReconciledGeneration(t *testing.T, obj runtime.Object,
 	}
 }
 func assertServiceInstanceObservedGeneration(t *testing.T, obj runtime.Object, observedGeneration int64) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1623,6 +1827,8 @@ func assertServiceInstanceObservedGeneration(t *testing.T, obj runtime.Object, o
 func assertServiceInstanceProvisioned(t *testing.T, obj runtime.Object, provisionStatus v1beta1.ServiceInstanceProvisionStatus) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -1632,6 +1838,8 @@ func assertServiceInstanceProvisioned(t *testing.T, obj runtime.Object, provisio
 	}
 }
 func assertServiceInstanceOperationStartTimeSet(t *testing.T, obj runtime.Object, isOperationStartTimeSet bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1649,6 +1857,8 @@ func assertServiceInstanceOperationStartTimeSet(t *testing.T, obj runtime.Object
 func assertAsyncOpInProgressTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -1658,6 +1868,8 @@ func assertAsyncOpInProgressTrue(t *testing.T, obj runtime.Object) {
 	}
 }
 func assertAsyncOpInProgressFalse(t *testing.T, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1671,14 +1883,20 @@ func assertAsyncOpInProgressFalse(t *testing.T, obj runtime.Object) {
 func assertServiceInstanceOrphanMitigationInProgressTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceOrphanMitigationInProgress(t, obj, true)
 }
 func assertServiceInstanceOrphanMitigationInProgressFalse(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceOrphanMitigationInProgress(t, obj, false)
 }
 func assertServiceInstanceOrphanMitigationInProgress(t *testing.T, obj runtime.Object, expected bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1691,6 +1909,8 @@ func assertServiceInstanceOrphanMitigationInProgress(t *testing.T, obj runtime.O
 	}
 }
 func assertServiceInstanceLastOperation(t *testing.T, obj runtime.Object, operation string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -1708,6 +1928,8 @@ func assertServiceInstanceLastOperation(t *testing.T, obj runtime.Object, operat
 func assertServiceInstanceDashboardURL(t *testing.T, obj runtime.Object, dashboardURL string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -1721,6 +1943,8 @@ func assertServiceInstanceDashboardURL(t *testing.T, obj runtime.Object, dashboa
 func assertServiceInstanceDeprovisionStatus(t *testing.T, obj runtime.Object, deprovisionStatus v1beta1.ServiceInstanceDeprovisionStatus) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -1730,6 +1954,8 @@ func assertServiceInstanceDeprovisionStatus(t *testing.T, obj runtime.Object, de
 	}
 }
 func assertServiceInstanceErrorBeforeRequest(t *testing.T, obj runtime.Object, reason string, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceInstanceReadyFalse(t, obj, reason)
@@ -1747,9 +1973,13 @@ func assertServiceInstanceErrorBeforeRequest(t *testing.T, obj runtime.Object, r
 func assertServiceInstanceOperationInProgress(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, planName, planID string, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceOperationInProgressWithParameters(t, obj, operation, planName, planID, nil, "", originalInstance)
 }
 func assertServiceInstanceOperationInProgressWithParameters(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, planName, planID string, inProgressParameters map[string]interface{}, inProgressParametersChecksum string, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	reason := ""
@@ -1785,6 +2015,8 @@ func assertServiceInstanceOperationInProgressWithParameters(t *testing.T, obj ru
 func assertServiceInstanceStartingOrphanMitigation(t *testing.T, obj runtime.Object, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceCurrentOperation(t, obj, v1beta1.ServiceInstanceOperationProvision)
 	assertServiceInstanceReadyFalse(t, obj, startingInstanceOrphanMitigationReason)
 	assertServiceInstanceOperationStartTimeSet(t, obj, true)
@@ -1798,9 +2030,13 @@ func assertServiceInstanceStartingOrphanMitigation(t *testing.T, obj runtime.Obj
 func assertServiceInstanceOperationSuccess(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, planName, planID string, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceOperationSuccessWithParameters(t, obj, operation, planName, planID, nil, "", originalInstance)
 }
 func assertServiceInstanceOperationSuccessWithParameters(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, planName, planID string, externalParameters map[string]interface{}, externalParametersChecksum string, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -1862,6 +2098,8 @@ func assertServiceInstanceOperationSuccessWithParameters(t *testing.T, obj runti
 func assertServiceInstanceRequestFailingError(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, readyReason string, failureReason string, orphanMitigationRequired bool, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		readyStatus		v1beta1.ConditionStatus
 		deprovisionStatus	v1beta1.ServiceInstanceDeprovisionStatus
@@ -1899,6 +2137,8 @@ func assertServiceInstanceRequestFailingError(t *testing.T, obj runtime.Object, 
 func assertServiceInstanceProvisionRequestFailingErrorNoOrphanMitigation(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, readyReason string, failureReason string, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceRequestFailingError(t, obj, operation, readyReason, failureReason, false, originalInstance)
 	if failureReason == "" {
 		assertServiceInstanceCurrentOperation(t, obj, operation)
@@ -1913,6 +2153,8 @@ func assertServiceInstanceProvisionRequestFailingErrorNoOrphanMitigation(t *test
 	assertServiceInstanceOrphanMitigationInProgressFalse(t, obj)
 }
 func assertServiceInstanceUpdateRequestFailingErrorNoOrphanMitigation(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, readyReason string, failureReason string, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceInstanceRequestFailingError(t, obj, operation, readyReason, failureReason, false, originalInstance)
@@ -1931,6 +2173,8 @@ func assertServiceInstanceUpdateRequestFailingErrorNoOrphanMitigation(t *testing
 func assertServiceInstanceRequestFailingErrorStartOrphanMitigation(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, readyReason string, failureReason string, orphanMitigationReason string, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceRequestFailingError(t, obj, operation, readyReason, failureReason, true, originalInstance)
 	assertServiceInstanceCurrentOperation(t, obj, v1beta1.ServiceInstanceOperationProvision)
 	assertServiceInstanceReconciledGeneration(t, obj, originalInstance.Status.ReconciledGeneration)
@@ -1942,9 +2186,13 @@ func assertServiceInstanceRequestFailingErrorStartOrphanMitigation(t *testing.T,
 func assertServiceInstanceRequestRetriableError(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, reason string, planName, planID string, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceInstanceRequestRetriableErrorWithParameters(t, obj, operation, reason, planName, planID, nil, "", originalInstance)
 }
 func assertServiceInstanceRequestRetriableErrorWithParameters(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, reason string, planName, planID string, inProgressParameters map[string]interface{}, inProgressParametersChecksum string, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var readyStatus v1beta1.ConditionStatus
@@ -1972,6 +2220,8 @@ func assertServiceInstanceRequestRetriableErrorWithParameters(t *testing.T, obj 
 func assertServiceInstanceAsyncStartInProgress(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, operationKey string, planName, planID string, originalInstance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	reason := ""
 	switch operation {
 	case v1beta1.ServiceInstanceOperationProvision:
@@ -1994,6 +2244,8 @@ func assertServiceInstanceAsyncStartInProgress(t *testing.T, obj runtime.Object,
 	assertServiceInstanceDeprovisionStatus(t, obj, originalInstance.Status.DeprovisionStatus)
 }
 func assertServiceInstanceAsyncStillInProgress(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, operationKey string, planName, planID string, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	reason := ""
@@ -2024,6 +2276,8 @@ func assertServiceInstanceAsyncStillInProgress(t *testing.T, obj runtime.Object,
 func assertServiceInstanceConditionHasLastOperationDescription(t *testing.T, obj runtime.Object, operation v1beta1.ServiceInstanceOperation, lastOperationDescription string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2044,6 +2298,8 @@ func assertServiceInstanceConditionHasLastOperationDescription(t *testing.T, obj
 func assertServiceInstanceInProgressPropertiesNil(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2055,6 +2311,8 @@ func assertServiceInstanceInProgressPropertiesNil(t *testing.T, obj runtime.Obje
 func assertServiceInstanceInProgressPropertiesPlan(t *testing.T, obj runtime.Object, planName string, planID string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2064,6 +2322,8 @@ func assertServiceInstanceInProgressPropertiesPlan(t *testing.T, obj runtime.Obj
 func assertServiceInstanceInProgressPropertiesParameters(t *testing.T, obj runtime.Object, params map[string]interface{}, checksum string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2071,6 +2331,8 @@ func assertServiceInstanceInProgressPropertiesParameters(t *testing.T, obj runti
 	assertServiceInstancePropertiesStateParameters(t, "in-progress", instance.Status.InProgressProperties, params, checksum)
 }
 func assertServiceInstanceInProgressPropertiesUnchanged(t *testing.T, obj runtime.Object, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -2086,6 +2348,8 @@ func assertServiceInstanceInProgressPropertiesUnchanged(t *testing.T, obj runtim
 func assertServiceInstanceExternalPropertiesNil(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2097,6 +2361,8 @@ func assertServiceInstanceExternalPropertiesNil(t *testing.T, obj runtime.Object
 func assertServiceInstanceExternalPropertiesPlan(t *testing.T, obj runtime.Object, planName string, planID string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2106,6 +2372,8 @@ func assertServiceInstanceExternalPropertiesPlan(t *testing.T, obj runtime.Objec
 func assertServiceInstanceExternalPropertiesParameters(t *testing.T, obj runtime.Object, params map[string]interface{}, checksum string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceInstance", obj)
@@ -2113,6 +2381,8 @@ func assertServiceInstanceExternalPropertiesParameters(t *testing.T, obj runtime
 	assertServiceInstancePropertiesStateParameters(t, "external", instance.Status.ExternalProperties, params, checksum)
 }
 func assertServiceInstanceExternalPropertiesUnchanged(t *testing.T, obj runtime.Object, originalInstance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
@@ -2126,6 +2396,8 @@ func assertServiceInstanceExternalPropertiesUnchanged(t *testing.T, obj runtime.
 	}
 }
 func assertServiceInstancePropertiesStatePlan(t *testing.T, propsLabel string, instance *v1beta1.ServiceInstance, actualProps *v1beta1.ServiceInstancePropertiesState, expectedPlanName string, expectedPlanID string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if actualProps == nil {
@@ -2150,6 +2422,8 @@ func assertServiceInstancePropertiesStatePlan(t *testing.T, propsLabel string, i
 func assertServiceInstancePropertiesStateParameters(t *testing.T, propsLabel string, actualProps *v1beta1.ServiceInstancePropertiesState, expectedParams map[string]interface{}, expectedChecksum string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if actualProps == nil {
 		fatalf(t, "expected %v properties to not be nil", propsLabel)
 	}
@@ -2159,6 +2433,8 @@ func assertServiceInstancePropertiesStateParameters(t *testing.T, propsLabel str
 	}
 }
 func assertPropertiesStateParameters(t *testing.T, propsLabel string, marshalledParams *runtime.RawExtension, expectedParams map[string]interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if expectedParams == nil {
@@ -2181,6 +2457,8 @@ func assertPropertiesStateParameters(t *testing.T, propsLabel string, marshalled
 func assertServiceInstancePropertiesStateParametersUnchanged(t *testing.T, propsLabel string, new *v1beta1.ServiceInstancePropertiesState, old v1beta1.ServiceInstancePropertiesState) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if new == nil {
 		fatalf(t, "expected %v properties to not be nil", propsLabel)
 	}
@@ -2191,9 +2469,13 @@ func assertServiceInstancePropertiesStateParametersUnchanged(t *testing.T, props
 func assertServiceBindingReadyTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionTrue)
 }
 func assertServiceBindingReadyFalse(t *testing.T, obj runtime.Object, reason ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionFalse, reason...)
@@ -2201,9 +2483,13 @@ func assertServiceBindingReadyFalse(t *testing.T, obj runtime.Object, reason ...
 func assertServiceBindingReadyCondition(t *testing.T, obj runtime.Object, status v1beta1.ConditionStatus, reason ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingCondition(t, obj, v1beta1.ServiceBindingConditionReady, status, reason...)
 }
 func assertServiceBindingCondition(t *testing.T, obj runtime.Object, conditionType v1beta1.ServiceBindingConditionType, status v1beta1.ConditionStatus, reason ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2230,6 +2516,8 @@ func assertServiceBindingCondition(t *testing.T, obj runtime.Object, conditionTy
 func assertServiceBindingReconciledGeneration(t *testing.T, obj runtime.Object, reconciledGeneration int64) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2241,6 +2529,8 @@ func assertServiceBindingReconciledGeneration(t *testing.T, obj runtime.Object, 
 func assertServiceBindingReconciliationNotComplete(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2250,6 +2540,8 @@ func assertServiceBindingReconciliationNotComplete(t *testing.T, obj runtime.Obj
 	}
 }
 func assertServiceBindingOperationStartTimeSet(t *testing.T, obj runtime.Object, isOperationStartTimeSet bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2267,9 +2559,13 @@ func assertServiceBindingOperationStartTimeSet(t *testing.T, obj runtime.Object,
 func assertServiceBindingCurrentOperationClear(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingCurrentOperation(t, obj, "")
 }
 func assertServiceBindingCurrentOperation(t *testing.T, obj runtime.Object, currentOperation v1beta1.ServiceBindingOperation) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2283,6 +2579,8 @@ func assertServiceBindingCurrentOperation(t *testing.T, obj runtime.Object, curr
 func assertServiceBindingErrorBeforeRequest(t *testing.T, obj runtime.Object, reason string, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyFalse(t, obj, reason)
 	assertServiceBindingCurrentOperationClear(t, obj)
 	assertServiceBindingOperationStartTimeSet(t, obj, false)
@@ -2292,6 +2590,8 @@ func assertServiceBindingErrorBeforeRequest(t *testing.T, obj runtime.Object, re
 	assertServiceBindingUnbindStatus(t, obj, v1beta1.ServiceBindingUnbindStatusNotRequired)
 }
 func assertServiceBindingFailedBeforeRequest(t *testing.T, obj runtime.Object, reason string, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceBindingReadyFalse(t, obj, reason)
@@ -2305,9 +2605,13 @@ func assertServiceBindingFailedBeforeRequest(t *testing.T, obj runtime.Object, r
 func assertServiceBindingOperationInProgress(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingOperationInProgressWithParameters(t, obj, operation, nil, "", originalBinding)
 }
 func assertServiceBindingOperationInProgressWithParameters(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, inProgressParameters map[string]interface{}, inProgressParametersChecksum string, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	reason := ""
@@ -2333,6 +2637,8 @@ func assertServiceBindingOperationInProgressWithParameters(t *testing.T, obj run
 func assertServiceBindingStartingOrphanMitigation(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingCurrentOperation(t, obj, v1beta1.ServiceBindingOperationBind)
 	assertServiceBindingReadyFalse(t, obj, errorServiceBindingOrphanMitigation)
 	assertServiceBindingOperationStartTimeSet(t, obj, false)
@@ -2344,9 +2650,13 @@ func assertServiceBindingStartingOrphanMitigation(t *testing.T, obj runtime.Obje
 func assertServiceBindingOperationSuccess(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingOperationSuccessWithParameters(t, obj, operation, nil, "", originalBinding)
 }
 func assertServiceBindingOperationSuccessWithParameters(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, externalParameters map[string]interface{}, externalParametersChecksum string, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -2385,6 +2695,8 @@ func assertServiceBindingOperationSuccessWithParameters(t *testing.T, obj runtim
 func assertServiceBindingRequestFailingError(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, readyReason string, failureReason string, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		readyStatus	v1beta1.ConditionStatus
 		unbindStatus	v1beta1.ServiceBindingUnbindStatus
@@ -2410,6 +2722,8 @@ func assertServiceBindingRequestFailingError(t *testing.T, obj runtime.Object, o
 func assertServiceBindingAsyncBindRetryDurationExceeded(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionFalse, errorServiceBindingOrphanMitigation)
 	assertServiceBindingCondition(t, obj, v1beta1.ServiceBindingConditionFailed, v1beta1.ConditionTrue, errorReconciliationRetryTimeoutReason)
 	assertServiceBindingCurrentOperation(t, obj, v1beta1.ServiceBindingOperationBind)
@@ -2421,6 +2735,8 @@ func assertServiceBindingAsyncBindRetryDurationExceeded(t *testing.T, obj runtim
 	assertCatalogFinalizerExists(t, obj)
 }
 func assertServiceBindingAsyncBindErrorAfterStateSucceeded(t *testing.T, obj runtime.Object, failureReason string, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionFalse, errorServiceBindingOrphanMitigation)
@@ -2436,6 +2752,8 @@ func assertServiceBindingAsyncBindErrorAfterStateSucceeded(t *testing.T, obj run
 func assertServiceBindingAsyncUnbindRetryDurationExceeded(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, readyReason string, failureReason string, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionUnknown, readyReason)
 	assertServiceBindingCondition(t, obj, v1beta1.ServiceBindingConditionFailed, v1beta1.ConditionTrue, failureReason)
 	assertServiceBindingCurrentOperationClear(t, obj)
@@ -2449,6 +2767,8 @@ func assertServiceBindingAsyncUnbindRetryDurationExceeded(t *testing.T, obj runt
 func assertServiceBindingAsyncOrphanMitigationRetryDurationExceeded(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionUnknown, errorOrphanMitigationFailedReason)
 	assertServiceBindingCurrentOperationClear(t, obj)
 	assertServiceBindingOperationStartTimeSet(t, obj, false)
@@ -2459,6 +2779,8 @@ func assertServiceBindingAsyncOrphanMitigationRetryDurationExceeded(t *testing.T
 	assertCatalogFinalizerExists(t, obj)
 }
 func assertServiceBindingErrorFetchingBinding(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionFalse, errorFetchingBindingFailedReason)
@@ -2475,6 +2797,8 @@ func assertServiceBindingErrorFetchingBinding(t *testing.T, obj runtime.Object, 
 func assertServiceBindingErrorInjectingCredentials(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyFalse(t, obj, errorInjectingBindResultReason)
 	assertServiceBindingCurrentOperation(t, obj, v1beta1.ServiceBindingOperationBind)
 	assertServiceBindingOperationStartTimeSet(t, obj, true)
@@ -2489,9 +2813,13 @@ func assertServiceBindingErrorInjectingCredentials(t *testing.T, obj runtime.Obj
 func assertServiceBindingRequestRetriableError(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, reason string, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingRequestRetriableErrorWithParameters(t, obj, operation, reason, nil, "", originalBinding)
 }
 func assertServiceBindingRequestRetriableErrorWithParameters(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, reason string, inProgressParameters map[string]interface{}, inProgressParametersChecksum string, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var readyStatus v1beta1.ConditionStatus
@@ -2517,6 +2845,8 @@ func assertServiceBindingRequestRetriableErrorWithParameters(t *testing.T, obj r
 func assertServiceBindingRequestRetriableOrphanMitigation(t *testing.T, obj runtime.Object, reason string, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionUnknown, reason)
 	assertServiceBindingCurrentOperation(t, obj, v1beta1.ServiceBindingOperationBind)
 	assertServiceBindingOperationStartTimeSet(t, obj, true)
@@ -2526,6 +2856,8 @@ func assertServiceBindingRequestRetriableOrphanMitigation(t *testing.T, obj runt
 	assertServiceBindingUnbindStatus(t, obj, v1beta1.ServiceBindingUnbindStatusRequired)
 }
 func assertServiceBindingAsyncInProgress(t *testing.T, obj runtime.Object, operation v1beta1.ServiceBindingOperation, reason string, operationKey string, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertServiceBindingReadyFalse(t, obj, reason)
@@ -2546,6 +2878,8 @@ func assertServiceBindingAsyncInProgress(t *testing.T, obj runtime.Object, opera
 func assertServiceBindingOrphanMitigationSuccess(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionFalse, successOrphanMitigationReason)
 	assertServiceBindingCurrentOperationClear(t, obj)
 	assertServiceBindingOperationStartTimeSet(t, obj, false)
@@ -2558,6 +2892,8 @@ func assertServiceBindingOrphanMitigationSuccess(t *testing.T, obj runtime.Objec
 func assertServiceBindingOrphanMitigationFailure(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBindingReadyCondition(t, obj, v1beta1.ConditionUnknown, errorOrphanMitigationFailedReason)
 	assertServiceBindingCurrentOperationClear(t, obj)
 	assertServiceBindingOperationStartTimeSet(t, obj, false)
@@ -2568,6 +2904,8 @@ func assertServiceBindingOrphanMitigationFailure(t *testing.T, obj runtime.Objec
 	assertCatalogFinalizerExists(t, obj)
 }
 func assertServiceBindingLastOperation(t *testing.T, obj runtime.Object, operation string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2585,6 +2923,8 @@ func assertServiceBindingLastOperation(t *testing.T, obj runtime.Object, operati
 func assertServiceBindingAsyncOpInProgressTrue(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2594,6 +2934,8 @@ func assertServiceBindingAsyncOpInProgressTrue(t *testing.T, obj runtime.Object)
 	}
 }
 func assertServiceBindingAsyncOpInProgressFalse(t *testing.T, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2607,6 +2949,8 @@ func assertServiceBindingAsyncOpInProgressFalse(t *testing.T, obj runtime.Object
 func assertServiceBindingInProgressPropertiesNil(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2618,6 +2962,8 @@ func assertServiceBindingInProgressPropertiesNil(t *testing.T, obj runtime.Objec
 func assertServiceBindingInProgressPropertiesParameters(t *testing.T, obj runtime.Object, params map[string]interface{}, checksum string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2625,6 +2971,8 @@ func assertServiceBindingInProgressPropertiesParameters(t *testing.T, obj runtim
 	assertServiceBindingPropertiesStateParameters(t, "in-progress", binding.Status.InProgressProperties, params, checksum)
 }
 func assertServiceBindingInProgressPropertiesUnchanged(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2640,6 +2988,8 @@ func assertServiceBindingInProgressPropertiesUnchanged(t *testing.T, obj runtime
 func assertServiceBindingExternalPropertiesNil(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2651,6 +3001,8 @@ func assertServiceBindingExternalPropertiesNil(t *testing.T, obj runtime.Object)
 func assertServiceBindingExternalPropertiesParameters(t *testing.T, obj runtime.Object, params map[string]interface{}, checksum string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2658,6 +3010,8 @@ func assertServiceBindingExternalPropertiesParameters(t *testing.T, obj runtime.
 	assertServiceBindingPropertiesStateParameters(t, "external", binding.Status.ExternalProperties, params, checksum)
 }
 func assertServiceBindingExternalPropertiesUnchanged(t *testing.T, obj runtime.Object, originalBinding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2673,6 +3027,8 @@ func assertServiceBindingExternalPropertiesUnchanged(t *testing.T, obj runtime.O
 func assertServiceBindingPropertiesStateParameters(t *testing.T, propsLabel string, actualProps *v1beta1.ServiceBindingPropertiesState, expectedParams map[string]interface{}, expectedChecksum string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if actualProps == nil {
 		fatalf(t, "expected %v properties to not be nil", propsLabel)
 	}
@@ -2684,6 +3040,8 @@ func assertServiceBindingPropertiesStateParameters(t *testing.T, propsLabel stri
 func assertServiceBindingPropertiesStateParametersUnchanged(t *testing.T, propsLabel string, new *v1beta1.ServiceBindingPropertiesState, old v1beta1.ServiceBindingPropertiesState) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if new == nil {
 		fatalf(t, "expected %v properties to not be nil", propsLabel)
 	}
@@ -2692,6 +3050,8 @@ func assertServiceBindingPropertiesStateParametersUnchanged(t *testing.T, propsL
 	}
 }
 func assertServiceBindingOrphanMitigationSet(t *testing.T, obj runtime.Object, inProgress bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -2705,6 +3065,8 @@ func assertServiceBindingOrphanMitigationSet(t *testing.T, obj runtime.Object, i
 func assertServiceBindingUnbindStatus(t *testing.T, obj runtime.Object, unbindStatus v1beta1.ServiceBindingUnbindStatus) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
 	if !ok {
 		fatalf(t, "Couldn't convert object %+v into a *v1beta1.ServiceBinding", obj)
@@ -2716,6 +3078,8 @@ func assertServiceBindingUnbindStatus(t *testing.T, obj runtime.Object, unbindSt
 func assertEmptyFinalizers(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)
 	if err != nil {
 		fatalf(t, "Error creating ObjectMetaAccessor for param object %+v: %v", obj, err)
@@ -2725,6 +3089,8 @@ func assertEmptyFinalizers(t *testing.T, obj runtime.Object) {
 	}
 }
 func assertCatalogFinalizerExists(t *testing.T, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)
@@ -2739,6 +3105,8 @@ func assertCatalogFinalizerExists(t *testing.T, obj runtime.Object) {
 func assertListRestrictions(t *testing.T, e, a clientgotesting.ListRestrictions) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if el, al := e.Labels.String(), a.Labels.String(); el != al {
 		fatalf(t, "ListRestrictions.Labels don't match, expected %q got %q", el, al)
 	}
@@ -2749,6 +3117,8 @@ func assertListRestrictions(t *testing.T, e, a clientgotesting.ListRestrictions)
 func assertNumberOfBrokerActions(t *testing.T, actions []fakeosb.Action, number int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := number, len(actions); e != a {
 		t.Logf("%+v\n", actions)
 		fatalf(t, "Unexpected number of actions: expected %v, got %v\nactions: %+v", e, a, actions)
@@ -2757,9 +3127,13 @@ func assertNumberOfBrokerActions(t *testing.T, actions []fakeosb.Action, number 
 func noFakeActions() fakeosb.FakeClientConfiguration {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fakeosb.FakeClientConfiguration{}
 }
 func assertGetCatalog(t *testing.T, action fakeosb.Action) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := fakeosb.GetCatalog, action.Type; e != a {
@@ -2767,6 +3141,8 @@ func assertGetCatalog(t *testing.T, action fakeosb.Action) {
 	}
 }
 func assertProvision(t *testing.T, action fakeosb.Action, request *osb.ProvisionRequest) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := fakeosb.ProvisionInstance, action.Type; e != a {
@@ -2779,6 +3155,8 @@ func assertProvision(t *testing.T, action fakeosb.Action, request *osb.Provision
 func assertUpdateInstance(t *testing.T, action fakeosb.Action, request *osb.UpdateInstanceRequest) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := fakeosb.UpdateInstance, action.Type; e != a {
 		fatalf(t, "unexpected action type; expected %v, got %v", e, a)
 	}
@@ -2787,6 +3165,8 @@ func assertUpdateInstance(t *testing.T, action fakeosb.Action, request *osb.Upda
 	}
 }
 func assertDeprovision(t *testing.T, action fakeosb.Action, request *osb.DeprovisionRequest) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := fakeosb.DeprovisionInstance, action.Type; e != a {
@@ -2799,6 +3179,8 @@ func assertDeprovision(t *testing.T, action fakeosb.Action, request *osb.Deprovi
 func assertPollLastOperation(t *testing.T, action fakeosb.Action, request *osb.LastOperationRequest) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := fakeosb.PollLastOperation, action.Type; e != a {
 		fatalf(t, "unexpected action type; expected %v, got %v", e, a)
 	}
@@ -2809,6 +3191,8 @@ func assertPollLastOperation(t *testing.T, action fakeosb.Action, request *osb.L
 func assertPollBindingLastOperation(t *testing.T, action fakeosb.Action, request *osb.BindingLastOperationRequest) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := fakeosb.PollBindingLastOperation, action.Type; e != a {
 		fatalf(t, "unexpected action type; expected %v, got %v", e, a)
 	}
@@ -2817,6 +3201,8 @@ func assertPollBindingLastOperation(t *testing.T, action fakeosb.Action, request
 	}
 }
 func assertBind(t *testing.T, action fakeosb.Action, request *osb.BindRequest) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := fakeosb.Bind, action.Type; e != a {
@@ -2840,6 +3226,8 @@ func assertBind(t *testing.T, action fakeosb.Action, request *osb.BindRequest) {
 func assertUnbind(t *testing.T, action fakeosb.Action, request *osb.UnbindRequest) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := fakeosb.Unbind, action.Type; e != a {
 		fatalf(t, "unexpected action type; expected %v, got %v", e, a)
 	}
@@ -2850,11 +3238,15 @@ func assertUnbind(t *testing.T, action fakeosb.Action, request *osb.UnbindReques
 func assertGetBinding(t *testing.T, action fakeosb.Action, request *osb.GetBindingRequest) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := fakeosb.GetBinding, action.Type; e != a {
 		fatalf(t, "unexpected action type; expected %v, got %v", e, a)
 	}
 }
 func assertOriginatingIdentity(t *testing.T, expected *osb.OriginatingIdentity, actual *osb.OriginatingIdentity) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e, a := expected, actual; (e != nil) != (a != nil) {
@@ -2881,9 +3273,13 @@ func assertOriginatingIdentity(t *testing.T, expected *osb.OriginatingIdentity, 
 func getTestCatalogConfig() fakeosb.FakeClientConfiguration {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fakeosb.FakeClientConfiguration{CatalogReaction: &fakeosb.CatalogReaction{Response: getTestCatalog()}}
 }
 func addGetNamespaceReaction(fakeKubeClient *clientgofake.Clientset) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient.AddReactor("get", "namespaces", func(action clientgotesting.Action) (bool, runtime.Object, error) {
@@ -2893,11 +3289,15 @@ func addGetNamespaceReaction(fakeKubeClient *clientgofake.Clientset) {
 func addGetSecretNotFoundReaction(fakeKubeClient *clientgofake.Clientset) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient.AddReactor("get", "secrets", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		return true, nil, apierrors.NewNotFound(action.GetResource().GroupResource(), action.(clientgotesting.GetAction).GetName())
 	})
 }
 func addGetSecretReaction(fakeKubeClient *clientgofake.Clientset, secret *corev1.Secret) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient.AddReactor("get", "secrets", func(action clientgotesting.Action) (bool, runtime.Object, error) {

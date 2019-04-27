@@ -33,9 +33,13 @@ type servicePlans struct {
 func newServicePlans(c *ServicecatalogV1beta1Client, namespace string) *servicePlans {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicePlans{client: c.RESTClient(), ns: namespace}
 }
 func (c *servicePlans) Get(name string, options v1.GetOptions) (result *v1beta1.ServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ServicePlan{}
@@ -43,6 +47,8 @@ func (c *servicePlans) Get(name string, options v1.GetOptions) (result *v1beta1.
 	return
 }
 func (c *servicePlans) List(opts v1.ListOptions) (result *v1beta1.ServicePlanList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -56,6 +62,8 @@ func (c *servicePlans) List(opts v1.ListOptions) (result *v1beta1.ServicePlanLis
 func (c *servicePlans) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -66,11 +74,15 @@ func (c *servicePlans) Watch(opts v1.ListOptions) (watch.Interface, error) {
 func (c *servicePlans) Create(servicePlan *v1beta1.ServicePlan) (result *v1beta1.ServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ServicePlan{}
 	err = c.client.Post().Namespace(c.ns).Resource("serviceplans").Body(servicePlan).Do().Into(result)
 	return
 }
 func (c *servicePlans) Update(servicePlan *v1beta1.ServicePlan) (result *v1beta1.ServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ServicePlan{}
@@ -80,6 +92,8 @@ func (c *servicePlans) Update(servicePlan *v1beta1.ServicePlan) (result *v1beta1
 func (c *servicePlans) UpdateStatus(servicePlan *v1beta1.ServicePlan) (result *v1beta1.ServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ServicePlan{}
 	err = c.client.Put().Namespace(c.ns).Resource("serviceplans").Name(servicePlan.Name).SubResource("status").Body(servicePlan).Do().Into(result)
 	return
@@ -87,9 +101,13 @@ func (c *servicePlans) UpdateStatus(servicePlan *v1beta1.ServicePlan) (result *v
 func (c *servicePlans) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.client.Delete().Namespace(c.ns).Resource("serviceplans").Name(name).Body(options).Do().Error()
 }
 func (c *servicePlans) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -99,6 +117,8 @@ func (c *servicePlans) DeleteCollection(options *v1.DeleteOptions, listOptions v
 	return c.client.Delete().Namespace(c.ns).Resource("serviceplans").VersionedParams(&listOptions, scheme.ParameterCodec).Timeout(timeout).Body(options).Do().Error()
 }
 func (c *servicePlans) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1beta1.ServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ServicePlan{}

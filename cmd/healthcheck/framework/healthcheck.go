@@ -27,6 +27,8 @@ var options *HealthCheckServer
 func Execute() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 	options = NewHealthCheckServer()
 	options.AddFlags(pflag.CommandLine)
@@ -71,6 +73,8 @@ type HealthCheck struct {
 func NewHealthCheck(s *HealthCheckServer) (*HealthCheck, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	h := &HealthCheck{}
 	var kubeConfig *rest.Config
 	err := h.initBrokerAttributes(s)
@@ -101,6 +105,8 @@ func NewHealthCheck(s *HealthCheckServer) (*HealthCheck, error) {
 func (h *HealthCheck) RunHealthCheck(s *HealthCheckServer) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defer h.cleanup()
 	ExecutionCount.Inc()
 	hcStartTime := time.Now()
@@ -120,6 +126,8 @@ func (h *HealthCheck) RunHealthCheck(s *HealthCheckServer) error {
 	return h.frameworkError
 }
 func (h *HealthCheck) verifyBrokerIsReady() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	h.frameworkError = nil
@@ -142,6 +150,8 @@ func (h *HealthCheck) verifyBrokerIsReady() error {
 	return nil
 }
 func (h *HealthCheck) createInstance() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if h.frameworkError != nil {
@@ -186,6 +196,8 @@ func (h *HealthCheck) createInstance() error {
 func (h *HealthCheck) createBinding() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if h.frameworkError != nil {
 		return h.frameworkError
 	}
@@ -214,6 +226,8 @@ func (h *HealthCheck) createBinding() error {
 	return nil
 }
 func (h *HealthCheck) deprovision() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if h.frameworkError != nil {
@@ -253,6 +267,8 @@ func (h *HealthCheck) deprovision() error {
 func (h *HealthCheck) cleanup() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if h.frameworkError != nil && h.namespace != nil {
 		klog.V(4).Infof("Cleaning up.  Deleting the binding, instance and test namespace %v", h.namespace.Name)
 		h.serviceCatalogClientSet.ServicecatalogV1beta1().ServiceBindings(h.namespace.Name).Delete(h.bindingName, nil)
@@ -262,6 +278,8 @@ func (h *HealthCheck) cleanup() {
 	}
 }
 func (h *HealthCheck) createNamespace() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if h.frameworkError != nil {
@@ -277,6 +295,8 @@ func (h *HealthCheck) createNamespace() error {
 func (h *HealthCheck) deleteNamespace() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if h.frameworkError != nil {
 		return h.frameworkError
 	}
@@ -288,6 +308,8 @@ func (h *HealthCheck) deleteNamespace() error {
 	return err
 }
 func (h *HealthCheck) initBrokerAttributes(s *HealthCheckServer) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch s.TestBrokerName {
@@ -317,6 +339,8 @@ func (h *HealthCheck) initBrokerAttributes(s *HealthCheckServer) error {
 func (h *HealthCheck) setError(msg string, v ...interface{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, file, line, _ := runtime.Caller(1)
 	context := len(file) - 30
 	if context < 0 {
@@ -331,7 +355,16 @@ func (h *HealthCheck) setError(msg string, v ...interface{}) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

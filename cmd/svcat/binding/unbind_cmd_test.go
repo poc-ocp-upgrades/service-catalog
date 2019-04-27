@@ -20,6 +20,8 @@ import (
 func TestUnbindCommand(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const ns = "default"
 	testcases := []struct {
 		name		string

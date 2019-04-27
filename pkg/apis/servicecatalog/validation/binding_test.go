@@ -11,9 +11,13 @@ import (
 func validServiceBinding() *servicecatalog.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Name: "test-binding", Namespace: "test-ns"}, Spec: servicecatalog.ServiceBindingSpec{InstanceRef: servicecatalog.LocalObjectReference{Name: "test-instance"}, SecretName: "test-secret"}, Status: servicecatalog.ServiceBindingStatus{UnbindStatus: servicecatalog.ServiceBindingUnbindStatusNotRequired}}
 }
 func validServiceBindingWithInProgressBind() *servicecatalog.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding := validServiceBinding()
@@ -28,9 +32,13 @@ func validServiceBindingWithInProgressBind() *servicecatalog.ServiceBinding {
 func validServiceBindingPropertiesState() *servicecatalog.ServiceBindingPropertiesState {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceBindingPropertiesState{Parameters: &runtime.RawExtension{Raw: []byte("a: 1\nb: \"2\"")}, ParameterChecksum: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"}
 }
 func invalidServiceBindingStatusLastOperation() *string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	runes := make([]rune, 10001)
@@ -41,6 +49,8 @@ func invalidServiceBindingStatusLastOperation() *string {
 	return &lastOperation
 }
 func TestValidateServiceBinding(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -273,6 +283,8 @@ func TestValidateServiceBinding(t *testing.T) {
 	}
 }
 func TestInternalValidateServiceBindingUpdateAllowed(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

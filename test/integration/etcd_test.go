@@ -22,6 +22,8 @@ var etcdContext = EtcdContext{}
 func startEtcd() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var err error
 	if etcdContext.dir, err = ioutil.TempDir(os.TempDir(), "service_catalog_integration_test"); err != nil {
 		return fmt.Errorf("could not create TempDir: %v", err)
@@ -44,6 +46,8 @@ func startEtcd() error {
 func stopEtcd() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if etcdContext.etcd == nil {
 		return
 	}
@@ -57,6 +61,8 @@ func stopEtcd() {
 	}
 }
 func TestMain(m *testing.M) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := startEtcd(); err != nil {

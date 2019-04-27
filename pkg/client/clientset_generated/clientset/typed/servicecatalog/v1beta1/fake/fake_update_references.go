@@ -9,6 +9,8 @@ import (
 func (c *FakeServiceInstances) UpdateReferences(serviceInstance *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instanceCopy := serviceInstance.DeepCopy()
 	obj, err := c.Fake.Invokes(testing.NewUpdateSubresourceAction(serviceinstancesResource, "reference", c.ns, instanceCopy), instanceCopy)
 	if obj == nil {

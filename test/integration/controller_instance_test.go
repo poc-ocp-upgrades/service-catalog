@@ -20,6 +20,8 @@ import (
 func TestCreateServiceInstanceNonExistentClusterServiceClassOrPlan(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		classExternalName	string
@@ -59,6 +61,8 @@ func TestCreateServiceInstanceNonExistentClusterServiceClassOrPlan(t *testing.T)
 func TestCreateServiceInstanceNonExistentClusterServiceBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, instance: getTestInstance(), skipVerifyingInstanceSuccess: true, preCreateInstance: func(ct *controllerTest) {
 		serviceClass := &v1beta1.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testClusterServiceClassGUID}, Spec: v1beta1.ClusterServiceClassSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServiceClassSpec: v1beta1.CommonServiceClassSpec{ExternalID: testClusterServiceClassGUID, ExternalName: testClusterServiceClassName, Description: "a test service", Bindable: true}}}
 		if _, err := ct.client.ClusterServiceClasses().Create(serviceClass); err != nil {
@@ -82,6 +86,8 @@ func TestCreateServiceInstanceNonExistentClusterServiceBroker(t *testing.T) {
 	})
 }
 func TestCreateServiceInstanceWithParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type secretDef struct {
@@ -129,6 +135,8 @@ func TestCreateServiceInstanceWithParameters(t *testing.T) {
 func TestUpdateServiceInstanceNewDashboardResponse(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dashURL := testDashboardURL
 	cases := []struct {
 		name		string
@@ -163,6 +171,8 @@ func TestUpdateServiceInstanceNewDashboardResponse(t *testing.T) {
 	}
 }
 func TestUpdateServiceInstanceChangePlans(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	otherPlanName := "otherplanname"
@@ -235,6 +245,8 @@ func TestUpdateServiceInstanceChangePlans(t *testing.T) {
 func TestUpdateServiceInstanceChangePlansToNonexistentPlan(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		useExternalNames	bool
@@ -270,6 +282,8 @@ func TestUpdateServiceInstanceChangePlansToNonexistentPlan(t *testing.T) {
 	}
 }
 func TestUpdateServiceInstanceUpdateParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -348,6 +362,8 @@ func TestUpdateServiceInstanceUpdateParameters(t *testing.T) {
 func TestCreateServiceInstanceWithRetries(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name	string
 		setup	func(ct *controllerTest)
@@ -381,6 +397,8 @@ func TestCreateServiceInstanceWithRetries(t *testing.T) {
 func TestCreateServiceInstanceWithInvalidParameters(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, broker: getTestBroker()}
 	ct.run(func(ct *controllerTest) {
 		instance := getTestInstance()
@@ -397,14 +415,20 @@ type TimeoutError string
 func (e TimeoutError) Timeout() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (e TimeoutError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return string(e)
 }
 func FlakeTestCreateServiceInstanceWithProvisionFailure(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -521,6 +545,8 @@ func FlakeTestCreateServiceInstanceWithProvisionFailure(t *testing.T) {
 func TestCreateServiceInstanceFailsWithNonexistentPlan(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, broker: getTestBroker(), instance: getTestInstance(), skipVerifyingInstanceSuccess: true, preCreateInstance: func(ct *controllerTest) {
 		otherPlanName := "otherplanname"
 		otherPlanID := "otherplanid"
@@ -546,6 +572,8 @@ func TestCreateServiceInstanceFailsWithNonexistentPlan(t *testing.T) {
 	})
 }
 func TestCreateServiceInstanceAsynchronous(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	dashURL := testDashboardURL
@@ -582,6 +610,8 @@ func TestCreateServiceInstanceAsynchronous(t *testing.T) {
 	}
 }
 func TestDeleteServiceInstance(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key := osb.OperationKey(testOperation)
@@ -635,6 +665,8 @@ func TestDeleteServiceInstance(t *testing.T) {
 func TestPollServiceInstanceLastOperationSuccess(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name				string
 		setup				func(t *controllerTest)
@@ -686,6 +718,8 @@ func TestPollServiceInstanceLastOperationSuccess(t *testing.T) {
 	}
 }
 func TestRetryAsyncDeprovision(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	hasPollFailed := false

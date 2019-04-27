@@ -21,6 +21,8 @@ var serviceplansKind = schema.GroupVersionKind{Group: "servicecatalog.k8s.io", V
 func (c *FakeServicePlans) Get(name string, options v1.GetOptions) (result *servicecatalog.ServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewGetAction(serviceplansResource, c.ns, name), &servicecatalog.ServicePlan{})
 	if obj == nil {
 		return nil, err
@@ -28,6 +30,8 @@ func (c *FakeServicePlans) Get(name string, options v1.GetOptions) (result *serv
 	return obj.(*servicecatalog.ServicePlan), err
 }
 func (c *FakeServicePlans) List(opts v1.ListOptions) (result *servicecatalog.ServicePlanList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewListAction(serviceplansResource, serviceplansKind, c.ns, opts), &servicecatalog.ServicePlanList{})
@@ -49,9 +53,13 @@ func (c *FakeServicePlans) List(opts v1.ListOptions) (result *servicecatalog.Ser
 func (c *FakeServicePlans) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewWatchAction(serviceplansResource, c.ns, opts))
 }
 func (c *FakeServicePlans) Create(servicePlan *servicecatalog.ServicePlan) (result *servicecatalog.ServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewCreateAction(serviceplansResource, c.ns, servicePlan), &servicecatalog.ServicePlan{})
@@ -63,6 +71,8 @@ func (c *FakeServicePlans) Create(servicePlan *servicecatalog.ServicePlan) (resu
 func (c *FakeServicePlans) Update(servicePlan *servicecatalog.ServicePlan) (result *servicecatalog.ServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateAction(serviceplansResource, c.ns, servicePlan), &servicecatalog.ServicePlan{})
 	if obj == nil {
 		return nil, err
@@ -70,6 +80,8 @@ func (c *FakeServicePlans) Update(servicePlan *servicecatalog.ServicePlan) (resu
 	return obj.(*servicecatalog.ServicePlan), err
 }
 func (c *FakeServicePlans) UpdateStatus(servicePlan *servicecatalog.ServicePlan) (*servicecatalog.ServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateSubresourceAction(serviceplansResource, "status", c.ns, servicePlan), &servicecatalog.ServicePlan{})
@@ -81,10 +93,14 @@ func (c *FakeServicePlans) UpdateStatus(servicePlan *servicecatalog.ServicePlan)
 func (c *FakeServicePlans) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewDeleteAction(serviceplansResource, c.ns, name), &servicecatalog.ServicePlan{})
 	return err
 }
 func (c *FakeServicePlans) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewDeleteCollectionAction(serviceplansResource, c.ns, listOptions)
@@ -92,6 +108,8 @@ func (c *FakeServicePlans) DeleteCollection(options *v1.DeleteOptions, listOptio
 	return err
 }
 func (c *FakeServicePlans) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *servicecatalog.ServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewPatchSubresourceAction(serviceplansResource, c.ns, name, pt, data, subresources...), &servicecatalog.ServicePlan{})

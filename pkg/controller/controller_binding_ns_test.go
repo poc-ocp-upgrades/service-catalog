@@ -21,6 +21,8 @@ import (
 func TestReconcileServiceBindingWithParametersNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -108,6 +110,8 @@ func TestReconcileServiceBindingWithParametersNamespacedRefs(t *testing.T) {
 func TestReconcileServiceBindingAsynchronousBindNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -144,6 +148,8 @@ func TestReconcileServiceBindingAsynchronousBindNamespacedRefs(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingDeleteNamespacedRefs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
@@ -203,6 +209,8 @@ func TestReconcileServiceBindingDeleteNamespacedRefs(t *testing.T) {
 	}
 }
 func TestPollServiceBindingNamespacedRefs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
@@ -351,6 +359,8 @@ func TestPollServiceBindingNamespacedRefs(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingAsynchronousUnbindNamespacedRefs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))

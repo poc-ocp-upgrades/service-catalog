@@ -13,9 +13,13 @@ import (
 func getTestInstanceCredential() *servicecatalog.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Generation: 1}, Spec: servicecatalog.ServiceBindingSpec{InstanceRef: servicecatalog.LocalObjectReference{Name: "some-string"}}, Status: servicecatalog.ServiceBindingStatus{Conditions: []servicecatalog.ServiceBindingCondition{{Type: servicecatalog.ServiceBindingConditionReady, Status: servicecatalog.ConditionTrue}}}}
 }
 func TestInstanceCredentialUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -40,6 +44,8 @@ func TestInstanceCredentialUpdate(t *testing.T) {
 func TestInstanceCredentialUserInfo(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	prevOrigIDEnablement := sctestutil.EnableOriginatingIdentity(t, true)
 	defer utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=%v", scfeatures.OriginatingIdentity, prevOrigIDEnablement))
 	creatorUserName := "creator"
@@ -60,6 +66,8 @@ func TestInstanceCredentialUserInfo(t *testing.T) {
 func TestExternalIDSet(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	createdInstanceCredential := getTestInstanceCredential()
 	creatorUserName := "creator"
 	createContext := sctestutil.ContextWithUserName(creatorUserName)
@@ -69,6 +77,8 @@ func TestExternalIDSet(t *testing.T) {
 	}
 }
 func TestExternalIDUserProvided(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	userExternalID := "my-id"

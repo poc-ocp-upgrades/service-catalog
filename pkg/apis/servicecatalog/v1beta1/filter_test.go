@@ -9,6 +9,8 @@ import (
 func TestConvertServiceClassToProperties(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name	string
 		sc	*ServiceClass
@@ -32,6 +34,8 @@ func TestConvertServiceClassToProperties(t *testing.T) {
 	}
 }
 func TestConvertServicePlanToProperties(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -59,6 +63,8 @@ func TestConvertServicePlanToProperties(t *testing.T) {
 func TestConvertClusterServiceClassToProperties(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name	string
 		sc	*ClusterServiceClass
@@ -82,6 +88,8 @@ func TestConvertClusterServiceClassToProperties(t *testing.T) {
 	}
 }
 func TestConvertClusterServicePlanToProperties(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

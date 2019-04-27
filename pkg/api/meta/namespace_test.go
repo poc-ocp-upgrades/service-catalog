@@ -9,6 +9,8 @@ import (
 func TestGetNamespace(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const namespace = "testns"
 	obj := &sc.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Namespace: namespace}}
 	ns, err := GetNamespace(obj)

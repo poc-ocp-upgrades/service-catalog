@@ -17,6 +17,8 @@ type DeregisterCmd struct {
 func NewDeregisterCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	deregisterCmd := &DeregisterCmd{Namespaced: command.NewNamespaced(cxt), Scoped: command.NewScoped(), Waitable: command.NewWaitable()}
 	cmd := &cobra.Command{Use: "deregister NAME", Short: "Deregisters an existing broker with service catalog", Example: command.NormalizeExamples(`
 		svcat deregister mysqlbroker
@@ -31,6 +33,8 @@ func NewDeregisterCmd(cxt *command.Context) *cobra.Command {
 func (c *DeregisterCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) == 0 {
 		return fmt.Errorf("a broker name is required")
 	}
@@ -40,9 +44,13 @@ func (c *DeregisterCmd) Validate(args []string) error {
 func (c *DeregisterCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Deregister()
 }
 func (c *DeregisterCmd) Deregister() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scopeOptions := &servicecatalog.ScopeOptions{Namespace: c.Namespace, Scope: c.Scope}

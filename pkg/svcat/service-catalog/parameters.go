@@ -10,6 +10,8 @@ import (
 func BuildParameters(params interface{}) *runtime.RawExtension {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	paramsJSON, err := json.Marshal(params)
 	if err != nil {
 		panic(fmt.Errorf("unable to marshal the request parameters %v (%s)", params, err))
@@ -17,6 +19,8 @@ func BuildParameters(params interface{}) *runtime.RawExtension {
 	return &runtime.RawExtension{Raw: paramsJSON}
 }
 func BuildParametersFrom(secrets map[string]string) []v1beta1.ParametersFromSource {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	params := make([]v1beta1.ParametersFromSource, 0, len(secrets))

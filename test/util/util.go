@@ -20,6 +20,8 @@ import (
 func WaitForBrokerCondition(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, name string, condition v1beta1.ServiceBrokerCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, 3*time.Minute, func() (bool, error) {
 		klog.V(5).Infof("Waiting for broker %v condition %#v", name, condition)
 		broker, err := client.ClusterServiceBrokers().Get(name, metav1.GetOptions{})
@@ -43,6 +45,8 @@ func WaitForBrokerCondition(client v1beta1servicecatalog.ServicecatalogV1beta1In
 func WaitForBrokerToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for broker %v to not exist", name)
 		_, err := client.ClusterServiceBrokers().Get(name, metav1.GetOptions{})
@@ -58,6 +62,8 @@ func WaitForBrokerToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1I
 func WaitForClusterServiceClassToExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for serviceClass %v to exist", name)
 		_, err := client.ClusterServiceClasses().Get(name, metav1.GetOptions{})
@@ -70,6 +76,8 @@ func WaitForClusterServiceClassToExist(client v1beta1servicecatalog.Servicecatal
 func WaitForClusterServicePlanToExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for ClusterServicePlan %v to exist", name)
 		_, err := client.ClusterServicePlans().Get(name, metav1.GetOptions{})
@@ -80,6 +88,8 @@ func WaitForClusterServicePlanToExist(client v1beta1servicecatalog.Servicecatalo
 	})
 }
 func WaitForClusterServicePlanToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
@@ -97,6 +107,8 @@ func WaitForClusterServicePlanToNotExist(client v1beta1servicecatalog.Servicecat
 func WaitForClusterServiceClassToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for serviceClass %v to not exist", name)
 		_, err := client.ClusterServiceClasses().Get(name, metav1.GetOptions{})
@@ -110,6 +122,8 @@ func WaitForClusterServiceClassToNotExist(client v1beta1servicecatalog.Serviceca
 	})
 }
 func WaitForInstanceCondition(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, namespace, name string, condition v1beta1.ServiceInstanceCondition) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
@@ -135,6 +149,8 @@ func WaitForInstanceCondition(client v1beta1servicecatalog.ServicecatalogV1beta1
 func WaitForInstanceToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, namespace, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for instance %v/%v to not exist", namespace, name)
 		_, err := client.ServiceInstances(namespace).Get(name, metav1.GetOptions{})
@@ -148,6 +164,8 @@ func WaitForInstanceToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta
 	})
 }
 func WaitForInstanceProcessedGeneration(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, namespace, name string, processedGeneration int64) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
@@ -165,6 +183,8 @@ func WaitForInstanceProcessedGeneration(client v1beta1servicecatalog.Servicecata
 func isServiceInstanceConditionTrue(instance *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, cond := range instance.Status.Conditions {
 		if cond.Type == conditionType {
 			return cond.Status == v1beta1.ConditionTrue
@@ -175,14 +195,20 @@ func isServiceInstanceConditionTrue(instance *v1beta1.ServiceInstance, condition
 func isServiceInstanceReady(instance *v1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return isServiceInstanceConditionTrue(instance, v1beta1.ServiceInstanceConditionReady)
 }
 func isServiceInstanceFailed(instance *v1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return isServiceInstanceConditionTrue(instance, v1beta1.ServiceInstanceConditionFailed)
 }
 func WaitForBindingCondition(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, namespace, name string, condition v1beta1.ServiceBindingCondition) (*v1beta1.ServiceBindingCondition, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var lastSeenCondition *v1beta1.ServiceBindingCondition
@@ -212,6 +238,8 @@ func WaitForBindingCondition(client v1beta1servicecatalog.ServicecatalogV1beta1I
 func WaitForBindingToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, namespace, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for binding %v/%v to not exist", namespace, name)
 		_, err := client.ServiceBindings(namespace).Get(name, metav1.GetOptions{})
@@ -227,6 +255,8 @@ func WaitForBindingToNotExist(client v1beta1servicecatalog.ServicecatalogV1beta1
 func WaitForBindingReconciledGeneration(client v1beta1servicecatalog.ServicecatalogV1beta1Interface, namespace, name string, reconciledGeneration int64) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(500*time.Millisecond, wait.ForeverTestTimeout, func() (bool, error) {
 		klog.V(5).Infof("Waiting for binding %v/%v to have reconciled generation of %v", namespace, name, reconciledGeneration)
 		binding, err := client.ServiceBindings(namespace).Get(name, metav1.GetOptions{})
@@ -240,6 +270,8 @@ func WaitForBindingReconciledGeneration(client v1beta1servicecatalog.Servicecata
 	})
 }
 func AssertServiceInstanceCondition(t *testing.T, instance *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType, status v1beta1.ConditionStatus, reason ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	foundCondition := false
@@ -261,6 +293,8 @@ func AssertServiceInstanceCondition(t *testing.T, instance *v1beta1.ServiceInsta
 func AssertServiceBindingCondition(t *testing.T, binding *v1beta1.ServiceBinding, conditionType v1beta1.ServiceBindingConditionType, status v1beta1.ConditionStatus, reason ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	foundCondition := false
 	for _, condition := range binding.Status.Conditions {
 		if condition.Type == conditionType {
@@ -280,6 +314,8 @@ func AssertServiceBindingCondition(t *testing.T, binding *v1beta1.ServiceBinding
 func AssertServiceInstanceConditionFalseOrAbsent(t *testing.T, instance *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, condition := range instance.Status.Conditions {
 		if condition.Type == conditionType {
 			if e, a := v1beta1.ConditionFalse, condition.Status; e != a {
@@ -289,6 +325,8 @@ func AssertServiceInstanceConditionFalseOrAbsent(t *testing.T, instance *v1beta1
 	}
 }
 func EnableOriginatingIdentity(t *testing.T, enabled bool) (previousState bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	prevOrigIdentEnablement := utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity)
@@ -301,6 +339,8 @@ func EnableOriginatingIdentity(t *testing.T, enabled bool) (previousState bool) 
 	return prevOrigIdentEnablement
 }
 func ContextWithUserName(userName string) context.Context {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ctx := genericapirequest.NewContext()

@@ -15,14 +15,20 @@ type ServiceBindings struct {
 func (c *ServiceBindings) Create(serviceInstance *v1beta1.ServiceBinding) (result *v1beta1.ServiceBinding, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.Create(serviceInstance)
 }
 func (c *ServiceBindings) Update(serviceInstance *v1beta1.ServiceBinding) (result *v1beta1.ServiceBinding, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.Update(serviceInstance)
 }
 func (c *ServiceBindings) UpdateStatus(serviceInstance *v1beta1.ServiceBinding) (*v1beta1.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instanceCopy := serviceInstance.DeepCopy()
@@ -32,9 +38,13 @@ func (c *ServiceBindings) UpdateStatus(serviceInstance *v1beta1.ServiceBinding) 
 func (c *ServiceBindings) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.Delete(name, options)
 }
 func (c *ServiceBindings) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.DeleteCollection(options, listOptions)
@@ -42,9 +52,13 @@ func (c *ServiceBindings) DeleteCollection(options *v1.DeleteOptions, listOption
 func (c *ServiceBindings) Get(name string, options v1.GetOptions) (result *v1beta1.ServiceBinding, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.Get(name, options)
 }
 func (c *ServiceBindings) List(opts v1.ListOptions) (result *v1beta1.ServiceBindingList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.List(opts)
@@ -52,9 +66,13 @@ func (c *ServiceBindings) List(opts v1.ListOptions) (result *v1beta1.ServiceBind
 func (c *ServiceBindings) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.Watch(opts)
 }
 func (c *ServiceBindings) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1beta1.ServiceBinding, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return c.ServiceBindingInterface.Patch(name, pt, data, subresources...)

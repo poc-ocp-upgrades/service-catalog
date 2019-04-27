@@ -30,6 +30,8 @@ import (
 func TestReconcileServiceBindingNonExistingServiceInstance(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, noFakeActions())
 	binding := &v1beta1.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Name: testServiceBindingName, Generation: 1}, Spec: v1beta1.ServiceBindingSpec{InstanceRef: v1beta1.LocalObjectReference{Name: testNonExistentClusterServiceClassName}, ExternalID: testServiceBindingGUID}, Status: v1beta1.ServiceBindingStatus{UnbindStatus: v1beta1.ServiceBindingUnbindStatusNotRequired}}
 	err := reconcileServiceBinding(t, testController, binding)
@@ -51,6 +53,8 @@ func TestReconcileServiceBindingNonExistingServiceInstance(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingUnresolvedClusterServiceClassReference(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
@@ -84,6 +88,8 @@ func TestReconcileServiceBindingUnresolvedClusterServiceClassReference(t *testin
 func TestReconcileServiceBindingUnresolvedClusterServicePlanReference(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -115,6 +121,8 @@ func TestReconcileServiceBindingUnresolvedClusterServicePlanReference(t *testing
 func TestReconcileServiceBindingNonExistingClusterServiceClass(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -141,6 +149,8 @@ func TestReconcileServiceBindingNonExistingClusterServiceClass(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingWithSecretConflict(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
@@ -188,6 +198,8 @@ func TestReconcileServiceBindingWithSecretConflict(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingWithParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
@@ -272,6 +284,8 @@ func TestReconcileServiceBindingWithParameters(t *testing.T) {
 func TestReconcileServiceBindingWithSecretTransform(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
 	addGetNamespaceReaction(fakeKubeClient)
 	addGetSecretNotFoundReaction(fakeKubeClient)
@@ -338,6 +352,8 @@ func TestReconcileServiceBindingWithSecretTransform(t *testing.T) {
 func TestReconcileServiceBindingNonbindableClusterServiceClass(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestNonbindableClusterServiceClass())
@@ -364,6 +380,8 @@ func TestReconcileServiceBindingNonbindableClusterServiceClass(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingNonbindableClusterServiceClassBindablePlan(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
@@ -431,6 +449,8 @@ func TestReconcileServiceBindingNonbindableClusterServiceClassBindablePlan(t *te
 func TestReconcileServiceBindingBindableClusterServiceClassNonbindablePlan(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -459,6 +479,8 @@ func TestReconcileServiceBindingBindableClusterServiceClassNonbindablePlan(t *te
 func TestReconcileServiceBindingServiceInstanceNotReady(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	addGetNamespaceReaction(fakeKubeClient)
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
@@ -484,6 +506,8 @@ func TestReconcileServiceBindingServiceInstanceNotReady(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingNamespaceError(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
@@ -516,6 +540,8 @@ func TestReconcileServiceBindingNamespaceError(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -572,6 +598,8 @@ func TestReconcileServiceBindingDelete(t *testing.T) {
 func TestReconcileServiceBindingDeleteUnresolvedClusterServiceClassReference(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -591,6 +619,8 @@ func TestReconcileServiceBindingDeleteUnresolvedClusterServiceClassReference(t *
 	assertNumEvents(t, events, 0)
 }
 func TestSetServiceBindingCondition(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bindingWithCondition := func(condition *v1beta1.ServiceBindingCondition) *v1beta1.ServiceBinding {
@@ -647,6 +677,8 @@ func TestSetServiceBindingCondition(t *testing.T) {
 func TestReconcileServiceBindingDeleteFailedServiceBinding(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -700,6 +732,8 @@ func TestReconcileServiceBindingDeleteFailedServiceBinding(t *testing.T) {
 func TestReconcileServiceBindingWithClusterServiceBrokerError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}, Error: fakeosb.UnexpectedActionError()}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -727,6 +761,8 @@ func TestReconcileServiceBindingWithClusterServiceBrokerError(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingWithClusterServiceBrokerHTTPError(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}, Error: fakeosb.AsyncRequiredError()}})
@@ -758,6 +794,8 @@ func TestReconcileServiceBindingWithClusterServiceBrokerHTTPError(t *testing.T) 
 func TestReconcileServiceBindingWithFailureCondition(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -777,6 +815,8 @@ func TestReconcileServiceBindingWithFailureCondition(t *testing.T) {
 	assertNumEvents(t, events, 0)
 }
 func TestReconcileServiceBindingWithServiceBindingCallFailure(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Error: errors.New("fake creation failure")}})
@@ -817,6 +857,8 @@ func TestReconcileServiceBindingWithServiceBindingCallFailure(t *testing.T) {
 func TestReconcileServiceBindingWithServiceBindingFailure(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Error: osb.HTTPStatusCodeError{StatusCode: http.StatusConflict, ErrorMessage: strPtr("ServiceBindingExists"), Description: strPtr("Service binding with the same id, for the same service instance already exists.")}}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -853,6 +895,8 @@ func TestReconcileServiceBindingWithServiceBindingFailure(t *testing.T) {
 	}
 }
 func TestUpdateServiceBindingCondition(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	getTestServiceBindingWithStatus := func(status v1beta1.ConditionStatus) *v1beta1.ServiceBinding {
@@ -912,6 +956,8 @@ func TestUpdateServiceBindingCondition(t *testing.T) {
 func TestReconcileUnbindingWithClusterServiceBrokerError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}, Error: fakeosb.UnexpectedActionError()}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -944,6 +990,8 @@ func TestReconcileUnbindingWithClusterServiceBrokerError(t *testing.T) {
 func TestReconcileUnbindingWithClusterServiceBrokerHTTPError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}, Error: osb.HTTPStatusCodeError{StatusCode: http.StatusGone}}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -974,6 +1022,8 @@ func TestReconcileUnbindingWithClusterServiceBrokerHTTPError(t *testing.T) {
 	}
 }
 func TestReconcileBindingUsingOriginatingIdentity(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, tc := range originatingIdentityTestCases {
@@ -1019,6 +1069,8 @@ func TestReconcileBindingUsingOriginatingIdentity(t *testing.T) {
 	}
 }
 func TestReconcileBindingDeleteUsingOriginatingIdentity(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, tc := range originatingIdentityTestCases {
@@ -1068,6 +1120,8 @@ func TestReconcileBindingDeleteUsingOriginatingIdentity(t *testing.T) {
 func TestReconcileBindingSuccessOnFinalRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
 	addGetNamespaceReaction(fakeKubeClient)
 	addGetSecretNotFoundReaction(fakeKubeClient)
@@ -1100,6 +1154,8 @@ func TestReconcileBindingSuccessOnFinalRetry(t *testing.T) {
 func TestReconcileBindingFailureOnFinalRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}, Error: fakeosb.UnexpectedActionError()}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -1124,6 +1180,8 @@ func TestReconcileBindingFailureOnFinalRetry(t *testing.T) {
 	}
 }
 func TestReconcileBindingWithSecretConflictFailedAfterFinalRetry(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
@@ -1161,6 +1219,8 @@ func TestReconcileBindingWithSecretConflictFailedAfterFinalRetry(t *testing.T) {
 func TestReconcileServiceBindingWithStatusUpdateError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, noFakeActions())
 	addGetNamespaceReaction(fakeKubeClient)
 	addGetSecretNotFoundReaction(fakeKubeClient)
@@ -1190,6 +1250,8 @@ func TestReconcileServiceBindingWithStatusUpdateError(t *testing.T) {
 	assertNumEvents(t, events, 0)
 }
 func TestReconcileServiceBindingWithSecretParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: map[string]interface{}{"a": "b", "c": "d"}}}})
@@ -1260,6 +1322,8 @@ func TestReconcileServiceBindingWithSecretParameters(t *testing.T) {
 func TestReconcileBindingWithSetOrphanMitigation(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		bindReactionError	error
@@ -1313,6 +1377,8 @@ func TestReconcileBindingWithSetOrphanMitigation(t *testing.T) {
 func TestReconcileBindingWithOrphanMitigationInProgress(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}}})
 	addGetNamespaceReaction(fakeKubeClient)
 	addGetSecretReaction(fakeKubeClient, &corev1.Secret{ObjectMeta: metav1.ObjectMeta{Name: testServiceBindingName, Namespace: testNamespace}})
@@ -1338,6 +1404,8 @@ func TestReconcileBindingWithOrphanMitigationInProgress(t *testing.T) {
 	assertServiceBindingOrphanMitigationSet(t, updatedServiceBinding, false)
 }
 func TestReconcileBindingWithOrphanMitigationReconciliationRetryTimeOut(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}, Error: testTimeoutError{}}})
@@ -1371,6 +1439,8 @@ func TestReconcileBindingWithOrphanMitigationReconciliationRetryTimeOut(t *testi
 	}
 }
 func TestReconcileServiceBindingDeleteDuringOngoingOperation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}}})
@@ -1417,6 +1487,8 @@ func TestReconcileServiceBindingDeleteDuringOngoingOperation(t *testing.T) {
 func TestReconcileServiceBindingDeleteDuringOrphanMitigation(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}}})
 	sharedInformers.ClusterServiceBrokers().Informer().GetStore().Add(getTestClusterServiceBroker())
 	sharedInformers.ClusterServiceClasses().Informer().GetStore().Add(getTestClusterServiceClass())
@@ -1459,6 +1531,8 @@ func TestReconcileServiceBindingDeleteDuringOrphanMitigation(t *testing.T) {
 	}
 }
 func TestReconcileServiceBindingAsynchronousBind(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key := osb.OperationKey(testOperation)
@@ -1512,6 +1586,8 @@ func TestReconcileServiceBindingAsynchronousBind(t *testing.T) {
 func TestReconcileServiceBindingAsynchronousUnbind(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key := osb.OperationKey(testOperation)
 	fakeKubeClient, fakeCatalogClient, fakeServiceBrokerClient, testController, sharedInformers := newTestController(t, fakeosb.FakeClientConfiguration{UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{Async: true, OperationKey: &key}}})
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.AsyncBindingOperations))
@@ -1558,6 +1634,8 @@ func TestReconcileServiceBindingAsynchronousUnbind(t *testing.T) {
 	}
 }
 func TestPollServiceBinding(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.AsyncBindingOperations))
@@ -1706,6 +1784,8 @@ func TestPollServiceBinding(t *testing.T) {
 func TestTransformSecretData(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		transforms		[]v1beta1.SecretTransform
@@ -1730,9 +1810,13 @@ func TestTransformSecretData(t *testing.T) {
 func assertServiceBindingBindInProgressIsTheOnlyCatalogAction(t *testing.T, fakeCatalogClient *fake.Clientset, binding *v1beta1.ServiceBinding) *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return assertServiceBindingOperationInProgressIsTheOnlyCatalogAction(t, fakeCatalogClient, binding, v1beta1.ServiceBindingOperationBind)
 }
 func assertServiceBindingUnbindInProgressIsTheOnlyCatalogAction(t *testing.T, fakeCatalogClient *fake.Clientset, binding *v1beta1.ServiceBinding) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return assertServiceBindingOperationInProgressIsTheOnlyCatalogAction(t, fakeCatalogClient, binding, v1beta1.ServiceBindingOperationUnbind)
@@ -1740,9 +1824,13 @@ func assertServiceBindingUnbindInProgressIsTheOnlyCatalogAction(t *testing.T, fa
 func assertServiceBindingOperationInProgressIsTheOnlyCatalogAction(t *testing.T, fakeCatalogClient *fake.Clientset, binding *v1beta1.ServiceBinding, operation v1beta1.ServiceBindingOperation) *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return assertServiceBindingOperationInProgressWithParametersIsTheOnlyCatalogAction(t, fakeCatalogClient, binding, operation, nil, "")
 }
 func assertServiceBindingOperationInProgressWithParametersIsTheOnlyCatalogAction(t *testing.T, fakeCatalogClient *fake.Clientset, binding *v1beta1.ServiceBinding, operation v1beta1.ServiceBindingOperation, parameters map[string]interface{}, parametersChecksum string) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	actions := fakeCatalogClient.Actions()
@@ -1755,10 +1843,14 @@ func assertServiceBindingOperationInProgressWithParametersIsTheOnlyCatalogAction
 func assertGetNamespaceAction(t *testing.T, kubeActions []clientgotesting.Action) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertNumberOfActions(t, kubeActions, 1)
 	assertActionEquals(t, kubeActions[0], "get", "namespaces")
 }
 func assertDeleteSecretAction(t *testing.T, kubeActions []clientgotesting.Action, secretName string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assertNumberOfActions(t, kubeActions, 1)
@@ -1771,6 +1863,8 @@ func assertDeleteSecretAction(t *testing.T, kubeActions []clientgotesting.Action
 func assertActionEquals(t *testing.T, action clientgotesting.Action, expectedVerb, expectedResource string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if e, a := expectedVerb, action.GetVerb(); e != a {
 		t.Fatalf("Unexpected verb on action; %s", expectedGot(e, a))
 	}
@@ -1779,6 +1873,8 @@ func assertActionEquals(t *testing.T, action clientgotesting.Action, expectedVer
 	}
 }
 func reconcileServiceBinding(t *testing.T, testController *controller, binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clone := binding.DeepCopy()

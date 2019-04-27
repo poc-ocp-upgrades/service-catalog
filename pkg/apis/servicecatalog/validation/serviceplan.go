@@ -13,6 +13,8 @@ const commonServicePlanNameMaxLength int = 63
 func validateCommonServicePlanName(value string, prefix bool) []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var errs []string
 	if len(value) > commonServicePlanNameMaxLength {
 		errs = append(errs, utilvalidation.MaxLenError(commonServicePlanNameMaxLength))
@@ -25,9 +27,13 @@ func validateCommonServicePlanName(value string, prefix bool) []string {
 func ValidateClusterServicePlan(clusterServicePlan *sc.ClusterServicePlan) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return validateClusterServicePlan(clusterServicePlan)
 }
 func validateClusterServicePlan(clusterServicePlan *sc.ClusterServicePlan) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -38,9 +44,13 @@ func validateClusterServicePlan(clusterServicePlan *sc.ClusterServicePlan) field
 func ValidateServicePlan(servicePlan *sc.ServicePlan) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return validateServicePlan(servicePlan)
 }
 func validateServicePlan(servicePlan *sc.ServicePlan) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -49,6 +59,8 @@ func validateServicePlan(servicePlan *sc.ServicePlan) field.ErrorList {
 	return allErrs
 }
 func validateCommonServicePlanSpec(spec sc.CommonServicePlanSpec, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -69,6 +81,8 @@ func validateCommonServicePlanSpec(spec sc.CommonServicePlanSpec, fldPath *field
 func validateClusterServicePlanSpec(spec *sc.ClusterServicePlanSpec, fldPath *field.Path) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := validateCommonServicePlanSpec(spec.CommonServicePlanSpec, fldPath)
 	if "" == spec.ClusterServiceBrokerName {
 		allErrs = append(allErrs, field.Required(fldPath.Child("clusterServiceBrokerName"), "clusterServiceBrokerName is required"))
@@ -82,6 +96,8 @@ func validateClusterServicePlanSpec(spec *sc.ClusterServicePlanSpec, fldPath *fi
 	return allErrs
 }
 func validateServicePlanSpec(spec *sc.ServicePlanSpec, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := validateCommonServicePlanSpec(spec.CommonServicePlanSpec, fldPath)
@@ -99,12 +115,16 @@ func validateServicePlanSpec(spec *sc.ServicePlanSpec, fldPath *field.Path) fiel
 func ValidateClusterServicePlanUpdate(new *sc.ClusterServicePlan, old *sc.ClusterServicePlan) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, validateClusterServicePlan(new)...)
 	allErrs = append(allErrs, validateCommonServicePlanUpdate(new.Spec.CommonServicePlanSpec, old.Spec.CommonServicePlanSpec, "ClusterServicePlan")...)
 	return allErrs
 }
 func validateCommonServicePlanUpdate(new sc.CommonServicePlanSpec, old sc.CommonServicePlanSpec, resourceType string) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -114,6 +134,8 @@ func validateCommonServicePlanUpdate(new sc.CommonServicePlanSpec, old sc.Common
 	return allErrs
 }
 func ValidateServicePlanUpdate(new *sc.ServicePlan, old *sc.ServicePlan) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}

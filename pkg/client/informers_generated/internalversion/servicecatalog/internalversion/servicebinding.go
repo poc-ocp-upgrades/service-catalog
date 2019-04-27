@@ -25,9 +25,13 @@ type serviceBindingInformer struct {
 func NewServiceBindingInformer(client internalclientset.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return NewFilteredServiceBindingInformer(client, namespace, resyncPeriod, indexers, nil)
 }
 func NewFilteredServiceBindingInformer(client internalclientset.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return cache.NewSharedIndexInformer(&cache.ListWatch{ListFunc: func(options v1.ListOptions) (runtime.Object, error) {
@@ -45,14 +49,20 @@ func NewFilteredServiceBindingInformer(client internalclientset.Interface, names
 func (f *serviceBindingInformer) defaultInformer(client internalclientset.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return NewFilteredServiceBindingInformer(client, f.namespace, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
 }
 func (f *serviceBindingInformer) Informer() cache.SharedIndexInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.factory.InformerFor(&servicecatalog.ServiceBinding{}, f.defaultInformer)
 }
 func (f *serviceBindingInformer) Lister() internalversion.ServiceBindingLister {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return internalversion.NewServiceBindingLister(f.Informer().GetIndexer())

@@ -16,6 +16,8 @@ type etcdRESTOptionsFactory struct {
 func (f etcdRESTOptionsFactory) GetRESTOptions(resource schema.GroupResource) (generic.RESTOptions, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	storageConfig, err := f.storageFactory.NewConfig(resource)
 	if err != nil {
 		return generic.RESTOptions{}, err

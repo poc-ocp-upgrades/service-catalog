@@ -15,6 +15,8 @@ type getCmd struct {
 func NewGetCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	getCmd := &getCmd{Namespaced: command.NewNamespaced(cxt), Formatted: command.NewFormatted()}
 	cmd := &cobra.Command{Use: "bindings [NAME]", Aliases: []string{"binding", "bnd"}, Short: "List bindings, optionally filtered by name or namespace", Example: command.NormalizeExamples(`
   svcat get bindings
@@ -29,12 +31,16 @@ func NewGetCmd(cxt *command.Context) *cobra.Command {
 func (c *getCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) > 0 {
 		c.name = args[0]
 	}
 	return nil
 }
 func (c *getCmd) Run() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c.name == "" {
@@ -45,6 +51,8 @@ func (c *getCmd) Run() error {
 func (c *getCmd) getAll() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bindings, err := c.App.RetrieveBindings(c.Namespace)
 	if err != nil {
 		return err
@@ -53,6 +61,8 @@ func (c *getCmd) getAll() error {
 	return nil
 }
 func (c *getCmd) get() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, err := c.App.RetrieveBinding(c.Namespace, c.name)

@@ -18,12 +18,16 @@ type kubeClientAction struct {
 func checkGetActionType(a testing.Action) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, ok := a.(testing.GetAction); !ok {
 		return fmt.Errorf("expected a GetAction, got %s", reflect.TypeOf(a))
 	}
 	return nil
 }
 func checkUpdateActionType(a testing.Action) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, ok := a.(testing.UpdateAction); !ok {
@@ -41,6 +45,8 @@ type catalogClientAction struct {
 func getRuntimeObjectFromUpdateAction(t testing.Action) (runtime.Object, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	up, ok := t.(testing.UpdateAction)
 	if !ok {
 		return nil, fmt.Errorf("action was not a testing.UpdateAction")
@@ -48,6 +54,8 @@ func getRuntimeObjectFromUpdateAction(t testing.Action) (runtime.Object, error) 
 	return up.GetObject(), nil
 }
 func checkServiceInstance(descr instanceDescription) func(runtime.Object) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(obj runtime.Object) error {
@@ -79,6 +87,8 @@ type instanceDescription struct {
 func checkKubeClientActions(actual []testing.Action, expected []kubeClientAction) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(actual) != len(expected) {
 		return fmt.Errorf("expected %d kube client actions, got %d; full action list: %v", len(expected), len(actual), actual)
 	}
@@ -98,6 +108,8 @@ func checkKubeClientActions(actual []testing.Action, expected []kubeClientAction
 	return nil
 }
 func checkCatalogClientActions(actual []testing.Action, expected []catalogClientAction) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(actual) != len(expected) {

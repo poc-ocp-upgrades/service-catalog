@@ -17,9 +17,13 @@ type clusterServiceClassLister struct{ indexer cache.Indexer }
 func NewClusterServiceClassLister(indexer cache.Indexer) ClusterServiceClassLister {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &clusterServiceClassLister{indexer: indexer}
 }
 func (s *clusterServiceClassLister) List(selector labels.Selector) (ret []*v1beta1.ClusterServiceClass, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
@@ -28,6 +32,8 @@ func (s *clusterServiceClassLister) List(selector labels.Selector) (ret []*v1bet
 	return ret, err
 }
 func (s *clusterServiceClassLister) Get(name string) (*v1beta1.ClusterServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, exists, err := s.indexer.GetByKey(name)

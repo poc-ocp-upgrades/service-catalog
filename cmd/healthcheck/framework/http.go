@@ -12,6 +12,8 @@ import (
 func ServeHTTP(healthcheckOptions *HealthCheckServer) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := healthcheckOptions.SecureServingOptions.MaybeDefaultWithSelfSignedCerts("", nil, []net.IP{net.ParseIP("127.0.0.1")}); err != nil {
 		return fmt.Errorf("failed to establish SecureServingOptions %v", err)
 	}

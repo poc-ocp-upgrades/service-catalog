@@ -17,9 +17,13 @@ type serviceBindingLister struct{ indexer cache.Indexer }
 func NewServiceBindingLister(indexer cache.Indexer) ServiceBindingLister {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &serviceBindingLister{indexer: indexer}
 }
 func (s *serviceBindingLister) List(selector labels.Selector) (ret []*servicecatalog.ServiceBinding, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
@@ -28,6 +32,8 @@ func (s *serviceBindingLister) List(selector labels.Selector) (ret []*servicecat
 	return ret, err
 }
 func (s *serviceBindingLister) ServiceBindings(namespace string) ServiceBindingNamespaceLister {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return serviceBindingNamespaceLister{indexer: s.indexer, namespace: namespace}
@@ -46,12 +52,16 @@ type serviceBindingNamespaceLister struct {
 func (s serviceBindingNamespaceLister) List(selector labels.Selector) (ret []*servicecatalog.ServiceBinding, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err = cache.ListAllByNamespace(s.indexer, s.namespace, selector, func(m interface{}) {
 		ret = append(ret, m.(*servicecatalog.ServiceBinding))
 	})
 	return ret, err
 }
 func (s serviceBindingNamespaceLister) Get(name string) (*servicecatalog.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, exists, err := s.indexer.GetByKey(s.namespace + "/" + name)

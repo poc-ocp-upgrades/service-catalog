@@ -38,9 +38,13 @@ var validServiceInstanceDeprovisionStatusValues = func() []string {
 func ValidateServiceInstance(instance *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return internalValidateServiceInstance(instance, true)
 }
 func internalValidateServiceInstance(instance *sc.ServiceInstance, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -55,6 +59,8 @@ func internalValidateServiceInstance(instance *sc.ServiceInstance, create bool) 
 	return allErrs
 }
 func validateServiceInstanceSpec(spec *sc.ServiceInstanceSpec, fldPath *field.Path, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -75,6 +81,8 @@ func validateServiceInstanceSpec(spec *sc.ServiceInstanceSpec, fldPath *field.Pa
 	return allErrs
 }
 func validateServiceInstanceStatus(status *sc.ServiceInstanceStatus, fldPath *field.Path, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -140,6 +148,8 @@ func validateServiceInstanceStatus(status *sc.ServiceInstanceStatus, fldPath *fi
 func validateServiceInstancePropertiesState(propertiesState *sc.ServiceInstancePropertiesState, fldPath *field.Path, create bool) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var errMsg string
 	allErrs := field.ErrorList{}
 	if propertiesState.ClusterServicePlanExternalName == "" && propertiesState.ServicePlanExternalName == "" {
@@ -192,6 +202,8 @@ func validateServiceInstancePropertiesState(propertiesState *sc.ServiceInstanceP
 func validateServiceInstanceCreate(instance *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	if instance.Status.ReconciledGeneration >= instance.Generation {
 		allErrs = append(allErrs, field.Invalid(field.NewPath("status").Child("reconciledGeneration"), instance.Status.ReconciledGeneration, "reconciledGeneration must be less than generation on create"))
@@ -211,6 +223,8 @@ func validateServiceInstanceCreate(instance *sc.ServiceInstance) field.ErrorList
 	return allErrs
 }
 func validateServiceInstanceUpdate(instance *sc.ServiceInstance) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var errMsg string
@@ -248,6 +262,8 @@ func validateServiceInstanceUpdate(instance *sc.ServiceInstance) field.ErrorList
 func internalValidateServiceInstanceUpdateAllowed(new *sc.ServiceInstance, old *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	errors := field.ErrorList{}
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentityLocking) {
 		if old.Generation != new.Generation && old.Status.CurrentOperation != "" {
@@ -270,6 +286,8 @@ func internalValidateServiceInstanceUpdateAllowed(new *sc.ServiceInstance, old *
 func ValidateServiceInstanceUpdate(new *sc.ServiceInstance, old *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	specFieldPath := field.NewPath("spec")
 	allErrs = append(allErrs, validatePlanReferenceUpdate(&new.Spec.PlanReference, &old.Spec.PlanReference, specFieldPath)...)
@@ -284,10 +302,14 @@ func ValidateServiceInstanceUpdate(new *sc.ServiceInstance, old *sc.ServiceInsta
 func internalValidateServiceInstanceStatusUpdateAllowed(new *sc.ServiceInstance, old *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	errors := field.ErrorList{}
 	return errors
 }
 func internalValidateServiceInstanceReferencesUpdateAllowed(new *sc.ServiceInstance, old *sc.ServiceInstance) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var errMsg string
@@ -332,6 +354,8 @@ func internalValidateServiceInstanceReferencesUpdateAllowed(new *sc.ServiceInsta
 func ValidateServiceInstanceStatusUpdate(new *sc.ServiceInstance, old *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, internalValidateServiceInstanceStatusUpdateAllowed(new, old)...)
 	allErrs = append(allErrs, internalValidateServiceInstance(new, false)...)
@@ -340,12 +364,16 @@ func ValidateServiceInstanceStatusUpdate(new *sc.ServiceInstance, old *sc.Servic
 func ValidateServiceInstanceReferencesUpdate(new *sc.ServiceInstance, old *sc.ServiceInstance) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, internalValidateServiceInstanceReferencesUpdateAllowed(new, old)...)
 	allErrs = append(allErrs, internalValidateServiceInstance(new, false)...)
 	return allErrs
 }
 func validateObjectReferences(spec *sc.ServiceInstanceSpec, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var errMsg string
@@ -380,6 +408,8 @@ type scopedRefHelper struct {
 }
 
 func validatePlanReference(p *sc.PlanReference, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var errMsg string
@@ -463,6 +493,8 @@ func validatePlanReference(p *sc.PlanReference, fldPath *field.Path) field.Error
 func validateScopedPlanRef(h scopedRefHelper, p *sc.PlanReference, fldPath *field.Path) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	b2i := func(b bool) int8 {
 		if b {
@@ -535,6 +567,8 @@ func validateScopedPlanRef(h scopedRefHelper, p *sc.PlanReference, fldPath *fiel
 	return allErrs
 }
 func validatePlanReferenceUpdate(pOld *sc.PlanReference, pNew *sc.PlanReference, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}

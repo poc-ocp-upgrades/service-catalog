@@ -22,6 +22,8 @@ import (
 func TestShouldReconcileClusterServiceBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		broker		*v1beta1.ClusterServiceBroker
@@ -112,6 +114,8 @@ func TestShouldReconcileClusterServiceBroker(t *testing.T) {
 func TestReconcileClusterServiceBrokerExistingServiceClassAndServicePlan(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
 	testClusterServiceClass := getTestClusterServiceClass()
 	testClusterServicePlan := getTestClusterServicePlan()
@@ -140,6 +144,8 @@ func TestReconcileClusterServiceBrokerExistingServiceClassAndServicePlan(t *test
 	assertNumberOfActions(t, kubeActions, 0)
 }
 func TestReconcileClusterServiceBrokerRemovedClusterServiceClass(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
@@ -173,6 +179,8 @@ func TestReconcileClusterServiceBrokerRemovedClusterServiceClass(t *testing.T) {
 	assertNumberOfActions(t, kubeActions, 0)
 }
 func TestReconcileClusterServiceBrokerRemovedAndRestoredClusterServiceClass(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
@@ -221,6 +229,8 @@ func TestReconcileClusterServiceBrokerRemovedAndRestoredClusterServiceClass(t *t
 func TestReconcileClusterServiceBrokerRemovedClusterServicePlan(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
 	testClusterServiceClass := getTestClusterServiceClass()
 	testClusterServicePlan := getTestClusterServicePlan()
@@ -257,6 +267,8 @@ func TestReconcileClusterServiceBrokerRemovedClusterServicePlan(t *testing.T) {
 func TestReconcileClusterServiceBrokerExistingClusterServiceClassDifferentBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
 	testClusterServiceClass := getTestClusterServiceClass()
 	testClusterServiceClass.Spec.ClusterServiceBrokerName = "notTheSame"
@@ -283,6 +295,8 @@ func TestReconcileClusterServiceBrokerExistingClusterServiceClassDifferentBroker
 	}
 }
 func TestReconcileClusterServiceBrokerExistingClusterServicePlanDifferentClass(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
@@ -315,11 +329,15 @@ func TestReconcileClusterServiceBrokerExistingClusterServicePlanDifferentClass(t
 func getClusterServiceBrokerReactor(broker *v1beta1.ClusterServiceBroker) (string, string, clientgotesting.ReactionFunc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "get", "clusterservicebrokers", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		return true, broker, nil
 	}
 }
 func listClusterServiceClassesReactor(classes []v1beta1.ClusterServiceClass) (string, string, clientgotesting.ReactionFunc) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return "list", "clusterserviceclasses", func(action clientgotesting.Action) (bool, runtime.Object, error) {
@@ -329,11 +347,15 @@ func listClusterServiceClassesReactor(classes []v1beta1.ClusterServiceClass) (st
 func listClusterServicePlansReactor(plans []v1beta1.ClusterServicePlan) (string, string, clientgotesting.ReactionFunc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "list", "clusterserviceplans", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		return true, &v1beta1.ClusterServicePlanList{Items: plans}, nil
 	}
 }
 func TestReconcileClusterServiceBrokerDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -392,6 +414,8 @@ func TestReconcileClusterServiceBrokerDelete(t *testing.T) {
 func TestReconcileClusterServiceBrokerErrorFetchingCatalog(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, fakeosb.FakeClientConfiguration{CatalogReaction: &fakeosb.CatalogReaction{Error: errors.New("ooops")}})
 	broker := getTestClusterServiceBroker()
 	if err := reconcileClusterServiceBroker(t, testController, broker); err == nil {
@@ -414,6 +438,8 @@ func TestReconcileClusterServiceBrokerErrorFetchingCatalog(t *testing.T) {
 	}
 }
 func TestReconcileClusterServiceBrokerZeroServices(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, fakeosb.FakeClientConfiguration{CatalogReaction: &fakeosb.CatalogReaction{Response: &osb.CatalogResponse{}}})
@@ -449,6 +475,8 @@ func TestReconcileClusterServiceBrokerZeroServices(t *testing.T) {
 func TestReconcileClusterServiceBrokerWithAuth(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		authInfo	*v1beta1.ClusterServiceBrokerAuthInfo
@@ -463,6 +491,8 @@ func TestReconcileClusterServiceBrokerWithAuth(t *testing.T) {
 	}
 }
 func testReconcileClusterServiceBrokerWithAuth(t *testing.T, authInfo *v1beta1.ClusterServiceBrokerAuthInfo, secret *corev1.Secret, shouldSucceed bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, fakeosb.FakeClientConfiguration{})
@@ -520,6 +550,8 @@ func testReconcileClusterServiceBrokerWithAuth(t *testing.T, authInfo *v1beta1.C
 func TestReconcileClusterServiceBrokerWithReconcileError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, getTestCatalogConfig())
 	broker := getTestClusterServiceBroker()
 	fakeCatalogClient.AddReactor("create", "clusterserviceclasses", func(action clientgotesting.Action) (bool, runtime.Object, error) {
@@ -557,6 +589,8 @@ func TestReconcileClusterServiceBrokerWithReconcileError(t *testing.T) {
 func TestReconcileClusterServiceBrokerSuccessOnFinalRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, getTestCatalogConfig())
 	testClusterServiceClass := getTestClusterServiceClass()
 	broker := getTestClusterServiceBroker()
@@ -586,6 +620,8 @@ func TestReconcileClusterServiceBrokerSuccessOnFinalRetry(t *testing.T) {
 func TestReconcileClusterServiceBrokerFailureOnFinalRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, fakeosb.FakeClientConfiguration{CatalogReaction: &fakeosb.CatalogReaction{Error: errors.New("ooops")}})
 	broker := getTestClusterServiceBroker()
 	startTime := metav1.NewTime(time.Now().Add(-7 * 24 * time.Hour))
@@ -611,6 +647,8 @@ func TestReconcileClusterServiceBrokerFailureOnFinalRetry(t *testing.T) {
 	}
 }
 func TestReconcileClusterServiceBrokerWithStatusUpdateError(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, fakeClusterServiceBrokerClient, testController, _ := newTestController(t, getTestCatalogConfig())
@@ -643,6 +681,8 @@ func TestReconcileClusterServiceBrokerWithStatusUpdateError(t *testing.T) {
 	assertNumberOfActions(t, kubeActions, 0)
 }
 func TestUpdateServiceBrokerCondition(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -695,6 +735,8 @@ func TestUpdateServiceBrokerCondition(t *testing.T) {
 	}
 }
 func TestReconcileClusterServicePlanFromClusterServiceBrokerCatalog(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	updatedPlan := func() *v1beta1.ClusterServicePlan {
@@ -760,6 +802,8 @@ func TestReconcileClusterServicePlanFromClusterServiceBrokerCatalog(t *testing.T
 func reconcileClusterServiceBroker(t *testing.T, testController *controller, broker *v1beta1.ClusterServiceBroker) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	clone := broker.DeepCopy()
 	err := testController.reconcileClusterServiceBroker(broker)
 	if !reflect.DeepEqual(broker, clone) {
@@ -768,6 +812,8 @@ func reconcileClusterServiceBroker(t *testing.T, testController *controller, bro
 	return err
 }
 func TestReconcileUpdatesManagedClassesAndPlans(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
@@ -805,6 +851,8 @@ func TestReconcileUpdatesManagedClassesAndPlans(t *testing.T) {
 func TestReconcileCreatesManagedClassesAndPlans(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, _ := newTestController(t, getTestCatalogConfig())
 	testClusterServiceClass := getTestClusterServiceClass()
 	testClusterServicePlan := getTestClusterServicePlan()
@@ -830,6 +878,8 @@ func TestReconcileCreatesManagedClassesAndPlans(t *testing.T) {
 	}
 }
 func TestReconcileMarksExistingClassesAndPlansAsManaged(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
@@ -869,6 +919,8 @@ func TestReconcileMarksExistingClassesAndPlansAsManaged(t *testing.T) {
 func TestReconcileDoesNotUpdateUserDefinedClassesAndPlans(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, fakeCatalogClient, _, testController, sharedInformers := newTestController(t, getTestCatalogConfig())
 	testClusterServiceClass := getTestClusterServiceClass()
 	testClusterServicePlan := getTestClusterServicePlan()
@@ -898,6 +950,8 @@ func TestReconcileDoesNotUpdateUserDefinedClassesAndPlans(t *testing.T) {
 func TestIsServiceCatalogManagedResource(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testcases := []struct {
 		name		string
 		resource	metav1.Object
@@ -913,6 +967,8 @@ func TestIsServiceCatalogManagedResource(t *testing.T) {
 	}
 }
 func TestMarkAsServiceCatalogManagedResource(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct {

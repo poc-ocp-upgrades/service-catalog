@@ -10,6 +10,8 @@ import (
 func getInstanceStatusCondition(status v1beta1.ServiceInstanceStatus) v1beta1.ServiceInstanceCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(status.Conditions) > 0 {
 		return status.Conditions[len(status.Conditions)-1]
 	}
@@ -18,10 +20,14 @@ func getInstanceStatusCondition(status v1beta1.ServiceInstanceStatus) v1beta1.Se
 func getInstanceStatusFull(status v1beta1.ServiceInstanceStatus) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lastCond := getInstanceStatusCondition(status)
 	return formatStatusFull(string(lastCond.Type), lastCond.Status, lastCond.Reason, lastCond.Message, lastCond.LastTransitionTime)
 }
 func getInstanceStatusShort(status v1beta1.ServiceInstanceStatus) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	lastCond := getInstanceStatusCondition(status)
@@ -30,12 +36,16 @@ func getInstanceStatusShort(status v1beta1.ServiceInstanceStatus) string {
 func appendInstanceDashboardURL(status v1beta1.ServiceInstanceStatus, table *tablewriter.Table) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if status.DashboardURL != nil {
 		dashboardURL := *status.DashboardURL
 		table.AppendBulk([][]string{{"DashboardURL:", dashboardURL}})
 	}
 }
 func writeInstanceListTable(w io.Writer, instanceList *v1beta1.ServiceInstanceList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewListTable(w)
@@ -48,6 +58,8 @@ func writeInstanceListTable(w io.Writer, instanceList *v1beta1.ServiceInstanceLi
 func WriteInstanceList(w io.Writer, outputFormat string, instanceList *v1beta1.ServiceInstanceList) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch outputFormat {
 	case FormatJSON:
 		writeJSON(w, instanceList)
@@ -58,6 +70,8 @@ func WriteInstanceList(w io.Writer, outputFormat string, instanceList *v1beta1.S
 	}
 }
 func WriteInstance(w io.Writer, outputFormat string, instance v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch outputFormat {
@@ -73,12 +87,16 @@ func WriteInstance(w io.Writer, outputFormat string, instance v1beta1.ServiceIns
 func WriteParentInstance(w io.Writer, instance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Fprintln(w, "\nInstance:")
 	t := NewDetailsTable(w)
 	t.AppendBulk([][]string{{"Name:", instance.Name}, {"Namespace:", instance.Namespace}, {"Status:", getInstanceStatusShort(instance.Status)}})
 	t.Render()
 }
 func WriteAssociatedInstances(w io.Writer, instances []v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprintln(w, "\nInstances:")
@@ -94,6 +112,8 @@ func WriteAssociatedInstances(w io.Writer, instances []v1beta1.ServiceInstance) 
 	t.Render()
 }
 func WriteInstanceDetails(w io.Writer, instance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewDetailsTable(w)

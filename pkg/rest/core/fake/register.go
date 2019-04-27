@@ -17,6 +17,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	install.Install(Scheme)
 	metav1.AddToGroupVersion(Scheme, schema.GroupVersion{Version: "v1"})
 	unversioned := schema.GroupVersion{Group: "", Version: "v1"}

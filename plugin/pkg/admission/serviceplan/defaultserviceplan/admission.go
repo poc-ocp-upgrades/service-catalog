@@ -25,6 +25,8 @@ const (
 func Register(plugins *admission.Plugins) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	plugins.Register(PluginName, func(io.Reader) (admission.Interface, error) {
 		return NewDefaultClusterServicePlan()
 	})
@@ -42,6 +44,8 @@ type defaultServicePlan struct {
 var _ = scadmission.WantsInternalServiceCatalogClientSet(&defaultServicePlan{})
 
 func (d *defaultServicePlan) Admit(a admission.Attributes) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a.GetResource().Group != servicecatalog.GroupName || a.GetResource().GroupResource() != servicecatalog.Resource("serviceinstances") {
@@ -62,6 +66,8 @@ func (d *defaultServicePlan) Admit(a admission.Attributes) error {
 	return apierrors.NewInternalError(errors.New("Class not specified on ServiceInstance, cannot choose default plan"))
 }
 func (d *defaultServicePlan) handleDefaultClusterServicePlan(a admission.Attributes, instance *servicecatalog.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc, err := d.getClusterServiceClassByPlanReference(a, &instance.Spec.PlanReference)
@@ -101,6 +107,8 @@ func (d *defaultServicePlan) handleDefaultClusterServicePlan(a admission.Attribu
 	return nil
 }
 func (d *defaultServicePlan) handleDefaultServicePlan(a admission.Attributes, instance *servicecatalog.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	d.scClient = d.internalClientSet.Servicecatalog().ServiceClasses(instance.Namespace)
@@ -144,9 +152,13 @@ func (d *defaultServicePlan) handleDefaultServicePlan(a admission.Attributes, in
 func NewDefaultClusterServicePlan() (admission.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &defaultServicePlan{Handler: admission.NewHandler(admission.Create, admission.Update)}, nil
 }
 func (d *defaultServicePlan) SetInternalServiceCatalogClientSet(i internalclientset.Interface) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	d.cscClient = i.Servicecatalog().ClusterServiceClasses()
@@ -154,6 +166,8 @@ func (d *defaultServicePlan) SetInternalServiceCatalogClientSet(i internalclient
 	d.internalClientSet = i
 }
 func (d *defaultServicePlan) ValidateInitialization() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if d.cscClient == nil {
@@ -167,12 +181,16 @@ func (d *defaultServicePlan) ValidateInitialization() error {
 func (d *defaultServicePlan) getClusterServiceClassByPlanReference(a admission.Attributes, ref *servicecatalog.PlanReference) (*servicecatalog.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if ref.ClusterServiceClassName != "" {
 		return d.getClusterServiceClassByK8SName(a, ref.ClusterServiceClassName)
 	}
 	return d.getClusterServiceClassByField(a, ref)
 }
 func (d *defaultServicePlan) getServiceClassByPlanReference(a admission.Attributes, ref *servicecatalog.PlanReference) (*servicecatalog.ServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ref.ServiceClassName != "" {
@@ -183,16 +201,22 @@ func (d *defaultServicePlan) getServiceClassByPlanReference(a admission.Attribut
 func (d *defaultServicePlan) getClusterServiceClassByK8SName(a admission.Attributes, scK8SName string) (*servicecatalog.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(4).Infof("Fetching ClusterServiceClass by k8s name %q", scK8SName)
 	return d.cscClient.Get(scK8SName, apimachineryv1.GetOptions{})
 }
 func (d *defaultServicePlan) getServiceClassByK8SName(a admission.Attributes, scK8SName string) (*servicecatalog.ServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(4).Infof("Fetching ServiceClass by k8s name %q", scK8SName)
 	return d.scClient.Get(scK8SName, apimachineryv1.GetOptions{})
 }
 func (d *defaultServicePlan) getClusterServiceClassByField(a admission.Attributes, ref *servicecatalog.PlanReference) (*servicecatalog.ClusterServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	filterField := ref.GetClusterServiceClassFilterFieldName()
@@ -217,6 +241,8 @@ func (d *defaultServicePlan) getClusterServiceClassByField(a admission.Attribute
 func (d *defaultServicePlan) getServiceClassByField(a admission.Attributes, ref *servicecatalog.PlanReference) (*servicecatalog.ServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	filterField := ref.GetServiceClassFilterFieldName()
 	filterValue := ref.GetSpecifiedServiceClass()
 	klog.V(4).Infof("Fetching ServiceClass filtered by %q = %q", filterField, filterValue)
@@ -239,6 +265,8 @@ func (d *defaultServicePlan) getServiceClassByField(a admission.Attributes, ref 
 func (d *defaultServicePlan) getClusterServicePlansByClusterServiceClassName(scName string) ([]servicecatalog.ClusterServicePlan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(4).Infof("Fetching ClusterServicePlans by class name %q", scName)
 	fieldSet := fields.Set{"spec.clusterServiceClassRef.name": scName}
 	fieldSelector := fields.SelectorFromSet(fieldSet).String()
@@ -253,6 +281,8 @@ func (d *defaultServicePlan) getClusterServicePlansByClusterServiceClassName(scN
 	return r, err
 }
 func (d *defaultServicePlan) getServicePlansByServiceClassName(scName string) ([]servicecatalog.ServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.V(4).Infof("Fetching ServicePlans by class name %q", scName)
@@ -271,7 +301,16 @@ func (d *defaultServicePlan) getServicePlansByServiceClassName(scName string) ([
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

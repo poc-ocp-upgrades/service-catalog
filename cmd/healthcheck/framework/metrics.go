@@ -24,9 +24,13 @@ var (
 func ReportOperationCompleted(operation string, startTime time.Time) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	eventHandlingTimeSummary.WithLabelValues(operation).Observe(time.Since(startTime).Seconds())
 }
 func register(registry *prometheus.Registry) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	registerMetrics.Do(func() {
@@ -36,6 +40,8 @@ func register(registry *prometheus.Registry) {
 	})
 }
 func RegisterMetricsAndInstallHandler(m *http.ServeMux) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	registry := prometheus.NewRegistry()

@@ -13,6 +13,8 @@ var brokerImageFlag string
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	flag.StringVar(&brokerImageFlag, "broker-image", "quay.io/kubernetes-service-catalog/user-broker:latest", "The container image for the broker to test against")
 	framework.RegisterParseFlags()
 	if "" == framework.TestContext.KubeConfig {
@@ -23,6 +25,8 @@ func init() {
 	}
 }
 func TestE2E(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	RunE2ETests(t)

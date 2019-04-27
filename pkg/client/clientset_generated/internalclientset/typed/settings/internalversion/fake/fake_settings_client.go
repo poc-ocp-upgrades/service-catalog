@@ -11,9 +11,13 @@ type FakeSettings struct{ *testing.Fake }
 func (c *FakeSettings) PodPresets(namespace string) internalversion.PodPresetInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &FakePodPresets{c, namespace}
 }
 func (c *FakeSettings) RESTClient() rest.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ret *rest.RESTClient

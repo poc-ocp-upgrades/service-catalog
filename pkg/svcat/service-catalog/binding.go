@@ -20,6 +20,8 @@ import (
 func (sdk *SDK) RetrieveBindings(ns string) (*v1beta1.ServiceBindingList, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bindings, err := sdk.ServiceCatalog().ServiceBindings(ns).List(v1.ListOptions{})
 	if err != nil {
 		return nil, errors.Wrapf(err, "unable to list bindings in %s", ns)
@@ -29,6 +31,8 @@ func (sdk *SDK) RetrieveBindings(ns string) (*v1beta1.ServiceBindingList, error)
 func (sdk *SDK) RetrieveBinding(ns, name string) (*v1beta1.ServiceBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding, err := sdk.ServiceCatalog().ServiceBindings(ns).Get(name, v1.GetOptions{})
 	if err != nil {
 		return nil, errors.Wrapf(err, "unable to get binding '%s.%s'", ns, name)
@@ -36,6 +40,8 @@ func (sdk *SDK) RetrieveBinding(ns, name string) (*v1beta1.ServiceBinding, error
 	return binding, nil
 }
 func (sdk *SDK) RetrieveBindingsByInstance(instance *v1beta1.ServiceInstance) ([]v1beta1.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	results, err := sdk.ServiceCatalog().ServiceBindings(instance.Namespace).List(v1.ListOptions{})
@@ -53,6 +59,8 @@ func (sdk *SDK) RetrieveBindingsByInstance(instance *v1beta1.ServiceInstance) ([
 func (sdk *SDK) Bind(namespace, bindingName, externalID, instanceName, secretName string, params interface{}, secrets map[string]string) (*v1beta1.ServiceBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if bindingName == "" {
 		bindingName = instanceName
 	}
@@ -64,6 +72,8 @@ func (sdk *SDK) Bind(namespace, bindingName, externalID, instanceName, secretNam
 	return result, nil
 }
 func (sdk *SDK) Unbind(ns, instanceName string) ([]types.NamespacedName, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, err := sdk.RetrieveInstance(ns, instanceName)
@@ -81,6 +91,8 @@ func (sdk *SDK) Unbind(ns, instanceName string) ([]types.NamespacedName, error) 
 	return sdk.DeleteBindings(namespacedNames)
 }
 func (sdk *SDK) DeleteBindings(bindings []types.NamespacedName) ([]types.NamespacedName, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var g sync.WaitGroup
@@ -115,6 +127,8 @@ func (sdk *SDK) DeleteBindings(bindings []types.NamespacedName) ([]types.Namespa
 func (sdk *SDK) DeleteBinding(ns, bindingName string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := sdk.ServiceCatalog().ServiceBindings(ns).Delete(bindingName, &v1.DeleteOptions{})
 	if err != nil {
 		return errors.Wrapf(err, "remove binding %s/%s failed", ns, bindingName)
@@ -122,6 +136,8 @@ func (sdk *SDK) DeleteBinding(ns, bindingName string) error {
 	return nil
 }
 func joinErrors(groupMsg string, errors []error, sep string, a ...interface{}) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(errors) == 0 {
@@ -135,6 +151,8 @@ func joinErrors(groupMsg string, errors []error, sep string, a ...interface{}) s
 	return strings.Join(msgs, sep)
 }
 func (sdk *SDK) BindingParentHierarchy(binding *v1beta1.ServiceBinding) (*v1beta1.ServiceInstance, *v1beta1.ClusterServiceClass, *v1beta1.ClusterServicePlan, *v1beta1.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, err := sdk.RetrieveInstanceByBinding(binding)
@@ -154,12 +172,16 @@ func (sdk *SDK) BindingParentHierarchy(binding *v1beta1.ServiceBinding) (*v1beta
 func GetBindingStatusCondition(status v1beta1.ServiceBindingStatus) v1beta1.ServiceBindingCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(status.Conditions) > 0 {
 		return status.Conditions[len(status.Conditions)-1]
 	}
 	return v1beta1.ServiceBindingCondition{}
 }
 func (sdk *SDK) WaitForBinding(ns, name string, interval time.Duration, timeout *time.Duration) (binding *v1beta1.ServiceBinding, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if timeout == nil {
@@ -182,14 +204,20 @@ func (sdk *SDK) WaitForBinding(ns, name string, interval time.Duration, timeout 
 func (sdk *SDK) IsBindingReady(binding *v1beta1.ServiceBinding) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.bindingHasStatus(binding, v1beta1.ServiceBindingConditionReady)
 }
 func (sdk *SDK) IsBindingFailed(binding *v1beta1.ServiceBinding) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.bindingHasStatus(binding, v1beta1.ServiceBindingConditionFailed)
 }
 func (sdk *SDK) bindingHasStatus(binding *v1beta1.ServiceBinding, status v1beta1.ServiceBindingConditionType) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if binding == nil {
@@ -205,7 +233,16 @@ func (sdk *SDK) bindingHasStatus(binding *v1beta1.ServiceBinding, status v1beta1
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

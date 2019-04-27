@@ -32,6 +32,8 @@ type Class interface {
 func (sdk *SDK) RetrieveClasses(opts ScopeOptions) ([]Class, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var classes []Class
 	if opts.Scope.Matches(ClusterScope) {
 		csc, err := sdk.ServiceCatalog().ClusterServiceClasses().List(metav1.ListOptions{})
@@ -59,6 +61,8 @@ func (sdk *SDK) RetrieveClasses(opts ScopeOptions) ([]Class, error) {
 	return classes, nil
 }
 func (sdk *SDK) RetrieveClassByName(name string, opts ScopeOptions) (Class, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var searchResults []Class
@@ -106,6 +110,8 @@ func (sdk *SDK) RetrieveClassByName(name string, opts ScopeOptions) (Class, erro
 func (sdk *SDK) RetrieveClassByID(kubeName string) (*v1beta1.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	class, err := sdk.ServiceCatalog().ClusterServiceClasses().Get(kubeName, metav1.GetOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("unable to get class (%s)", err)
@@ -115,6 +121,8 @@ func (sdk *SDK) RetrieveClassByID(kubeName string) (*v1beta1.ClusterServiceClass
 func (sdk *SDK) RetrieveClassByPlan(plan Plan) (*v1beta1.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	class, err := sdk.ServiceCatalog().ClusterServiceClasses().Get(plan.GetClassID(), metav1.GetOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("unable to get class (%s)", err)
@@ -122,6 +130,8 @@ func (sdk *SDK) RetrieveClassByPlan(plan Plan) (*v1beta1.ClusterServiceClass, er
 	return class, nil
 }
 func (sdk *SDK) CreateClassFrom(opts CreateClassFromOptions) (Class, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if opts.Scope == AllScope {
@@ -141,6 +151,8 @@ func (sdk *SDK) CreateClassFrom(opts CreateClassFromOptions) (Class, error) {
 func (sdk *SDK) createClusterServiceClass(from *v1beta1.ClusterServiceClass, name string) (*v1beta1.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var class = &v1beta1.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: name}, Spec: from.Spec}
 	class.Spec.ExternalName = name
 	created, err := sdk.ServiceCatalog().ClusterServiceClasses().Create(class)
@@ -150,6 +162,8 @@ func (sdk *SDK) createClusterServiceClass(from *v1beta1.ClusterServiceClass, nam
 	return created, nil
 }
 func (sdk *SDK) createServiceClass(from *v1beta1.ServiceClass, name, namespace string) (*v1beta1.ServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var class = &v1beta1.ServiceClass{ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: namespace}, Spec: from.Spec}

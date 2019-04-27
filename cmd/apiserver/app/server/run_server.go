@@ -15,6 +15,8 @@ import (
 func RunServer(opts *ServiceCatalogServerOptions, stopCh <-chan struct{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if stopCh == nil {
 		stopCh = make(chan struct{})
 	}
@@ -25,6 +27,8 @@ func RunServer(opts *ServiceCatalogServerOptions, stopCh <-chan struct{}) error 
 	return runEtcdServer(opts, stopCh)
 }
 func runEtcdServer(opts *ServiceCatalogServerOptions, stopCh <-chan struct{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	etcdOpts := opts.EtcdOptions
@@ -63,9 +67,13 @@ type checkEtcdConnectable struct{ ServerList []string }
 func (c checkEtcdConnectable) Name() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "etcd"
 }
 func (c checkEtcdConnectable) Check(_ *http.Request) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Info("etcd checker called")

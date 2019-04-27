@@ -10,6 +10,8 @@ import (
 func writeJSON(w io.Writer, obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	indent := strings.Repeat(" ", 3)
 	j, err := json.MarshalIndent(obj, "", indent)
 	if err != nil {

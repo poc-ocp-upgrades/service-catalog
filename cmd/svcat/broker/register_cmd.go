@@ -32,6 +32,8 @@ type RegisterCmd struct {
 func NewRegisterCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCmd := &RegisterCmd{Namespaced: command.NewNamespaced(cxt), Scoped: command.NewScoped(), Waitable: command.NewWaitable()}
 	cmd := &cobra.Command{Use: "register NAME --url URL", Short: "Registers a new broker with service catalog", Example: command.NormalizeExamples(`
 		svcat register mysqlbroker --url http://mysqlbroker.com
@@ -52,6 +54,8 @@ func NewRegisterCmd(cxt *command.Context) *cobra.Command {
 	return cmd
 }
 func (c *RegisterCmd) Validate(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) < 1 {
@@ -76,6 +80,8 @@ func (c *RegisterCmd) Validate(args []string) error {
 	return nil
 }
 func (c *RegisterCmd) Run() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	opts := &servicecatalog.RegisterOptions{BasicSecret: c.BasicSecret, BearerSecret: c.BearerSecret, CAFile: c.CAFile, ClassRestrictions: c.ClassRestrictions, Namespace: c.Namespace, PlanRestrictions: c.PlanRestrictions, SkipTLS: c.SkipTLS}

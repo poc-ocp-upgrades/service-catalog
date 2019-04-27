@@ -16,9 +16,13 @@ const (
 func restStorageProviders(defaultNamespace string, restClient restclient.Interface) []RESTStorageProvider {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return []RESTStorageProvider{servicecatalogrest.StorageProvider{DefaultNamespace: defaultNamespace, RESTClient: restClient}, settingsrest.StorageProvider{RESTClient: restClient}}
 }
 func completeGenericConfig(cfg *genericapiserver.RecommendedConfig) genericapiserver.CompletedConfig {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cfg.Serializer = api.Codecs
@@ -28,6 +32,8 @@ func completeGenericConfig(cfg *genericapiserver.RecommendedConfig) genericapise
 	return completedCfg
 }
 func createSkeletonServer(genericCfg genericapiserver.CompletedConfig) (*ServiceCatalogAPIServer, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	genericServer, err := genericCfg.New(apiServerName, genericapiserver.NewEmptyDelegate())

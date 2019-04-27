@@ -18,6 +18,8 @@ var clusterserviceclassesKind = schema.GroupVersionKind{Group: "servicecatalog.k
 func (c *FakeClusterServiceClasses) Get(name string, options v1.GetOptions) (result *v1beta1.ClusterServiceClass, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootGetAction(clusterserviceclassesResource, name), &v1beta1.ClusterServiceClass{})
 	if obj == nil {
 		return nil, err
@@ -25,6 +27,8 @@ func (c *FakeClusterServiceClasses) Get(name string, options v1.GetOptions) (res
 	return obj.(*v1beta1.ClusterServiceClass), err
 }
 func (c *FakeClusterServiceClasses) List(opts v1.ListOptions) (result *v1beta1.ClusterServiceClassList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootListAction(clusterserviceclassesResource, clusterserviceclassesKind, opts), &v1beta1.ClusterServiceClassList{})
@@ -46,9 +50,13 @@ func (c *FakeClusterServiceClasses) List(opts v1.ListOptions) (result *v1beta1.C
 func (c *FakeClusterServiceClasses) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewRootWatchAction(clusterserviceclassesResource, opts))
 }
 func (c *FakeClusterServiceClasses) Create(clusterServiceClass *v1beta1.ClusterServiceClass) (result *v1beta1.ClusterServiceClass, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootCreateAction(clusterserviceclassesResource, clusterServiceClass), &v1beta1.ClusterServiceClass{})
@@ -60,6 +68,8 @@ func (c *FakeClusterServiceClasses) Create(clusterServiceClass *v1beta1.ClusterS
 func (c *FakeClusterServiceClasses) Update(clusterServiceClass *v1beta1.ClusterServiceClass) (result *v1beta1.ClusterServiceClass, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootUpdateAction(clusterserviceclassesResource, clusterServiceClass), &v1beta1.ClusterServiceClass{})
 	if obj == nil {
 		return nil, err
@@ -67,6 +77,8 @@ func (c *FakeClusterServiceClasses) Update(clusterServiceClass *v1beta1.ClusterS
 	return obj.(*v1beta1.ClusterServiceClass), err
 }
 func (c *FakeClusterServiceClasses) UpdateStatus(clusterServiceClass *v1beta1.ClusterServiceClass) (*v1beta1.ClusterServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootUpdateSubresourceAction(clusterserviceclassesResource, "status", clusterServiceClass), &v1beta1.ClusterServiceClass{})
@@ -78,10 +90,14 @@ func (c *FakeClusterServiceClasses) UpdateStatus(clusterServiceClass *v1beta1.Cl
 func (c *FakeClusterServiceClasses) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewRootDeleteAction(clusterserviceclassesResource, name), &v1beta1.ClusterServiceClass{})
 	return err
 }
 func (c *FakeClusterServiceClasses) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewRootDeleteCollectionAction(clusterserviceclassesResource, listOptions)
@@ -89,6 +105,8 @@ func (c *FakeClusterServiceClasses) DeleteCollection(options *v1.DeleteOptions, 
 	return err
 }
 func (c *FakeClusterServiceClasses) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1beta1.ClusterServiceClass, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootPatchSubresourceAction(clusterserviceclassesResource, name, pt, data, subresources...), &v1beta1.ClusterServiceClass{})

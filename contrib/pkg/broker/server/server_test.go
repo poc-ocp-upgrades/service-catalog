@@ -15,6 +15,8 @@ var _ controller.Controller = &Controller{}
 func TestCatalogReturnsHTTPErrorOnError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	handler := createHandler(&Controller{t: t, catalog: func() (*brokerapi.Catalog, error) {
 		return nil, errors.New("Catalog retrieval error")
 	}})
@@ -31,6 +33,8 @@ func TestCatalogReturnsHTTPErrorOnError(t *testing.T) {
 	}
 }
 func TestCatalogReturnsCompliantJSON(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	handler := createHandler(&Controller{t: t, catalog: func() (*brokerapi.Catalog, error) {
@@ -69,6 +73,8 @@ func TestCatalogReturnsCompliantJSON(t *testing.T) {
 func readJSON(rr *httptest.ResponseRecorder) (map[string]interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var result map[string]interface{}
 	err := json.Unmarshal(rr.Body.Bytes(), &result)
 	return result, err
@@ -88,12 +94,16 @@ type Controller struct {
 func (controller *Controller) Catalog() (*brokerapi.Catalog, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if controller.catalog == nil {
 		controller.t.Error("Test failed to provide 'catalog' handler")
 	}
 	return controller.catalog()
 }
 func (controller *Controller) GetServiceInstanceLastOperation(instanceID, serviceID, planID, operation string) (*brokerapi.LastOperationResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if controller.getServiceInstanceLastOperation == nil {
@@ -104,12 +114,16 @@ func (controller *Controller) GetServiceInstanceLastOperation(instanceID, servic
 func (controller *Controller) CreateServiceInstance(id string, req *brokerapi.CreateServiceInstanceRequest) (*brokerapi.CreateServiceInstanceResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if controller.createServiceInstance == nil {
 		controller.t.Error("Test failed to provide 'createServiceInstance' handler")
 	}
 	return controller.createServiceInstance(id, req)
 }
 func (controller *Controller) UpdateServiceInstance(id string, req *brokerapi.UpdateServiceInstanceRequest) (*brokerapi.UpdateServiceInstanceResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if controller.updateServiceInstance == nil {
@@ -120,6 +134,8 @@ func (controller *Controller) UpdateServiceInstance(id string, req *brokerapi.Up
 func (controller *Controller) RemoveServiceInstance(instanceID, serviceID, planID string, acceptsIncomplete bool) (*brokerapi.DeleteServiceInstanceResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if controller.removeServiceInstance == nil {
 		controller.t.Error("Test failed to provide 'removeServiceInstance' handler")
 	}
@@ -128,12 +144,16 @@ func (controller *Controller) RemoveServiceInstance(instanceID, serviceID, planI
 func (controller *Controller) Bind(instanceID string, bindingID string, req *brokerapi.BindingRequest) (*brokerapi.CreateServiceBindingResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if controller.bind == nil {
 		controller.t.Error("Test failed to provide 'bind' handler")
 	}
 	return controller.bind(instanceID, bindingID, req)
 }
 func (controller *Controller) UnBind(instanceID, bindingID, serviceID, planID string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if controller.unBind == nil {

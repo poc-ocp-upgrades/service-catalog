@@ -15,6 +15,8 @@ type describeCmd struct {
 func NewDescribeCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	describeCmd := &describeCmd{Context: cxt}
 	cmd := &cobra.Command{Use: "broker NAME", Aliases: []string{"brokers", "brk"}, Short: "Show details of a specific broker", Example: command.NormalizeExamples(`
   svcat describe broker asb
@@ -22,6 +24,8 @@ func NewDescribeCmd(cxt *command.Context) *cobra.Command {
 	return cmd
 }
 func (c *describeCmd) Validate(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) == 0 {
@@ -33,9 +37,13 @@ func (c *describeCmd) Validate(args []string) error {
 func (c *describeCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Describe()
 }
 func (c *describeCmd) Describe() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, err := c.App.RetrieveBroker(c.name)

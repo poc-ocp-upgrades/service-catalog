@@ -32,9 +32,13 @@ type NamespacedStorage map[string]TypedStorage
 func NewTypedStorage() TypedStorage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return map[string]ObjStorage{}
 }
 func (s NamespacedStorage) Set(ns, tipe, name string, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, ok := s[ns]; !ok {
@@ -46,6 +50,8 @@ func (s NamespacedStorage) Set(ns, tipe, name string, obj runtime.Object) {
 	s[ns][tipe][name] = obj
 }
 func (s NamespacedStorage) GetList(ns, tipe string) []runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	itemMap, ok := s[ns][tipe]
@@ -61,6 +67,8 @@ func (s NamespacedStorage) GetList(ns, tipe string) []runtime.Object {
 func (s NamespacedStorage) Get(ns, tipe, name string) runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	item, ok := s[ns][tipe][name]
 	if !ok {
 		return nil
@@ -68,6 +76,8 @@ func (s NamespacedStorage) Get(ns, tipe, name string) runtime.Object {
 	return item
 }
 func (s NamespacedStorage) Delete(ns, tipe, name string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	delete(s[ns][tipe], name)
@@ -81,6 +91,8 @@ type RESTClient struct {
 }
 
 func NewRESTClient(newEmptyObj func() runtime.Object) *RESTClient {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	storage := make(NamespacedStorage)
@@ -103,14 +115,20 @@ type responseWriter struct {
 func newResponseWriter() *responseWriter {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &responseWriter{header: make(http.Header)}
 }
 func (rw *responseWriter) Header() http.Header {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return rw.header
 }
 func (rw *responseWriter) Write(bytes []byte) (int, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !rw.headerSet {
@@ -122,10 +140,14 @@ func (rw *responseWriter) Write(bytes []byte) (int, error) {
 func (rw *responseWriter) WriteHeader(status int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rw.headerSet = true
 	rw.header.Set("status", strconv.Itoa(status))
 }
 func (rw *responseWriter) getResponse() *http.Response {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	status, err := strconv.ParseInt(rw.header.Get("status"), 10, 16)
@@ -135,6 +157,8 @@ func (rw *responseWriter) getResponse() *http.Response {
 	return &http.Response{StatusCode: int(status), Header: rw.header, Body: ioutil.NopCloser(bytes.NewBuffer(rw.body))}
 }
 func getRouter(storage NamespacedStorage, watcher *Watcher, newEmptyObj func() runtime.Object) http.Handler {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	r := mux.NewRouter()
@@ -153,12 +177,16 @@ func getRouter(storage NamespacedStorage, watcher *Watcher, newEmptyObj func() r
 func watchItem(watcher *Watcher) func(http.ResponseWriter, *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(w http.ResponseWriter, r *http.Request) {
 		ch := watcher.ReceiveChan()
 		doWatch(ch, w)
 	}
 }
 func watchList(watcher *Watcher) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const timeout = 1 * time.Second
@@ -168,6 +196,8 @@ func watchList(watcher *Watcher) func(http.ResponseWriter, *http.Request) {
 	}
 }
 func getItems(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
@@ -237,6 +267,8 @@ func getItems(storage NamespacedStorage) func(http.ResponseWriter, *http.Request
 func createItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) func(rw http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -284,6 +316,8 @@ func createItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 func getItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -310,6 +344,8 @@ func getItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Request)
 	}
 }
 func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
@@ -401,6 +437,8 @@ func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 func deleteItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -430,6 +468,8 @@ func deleteItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Reque
 func listNamespaces(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		nsList := corev1.NamespaceList{}
 		for ns := range storage {
@@ -445,9 +485,13 @@ func listNamespaces(storage NamespacedStorage) func(http.ResponseWriter, *http.R
 func notFoundHandler(rw http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rw.WriteHeader(http.StatusNotFound)
 }
 func newTypeMeta(kind string) metav1.TypeMeta {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return metav1.TypeMeta{Kind: kind, APIVersion: sc.GroupName + "/v1beta1'"}

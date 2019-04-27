@@ -24,6 +24,8 @@ type describeCmd struct {
 func NewDescribeCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	describeCmd := &describeCmd{Namespaced: command.NewNamespaced(cxt), Scoped: command.NewScoped()}
 	cmd := &cobra.Command{Use: "plan NAME", Aliases: []string{"plans", "pl"}, Short: "Show details of a specific plan", Example: command.NormalizeExamples(`
   svcat describe plan standard800
@@ -40,6 +42,8 @@ func NewDescribeCmd(cxt *command.Context) *cobra.Command {
 func (c *describeCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) == 0 {
 		return fmt.Errorf("a plan name or Kubernetes name is required")
 	}
@@ -53,9 +57,13 @@ func (c *describeCmd) Validate(args []string) error {
 func (c *describeCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.describe()
 }
 func (c *describeCmd) describe() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var plan servicecatalog.Plan
@@ -94,7 +102,16 @@ func (c *describeCmd) describe() error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

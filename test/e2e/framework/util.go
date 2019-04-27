@@ -23,9 +23,13 @@ const (
 func nowStamp() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return time.Now().Format(time.StampMilli)
 }
 func log(level string, format string, args ...interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprintf(GinkgoWriter, nowStamp()+": "+level+": "+format+"\n", args...)
@@ -33,9 +37,13 @@ func log(level string, format string, args ...interface{}) {
 func Logf(format string, args ...interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	log("INFO", format, args...)
 }
 func Failf(format string, args ...interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	msg := fmt.Sprintf(format, args...)
@@ -43,6 +51,8 @@ func Failf(format string, args ...interface{}) {
 	Fail(nowStamp()+": "+msg, 1)
 }
 func Skipf(format string, args ...interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	msg := fmt.Sprintf(format, args...)
@@ -55,6 +65,8 @@ type ClientConfigGetter func() (*rest.Config, error)
 var RunId = uuid.NewUUID()
 
 func CreateKubeNamespace(baseName string, c kubernetes.Interface) (*corev1.Namespace, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ns := &corev1.Namespace{ObjectMeta: metav1.ObjectMeta{GenerateName: fmt.Sprintf("e2e-tests-%v-", baseName)}}
@@ -77,9 +89,13 @@ func CreateKubeNamespace(baseName string, c kubernetes.Interface) (*corev1.Names
 func DeleteKubeNamespace(c kubernetes.Interface, namespace string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.CoreV1().Namespaces().Delete(namespace, nil)
 }
 func ExpectNoError(err error, explain ...interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err != nil {
@@ -90,6 +106,8 @@ func ExpectNoError(err error, explain ...interface{}) {
 func WaitForPodRunningInNamespace(c kubernetes.Interface, pod *corev1.Pod) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if pod.Status.Phase == corev1.PodRunning {
 		return nil
 	}
@@ -98,14 +116,20 @@ func WaitForPodRunningInNamespace(c kubernetes.Interface, pod *corev1.Pod) error
 func waitTimeoutForPodRunningInNamespace(c kubernetes.Interface, podName, namespace string, timeout time.Duration) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(Poll, defaultTimeout, podRunning(c, podName, namespace))
 }
 func WaitForEndpoint(c kubernetes.Interface, namespace, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(Poll, EndpointRegisterTimeout, endpointAvailable(c, namespace, name))
 }
 func endpointAvailable(c kubernetes.Interface, namespace, name string) wait.ConditionFunc {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func() (bool, error) {
@@ -123,6 +147,8 @@ func endpointAvailable(c kubernetes.Interface, namespace, name string) wait.Cond
 	}
 }
 func podRunning(c kubernetes.Interface, podName, namespace string) wait.ConditionFunc {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func() (bool, error) {

@@ -45,6 +45,8 @@ type serviceCatalogConfig struct {
 func buildGenericConfig(s *ServiceCatalogServerOptions) (*genericapiserver.RecommendedConfig, *serviceCatalogConfig, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s.StandaloneMode {
 		klog.Infof("service catalog is in standalone mode")
 	}
@@ -132,6 +134,8 @@ func buildGenericConfig(s *ServiceCatalogServerOptions) (*genericapiserver.Recom
 func buildAdmission(c *genericapiserver.RecommendedConfig, s *ServiceCatalogServerOptions, client internalclientset.Interface, sharedInformers informers.SharedInformerFactory, kubeClient kubeclientset.Interface, kubeSharedInformers kubeinformers.SharedInformerFactory) (admission.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pluginNames := enabledPluginNames(s.AdmissionOptions)
 	klog.Infof("Admission control plugin names: %v", pluginNames)
 	genericInitializer := initializer.New(kubeClient, kubeSharedInformers, c.Authorization.Authorizer, api.Scheme)
@@ -144,6 +148,8 @@ func buildAdmission(c *genericapiserver.RecommendedConfig, s *ServiceCatalogServ
 	return s.AdmissionOptions.Plugins.NewFromPlugins(pluginNames, pluginsConfigProvider, initializersChain, admission.DecoratorFunc(admissionmetrics.WithControllerMetrics))
 }
 func enabledPluginNames(a *genericserveroptions.AdmissionOptions) []string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allOffPlugins := append(a.DefaultOffPlugins.List(), a.DisablePlugins...)
@@ -169,6 +175,8 @@ func enabledPluginNames(a *genericserveroptions.AdmissionOptions) []string {
 func addPostStartHooks(server *genericapiserver.GenericAPIServer, scConfig *serviceCatalogConfig, stopCh <-chan struct{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	server.AddPostStartHook("start-service-catalog-apiserver-informers", func(context genericapiserver.PostStartHookContext) error {
 		klog.Infof("Starting shared informers")
 		scConfig.sharedInformers.Start(stopCh)
@@ -180,6 +188,8 @@ func addPostStartHooks(server *genericapiserver.GenericAPIServer, scConfig *serv
 	})
 }
 func getInClusterNamespace(defaultNamespace string) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, err := os.Stat(inClusterNamespacePath)

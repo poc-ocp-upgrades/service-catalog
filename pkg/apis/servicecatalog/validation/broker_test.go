@@ -10,6 +10,8 @@ import (
 func TestValidateClusterServiceBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name	string
 		broker	*servicecatalog.ClusterServiceBroker
@@ -43,6 +45,8 @@ func TestValidateClusterServiceBroker(t *testing.T) {
 	}
 }
 func TestValidateServiceBroker(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

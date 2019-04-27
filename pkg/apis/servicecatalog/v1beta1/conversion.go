@@ -7,6 +7,8 @@ import (
 func ClusterServicePlanFieldLabelConversionFunc(label, value string) (string, string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch label {
 	case "metadata.name", "spec.externalID", "spec.externalName", "spec.clusterServiceBrokerName", "spec.clusterServiceClassRef.name":
 		return label, value, nil
@@ -15,6 +17,8 @@ func ClusterServicePlanFieldLabelConversionFunc(label, value string) (string, st
 	}
 }
 func ServicePlanFieldLabelConversionFunc(label, value string) (string, string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch label {
@@ -27,6 +31,8 @@ func ServicePlanFieldLabelConversionFunc(label, value string) (string, string, e
 func ServiceClassFieldLabelConversionFunc(label, value string) (string, string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch label {
 	case "metadata.name", "metadata.namespace", "spec.externalID", "spec.externalName", "spec.serviceBrokerName":
 		return label, value, nil
@@ -35,6 +41,8 @@ func ServiceClassFieldLabelConversionFunc(label, value string) (string, string, 
 	}
 }
 func ClusterServiceClassFieldLabelConversionFunc(label, value string) (string, string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch label {
@@ -47,6 +55,8 @@ func ClusterServiceClassFieldLabelConversionFunc(label, value string) (string, s
 func ServiceInstanceFieldLabelConversionFunc(label, value string) (string, string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch label {
 	case "metadata.name", "metadata.namespace", "spec.externalID", "spec.clusterServiceClassRef.name", "spec.clusterServicePlanRef.name", "spec.serviceClassRef.name", "spec.servicePlanRef.name":
 		return label, value, nil
@@ -55,6 +65,8 @@ func ServiceInstanceFieldLabelConversionFunc(label, value string) (string, strin
 	}
 }
 func ServiceBindingFieldLabelConversionFunc(label, value string) (string, string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch label {

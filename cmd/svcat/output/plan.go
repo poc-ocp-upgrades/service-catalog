@@ -12,6 +12,8 @@ import (
 func getPlanStatusShort(status v1beta1.ClusterServicePlanStatus) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if status.RemovedFromBrokerCatalog {
 		return statusDeprecated
 	}
@@ -23,9 +25,13 @@ type byClass []servicecatalog.Plan
 func (a byClass) Len() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return len(a)
 }
 func (a byClass) Swap(i, j int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	a[i], a[j] = a[j], a[i]
@@ -33,9 +39,13 @@ func (a byClass) Swap(i, j int) {
 func (a byClass) Less(i, j int) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return a[i].GetClassID() < a[j].GetClassID()
 }
 func writePlanListTable(w io.Writer, plans []servicecatalog.Plan, classNames map[string]string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sort.Sort(byClass(plans))
@@ -48,6 +58,8 @@ func writePlanListTable(w io.Writer, plans []servicecatalog.Plan, classNames map
 	t.Render()
 }
 func WritePlanList(w io.Writer, outputFormat string, plans []servicecatalog.Plan, classes []servicecatalog.Class) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	classNames := map[string]string{}
@@ -66,6 +78,8 @@ func WritePlanList(w io.Writer, outputFormat string, plans []servicecatalog.Plan
 func WritePlan(w io.Writer, outputFormat string, plan servicecatalog.Plan, class v1beta1.ClusterServiceClass) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch outputFormat {
 	case FormatJSON:
 		writeJSON(w, plan)
@@ -78,6 +92,8 @@ func WritePlan(w io.Writer, outputFormat string, plan servicecatalog.Plan, class
 	}
 }
 func WriteAssociatedPlans(w io.Writer, plans []servicecatalog.Plan) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprintln(w, "\nPlans:")
@@ -95,12 +111,16 @@ func WriteAssociatedPlans(w io.Writer, plans []servicecatalog.Plan) {
 func WriteParentPlan(w io.Writer, plan *v1beta1.ClusterServicePlan) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Fprintln(w, "\nPlan:")
 	t := NewDetailsTable(w)
 	t.AppendBulk([][]string{{"Name:", plan.Spec.ExternalName}, {"Kubernetes Name:", string(plan.Name)}, {"Status:", getPlanStatusShort(plan.Status)}})
 	t.Render()
 }
 func WritePlanDetails(w io.Writer, plan servicecatalog.Plan, class *v1beta1.ClusterServiceClass) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewDetailsTable(w)
@@ -110,6 +130,8 @@ func WritePlanDetails(w io.Writer, plan servicecatalog.Plan, class *v1beta1.Clus
 func WriteDefaultProvisionParameters(w io.Writer, plan servicecatalog.Plan) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defaultProvisionParameters := plan.GetDefaultProvisionParameters()
 	if defaultProvisionParameters != nil {
 		fmt.Fprintln(w, "\nDefault Provision Parameters:")
@@ -117,6 +139,8 @@ func WriteDefaultProvisionParameters(w io.Writer, plan servicecatalog.Plan) {
 	}
 }
 func WritePlanSchemas(w io.Writer, plan servicecatalog.Plan) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instanceCreateSchema := plan.GetInstanceCreateSchema()

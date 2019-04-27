@@ -13,9 +13,13 @@ var SchemeGroupVersion = schema.GroupVersion{Group: GroupName, Version: "v1beta1
 func Kind(kind string) schema.GroupKind {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return SchemeGroupVersion.WithKind(kind).GroupKind()
 }
 func Resource(resource string) schema.GroupResource {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return SchemeGroupVersion.WithResource(resource).GroupResource()
@@ -30,6 +34,8 @@ var (
 func addKnownTypes(scheme *runtime.Scheme) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	scheme.AddKnownTypes(SchemeGroupVersion, &ClusterServiceBroker{}, &ClusterServiceBrokerList{}, &ServiceBroker{}, &ServiceBrokerList{}, &ClusterServiceClass{}, &ClusterServiceClassList{}, &ServiceClass{}, &ServiceClassList{}, &ClusterServicePlan{}, &ClusterServicePlanList{}, &ServicePlan{}, &ServicePlanList{}, &ServiceInstance{}, &ServiceInstanceList{}, &ServiceBinding{}, &ServiceBindingList{})
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	scheme.AddKnownTypes(schema.GroupVersion{Version: "v1"}, &metav1.Status{})
@@ -42,6 +48,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 	return nil
 }
 func serviceCatalogV1Beta1GVK(kind string) schema.GroupVersionKind {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return schema.GroupVersionKind{Group: "servicecatalog.k8s.io", Version: "v1beta1", Kind: kind}

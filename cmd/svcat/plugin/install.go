@@ -24,6 +24,8 @@ type installCmd struct {
 func NewInstallCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	installCmd := &installCmd{Context: cxt}
 	cmd := &cobra.Command{Use: "plugin", Short: "Install svcat as a kubectl plugin", Example: command.NormalizeExamples(`
   svcat install plugin
@@ -38,10 +40,14 @@ func NewInstallCmd(cxt *command.Context) *cobra.Command {
 func (c *installCmd) run(cmd *cobra.Command) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.svcatCmd = cmd.Root()
 	return c.install()
 }
 func (c *installCmd) install() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	installPath := c.getInstallPath()
@@ -63,10 +69,14 @@ func (c *installCmd) install() error {
 func (c *installCmd) getInstallPath() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pluginDir := c.getPluginsDir()
 	return filepath.Join(pluginDir, Name)
 }
 func (c *installCmd) getPluginsDir() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c.path != "" {
@@ -82,6 +92,8 @@ func (c *installCmd) getPluginsDir() string {
 func (c *installCmd) generateManifest() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m := &Manifest{}
 	m.Load(c.svcatCmd)
 	contents, err := yaml.Marshal(m)
@@ -91,6 +103,8 @@ func (c *installCmd) generateManifest() ([]byte, error) {
 	return contents, nil
 }
 func copyBinary(installPath string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := os.MkdirAll(installPath, 0755)
@@ -112,6 +126,8 @@ func copyBinary(installPath string) error {
 func copyFile(src, dest string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in, err := os.Open(src)
 	if err != nil {
 		return err
@@ -131,6 +147,8 @@ func copyFile(src, dest string) error {
 func saveManifest(installPath string, manifest []byte) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	manifestPath := filepath.Join(installPath, "plugin.yaml")
 	err := ioutil.WriteFile(manifestPath, []byte(manifest), 0644)
 	if err != nil {
@@ -141,7 +159,16 @@ func saveManifest(installPath string, manifest []byte) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

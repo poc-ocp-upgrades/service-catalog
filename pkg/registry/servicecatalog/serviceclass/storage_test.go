@@ -8,6 +8,8 @@ import (
 func TestNewList(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newList := NewList()
 	realObj := newList.(*servicecatalog.ServiceClassList)
 	if realObj.Items == nil {

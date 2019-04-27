@@ -30,9 +30,13 @@ type clusterServiceClasses struct{ client rest.Interface }
 func newClusterServiceClasses(c *ServicecatalogClient) *clusterServiceClasses {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &clusterServiceClasses{client: c.RESTClient()}
 }
 func (c *clusterServiceClasses) Get(name string, options v1.GetOptions) (result *servicecatalog.ClusterServiceClass, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &servicecatalog.ClusterServiceClass{}
@@ -40,6 +44,8 @@ func (c *clusterServiceClasses) Get(name string, options v1.GetOptions) (result 
 	return
 }
 func (c *clusterServiceClasses) List(opts v1.ListOptions) (result *servicecatalog.ClusterServiceClassList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -53,6 +59,8 @@ func (c *clusterServiceClasses) List(opts v1.ListOptions) (result *servicecatalo
 func (c *clusterServiceClasses) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -63,11 +71,15 @@ func (c *clusterServiceClasses) Watch(opts v1.ListOptions) (watch.Interface, err
 func (c *clusterServiceClasses) Create(clusterServiceClass *servicecatalog.ClusterServiceClass) (result *servicecatalog.ClusterServiceClass, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &servicecatalog.ClusterServiceClass{}
 	err = c.client.Post().Resource("clusterserviceclasses").Body(clusterServiceClass).Do().Into(result)
 	return
 }
 func (c *clusterServiceClasses) Update(clusterServiceClass *servicecatalog.ClusterServiceClass) (result *servicecatalog.ClusterServiceClass, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &servicecatalog.ClusterServiceClass{}
@@ -77,6 +89,8 @@ func (c *clusterServiceClasses) Update(clusterServiceClass *servicecatalog.Clust
 func (c *clusterServiceClasses) UpdateStatus(clusterServiceClass *servicecatalog.ClusterServiceClass) (result *servicecatalog.ClusterServiceClass, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &servicecatalog.ClusterServiceClass{}
 	err = c.client.Put().Resource("clusterserviceclasses").Name(clusterServiceClass.Name).SubResource("status").Body(clusterServiceClass).Do().Into(result)
 	return
@@ -84,9 +98,13 @@ func (c *clusterServiceClasses) UpdateStatus(clusterServiceClass *servicecatalog
 func (c *clusterServiceClasses) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.client.Delete().Resource("clusterserviceclasses").Name(name).Body(options).Do().Error()
 }
 func (c *clusterServiceClasses) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -96,6 +114,8 @@ func (c *clusterServiceClasses) DeleteCollection(options *v1.DeleteOptions, list
 	return c.client.Delete().Resource("clusterserviceclasses").VersionedParams(&listOptions, scheme.ParameterCodec).Timeout(timeout).Body(options).Do().Error()
 }
 func (c *clusterServiceClasses) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *servicecatalog.ClusterServiceClass, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &servicecatalog.ClusterServiceClass{}

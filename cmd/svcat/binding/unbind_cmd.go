@@ -21,6 +21,8 @@ type unbindCmd struct {
 func NewUnbindCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	unbindCmd := &unbindCmd{Namespaced: command.NewNamespaced(cxt), Waitable: command.NewWaitable()}
 	cmd := &cobra.Command{Use: "unbind INSTANCE_NAME", Short: "Unbinds an instance. When an instance name is specified, all of its bindings are removed, otherwise use --name to remove a specific binding", Example: command.NormalizeExamples(`
   svcat unbind wordpress-mysql-instance
@@ -34,6 +36,8 @@ func NewUnbindCmd(cxt *command.Context) *cobra.Command {
 func (c *unbindCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) == 0 {
 		if len(c.bindingNames) == 0 {
 			return fmt.Errorf("an instance or binding name is required")
@@ -44,6 +48,8 @@ func (c *unbindCmd) Validate(args []string) error {
 	return nil
 }
 func (c *unbindCmd) Run() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var hasErrors bool
@@ -73,6 +79,8 @@ func (c *unbindCmd) Run() error {
 func (c *unbindCmd) getBindingsToDelete() []types.NamespacedName {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bindings := []types.NamespacedName{}
 	for _, name := range c.bindingNames {
 		bindings = append(bindings, types.NamespacedName{Namespace: c.Namespace, Name: name})
@@ -80,6 +88,8 @@ func (c *unbindCmd) getBindingsToDelete() []types.NamespacedName {
 	return bindings
 }
 func (c *unbindCmd) waitForBindingDeletes(waitMessage string, bindings ...types.NamespacedName) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(bindings) == 0 {

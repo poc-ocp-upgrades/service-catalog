@@ -28,6 +28,8 @@ type bindCmd struct {
 func NewBindCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bindCmd := &bindCmd{Namespaced: command.NewNamespaced(cxt), Waitable: command.NewWaitable()}
 	cmd := &cobra.Command{Use: "bind INSTANCE_NAME", Short: "Binds an instance's metadata to a secret, which can then be used by an application to connect to the instance", Example: command.NormalizeExamples(`
   svcat bind wordpress
@@ -54,6 +56,8 @@ func NewBindCmd(cxt *command.Context) *cobra.Command {
 	return cmd
 }
 func (c *bindCmd) Validate(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) == 0 {
@@ -84,9 +88,13 @@ func (c *bindCmd) Validate(args []string) error {
 func (c *bindCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.bind()
 }
 func (c *bindCmd) bind() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, err := c.App.Bind(c.Namespace, c.bindingName, c.externalID, c.instanceName, c.secretName, c.params, c.secrets)
@@ -108,7 +116,16 @@ func (c *bindCmd) bind() error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

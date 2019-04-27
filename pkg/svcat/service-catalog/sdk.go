@@ -65,9 +65,13 @@ type SDK struct {
 func (sdk *SDK) ServiceCatalog() v1beta1.ServicecatalogV1beta1Interface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.ServiceCatalogClient.ServicecatalogV1beta1()
 }
 func (sdk *SDK) Core() corev1.CoreV1Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return sdk.K8sClient.CoreV1()

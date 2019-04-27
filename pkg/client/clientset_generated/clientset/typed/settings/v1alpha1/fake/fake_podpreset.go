@@ -21,6 +21,8 @@ var podpresetsKind = schema.GroupVersionKind{Group: "settings.servicecatalog.k8s
 func (c *FakePodPresets) Get(name string, options v1.GetOptions) (result *v1alpha1.PodPreset, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewGetAction(podpresetsResource, c.ns, name), &v1alpha1.PodPreset{})
 	if obj == nil {
 		return nil, err
@@ -28,6 +30,8 @@ func (c *FakePodPresets) Get(name string, options v1.GetOptions) (result *v1alph
 	return obj.(*v1alpha1.PodPreset), err
 }
 func (c *FakePodPresets) List(opts v1.ListOptions) (result *v1alpha1.PodPresetList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewListAction(podpresetsResource, podpresetsKind, c.ns, opts), &v1alpha1.PodPresetList{})
@@ -49,9 +53,13 @@ func (c *FakePodPresets) List(opts v1.ListOptions) (result *v1alpha1.PodPresetLi
 func (c *FakePodPresets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewWatchAction(podpresetsResource, c.ns, opts))
 }
 func (c *FakePodPresets) Create(podPreset *v1alpha1.PodPreset) (result *v1alpha1.PodPreset, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewCreateAction(podpresetsResource, c.ns, podPreset), &v1alpha1.PodPreset{})
@@ -63,6 +71,8 @@ func (c *FakePodPresets) Create(podPreset *v1alpha1.PodPreset) (result *v1alpha1
 func (c *FakePodPresets) Update(podPreset *v1alpha1.PodPreset) (result *v1alpha1.PodPreset, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateAction(podpresetsResource, c.ns, podPreset), &v1alpha1.PodPreset{})
 	if obj == nil {
 		return nil, err
@@ -72,10 +82,14 @@ func (c *FakePodPresets) Update(podPreset *v1alpha1.PodPreset) (result *v1alpha1
 func (c *FakePodPresets) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewDeleteAction(podpresetsResource, c.ns, name), &v1alpha1.PodPreset{})
 	return err
 }
 func (c *FakePodPresets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewDeleteCollectionAction(podpresetsResource, c.ns, listOptions)
@@ -83,6 +97,8 @@ func (c *FakePodPresets) DeleteCollection(options *v1.DeleteOptions, listOptions
 	return err
 }
 func (c *FakePodPresets) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1alpha1.PodPreset, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewPatchSubresourceAction(podpresetsResource, c.ns, name, pt, data, subresources...), &v1alpha1.PodPreset{})

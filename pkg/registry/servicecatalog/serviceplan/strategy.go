@@ -15,6 +15,8 @@ import (
 func NewScopeStrategy() rest.NamespaceScopedStrategy {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicePlanRESTStrategies
 }
 
@@ -36,6 +38,8 @@ var (
 func (servicePlanRESTStrategy) Canonicalize(obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, ok := obj.(*sc.ServicePlan)
 	if !ok {
 		klog.Fatal("received a non-ServicePlan object to create")
@@ -44,9 +48,13 @@ func (servicePlanRESTStrategy) Canonicalize(obj runtime.Object) {
 func (servicePlanRESTStrategy) NamespaceScoped() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (servicePlanRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, ok := obj.(*sc.ServicePlan)
@@ -57,9 +65,13 @@ func (servicePlanRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime
 func (servicePlanRESTStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return scv.ValidateServicePlan(obj.(*sc.ServicePlan))
 }
 func (servicePlanRESTStrategy) AllowCreateOnUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return false
@@ -67,9 +79,13 @@ func (servicePlanRESTStrategy) AllowCreateOnUpdate() bool {
 func (servicePlanRESTStrategy) AllowUnconditionalUpdate() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (servicePlanRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServicePlan, ok := new.(*sc.ServicePlan)
@@ -86,6 +102,8 @@ func (servicePlanRESTStrategy) PrepareForUpdate(ctx context.Context, new, old ru
 func (servicePlanRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServicePlan, ok := new.(*sc.ServicePlan)
 	if !ok {
 		klog.Fatal("received a non-ServicePlan object to validate to")
@@ -99,6 +117,8 @@ func (servicePlanRESTStrategy) ValidateUpdate(ctx context.Context, new, old runt
 func (servicePlanStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceClass, ok := new.(*sc.ServicePlan)
 	if !ok {
 		klog.Fatal("received a non-ServicePlan object to update to")
@@ -110,6 +130,8 @@ func (servicePlanStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, 
 	newServiceClass.Spec = oldServiceClass.Spec
 }
 func (servicePlanStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServicePlan, ok := new.(*sc.ServicePlan)

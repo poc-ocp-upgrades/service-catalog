@@ -17,6 +17,8 @@ type getCmd struct {
 func NewGetCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	getCmd := &getCmd{Namespaced: command.NewNamespaced(cxt), Formatted: command.NewFormatted(), Scoped: command.NewScoped()}
 	cmd := &cobra.Command{Use: "brokers [NAME]", Aliases: []string{"broker", "brk"}, Short: "List brokers, optionally filtered by name, scope or namespace", Example: command.NormalizeExamples(`
   svcat get brokers
@@ -32,6 +34,8 @@ func NewGetCmd(cxt *command.Context) *cobra.Command {
 func (c *getCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) > 0 {
 		c.name = args[0]
 	}
@@ -40,12 +44,16 @@ func (c *getCmd) Validate(args []string) error {
 func (c *getCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c.name == "" {
 		return c.getAll()
 	}
 	return c.get()
 }
 func (c *getCmd) getAll() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	opts := servicecatalog.ScopeOptions{Namespace: c.Namespace, Scope: c.Scope}
@@ -57,6 +65,8 @@ func (c *getCmd) getAll() error {
 	return nil
 }
 func (c *getCmd) get() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, err := c.App.RetrieveBroker(c.name)

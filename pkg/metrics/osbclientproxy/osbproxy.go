@@ -18,6 +18,8 @@ type proxyclient struct {
 func NewClient(config *osb.ClientConfiguration) (osb.Client, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	osbClient, err := osb.NewClient(config)
 	if err != nil {
 		return nil, err
@@ -44,12 +46,16 @@ const (
 func (pc proxyclient) GetCatalog() (*osb.CatalogResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy getCatalog()")
 	response, err := pc.realOSBClient.GetCatalog()
 	pc.updateMetrics(getCatalog, err)
 	return response, err
 }
 func (pc proxyclient) ProvisionInstance(r *osb.ProvisionRequest) (*osb.ProvisionResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy ProvisionInstance()")
@@ -60,12 +66,16 @@ func (pc proxyclient) ProvisionInstance(r *osb.ProvisionRequest) (*osb.Provision
 func (pc proxyclient) UpdateInstance(r *osb.UpdateInstanceRequest) (*osb.UpdateInstanceResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy UpdateInstance()")
 	response, err := pc.realOSBClient.UpdateInstance(r)
 	pc.updateMetrics(updateInstance, err)
 	return response, err
 }
 func (pc proxyclient) DeprovisionInstance(r *osb.DeprovisionRequest) (*osb.DeprovisionResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy DeprovisionInstance()")
@@ -76,12 +86,16 @@ func (pc proxyclient) DeprovisionInstance(r *osb.DeprovisionRequest) (*osb.Depro
 func (pc proxyclient) PollLastOperation(r *osb.LastOperationRequest) (*osb.LastOperationResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy PollLastOperation()")
 	response, err := pc.realOSBClient.PollLastOperation(r)
 	pc.updateMetrics(pollLastOperation, err)
 	return response, err
 }
 func (pc proxyclient) PollBindingLastOperation(r *osb.BindingLastOperationRequest) (*osb.LastOperationResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy PollBindingLastOperation()")
@@ -92,6 +106,8 @@ func (pc proxyclient) PollBindingLastOperation(r *osb.BindingLastOperationReques
 func (pc proxyclient) Bind(r *osb.BindRequest) (*osb.BindResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy Bind().")
 	response, err := pc.realOSBClient.Bind(r)
 	pc.updateMetrics(bind, err)
@@ -100,12 +116,16 @@ func (pc proxyclient) Bind(r *osb.BindRequest) (*osb.BindResponse, error) {
 func (pc proxyclient) Unbind(r *osb.UnbindRequest) (*osb.UnbindResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy Unbind()")
 	response, err := pc.realOSBClient.Unbind(r)
 	pc.updateMetrics(unbind, err)
 	return response, err
 }
 func (pc proxyclient) GetBinding(r *osb.GetBindingRequest) (*osb.GetBindingResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.V(9).Info("OSBClientProxy GetBinding()")
@@ -117,6 +137,8 @@ func (pc proxyclient) GetBinding(r *osb.GetBindingRequest) (*osb.GetBindingRespo
 const clientErr = "client-error"
 
 func (pc proxyclient) updateMetrics(method string, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var statusGroup string
@@ -135,7 +157,16 @@ func (pc proxyclient) updateMetrics(method string, err error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

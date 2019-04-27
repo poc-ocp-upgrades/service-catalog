@@ -13,11 +13,15 @@ import (
 func serviceCatalogAPIGroup() testapi.TestGroup {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	groupVersion := schema.GroupVersion{Group: servicecatalog.GroupName, Version: "v1beta1"}
 	externalGroupVersion := schema.GroupVersion{Group: servicecatalog.GroupName, Version: api.Scheme.PrioritizedVersionsForGroup(servicecatalog.GroupName)[0].Version}
 	return testapi.NewTestGroup(groupVersion, servicecatalog.SchemeGroupVersion, api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion), api.Scheme.KnownTypes(externalGroupVersion))
 }
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	log.SetFlags(log.Lshortfile)

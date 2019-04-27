@@ -11,9 +11,13 @@ import (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	localSchemeBuilder.Register(RegisterConversions)
 }
 func RegisterConversions(s *runtime.Scheme) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := s.AddGeneratedConversionFunc((*AddKeyTransform)(nil), (*servicecatalog.AddKeyTransform)(nil), func(a, b interface{}, scope conversion.Scope) error {
@@ -641,6 +645,8 @@ func RegisterConversions(s *runtime.Scheme) error {
 func autoConvert_v1beta1_AddKeyTransform_To_servicecatalog_AddKeyTransform(in *AddKeyTransform, out *servicecatalog.AddKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	out.Key = in.Key
 	out.Value = *(*[]byte)(unsafe.Pointer(&in.Value))
 	out.StringValue = (*string)(unsafe.Pointer(in.StringValue))
@@ -650,9 +656,13 @@ func autoConvert_v1beta1_AddKeyTransform_To_servicecatalog_AddKeyTransform(in *A
 func Convert_v1beta1_AddKeyTransform_To_servicecatalog_AddKeyTransform(in *AddKeyTransform, out *servicecatalog.AddKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_AddKeyTransform_To_servicecatalog_AddKeyTransform(in, out, s)
 }
 func autoConvert_servicecatalog_AddKeyTransform_To_v1beta1_AddKeyTransform(in *servicecatalog.AddKeyTransform, out *AddKeyTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Key = in.Key
@@ -664,9 +674,13 @@ func autoConvert_servicecatalog_AddKeyTransform_To_v1beta1_AddKeyTransform(in *s
 func Convert_servicecatalog_AddKeyTransform_To_v1beta1_AddKeyTransform(in *servicecatalog.AddKeyTransform, out *AddKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_AddKeyTransform_To_v1beta1_AddKeyTransform(in, out, s)
 }
 func autoConvert_v1beta1_AddKeysFromTransform_To_servicecatalog_AddKeysFromTransform(in *AddKeysFromTransform, out *servicecatalog.AddKeysFromTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*servicecatalog.ObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -675,9 +689,13 @@ func autoConvert_v1beta1_AddKeysFromTransform_To_servicecatalog_AddKeysFromTrans
 func Convert_v1beta1_AddKeysFromTransform_To_servicecatalog_AddKeysFromTransform(in *AddKeysFromTransform, out *servicecatalog.AddKeysFromTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_AddKeysFromTransform_To_servicecatalog_AddKeysFromTransform(in, out, s)
 }
 func autoConvert_servicecatalog_AddKeysFromTransform_To_v1beta1_AddKeysFromTransform(in *servicecatalog.AddKeysFromTransform, out *AddKeysFromTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*ObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -686,9 +704,13 @@ func autoConvert_servicecatalog_AddKeysFromTransform_To_v1beta1_AddKeysFromTrans
 func Convert_servicecatalog_AddKeysFromTransform_To_v1beta1_AddKeysFromTransform(in *servicecatalog.AddKeysFromTransform, out *AddKeysFromTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_AddKeysFromTransform_To_v1beta1_AddKeysFromTransform(in, out, s)
 }
 func autoConvert_v1beta1_BasicAuthConfig_To_servicecatalog_BasicAuthConfig(in *BasicAuthConfig, out *servicecatalog.BasicAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*servicecatalog.LocalObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -697,9 +719,13 @@ func autoConvert_v1beta1_BasicAuthConfig_To_servicecatalog_BasicAuthConfig(in *B
 func Convert_v1beta1_BasicAuthConfig_To_servicecatalog_BasicAuthConfig(in *BasicAuthConfig, out *servicecatalog.BasicAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_BasicAuthConfig_To_servicecatalog_BasicAuthConfig(in, out, s)
 }
 func autoConvert_servicecatalog_BasicAuthConfig_To_v1beta1_BasicAuthConfig(in *servicecatalog.BasicAuthConfig, out *BasicAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*LocalObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -708,9 +734,13 @@ func autoConvert_servicecatalog_BasicAuthConfig_To_v1beta1_BasicAuthConfig(in *s
 func Convert_servicecatalog_BasicAuthConfig_To_v1beta1_BasicAuthConfig(in *servicecatalog.BasicAuthConfig, out *BasicAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_BasicAuthConfig_To_v1beta1_BasicAuthConfig(in, out, s)
 }
 func autoConvert_v1beta1_BearerTokenAuthConfig_To_servicecatalog_BearerTokenAuthConfig(in *BearerTokenAuthConfig, out *servicecatalog.BearerTokenAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*servicecatalog.LocalObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -719,9 +749,13 @@ func autoConvert_v1beta1_BearerTokenAuthConfig_To_servicecatalog_BearerTokenAuth
 func Convert_v1beta1_BearerTokenAuthConfig_To_servicecatalog_BearerTokenAuthConfig(in *BearerTokenAuthConfig, out *servicecatalog.BearerTokenAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_BearerTokenAuthConfig_To_servicecatalog_BearerTokenAuthConfig(in, out, s)
 }
 func autoConvert_servicecatalog_BearerTokenAuthConfig_To_v1beta1_BearerTokenAuthConfig(in *servicecatalog.BearerTokenAuthConfig, out *BearerTokenAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*LocalObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -730,9 +764,13 @@ func autoConvert_servicecatalog_BearerTokenAuthConfig_To_v1beta1_BearerTokenAuth
 func Convert_servicecatalog_BearerTokenAuthConfig_To_v1beta1_BearerTokenAuthConfig(in *servicecatalog.BearerTokenAuthConfig, out *BearerTokenAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_BearerTokenAuthConfig_To_v1beta1_BearerTokenAuthConfig(in, out, s)
 }
 func autoConvert_v1beta1_CatalogRestrictions_To_servicecatalog_CatalogRestrictions(in *CatalogRestrictions, out *servicecatalog.CatalogRestrictions, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ServiceClass = *(*[]string)(unsafe.Pointer(&in.ServiceClass))
@@ -742,9 +780,13 @@ func autoConvert_v1beta1_CatalogRestrictions_To_servicecatalog_CatalogRestrictio
 func Convert_v1beta1_CatalogRestrictions_To_servicecatalog_CatalogRestrictions(in *CatalogRestrictions, out *servicecatalog.CatalogRestrictions, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CatalogRestrictions_To_servicecatalog_CatalogRestrictions(in, out, s)
 }
 func autoConvert_servicecatalog_CatalogRestrictions_To_v1beta1_CatalogRestrictions(in *servicecatalog.CatalogRestrictions, out *CatalogRestrictions, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ServiceClass = *(*[]string)(unsafe.Pointer(&in.ServiceClass))
@@ -754,9 +796,13 @@ func autoConvert_servicecatalog_CatalogRestrictions_To_v1beta1_CatalogRestrictio
 func Convert_servicecatalog_CatalogRestrictions_To_v1beta1_CatalogRestrictions(in *servicecatalog.CatalogRestrictions, out *CatalogRestrictions, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CatalogRestrictions_To_v1beta1_CatalogRestrictions(in, out, s)
 }
 func autoConvert_v1beta1_ClusterBasicAuthConfig_To_servicecatalog_ClusterBasicAuthConfig(in *ClusterBasicAuthConfig, out *servicecatalog.ClusterBasicAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*servicecatalog.ObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -765,9 +811,13 @@ func autoConvert_v1beta1_ClusterBasicAuthConfig_To_servicecatalog_ClusterBasicAu
 func Convert_v1beta1_ClusterBasicAuthConfig_To_servicecatalog_ClusterBasicAuthConfig(in *ClusterBasicAuthConfig, out *servicecatalog.ClusterBasicAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterBasicAuthConfig_To_servicecatalog_ClusterBasicAuthConfig(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterBasicAuthConfig_To_v1beta1_ClusterBasicAuthConfig(in *servicecatalog.ClusterBasicAuthConfig, out *ClusterBasicAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*ObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -776,9 +826,13 @@ func autoConvert_servicecatalog_ClusterBasicAuthConfig_To_v1beta1_ClusterBasicAu
 func Convert_servicecatalog_ClusterBasicAuthConfig_To_v1beta1_ClusterBasicAuthConfig(in *servicecatalog.ClusterBasicAuthConfig, out *ClusterBasicAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterBasicAuthConfig_To_v1beta1_ClusterBasicAuthConfig(in, out, s)
 }
 func autoConvert_v1beta1_ClusterBearerTokenAuthConfig_To_servicecatalog_ClusterBearerTokenAuthConfig(in *ClusterBearerTokenAuthConfig, out *servicecatalog.ClusterBearerTokenAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*servicecatalog.ObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -787,9 +841,13 @@ func autoConvert_v1beta1_ClusterBearerTokenAuthConfig_To_servicecatalog_ClusterB
 func Convert_v1beta1_ClusterBearerTokenAuthConfig_To_servicecatalog_ClusterBearerTokenAuthConfig(in *ClusterBearerTokenAuthConfig, out *servicecatalog.ClusterBearerTokenAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterBearerTokenAuthConfig_To_servicecatalog_ClusterBearerTokenAuthConfig(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterBearerTokenAuthConfig_To_v1beta1_ClusterBearerTokenAuthConfig(in *servicecatalog.ClusterBearerTokenAuthConfig, out *ClusterBearerTokenAuthConfig, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretRef = (*ObjectReference)(unsafe.Pointer(in.SecretRef))
@@ -798,9 +856,13 @@ func autoConvert_servicecatalog_ClusterBearerTokenAuthConfig_To_v1beta1_ClusterB
 func Convert_servicecatalog_ClusterBearerTokenAuthConfig_To_v1beta1_ClusterBearerTokenAuthConfig(in *servicecatalog.ClusterBearerTokenAuthConfig, out *ClusterBearerTokenAuthConfig, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterBearerTokenAuthConfig_To_v1beta1_ClusterBearerTokenAuthConfig(in, out, s)
 }
 func autoConvert_v1beta1_ClusterObjectReference_To_servicecatalog_ClusterObjectReference(in *ClusterObjectReference, out *servicecatalog.ClusterObjectReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Name = in.Name
@@ -809,9 +871,13 @@ func autoConvert_v1beta1_ClusterObjectReference_To_servicecatalog_ClusterObjectR
 func Convert_v1beta1_ClusterObjectReference_To_servicecatalog_ClusterObjectReference(in *ClusterObjectReference, out *servicecatalog.ClusterObjectReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterObjectReference_To_servicecatalog_ClusterObjectReference(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterObjectReference_To_v1beta1_ClusterObjectReference(in *servicecatalog.ClusterObjectReference, out *ClusterObjectReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Name = in.Name
@@ -820,9 +886,13 @@ func autoConvert_servicecatalog_ClusterObjectReference_To_v1beta1_ClusterObjectR
 func Convert_servicecatalog_ClusterObjectReference_To_v1beta1_ClusterObjectReference(in *servicecatalog.ClusterObjectReference, out *ClusterObjectReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterObjectReference_To_v1beta1_ClusterObjectReference(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceBroker_To_servicecatalog_ClusterServiceBroker(in *ClusterServiceBroker, out *servicecatalog.ClusterServiceBroker, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -837,9 +907,13 @@ func autoConvert_v1beta1_ClusterServiceBroker_To_servicecatalog_ClusterServiceBr
 func Convert_v1beta1_ClusterServiceBroker_To_servicecatalog_ClusterServiceBroker(in *ClusterServiceBroker, out *servicecatalog.ClusterServiceBroker, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceBroker_To_servicecatalog_ClusterServiceBroker(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceBroker_To_v1beta1_ClusterServiceBroker(in *servicecatalog.ClusterServiceBroker, out *ClusterServiceBroker, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -854,9 +928,13 @@ func autoConvert_servicecatalog_ClusterServiceBroker_To_v1beta1_ClusterServiceBr
 func Convert_servicecatalog_ClusterServiceBroker_To_v1beta1_ClusterServiceBroker(in *servicecatalog.ClusterServiceBroker, out *ClusterServiceBroker, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceBroker_To_v1beta1_ClusterServiceBroker(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceBrokerAuthInfo_To_servicecatalog_ClusterServiceBrokerAuthInfo(in *ClusterServiceBrokerAuthInfo, out *servicecatalog.ClusterServiceBrokerAuthInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Basic = (*servicecatalog.ClusterBasicAuthConfig)(unsafe.Pointer(in.Basic))
@@ -866,9 +944,13 @@ func autoConvert_v1beta1_ClusterServiceBrokerAuthInfo_To_servicecatalog_ClusterS
 func Convert_v1beta1_ClusterServiceBrokerAuthInfo_To_servicecatalog_ClusterServiceBrokerAuthInfo(in *ClusterServiceBrokerAuthInfo, out *servicecatalog.ClusterServiceBrokerAuthInfo, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceBrokerAuthInfo_To_servicecatalog_ClusterServiceBrokerAuthInfo(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceBrokerAuthInfo_To_v1beta1_ClusterServiceBrokerAuthInfo(in *servicecatalog.ClusterServiceBrokerAuthInfo, out *ClusterServiceBrokerAuthInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Basic = (*ClusterBasicAuthConfig)(unsafe.Pointer(in.Basic))
@@ -878,9 +960,13 @@ func autoConvert_servicecatalog_ClusterServiceBrokerAuthInfo_To_v1beta1_ClusterS
 func Convert_servicecatalog_ClusterServiceBrokerAuthInfo_To_v1beta1_ClusterServiceBrokerAuthInfo(in *servicecatalog.ClusterServiceBrokerAuthInfo, out *ClusterServiceBrokerAuthInfo, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceBrokerAuthInfo_To_v1beta1_ClusterServiceBrokerAuthInfo(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceBrokerList_To_servicecatalog_ClusterServiceBrokerList(in *ClusterServiceBrokerList, out *servicecatalog.ClusterServiceBrokerList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -890,9 +976,13 @@ func autoConvert_v1beta1_ClusterServiceBrokerList_To_servicecatalog_ClusterServi
 func Convert_v1beta1_ClusterServiceBrokerList_To_servicecatalog_ClusterServiceBrokerList(in *ClusterServiceBrokerList, out *servicecatalog.ClusterServiceBrokerList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceBrokerList_To_servicecatalog_ClusterServiceBrokerList(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceBrokerList_To_v1beta1_ClusterServiceBrokerList(in *servicecatalog.ClusterServiceBrokerList, out *ClusterServiceBrokerList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -902,9 +992,13 @@ func autoConvert_servicecatalog_ClusterServiceBrokerList_To_v1beta1_ClusterServi
 func Convert_servicecatalog_ClusterServiceBrokerList_To_v1beta1_ClusterServiceBrokerList(in *servicecatalog.ClusterServiceBrokerList, out *ClusterServiceBrokerList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceBrokerList_To_v1beta1_ClusterServiceBrokerList(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceBrokerSpec_To_servicecatalog_ClusterServiceBrokerSpec(in *ClusterServiceBrokerSpec, out *servicecatalog.ClusterServiceBrokerSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceBrokerSpec_To_servicecatalog_CommonServiceBrokerSpec(&in.CommonServiceBrokerSpec, &out.CommonServiceBrokerSpec, s); err != nil {
@@ -916,9 +1010,13 @@ func autoConvert_v1beta1_ClusterServiceBrokerSpec_To_servicecatalog_ClusterServi
 func Convert_v1beta1_ClusterServiceBrokerSpec_To_servicecatalog_ClusterServiceBrokerSpec(in *ClusterServiceBrokerSpec, out *servicecatalog.ClusterServiceBrokerSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceBrokerSpec_To_servicecatalog_ClusterServiceBrokerSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceBrokerSpec_To_v1beta1_ClusterServiceBrokerSpec(in *servicecatalog.ClusterServiceBrokerSpec, out *ClusterServiceBrokerSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceBrokerSpec_To_v1beta1_CommonServiceBrokerSpec(&in.CommonServiceBrokerSpec, &out.CommonServiceBrokerSpec, s); err != nil {
@@ -930,9 +1028,13 @@ func autoConvert_servicecatalog_ClusterServiceBrokerSpec_To_v1beta1_ClusterServi
 func Convert_servicecatalog_ClusterServiceBrokerSpec_To_v1beta1_ClusterServiceBrokerSpec(in *servicecatalog.ClusterServiceBrokerSpec, out *ClusterServiceBrokerSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceBrokerSpec_To_v1beta1_ClusterServiceBrokerSpec(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceBrokerStatus_To_servicecatalog_ClusterServiceBrokerStatus(in *ClusterServiceBrokerStatus, out *servicecatalog.ClusterServiceBrokerStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceBrokerStatus_To_servicecatalog_CommonServiceBrokerStatus(&in.CommonServiceBrokerStatus, &out.CommonServiceBrokerStatus, s); err != nil {
@@ -943,9 +1045,13 @@ func autoConvert_v1beta1_ClusterServiceBrokerStatus_To_servicecatalog_ClusterSer
 func Convert_v1beta1_ClusterServiceBrokerStatus_To_servicecatalog_ClusterServiceBrokerStatus(in *ClusterServiceBrokerStatus, out *servicecatalog.ClusterServiceBrokerStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceBrokerStatus_To_servicecatalog_ClusterServiceBrokerStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceBrokerStatus_To_v1beta1_ClusterServiceBrokerStatus(in *servicecatalog.ClusterServiceBrokerStatus, out *ClusterServiceBrokerStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceBrokerStatus_To_v1beta1_CommonServiceBrokerStatus(&in.CommonServiceBrokerStatus, &out.CommonServiceBrokerStatus, s); err != nil {
@@ -956,9 +1062,13 @@ func autoConvert_servicecatalog_ClusterServiceBrokerStatus_To_v1beta1_ClusterSer
 func Convert_servicecatalog_ClusterServiceBrokerStatus_To_v1beta1_ClusterServiceBrokerStatus(in *servicecatalog.ClusterServiceBrokerStatus, out *ClusterServiceBrokerStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceBrokerStatus_To_v1beta1_ClusterServiceBrokerStatus(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceClass_To_servicecatalog_ClusterServiceClass(in *ClusterServiceClass, out *servicecatalog.ClusterServiceClass, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -973,9 +1083,13 @@ func autoConvert_v1beta1_ClusterServiceClass_To_servicecatalog_ClusterServiceCla
 func Convert_v1beta1_ClusterServiceClass_To_servicecatalog_ClusterServiceClass(in *ClusterServiceClass, out *servicecatalog.ClusterServiceClass, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceClass_To_servicecatalog_ClusterServiceClass(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceClass_To_v1beta1_ClusterServiceClass(in *servicecatalog.ClusterServiceClass, out *ClusterServiceClass, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -990,9 +1104,13 @@ func autoConvert_servicecatalog_ClusterServiceClass_To_v1beta1_ClusterServiceCla
 func Convert_servicecatalog_ClusterServiceClass_To_v1beta1_ClusterServiceClass(in *servicecatalog.ClusterServiceClass, out *ClusterServiceClass, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceClass_To_v1beta1_ClusterServiceClass(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceClassList_To_servicecatalog_ClusterServiceClassList(in *ClusterServiceClassList, out *servicecatalog.ClusterServiceClassList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1002,9 +1120,13 @@ func autoConvert_v1beta1_ClusterServiceClassList_To_servicecatalog_ClusterServic
 func Convert_v1beta1_ClusterServiceClassList_To_servicecatalog_ClusterServiceClassList(in *ClusterServiceClassList, out *servicecatalog.ClusterServiceClassList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceClassList_To_servicecatalog_ClusterServiceClassList(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceClassList_To_v1beta1_ClusterServiceClassList(in *servicecatalog.ClusterServiceClassList, out *ClusterServiceClassList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1014,9 +1136,13 @@ func autoConvert_servicecatalog_ClusterServiceClassList_To_v1beta1_ClusterServic
 func Convert_servicecatalog_ClusterServiceClassList_To_v1beta1_ClusterServiceClassList(in *servicecatalog.ClusterServiceClassList, out *ClusterServiceClassList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceClassList_To_v1beta1_ClusterServiceClassList(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceClassSpec_To_servicecatalog_ClusterServiceClassSpec(in *ClusterServiceClassSpec, out *servicecatalog.ClusterServiceClassSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceClassSpec_To_servicecatalog_CommonServiceClassSpec(&in.CommonServiceClassSpec, &out.CommonServiceClassSpec, s); err != nil {
@@ -1028,9 +1154,13 @@ func autoConvert_v1beta1_ClusterServiceClassSpec_To_servicecatalog_ClusterServic
 func Convert_v1beta1_ClusterServiceClassSpec_To_servicecatalog_ClusterServiceClassSpec(in *ClusterServiceClassSpec, out *servicecatalog.ClusterServiceClassSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceClassSpec_To_servicecatalog_ClusterServiceClassSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceClassSpec_To_v1beta1_ClusterServiceClassSpec(in *servicecatalog.ClusterServiceClassSpec, out *ClusterServiceClassSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceClassSpec_To_v1beta1_CommonServiceClassSpec(&in.CommonServiceClassSpec, &out.CommonServiceClassSpec, s); err != nil {
@@ -1042,9 +1172,13 @@ func autoConvert_servicecatalog_ClusterServiceClassSpec_To_v1beta1_ClusterServic
 func Convert_servicecatalog_ClusterServiceClassSpec_To_v1beta1_ClusterServiceClassSpec(in *servicecatalog.ClusterServiceClassSpec, out *ClusterServiceClassSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceClassSpec_To_v1beta1_ClusterServiceClassSpec(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServiceClassStatus_To_servicecatalog_ClusterServiceClassStatus(in *ClusterServiceClassStatus, out *servicecatalog.ClusterServiceClassStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceClassStatus_To_servicecatalog_CommonServiceClassStatus(&in.CommonServiceClassStatus, &out.CommonServiceClassStatus, s); err != nil {
@@ -1055,9 +1189,13 @@ func autoConvert_v1beta1_ClusterServiceClassStatus_To_servicecatalog_ClusterServ
 func Convert_v1beta1_ClusterServiceClassStatus_To_servicecatalog_ClusterServiceClassStatus(in *ClusterServiceClassStatus, out *servicecatalog.ClusterServiceClassStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServiceClassStatus_To_servicecatalog_ClusterServiceClassStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServiceClassStatus_To_v1beta1_ClusterServiceClassStatus(in *servicecatalog.ClusterServiceClassStatus, out *ClusterServiceClassStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceClassStatus_To_v1beta1_CommonServiceClassStatus(&in.CommonServiceClassStatus, &out.CommonServiceClassStatus, s); err != nil {
@@ -1068,9 +1206,13 @@ func autoConvert_servicecatalog_ClusterServiceClassStatus_To_v1beta1_ClusterServ
 func Convert_servicecatalog_ClusterServiceClassStatus_To_v1beta1_ClusterServiceClassStatus(in *servicecatalog.ClusterServiceClassStatus, out *ClusterServiceClassStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServiceClassStatus_To_v1beta1_ClusterServiceClassStatus(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServicePlan_To_servicecatalog_ClusterServicePlan(in *ClusterServicePlan, out *servicecatalog.ClusterServicePlan, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1085,9 +1227,13 @@ func autoConvert_v1beta1_ClusterServicePlan_To_servicecatalog_ClusterServicePlan
 func Convert_v1beta1_ClusterServicePlan_To_servicecatalog_ClusterServicePlan(in *ClusterServicePlan, out *servicecatalog.ClusterServicePlan, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServicePlan_To_servicecatalog_ClusterServicePlan(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServicePlan_To_v1beta1_ClusterServicePlan(in *servicecatalog.ClusterServicePlan, out *ClusterServicePlan, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1102,9 +1248,13 @@ func autoConvert_servicecatalog_ClusterServicePlan_To_v1beta1_ClusterServicePlan
 func Convert_servicecatalog_ClusterServicePlan_To_v1beta1_ClusterServicePlan(in *servicecatalog.ClusterServicePlan, out *ClusterServicePlan, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServicePlan_To_v1beta1_ClusterServicePlan(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServicePlanList_To_servicecatalog_ClusterServicePlanList(in *ClusterServicePlanList, out *servicecatalog.ClusterServicePlanList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1114,9 +1264,13 @@ func autoConvert_v1beta1_ClusterServicePlanList_To_servicecatalog_ClusterService
 func Convert_v1beta1_ClusterServicePlanList_To_servicecatalog_ClusterServicePlanList(in *ClusterServicePlanList, out *servicecatalog.ClusterServicePlanList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServicePlanList_To_servicecatalog_ClusterServicePlanList(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServicePlanList_To_v1beta1_ClusterServicePlanList(in *servicecatalog.ClusterServicePlanList, out *ClusterServicePlanList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1126,9 +1280,13 @@ func autoConvert_servicecatalog_ClusterServicePlanList_To_v1beta1_ClusterService
 func Convert_servicecatalog_ClusterServicePlanList_To_v1beta1_ClusterServicePlanList(in *servicecatalog.ClusterServicePlanList, out *ClusterServicePlanList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServicePlanList_To_v1beta1_ClusterServicePlanList(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServicePlanSpec_To_servicecatalog_ClusterServicePlanSpec(in *ClusterServicePlanSpec, out *servicecatalog.ClusterServicePlanSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServicePlanSpec_To_servicecatalog_CommonServicePlanSpec(&in.CommonServicePlanSpec, &out.CommonServicePlanSpec, s); err != nil {
@@ -1143,9 +1301,13 @@ func autoConvert_v1beta1_ClusterServicePlanSpec_To_servicecatalog_ClusterService
 func Convert_v1beta1_ClusterServicePlanSpec_To_servicecatalog_ClusterServicePlanSpec(in *ClusterServicePlanSpec, out *servicecatalog.ClusterServicePlanSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServicePlanSpec_To_servicecatalog_ClusterServicePlanSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServicePlanSpec_To_v1beta1_ClusterServicePlanSpec(in *servicecatalog.ClusterServicePlanSpec, out *ClusterServicePlanSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServicePlanSpec_To_v1beta1_CommonServicePlanSpec(&in.CommonServicePlanSpec, &out.CommonServicePlanSpec, s); err != nil {
@@ -1160,9 +1322,13 @@ func autoConvert_servicecatalog_ClusterServicePlanSpec_To_v1beta1_ClusterService
 func Convert_servicecatalog_ClusterServicePlanSpec_To_v1beta1_ClusterServicePlanSpec(in *servicecatalog.ClusterServicePlanSpec, out *ClusterServicePlanSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServicePlanSpec_To_v1beta1_ClusterServicePlanSpec(in, out, s)
 }
 func autoConvert_v1beta1_ClusterServicePlanStatus_To_servicecatalog_ClusterServicePlanStatus(in *ClusterServicePlanStatus, out *servicecatalog.ClusterServicePlanStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServicePlanStatus_To_servicecatalog_CommonServicePlanStatus(&in.CommonServicePlanStatus, &out.CommonServicePlanStatus, s); err != nil {
@@ -1173,9 +1339,13 @@ func autoConvert_v1beta1_ClusterServicePlanStatus_To_servicecatalog_ClusterServi
 func Convert_v1beta1_ClusterServicePlanStatus_To_servicecatalog_ClusterServicePlanStatus(in *ClusterServicePlanStatus, out *servicecatalog.ClusterServicePlanStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ClusterServicePlanStatus_To_servicecatalog_ClusterServicePlanStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ClusterServicePlanStatus_To_v1beta1_ClusterServicePlanStatus(in *servicecatalog.ClusterServicePlanStatus, out *ClusterServicePlanStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServicePlanStatus_To_v1beta1_CommonServicePlanStatus(&in.CommonServicePlanStatus, &out.CommonServicePlanStatus, s); err != nil {
@@ -1186,9 +1356,13 @@ func autoConvert_servicecatalog_ClusterServicePlanStatus_To_v1beta1_ClusterServi
 func Convert_servicecatalog_ClusterServicePlanStatus_To_v1beta1_ClusterServicePlanStatus(in *servicecatalog.ClusterServicePlanStatus, out *ClusterServicePlanStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ClusterServicePlanStatus_To_v1beta1_ClusterServicePlanStatus(in, out, s)
 }
 func autoConvert_v1beta1_CommonServiceBrokerSpec_To_servicecatalog_CommonServiceBrokerSpec(in *CommonServiceBrokerSpec, out *servicecatalog.CommonServiceBrokerSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.URL = in.URL
@@ -1203,9 +1377,13 @@ func autoConvert_v1beta1_CommonServiceBrokerSpec_To_servicecatalog_CommonService
 func Convert_v1beta1_CommonServiceBrokerSpec_To_servicecatalog_CommonServiceBrokerSpec(in *CommonServiceBrokerSpec, out *servicecatalog.CommonServiceBrokerSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CommonServiceBrokerSpec_To_servicecatalog_CommonServiceBrokerSpec(in, out, s)
 }
 func autoConvert_servicecatalog_CommonServiceBrokerSpec_To_v1beta1_CommonServiceBrokerSpec(in *servicecatalog.CommonServiceBrokerSpec, out *CommonServiceBrokerSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.URL = in.URL
@@ -1220,9 +1398,13 @@ func autoConvert_servicecatalog_CommonServiceBrokerSpec_To_v1beta1_CommonService
 func Convert_servicecatalog_CommonServiceBrokerSpec_To_v1beta1_CommonServiceBrokerSpec(in *servicecatalog.CommonServiceBrokerSpec, out *CommonServiceBrokerSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CommonServiceBrokerSpec_To_v1beta1_CommonServiceBrokerSpec(in, out, s)
 }
 func autoConvert_v1beta1_CommonServiceBrokerStatus_To_servicecatalog_CommonServiceBrokerStatus(in *CommonServiceBrokerStatus, out *servicecatalog.CommonServiceBrokerStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Conditions = *(*[]servicecatalog.ServiceBrokerCondition)(unsafe.Pointer(&in.Conditions))
@@ -1234,9 +1416,13 @@ func autoConvert_v1beta1_CommonServiceBrokerStatus_To_servicecatalog_CommonServi
 func Convert_v1beta1_CommonServiceBrokerStatus_To_servicecatalog_CommonServiceBrokerStatus(in *CommonServiceBrokerStatus, out *servicecatalog.CommonServiceBrokerStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CommonServiceBrokerStatus_To_servicecatalog_CommonServiceBrokerStatus(in, out, s)
 }
 func autoConvert_servicecatalog_CommonServiceBrokerStatus_To_v1beta1_CommonServiceBrokerStatus(in *servicecatalog.CommonServiceBrokerStatus, out *CommonServiceBrokerStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Conditions = *(*[]ServiceBrokerCondition)(unsafe.Pointer(&in.Conditions))
@@ -1248,9 +1434,13 @@ func autoConvert_servicecatalog_CommonServiceBrokerStatus_To_v1beta1_CommonServi
 func Convert_servicecatalog_CommonServiceBrokerStatus_To_v1beta1_CommonServiceBrokerStatus(in *servicecatalog.CommonServiceBrokerStatus, out *CommonServiceBrokerStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CommonServiceBrokerStatus_To_v1beta1_CommonServiceBrokerStatus(in, out, s)
 }
 func autoConvert_v1beta1_CommonServiceClassSpec_To_servicecatalog_CommonServiceClassSpec(in *CommonServiceClassSpec, out *servicecatalog.CommonServiceClassSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ExternalName = in.ExternalName
@@ -1268,9 +1458,13 @@ func autoConvert_v1beta1_CommonServiceClassSpec_To_servicecatalog_CommonServiceC
 func Convert_v1beta1_CommonServiceClassSpec_To_servicecatalog_CommonServiceClassSpec(in *CommonServiceClassSpec, out *servicecatalog.CommonServiceClassSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CommonServiceClassSpec_To_servicecatalog_CommonServiceClassSpec(in, out, s)
 }
 func autoConvert_servicecatalog_CommonServiceClassSpec_To_v1beta1_CommonServiceClassSpec(in *servicecatalog.CommonServiceClassSpec, out *CommonServiceClassSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ExternalName = in.ExternalName
@@ -1288,9 +1482,13 @@ func autoConvert_servicecatalog_CommonServiceClassSpec_To_v1beta1_CommonServiceC
 func Convert_servicecatalog_CommonServiceClassSpec_To_v1beta1_CommonServiceClassSpec(in *servicecatalog.CommonServiceClassSpec, out *CommonServiceClassSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CommonServiceClassSpec_To_v1beta1_CommonServiceClassSpec(in, out, s)
 }
 func autoConvert_v1beta1_CommonServiceClassStatus_To_servicecatalog_CommonServiceClassStatus(in *CommonServiceClassStatus, out *servicecatalog.CommonServiceClassStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.RemovedFromBrokerCatalog = in.RemovedFromBrokerCatalog
@@ -1299,9 +1497,13 @@ func autoConvert_v1beta1_CommonServiceClassStatus_To_servicecatalog_CommonServic
 func Convert_v1beta1_CommonServiceClassStatus_To_servicecatalog_CommonServiceClassStatus(in *CommonServiceClassStatus, out *servicecatalog.CommonServiceClassStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CommonServiceClassStatus_To_servicecatalog_CommonServiceClassStatus(in, out, s)
 }
 func autoConvert_servicecatalog_CommonServiceClassStatus_To_v1beta1_CommonServiceClassStatus(in *servicecatalog.CommonServiceClassStatus, out *CommonServiceClassStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.RemovedFromBrokerCatalog = in.RemovedFromBrokerCatalog
@@ -1310,9 +1512,13 @@ func autoConvert_servicecatalog_CommonServiceClassStatus_To_v1beta1_CommonServic
 func Convert_servicecatalog_CommonServiceClassStatus_To_v1beta1_CommonServiceClassStatus(in *servicecatalog.CommonServiceClassStatus, out *CommonServiceClassStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CommonServiceClassStatus_To_v1beta1_CommonServiceClassStatus(in, out, s)
 }
 func autoConvert_v1beta1_CommonServicePlanSpec_To_servicecatalog_CommonServicePlanSpec(in *CommonServicePlanSpec, out *servicecatalog.CommonServicePlanSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ExternalName = in.ExternalName
@@ -1331,9 +1537,13 @@ func autoConvert_v1beta1_CommonServicePlanSpec_To_servicecatalog_CommonServicePl
 func Convert_v1beta1_CommonServicePlanSpec_To_servicecatalog_CommonServicePlanSpec(in *CommonServicePlanSpec, out *servicecatalog.CommonServicePlanSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CommonServicePlanSpec_To_servicecatalog_CommonServicePlanSpec(in, out, s)
 }
 func autoConvert_servicecatalog_CommonServicePlanSpec_To_v1beta1_CommonServicePlanSpec(in *servicecatalog.CommonServicePlanSpec, out *CommonServicePlanSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ExternalName = in.ExternalName
@@ -1352,9 +1562,13 @@ func autoConvert_servicecatalog_CommonServicePlanSpec_To_v1beta1_CommonServicePl
 func Convert_servicecatalog_CommonServicePlanSpec_To_v1beta1_CommonServicePlanSpec(in *servicecatalog.CommonServicePlanSpec, out *CommonServicePlanSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CommonServicePlanSpec_To_v1beta1_CommonServicePlanSpec(in, out, s)
 }
 func autoConvert_v1beta1_CommonServicePlanStatus_To_servicecatalog_CommonServicePlanStatus(in *CommonServicePlanStatus, out *servicecatalog.CommonServicePlanStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.RemovedFromBrokerCatalog = in.RemovedFromBrokerCatalog
@@ -1363,9 +1577,13 @@ func autoConvert_v1beta1_CommonServicePlanStatus_To_servicecatalog_CommonService
 func Convert_v1beta1_CommonServicePlanStatus_To_servicecatalog_CommonServicePlanStatus(in *CommonServicePlanStatus, out *servicecatalog.CommonServicePlanStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_CommonServicePlanStatus_To_servicecatalog_CommonServicePlanStatus(in, out, s)
 }
 func autoConvert_servicecatalog_CommonServicePlanStatus_To_v1beta1_CommonServicePlanStatus(in *servicecatalog.CommonServicePlanStatus, out *CommonServicePlanStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.RemovedFromBrokerCatalog = in.RemovedFromBrokerCatalog
@@ -1374,9 +1592,13 @@ func autoConvert_servicecatalog_CommonServicePlanStatus_To_v1beta1_CommonService
 func Convert_servicecatalog_CommonServicePlanStatus_To_v1beta1_CommonServicePlanStatus(in *servicecatalog.CommonServicePlanStatus, out *CommonServicePlanStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_CommonServicePlanStatus_To_v1beta1_CommonServicePlanStatus(in, out, s)
 }
 func autoConvert_v1beta1_LocalObjectReference_To_servicecatalog_LocalObjectReference(in *LocalObjectReference, out *servicecatalog.LocalObjectReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Name = in.Name
@@ -1385,9 +1607,13 @@ func autoConvert_v1beta1_LocalObjectReference_To_servicecatalog_LocalObjectRefer
 func Convert_v1beta1_LocalObjectReference_To_servicecatalog_LocalObjectReference(in *LocalObjectReference, out *servicecatalog.LocalObjectReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_LocalObjectReference_To_servicecatalog_LocalObjectReference(in, out, s)
 }
 func autoConvert_servicecatalog_LocalObjectReference_To_v1beta1_LocalObjectReference(in *servicecatalog.LocalObjectReference, out *LocalObjectReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Name = in.Name
@@ -1396,9 +1622,13 @@ func autoConvert_servicecatalog_LocalObjectReference_To_v1beta1_LocalObjectRefer
 func Convert_servicecatalog_LocalObjectReference_To_v1beta1_LocalObjectReference(in *servicecatalog.LocalObjectReference, out *LocalObjectReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_LocalObjectReference_To_v1beta1_LocalObjectReference(in, out, s)
 }
 func autoConvert_v1beta1_ObjectReference_To_servicecatalog_ObjectReference(in *ObjectReference, out *servicecatalog.ObjectReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Namespace = in.Namespace
@@ -1408,9 +1638,13 @@ func autoConvert_v1beta1_ObjectReference_To_servicecatalog_ObjectReference(in *O
 func Convert_v1beta1_ObjectReference_To_servicecatalog_ObjectReference(in *ObjectReference, out *servicecatalog.ObjectReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ObjectReference_To_servicecatalog_ObjectReference(in, out, s)
 }
 func autoConvert_servicecatalog_ObjectReference_To_v1beta1_ObjectReference(in *servicecatalog.ObjectReference, out *ObjectReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Namespace = in.Namespace
@@ -1420,9 +1654,13 @@ func autoConvert_servicecatalog_ObjectReference_To_v1beta1_ObjectReference(in *s
 func Convert_servicecatalog_ObjectReference_To_v1beta1_ObjectReference(in *servicecatalog.ObjectReference, out *ObjectReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ObjectReference_To_v1beta1_ObjectReference(in, out, s)
 }
 func autoConvert_v1beta1_ParametersFromSource_To_servicecatalog_ParametersFromSource(in *ParametersFromSource, out *servicecatalog.ParametersFromSource, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretKeyRef = (*servicecatalog.SecretKeyReference)(unsafe.Pointer(in.SecretKeyRef))
@@ -1431,9 +1669,13 @@ func autoConvert_v1beta1_ParametersFromSource_To_servicecatalog_ParametersFromSo
 func Convert_v1beta1_ParametersFromSource_To_servicecatalog_ParametersFromSource(in *ParametersFromSource, out *servicecatalog.ParametersFromSource, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ParametersFromSource_To_servicecatalog_ParametersFromSource(in, out, s)
 }
 func autoConvert_servicecatalog_ParametersFromSource_To_v1beta1_ParametersFromSource(in *servicecatalog.ParametersFromSource, out *ParametersFromSource, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.SecretKeyRef = (*SecretKeyReference)(unsafe.Pointer(in.SecretKeyRef))
@@ -1442,9 +1684,13 @@ func autoConvert_servicecatalog_ParametersFromSource_To_v1beta1_ParametersFromSo
 func Convert_servicecatalog_ParametersFromSource_To_v1beta1_ParametersFromSource(in *servicecatalog.ParametersFromSource, out *ParametersFromSource, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ParametersFromSource_To_v1beta1_ParametersFromSource(in, out, s)
 }
 func autoConvert_v1beta1_PlanReference_To_servicecatalog_PlanReference(in *PlanReference, out *servicecatalog.PlanReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ClusterServiceClassExternalName = in.ClusterServiceClassExternalName
@@ -1464,9 +1710,13 @@ func autoConvert_v1beta1_PlanReference_To_servicecatalog_PlanReference(in *PlanR
 func Convert_v1beta1_PlanReference_To_servicecatalog_PlanReference(in *PlanReference, out *servicecatalog.PlanReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_PlanReference_To_servicecatalog_PlanReference(in, out, s)
 }
 func autoConvert_servicecatalog_PlanReference_To_v1beta1_PlanReference(in *servicecatalog.PlanReference, out *PlanReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ClusterServiceClassExternalName = in.ClusterServiceClassExternalName
@@ -1486,9 +1736,13 @@ func autoConvert_servicecatalog_PlanReference_To_v1beta1_PlanReference(in *servi
 func Convert_servicecatalog_PlanReference_To_v1beta1_PlanReference(in *servicecatalog.PlanReference, out *PlanReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_PlanReference_To_v1beta1_PlanReference(in, out, s)
 }
 func autoConvert_v1beta1_RemoveKeyTransform_To_servicecatalog_RemoveKeyTransform(in *RemoveKeyTransform, out *servicecatalog.RemoveKeyTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Key = in.Key
@@ -1497,9 +1751,13 @@ func autoConvert_v1beta1_RemoveKeyTransform_To_servicecatalog_RemoveKeyTransform
 func Convert_v1beta1_RemoveKeyTransform_To_servicecatalog_RemoveKeyTransform(in *RemoveKeyTransform, out *servicecatalog.RemoveKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_RemoveKeyTransform_To_servicecatalog_RemoveKeyTransform(in, out, s)
 }
 func autoConvert_servicecatalog_RemoveKeyTransform_To_v1beta1_RemoveKeyTransform(in *servicecatalog.RemoveKeyTransform, out *RemoveKeyTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Key = in.Key
@@ -1508,9 +1766,13 @@ func autoConvert_servicecatalog_RemoveKeyTransform_To_v1beta1_RemoveKeyTransform
 func Convert_servicecatalog_RemoveKeyTransform_To_v1beta1_RemoveKeyTransform(in *servicecatalog.RemoveKeyTransform, out *RemoveKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_RemoveKeyTransform_To_v1beta1_RemoveKeyTransform(in, out, s)
 }
 func autoConvert_v1beta1_RenameKeyTransform_To_servicecatalog_RenameKeyTransform(in *RenameKeyTransform, out *servicecatalog.RenameKeyTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.From = in.From
@@ -1520,9 +1782,13 @@ func autoConvert_v1beta1_RenameKeyTransform_To_servicecatalog_RenameKeyTransform
 func Convert_v1beta1_RenameKeyTransform_To_servicecatalog_RenameKeyTransform(in *RenameKeyTransform, out *servicecatalog.RenameKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_RenameKeyTransform_To_servicecatalog_RenameKeyTransform(in, out, s)
 }
 func autoConvert_servicecatalog_RenameKeyTransform_To_v1beta1_RenameKeyTransform(in *servicecatalog.RenameKeyTransform, out *RenameKeyTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.From = in.From
@@ -1532,9 +1798,13 @@ func autoConvert_servicecatalog_RenameKeyTransform_To_v1beta1_RenameKeyTransform
 func Convert_servicecatalog_RenameKeyTransform_To_v1beta1_RenameKeyTransform(in *servicecatalog.RenameKeyTransform, out *RenameKeyTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_RenameKeyTransform_To_v1beta1_RenameKeyTransform(in, out, s)
 }
 func autoConvert_v1beta1_SecretKeyReference_To_servicecatalog_SecretKeyReference(in *SecretKeyReference, out *servicecatalog.SecretKeyReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Name = in.Name
@@ -1544,9 +1814,13 @@ func autoConvert_v1beta1_SecretKeyReference_To_servicecatalog_SecretKeyReference
 func Convert_v1beta1_SecretKeyReference_To_servicecatalog_SecretKeyReference(in *SecretKeyReference, out *servicecatalog.SecretKeyReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_SecretKeyReference_To_servicecatalog_SecretKeyReference(in, out, s)
 }
 func autoConvert_servicecatalog_SecretKeyReference_To_v1beta1_SecretKeyReference(in *servicecatalog.SecretKeyReference, out *SecretKeyReference, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Name = in.Name
@@ -1556,9 +1830,13 @@ func autoConvert_servicecatalog_SecretKeyReference_To_v1beta1_SecretKeyReference
 func Convert_servicecatalog_SecretKeyReference_To_v1beta1_SecretKeyReference(in *servicecatalog.SecretKeyReference, out *SecretKeyReference, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_SecretKeyReference_To_v1beta1_SecretKeyReference(in, out, s)
 }
 func autoConvert_v1beta1_SecretTransform_To_servicecatalog_SecretTransform(in *SecretTransform, out *servicecatalog.SecretTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.RenameKey = (*servicecatalog.RenameKeyTransform)(unsafe.Pointer(in.RenameKey))
@@ -1570,9 +1848,13 @@ func autoConvert_v1beta1_SecretTransform_To_servicecatalog_SecretTransform(in *S
 func Convert_v1beta1_SecretTransform_To_servicecatalog_SecretTransform(in *SecretTransform, out *servicecatalog.SecretTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_SecretTransform_To_servicecatalog_SecretTransform(in, out, s)
 }
 func autoConvert_servicecatalog_SecretTransform_To_v1beta1_SecretTransform(in *servicecatalog.SecretTransform, out *SecretTransform, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.RenameKey = (*RenameKeyTransform)(unsafe.Pointer(in.RenameKey))
@@ -1584,9 +1866,13 @@ func autoConvert_servicecatalog_SecretTransform_To_v1beta1_SecretTransform(in *s
 func Convert_servicecatalog_SecretTransform_To_v1beta1_SecretTransform(in *servicecatalog.SecretTransform, out *SecretTransform, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_SecretTransform_To_v1beta1_SecretTransform(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBinding_To_servicecatalog_ServiceBinding(in *ServiceBinding, out *servicecatalog.ServiceBinding, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1601,9 +1887,13 @@ func autoConvert_v1beta1_ServiceBinding_To_servicecatalog_ServiceBinding(in *Ser
 func Convert_v1beta1_ServiceBinding_To_servicecatalog_ServiceBinding(in *ServiceBinding, out *servicecatalog.ServiceBinding, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBinding_To_servicecatalog_ServiceBinding(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBinding_To_v1beta1_ServiceBinding(in *servicecatalog.ServiceBinding, out *ServiceBinding, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1618,9 +1908,13 @@ func autoConvert_servicecatalog_ServiceBinding_To_v1beta1_ServiceBinding(in *ser
 func Convert_servicecatalog_ServiceBinding_To_v1beta1_ServiceBinding(in *servicecatalog.ServiceBinding, out *ServiceBinding, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBinding_To_v1beta1_ServiceBinding(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBindingCondition_To_servicecatalog_ServiceBindingCondition(in *ServiceBindingCondition, out *servicecatalog.ServiceBindingCondition, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Type = servicecatalog.ServiceBindingConditionType(in.Type)
@@ -1633,9 +1927,13 @@ func autoConvert_v1beta1_ServiceBindingCondition_To_servicecatalog_ServiceBindin
 func Convert_v1beta1_ServiceBindingCondition_To_servicecatalog_ServiceBindingCondition(in *ServiceBindingCondition, out *servicecatalog.ServiceBindingCondition, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBindingCondition_To_servicecatalog_ServiceBindingCondition(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBindingCondition_To_v1beta1_ServiceBindingCondition(in *servicecatalog.ServiceBindingCondition, out *ServiceBindingCondition, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Type = ServiceBindingConditionType(in.Type)
@@ -1648,9 +1946,13 @@ func autoConvert_servicecatalog_ServiceBindingCondition_To_v1beta1_ServiceBindin
 func Convert_servicecatalog_ServiceBindingCondition_To_v1beta1_ServiceBindingCondition(in *servicecatalog.ServiceBindingCondition, out *ServiceBindingCondition, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBindingCondition_To_v1beta1_ServiceBindingCondition(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBindingList_To_servicecatalog_ServiceBindingList(in *ServiceBindingList, out *servicecatalog.ServiceBindingList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1660,9 +1962,13 @@ func autoConvert_v1beta1_ServiceBindingList_To_servicecatalog_ServiceBindingList
 func Convert_v1beta1_ServiceBindingList_To_servicecatalog_ServiceBindingList(in *ServiceBindingList, out *servicecatalog.ServiceBindingList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBindingList_To_servicecatalog_ServiceBindingList(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBindingList_To_v1beta1_ServiceBindingList(in *servicecatalog.ServiceBindingList, out *ServiceBindingList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1672,9 +1978,13 @@ func autoConvert_servicecatalog_ServiceBindingList_To_v1beta1_ServiceBindingList
 func Convert_servicecatalog_ServiceBindingList_To_v1beta1_ServiceBindingList(in *servicecatalog.ServiceBindingList, out *ServiceBindingList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBindingList_To_v1beta1_ServiceBindingList(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBindingPropertiesState_To_servicecatalog_ServiceBindingPropertiesState(in *ServiceBindingPropertiesState, out *servicecatalog.ServiceBindingPropertiesState, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Parameters = (*runtime.RawExtension)(unsafe.Pointer(in.Parameters))
@@ -1685,9 +1995,13 @@ func autoConvert_v1beta1_ServiceBindingPropertiesState_To_servicecatalog_Service
 func Convert_v1beta1_ServiceBindingPropertiesState_To_servicecatalog_ServiceBindingPropertiesState(in *ServiceBindingPropertiesState, out *servicecatalog.ServiceBindingPropertiesState, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBindingPropertiesState_To_servicecatalog_ServiceBindingPropertiesState(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBindingPropertiesState_To_v1beta1_ServiceBindingPropertiesState(in *servicecatalog.ServiceBindingPropertiesState, out *ServiceBindingPropertiesState, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Parameters = (*runtime.RawExtension)(unsafe.Pointer(in.Parameters))
@@ -1698,9 +2012,13 @@ func autoConvert_servicecatalog_ServiceBindingPropertiesState_To_v1beta1_Service
 func Convert_servicecatalog_ServiceBindingPropertiesState_To_v1beta1_ServiceBindingPropertiesState(in *servicecatalog.ServiceBindingPropertiesState, out *ServiceBindingPropertiesState, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBindingPropertiesState_To_v1beta1_ServiceBindingPropertiesState(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBindingSpec_To_servicecatalog_ServiceBindingSpec(in *ServiceBindingSpec, out *servicecatalog.ServiceBindingSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_LocalObjectReference_To_servicecatalog_LocalObjectReference(&in.InstanceRef, &out.InstanceRef, s); err != nil {
@@ -1717,9 +2035,13 @@ func autoConvert_v1beta1_ServiceBindingSpec_To_servicecatalog_ServiceBindingSpec
 func Convert_v1beta1_ServiceBindingSpec_To_servicecatalog_ServiceBindingSpec(in *ServiceBindingSpec, out *servicecatalog.ServiceBindingSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBindingSpec_To_servicecatalog_ServiceBindingSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBindingSpec_To_v1beta1_ServiceBindingSpec(in *servicecatalog.ServiceBindingSpec, out *ServiceBindingSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_LocalObjectReference_To_v1beta1_LocalObjectReference(&in.InstanceRef, &out.InstanceRef, s); err != nil {
@@ -1736,9 +2058,13 @@ func autoConvert_servicecatalog_ServiceBindingSpec_To_v1beta1_ServiceBindingSpec
 func Convert_servicecatalog_ServiceBindingSpec_To_v1beta1_ServiceBindingSpec(in *servicecatalog.ServiceBindingSpec, out *ServiceBindingSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBindingSpec_To_v1beta1_ServiceBindingSpec(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBindingStatus_To_servicecatalog_ServiceBindingStatus(in *ServiceBindingStatus, out *servicecatalog.ServiceBindingStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Conditions = *(*[]servicecatalog.ServiceBindingCondition)(unsafe.Pointer(&in.Conditions))
@@ -1756,9 +2082,13 @@ func autoConvert_v1beta1_ServiceBindingStatus_To_servicecatalog_ServiceBindingSt
 func Convert_v1beta1_ServiceBindingStatus_To_servicecatalog_ServiceBindingStatus(in *ServiceBindingStatus, out *servicecatalog.ServiceBindingStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBindingStatus_To_servicecatalog_ServiceBindingStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBindingStatus_To_v1beta1_ServiceBindingStatus(in *servicecatalog.ServiceBindingStatus, out *ServiceBindingStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Conditions = *(*[]ServiceBindingCondition)(unsafe.Pointer(&in.Conditions))
@@ -1776,9 +2106,13 @@ func autoConvert_servicecatalog_ServiceBindingStatus_To_v1beta1_ServiceBindingSt
 func Convert_servicecatalog_ServiceBindingStatus_To_v1beta1_ServiceBindingStatus(in *servicecatalog.ServiceBindingStatus, out *ServiceBindingStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBindingStatus_To_v1beta1_ServiceBindingStatus(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBroker_To_servicecatalog_ServiceBroker(in *ServiceBroker, out *servicecatalog.ServiceBroker, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1793,9 +2127,13 @@ func autoConvert_v1beta1_ServiceBroker_To_servicecatalog_ServiceBroker(in *Servi
 func Convert_v1beta1_ServiceBroker_To_servicecatalog_ServiceBroker(in *ServiceBroker, out *servicecatalog.ServiceBroker, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBroker_To_servicecatalog_ServiceBroker(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBroker_To_v1beta1_ServiceBroker(in *servicecatalog.ServiceBroker, out *ServiceBroker, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1810,9 +2148,13 @@ func autoConvert_servicecatalog_ServiceBroker_To_v1beta1_ServiceBroker(in *servi
 func Convert_servicecatalog_ServiceBroker_To_v1beta1_ServiceBroker(in *servicecatalog.ServiceBroker, out *ServiceBroker, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBroker_To_v1beta1_ServiceBroker(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBrokerAuthInfo_To_servicecatalog_ServiceBrokerAuthInfo(in *ServiceBrokerAuthInfo, out *servicecatalog.ServiceBrokerAuthInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Basic = (*servicecatalog.BasicAuthConfig)(unsafe.Pointer(in.Basic))
@@ -1822,9 +2164,13 @@ func autoConvert_v1beta1_ServiceBrokerAuthInfo_To_servicecatalog_ServiceBrokerAu
 func Convert_v1beta1_ServiceBrokerAuthInfo_To_servicecatalog_ServiceBrokerAuthInfo(in *ServiceBrokerAuthInfo, out *servicecatalog.ServiceBrokerAuthInfo, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBrokerAuthInfo_To_servicecatalog_ServiceBrokerAuthInfo(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBrokerAuthInfo_To_v1beta1_ServiceBrokerAuthInfo(in *servicecatalog.ServiceBrokerAuthInfo, out *ServiceBrokerAuthInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Basic = (*BasicAuthConfig)(unsafe.Pointer(in.Basic))
@@ -1834,9 +2180,13 @@ func autoConvert_servicecatalog_ServiceBrokerAuthInfo_To_v1beta1_ServiceBrokerAu
 func Convert_servicecatalog_ServiceBrokerAuthInfo_To_v1beta1_ServiceBrokerAuthInfo(in *servicecatalog.ServiceBrokerAuthInfo, out *ServiceBrokerAuthInfo, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBrokerAuthInfo_To_v1beta1_ServiceBrokerAuthInfo(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBrokerCondition_To_servicecatalog_ServiceBrokerCondition(in *ServiceBrokerCondition, out *servicecatalog.ServiceBrokerCondition, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Type = servicecatalog.ServiceBrokerConditionType(in.Type)
@@ -1849,9 +2199,13 @@ func autoConvert_v1beta1_ServiceBrokerCondition_To_servicecatalog_ServiceBrokerC
 func Convert_v1beta1_ServiceBrokerCondition_To_servicecatalog_ServiceBrokerCondition(in *ServiceBrokerCondition, out *servicecatalog.ServiceBrokerCondition, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBrokerCondition_To_servicecatalog_ServiceBrokerCondition(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBrokerCondition_To_v1beta1_ServiceBrokerCondition(in *servicecatalog.ServiceBrokerCondition, out *ServiceBrokerCondition, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Type = ServiceBrokerConditionType(in.Type)
@@ -1864,9 +2218,13 @@ func autoConvert_servicecatalog_ServiceBrokerCondition_To_v1beta1_ServiceBrokerC
 func Convert_servicecatalog_ServiceBrokerCondition_To_v1beta1_ServiceBrokerCondition(in *servicecatalog.ServiceBrokerCondition, out *ServiceBrokerCondition, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBrokerCondition_To_v1beta1_ServiceBrokerCondition(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBrokerList_To_servicecatalog_ServiceBrokerList(in *ServiceBrokerList, out *servicecatalog.ServiceBrokerList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1876,9 +2234,13 @@ func autoConvert_v1beta1_ServiceBrokerList_To_servicecatalog_ServiceBrokerList(i
 func Convert_v1beta1_ServiceBrokerList_To_servicecatalog_ServiceBrokerList(in *ServiceBrokerList, out *servicecatalog.ServiceBrokerList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBrokerList_To_servicecatalog_ServiceBrokerList(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBrokerList_To_v1beta1_ServiceBrokerList(in *servicecatalog.ServiceBrokerList, out *ServiceBrokerList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1888,9 +2250,13 @@ func autoConvert_servicecatalog_ServiceBrokerList_To_v1beta1_ServiceBrokerList(i
 func Convert_servicecatalog_ServiceBrokerList_To_v1beta1_ServiceBrokerList(in *servicecatalog.ServiceBrokerList, out *ServiceBrokerList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBrokerList_To_v1beta1_ServiceBrokerList(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBrokerSpec_To_servicecatalog_ServiceBrokerSpec(in *ServiceBrokerSpec, out *servicecatalog.ServiceBrokerSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceBrokerSpec_To_servicecatalog_CommonServiceBrokerSpec(&in.CommonServiceBrokerSpec, &out.CommonServiceBrokerSpec, s); err != nil {
@@ -1902,9 +2268,13 @@ func autoConvert_v1beta1_ServiceBrokerSpec_To_servicecatalog_ServiceBrokerSpec(i
 func Convert_v1beta1_ServiceBrokerSpec_To_servicecatalog_ServiceBrokerSpec(in *ServiceBrokerSpec, out *servicecatalog.ServiceBrokerSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBrokerSpec_To_servicecatalog_ServiceBrokerSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBrokerSpec_To_v1beta1_ServiceBrokerSpec(in *servicecatalog.ServiceBrokerSpec, out *ServiceBrokerSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceBrokerSpec_To_v1beta1_CommonServiceBrokerSpec(&in.CommonServiceBrokerSpec, &out.CommonServiceBrokerSpec, s); err != nil {
@@ -1916,9 +2286,13 @@ func autoConvert_servicecatalog_ServiceBrokerSpec_To_v1beta1_ServiceBrokerSpec(i
 func Convert_servicecatalog_ServiceBrokerSpec_To_v1beta1_ServiceBrokerSpec(in *servicecatalog.ServiceBrokerSpec, out *ServiceBrokerSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBrokerSpec_To_v1beta1_ServiceBrokerSpec(in, out, s)
 }
 func autoConvert_v1beta1_ServiceBrokerStatus_To_servicecatalog_ServiceBrokerStatus(in *ServiceBrokerStatus, out *servicecatalog.ServiceBrokerStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceBrokerStatus_To_servicecatalog_CommonServiceBrokerStatus(&in.CommonServiceBrokerStatus, &out.CommonServiceBrokerStatus, s); err != nil {
@@ -1929,9 +2303,13 @@ func autoConvert_v1beta1_ServiceBrokerStatus_To_servicecatalog_ServiceBrokerStat
 func Convert_v1beta1_ServiceBrokerStatus_To_servicecatalog_ServiceBrokerStatus(in *ServiceBrokerStatus, out *servicecatalog.ServiceBrokerStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceBrokerStatus_To_servicecatalog_ServiceBrokerStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceBrokerStatus_To_v1beta1_ServiceBrokerStatus(in *servicecatalog.ServiceBrokerStatus, out *ServiceBrokerStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceBrokerStatus_To_v1beta1_CommonServiceBrokerStatus(&in.CommonServiceBrokerStatus, &out.CommonServiceBrokerStatus, s); err != nil {
@@ -1942,9 +2320,13 @@ func autoConvert_servicecatalog_ServiceBrokerStatus_To_v1beta1_ServiceBrokerStat
 func Convert_servicecatalog_ServiceBrokerStatus_To_v1beta1_ServiceBrokerStatus(in *servicecatalog.ServiceBrokerStatus, out *ServiceBrokerStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceBrokerStatus_To_v1beta1_ServiceBrokerStatus(in, out, s)
 }
 func autoConvert_v1beta1_ServiceClass_To_servicecatalog_ServiceClass(in *ServiceClass, out *servicecatalog.ServiceClass, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1959,9 +2341,13 @@ func autoConvert_v1beta1_ServiceClass_To_servicecatalog_ServiceClass(in *Service
 func Convert_v1beta1_ServiceClass_To_servicecatalog_ServiceClass(in *ServiceClass, out *servicecatalog.ServiceClass, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceClass_To_servicecatalog_ServiceClass(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceClass_To_v1beta1_ServiceClass(in *servicecatalog.ServiceClass, out *ServiceClass, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -1976,9 +2362,13 @@ func autoConvert_servicecatalog_ServiceClass_To_v1beta1_ServiceClass(in *service
 func Convert_servicecatalog_ServiceClass_To_v1beta1_ServiceClass(in *servicecatalog.ServiceClass, out *ServiceClass, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceClass_To_v1beta1_ServiceClass(in, out, s)
 }
 func autoConvert_v1beta1_ServiceClassList_To_servicecatalog_ServiceClassList(in *ServiceClassList, out *servicecatalog.ServiceClassList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -1988,9 +2378,13 @@ func autoConvert_v1beta1_ServiceClassList_To_servicecatalog_ServiceClassList(in 
 func Convert_v1beta1_ServiceClassList_To_servicecatalog_ServiceClassList(in *ServiceClassList, out *servicecatalog.ServiceClassList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceClassList_To_servicecatalog_ServiceClassList(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceClassList_To_v1beta1_ServiceClassList(in *servicecatalog.ServiceClassList, out *ServiceClassList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -2000,9 +2394,13 @@ func autoConvert_servicecatalog_ServiceClassList_To_v1beta1_ServiceClassList(in 
 func Convert_servicecatalog_ServiceClassList_To_v1beta1_ServiceClassList(in *servicecatalog.ServiceClassList, out *ServiceClassList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceClassList_To_v1beta1_ServiceClassList(in, out, s)
 }
 func autoConvert_v1beta1_ServiceClassSpec_To_servicecatalog_ServiceClassSpec(in *ServiceClassSpec, out *servicecatalog.ServiceClassSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceClassSpec_To_servicecatalog_CommonServiceClassSpec(&in.CommonServiceClassSpec, &out.CommonServiceClassSpec, s); err != nil {
@@ -2014,9 +2412,13 @@ func autoConvert_v1beta1_ServiceClassSpec_To_servicecatalog_ServiceClassSpec(in 
 func Convert_v1beta1_ServiceClassSpec_To_servicecatalog_ServiceClassSpec(in *ServiceClassSpec, out *servicecatalog.ServiceClassSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceClassSpec_To_servicecatalog_ServiceClassSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceClassSpec_To_v1beta1_ServiceClassSpec(in *servicecatalog.ServiceClassSpec, out *ServiceClassSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceClassSpec_To_v1beta1_CommonServiceClassSpec(&in.CommonServiceClassSpec, &out.CommonServiceClassSpec, s); err != nil {
@@ -2028,9 +2430,13 @@ func autoConvert_servicecatalog_ServiceClassSpec_To_v1beta1_ServiceClassSpec(in 
 func Convert_servicecatalog_ServiceClassSpec_To_v1beta1_ServiceClassSpec(in *servicecatalog.ServiceClassSpec, out *ServiceClassSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceClassSpec_To_v1beta1_ServiceClassSpec(in, out, s)
 }
 func autoConvert_v1beta1_ServiceClassStatus_To_servicecatalog_ServiceClassStatus(in *ServiceClassStatus, out *servicecatalog.ServiceClassStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServiceClassStatus_To_servicecatalog_CommonServiceClassStatus(&in.CommonServiceClassStatus, &out.CommonServiceClassStatus, s); err != nil {
@@ -2041,9 +2447,13 @@ func autoConvert_v1beta1_ServiceClassStatus_To_servicecatalog_ServiceClassStatus
 func Convert_v1beta1_ServiceClassStatus_To_servicecatalog_ServiceClassStatus(in *ServiceClassStatus, out *servicecatalog.ServiceClassStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceClassStatus_To_servicecatalog_ServiceClassStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceClassStatus_To_v1beta1_ServiceClassStatus(in *servicecatalog.ServiceClassStatus, out *ServiceClassStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServiceClassStatus_To_v1beta1_CommonServiceClassStatus(&in.CommonServiceClassStatus, &out.CommonServiceClassStatus, s); err != nil {
@@ -2054,9 +2464,13 @@ func autoConvert_servicecatalog_ServiceClassStatus_To_v1beta1_ServiceClassStatus
 func Convert_servicecatalog_ServiceClassStatus_To_v1beta1_ServiceClassStatus(in *servicecatalog.ServiceClassStatus, out *ServiceClassStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceClassStatus_To_v1beta1_ServiceClassStatus(in, out, s)
 }
 func autoConvert_v1beta1_ServiceInstance_To_servicecatalog_ServiceInstance(in *ServiceInstance, out *servicecatalog.ServiceInstance, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -2071,9 +2485,13 @@ func autoConvert_v1beta1_ServiceInstance_To_servicecatalog_ServiceInstance(in *S
 func Convert_v1beta1_ServiceInstance_To_servicecatalog_ServiceInstance(in *ServiceInstance, out *servicecatalog.ServiceInstance, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceInstance_To_servicecatalog_ServiceInstance(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceInstance_To_v1beta1_ServiceInstance(in *servicecatalog.ServiceInstance, out *ServiceInstance, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -2088,9 +2506,13 @@ func autoConvert_servicecatalog_ServiceInstance_To_v1beta1_ServiceInstance(in *s
 func Convert_servicecatalog_ServiceInstance_To_v1beta1_ServiceInstance(in *servicecatalog.ServiceInstance, out *ServiceInstance, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceInstance_To_v1beta1_ServiceInstance(in, out, s)
 }
 func autoConvert_v1beta1_ServiceInstanceCondition_To_servicecatalog_ServiceInstanceCondition(in *ServiceInstanceCondition, out *servicecatalog.ServiceInstanceCondition, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Type = servicecatalog.ServiceInstanceConditionType(in.Type)
@@ -2103,9 +2525,13 @@ func autoConvert_v1beta1_ServiceInstanceCondition_To_servicecatalog_ServiceInsta
 func Convert_v1beta1_ServiceInstanceCondition_To_servicecatalog_ServiceInstanceCondition(in *ServiceInstanceCondition, out *servicecatalog.ServiceInstanceCondition, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceInstanceCondition_To_servicecatalog_ServiceInstanceCondition(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceInstanceCondition_To_v1beta1_ServiceInstanceCondition(in *servicecatalog.ServiceInstanceCondition, out *ServiceInstanceCondition, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Type = ServiceInstanceConditionType(in.Type)
@@ -2118,9 +2544,13 @@ func autoConvert_servicecatalog_ServiceInstanceCondition_To_v1beta1_ServiceInsta
 func Convert_servicecatalog_ServiceInstanceCondition_To_v1beta1_ServiceInstanceCondition(in *servicecatalog.ServiceInstanceCondition, out *ServiceInstanceCondition, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceInstanceCondition_To_v1beta1_ServiceInstanceCondition(in, out, s)
 }
 func autoConvert_v1beta1_ServiceInstanceList_To_servicecatalog_ServiceInstanceList(in *ServiceInstanceList, out *servicecatalog.ServiceInstanceList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -2130,9 +2560,13 @@ func autoConvert_v1beta1_ServiceInstanceList_To_servicecatalog_ServiceInstanceLi
 func Convert_v1beta1_ServiceInstanceList_To_servicecatalog_ServiceInstanceList(in *ServiceInstanceList, out *servicecatalog.ServiceInstanceList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceInstanceList_To_servicecatalog_ServiceInstanceList(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceInstanceList_To_v1beta1_ServiceInstanceList(in *servicecatalog.ServiceInstanceList, out *ServiceInstanceList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -2142,9 +2576,13 @@ func autoConvert_servicecatalog_ServiceInstanceList_To_v1beta1_ServiceInstanceLi
 func Convert_servicecatalog_ServiceInstanceList_To_v1beta1_ServiceInstanceList(in *servicecatalog.ServiceInstanceList, out *ServiceInstanceList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceInstanceList_To_v1beta1_ServiceInstanceList(in, out, s)
 }
 func autoConvert_v1beta1_ServiceInstancePropertiesState_To_servicecatalog_ServiceInstancePropertiesState(in *ServiceInstancePropertiesState, out *servicecatalog.ServiceInstancePropertiesState, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ClusterServicePlanExternalName = in.ClusterServicePlanExternalName
@@ -2159,9 +2597,13 @@ func autoConvert_v1beta1_ServiceInstancePropertiesState_To_servicecatalog_Servic
 func Convert_v1beta1_ServiceInstancePropertiesState_To_servicecatalog_ServiceInstancePropertiesState(in *ServiceInstancePropertiesState, out *servicecatalog.ServiceInstancePropertiesState, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceInstancePropertiesState_To_servicecatalog_ServiceInstancePropertiesState(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceInstancePropertiesState_To_v1beta1_ServiceInstancePropertiesState(in *servicecatalog.ServiceInstancePropertiesState, out *ServiceInstancePropertiesState, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ClusterServicePlanExternalName = in.ClusterServicePlanExternalName
@@ -2176,9 +2618,13 @@ func autoConvert_servicecatalog_ServiceInstancePropertiesState_To_v1beta1_Servic
 func Convert_servicecatalog_ServiceInstancePropertiesState_To_v1beta1_ServiceInstancePropertiesState(in *servicecatalog.ServiceInstancePropertiesState, out *ServiceInstancePropertiesState, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceInstancePropertiesState_To_v1beta1_ServiceInstancePropertiesState(in, out, s)
 }
 func autoConvert_v1beta1_ServiceInstanceSpec_To_servicecatalog_ServiceInstanceSpec(in *ServiceInstanceSpec, out *servicecatalog.ServiceInstanceSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_PlanReference_To_servicecatalog_PlanReference(&in.PlanReference, &out.PlanReference, s); err != nil {
@@ -2198,9 +2644,13 @@ func autoConvert_v1beta1_ServiceInstanceSpec_To_servicecatalog_ServiceInstanceSp
 func Convert_v1beta1_ServiceInstanceSpec_To_servicecatalog_ServiceInstanceSpec(in *ServiceInstanceSpec, out *servicecatalog.ServiceInstanceSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceInstanceSpec_To_servicecatalog_ServiceInstanceSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceInstanceSpec_To_v1beta1_ServiceInstanceSpec(in *servicecatalog.ServiceInstanceSpec, out *ServiceInstanceSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_PlanReference_To_v1beta1_PlanReference(&in.PlanReference, &out.PlanReference, s); err != nil {
@@ -2220,9 +2670,13 @@ func autoConvert_servicecatalog_ServiceInstanceSpec_To_v1beta1_ServiceInstanceSp
 func Convert_servicecatalog_ServiceInstanceSpec_To_v1beta1_ServiceInstanceSpec(in *servicecatalog.ServiceInstanceSpec, out *ServiceInstanceSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceInstanceSpec_To_v1beta1_ServiceInstanceSpec(in, out, s)
 }
 func autoConvert_v1beta1_ServiceInstanceStatus_To_servicecatalog_ServiceInstanceStatus(in *ServiceInstanceStatus, out *servicecatalog.ServiceInstanceStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Conditions = *(*[]servicecatalog.ServiceInstanceCondition)(unsafe.Pointer(&in.Conditions))
@@ -2244,9 +2698,13 @@ func autoConvert_v1beta1_ServiceInstanceStatus_To_servicecatalog_ServiceInstance
 func Convert_v1beta1_ServiceInstanceStatus_To_servicecatalog_ServiceInstanceStatus(in *ServiceInstanceStatus, out *servicecatalog.ServiceInstanceStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServiceInstanceStatus_To_servicecatalog_ServiceInstanceStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ServiceInstanceStatus_To_v1beta1_ServiceInstanceStatus(in *servicecatalog.ServiceInstanceStatus, out *ServiceInstanceStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Conditions = *(*[]ServiceInstanceCondition)(unsafe.Pointer(&in.Conditions))
@@ -2268,9 +2726,13 @@ func autoConvert_servicecatalog_ServiceInstanceStatus_To_v1beta1_ServiceInstance
 func Convert_servicecatalog_ServiceInstanceStatus_To_v1beta1_ServiceInstanceStatus(in *servicecatalog.ServiceInstanceStatus, out *ServiceInstanceStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServiceInstanceStatus_To_v1beta1_ServiceInstanceStatus(in, out, s)
 }
 func autoConvert_v1beta1_ServicePlan_To_servicecatalog_ServicePlan(in *ServicePlan, out *servicecatalog.ServicePlan, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -2285,9 +2747,13 @@ func autoConvert_v1beta1_ServicePlan_To_servicecatalog_ServicePlan(in *ServicePl
 func Convert_v1beta1_ServicePlan_To_servicecatalog_ServicePlan(in *ServicePlan, out *servicecatalog.ServicePlan, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServicePlan_To_servicecatalog_ServicePlan(in, out, s)
 }
 func autoConvert_servicecatalog_ServicePlan_To_v1beta1_ServicePlan(in *servicecatalog.ServicePlan, out *ServicePlan, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -2302,9 +2768,13 @@ func autoConvert_servicecatalog_ServicePlan_To_v1beta1_ServicePlan(in *serviceca
 func Convert_servicecatalog_ServicePlan_To_v1beta1_ServicePlan(in *servicecatalog.ServicePlan, out *ServicePlan, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServicePlan_To_v1beta1_ServicePlan(in, out, s)
 }
 func autoConvert_v1beta1_ServicePlanList_To_servicecatalog_ServicePlanList(in *ServicePlanList, out *servicecatalog.ServicePlanList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -2314,9 +2784,13 @@ func autoConvert_v1beta1_ServicePlanList_To_servicecatalog_ServicePlanList(in *S
 func Convert_v1beta1_ServicePlanList_To_servicecatalog_ServicePlanList(in *ServicePlanList, out *servicecatalog.ServicePlanList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServicePlanList_To_servicecatalog_ServicePlanList(in, out, s)
 }
 func autoConvert_servicecatalog_ServicePlanList_To_v1beta1_ServicePlanList(in *servicecatalog.ServicePlanList, out *ServicePlanList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -2326,9 +2800,13 @@ func autoConvert_servicecatalog_ServicePlanList_To_v1beta1_ServicePlanList(in *s
 func Convert_servicecatalog_ServicePlanList_To_v1beta1_ServicePlanList(in *servicecatalog.ServicePlanList, out *ServicePlanList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServicePlanList_To_v1beta1_ServicePlanList(in, out, s)
 }
 func autoConvert_v1beta1_ServicePlanSpec_To_servicecatalog_ServicePlanSpec(in *ServicePlanSpec, out *servicecatalog.ServicePlanSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServicePlanSpec_To_servicecatalog_CommonServicePlanSpec(&in.CommonServicePlanSpec, &out.CommonServicePlanSpec, s); err != nil {
@@ -2343,9 +2821,13 @@ func autoConvert_v1beta1_ServicePlanSpec_To_servicecatalog_ServicePlanSpec(in *S
 func Convert_v1beta1_ServicePlanSpec_To_servicecatalog_ServicePlanSpec(in *ServicePlanSpec, out *servicecatalog.ServicePlanSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServicePlanSpec_To_servicecatalog_ServicePlanSpec(in, out, s)
 }
 func autoConvert_servicecatalog_ServicePlanSpec_To_v1beta1_ServicePlanSpec(in *servicecatalog.ServicePlanSpec, out *ServicePlanSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServicePlanSpec_To_v1beta1_CommonServicePlanSpec(&in.CommonServicePlanSpec, &out.CommonServicePlanSpec, s); err != nil {
@@ -2360,9 +2842,13 @@ func autoConvert_servicecatalog_ServicePlanSpec_To_v1beta1_ServicePlanSpec(in *s
 func Convert_servicecatalog_ServicePlanSpec_To_v1beta1_ServicePlanSpec(in *servicecatalog.ServicePlanSpec, out *ServicePlanSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServicePlanSpec_To_v1beta1_ServicePlanSpec(in, out, s)
 }
 func autoConvert_v1beta1_ServicePlanStatus_To_servicecatalog_ServicePlanStatus(in *ServicePlanStatus, out *servicecatalog.ServicePlanStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_v1beta1_CommonServicePlanStatus_To_servicecatalog_CommonServicePlanStatus(&in.CommonServicePlanStatus, &out.CommonServicePlanStatus, s); err != nil {
@@ -2373,9 +2859,13 @@ func autoConvert_v1beta1_ServicePlanStatus_To_servicecatalog_ServicePlanStatus(i
 func Convert_v1beta1_ServicePlanStatus_To_servicecatalog_ServicePlanStatus(in *ServicePlanStatus, out *servicecatalog.ServicePlanStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_ServicePlanStatus_To_servicecatalog_ServicePlanStatus(in, out, s)
 }
 func autoConvert_servicecatalog_ServicePlanStatus_To_v1beta1_ServicePlanStatus(in *servicecatalog.ServicePlanStatus, out *ServicePlanStatus, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := Convert_servicecatalog_CommonServicePlanStatus_To_v1beta1_CommonServicePlanStatus(&in.CommonServicePlanStatus, &out.CommonServicePlanStatus, s); err != nil {
@@ -2386,9 +2876,13 @@ func autoConvert_servicecatalog_ServicePlanStatus_To_v1beta1_ServicePlanStatus(i
 func Convert_servicecatalog_ServicePlanStatus_To_v1beta1_ServicePlanStatus(in *servicecatalog.ServicePlanStatus, out *ServicePlanStatus, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_ServicePlanStatus_To_v1beta1_ServicePlanStatus(in, out, s)
 }
 func autoConvert_v1beta1_UserInfo_To_servicecatalog_UserInfo(in *UserInfo, out *servicecatalog.UserInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Username = in.Username
@@ -2400,9 +2894,13 @@ func autoConvert_v1beta1_UserInfo_To_servicecatalog_UserInfo(in *UserInfo, out *
 func Convert_v1beta1_UserInfo_To_servicecatalog_UserInfo(in *UserInfo, out *servicecatalog.UserInfo, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1beta1_UserInfo_To_servicecatalog_UserInfo(in, out, s)
 }
 func autoConvert_servicecatalog_UserInfo_To_v1beta1_UserInfo(in *servicecatalog.UserInfo, out *UserInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Username = in.Username
@@ -2412,6 +2910,8 @@ func autoConvert_servicecatalog_UserInfo_To_v1beta1_UserInfo(in *servicecatalog.
 	return nil
 }
 func Convert_servicecatalog_UserInfo_To_v1beta1_UserInfo(in *servicecatalog.UserInfo, out *UserInfo, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return autoConvert_servicecatalog_UserInfo_To_v1beta1_UserInfo(in, out, s)

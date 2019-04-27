@@ -13,6 +13,8 @@ const (
 func TestGetFinalizers(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj := &sc.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Finalizers: []string{testFinalizer}}}
 	finalizers, err := GetFinalizers(obj)
 	if err != nil {
@@ -28,6 +30,8 @@ func TestGetFinalizers(t *testing.T) {
 func TestAddFinalizer(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj := &sc.ServiceInstance{ObjectMeta: metav1.ObjectMeta{}}
 	if err := AddFinalizer(obj, testFinalizer); err != nil {
 		t.Fatal(err)
@@ -40,6 +44,8 @@ func TestAddFinalizer(t *testing.T) {
 	}
 }
 func TestRemoveFinalizer(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj := &sc.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Finalizers: []string{testFinalizer}}}

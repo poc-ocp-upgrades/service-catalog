@@ -92,6 +92,8 @@ type instanceOperationBackoff struct {
 func (c *controller) enqueueInstance(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
 	if err != nil {
 		klog.Errorf("Couldn't get key for object %+v: %v", obj, err)
@@ -100,6 +102,8 @@ func (c *controller) enqueueInstance(obj interface{}) {
 	c.instanceQueue.Add(key)
 }
 func (c *controller) enqueueInstanceAfter(obj interface{}, d time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
@@ -112,6 +116,8 @@ func (c *controller) enqueueInstanceAfter(obj interface{}, d time.Duration) {
 func (c *controller) instanceAdd(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if klog.V(eventHandlerLogLevel) {
 		instance := obj.(*v1beta1.ServiceInstance)
 		pcb := pretty.NewInstanceContextBuilder(instance)
@@ -120,6 +126,8 @@ func (c *controller) instanceAdd(obj interface{}) {
 	c.enqueueInstance(obj)
 }
 func (c *controller) instanceUpdate(oldObj, newObj interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := newObj.(*v1beta1.ServiceInstance)
@@ -138,6 +146,8 @@ func (c *controller) instanceUpdate(oldObj, newObj interface{}) {
 func (c *controller) instanceDelete(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*v1beta1.ServiceInstance)
 	if instance == nil || !ok {
 		return
@@ -151,10 +161,14 @@ func (c *controller) instanceDelete(obj interface{}) {
 func (c *controller) requeueServiceInstanceForPoll(key string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.instanceQueue.Add(key)
 	return nil
 }
 func (c *controller) beginPollingServiceInstance(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(instance)
@@ -170,9 +184,13 @@ func (c *controller) beginPollingServiceInstance(instance *v1beta1.ServiceInstan
 func (c *controller) continuePollingServiceInstance(instance *v1beta1.ServiceInstance) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.beginPollingServiceInstance(instance)
 }
 func (c *controller) finishPollingServiceInstance(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(instance)
@@ -188,6 +206,8 @@ func (c *controller) finishPollingServiceInstance(instance *v1beta1.ServiceInsta
 func (c *controller) resetPollingRateLimiterForServiceInstance(instance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(instance)
 	if err != nil {
 		pcb := pretty.NewInstanceContextBuilder(instance)
@@ -198,6 +218,8 @@ func (c *controller) resetPollingRateLimiterForServiceInstance(instance *v1beta1
 	c.instancePollingQueue.Forget(key)
 }
 func getReconciliationActionForServiceInstance(instance *v1beta1.ServiceInstance) ReconciliationAction {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch {
@@ -212,6 +234,8 @@ func getReconciliationActionForServiceInstance(instance *v1beta1.ServiceInstance
 	}
 }
 func (c *controller) reconcileServiceInstanceKey(key string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	namespace, name, err := cache.SplitMetaNamespaceKey(key)
@@ -231,6 +255,8 @@ func (c *controller) reconcileServiceInstanceKey(key string) error {
 	return c.reconcileServiceInstance(instance)
 }
 func (c *controller) reconcileServiceInstance(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	updated, err := c.initObservedGeneration(instance)
@@ -265,6 +291,8 @@ func (c *controller) reconcileServiceInstance(instance *v1beta1.ServiceInstance)
 func (c *controller) initObservedGeneration(instance *v1beta1.ServiceInstance) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if instance.Status.ObservedGeneration == 0 && instance.Status.ReconciledGeneration != 0 {
 		instance = instance.DeepCopy()
 		instance.Status.ObservedGeneration = instance.Status.ReconciledGeneration
@@ -285,6 +313,8 @@ func (c *controller) initObservedGeneration(instance *v1beta1.ServiceInstance) (
 func (c *controller) initOrphanMitigationCondition(instance *v1beta1.ServiceInstance) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !isServiceInstanceOrphanMitigation(instance) && instance.Status.OrphanMitigationInProgress {
 		instance := instance.DeepCopy()
 		reason := startingInstanceOrphanMitigationReason
@@ -300,6 +330,8 @@ func (c *controller) initOrphanMitigationCondition(instance *v1beta1.ServiceInst
 	return false, nil
 }
 func (c *controller) setRetryBackoffRequired(instance *v1beta1.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -318,6 +350,8 @@ func (c *controller) setRetryBackoffRequired(instance *v1beta1.ServiceInstance) 
 	klog.V(4).Info(pcb.Messagef("BrokerOpRetry: added %v (%v/%v) generation %v to backoffBeforeRetrying map", key, instance.GetNamespace(), instance.GetName(), instance.Generation))
 }
 func (c *controller) backoffAndRequeueIfRetrying(instance *v1beta1.ServiceInstance, operation string) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -353,6 +387,8 @@ func (c *controller) backoffAndRequeueIfRetrying(instance *v1beta1.ServiceInstan
 func (c *controller) purgeExpiredRetryEntries() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := time.Now()
 	c.instanceOperationRetryQueue.mutex.Lock()
 	defer c.instanceOperationRetryQueue.mutex.Unlock()
@@ -371,6 +407,8 @@ func (c *controller) purgeExpiredRetryEntries() {
 func (c *controller) removeInstanceFromRetryMap(instance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	key := string(instance.GetUID())
 	c.instanceOperationRetryQueue.mutex.Lock()
@@ -380,6 +418,8 @@ func (c *controller) removeInstanceFromRetryMap(instance *v1beta1.ServiceInstanc
 	klog.V(4).Infof(pcb.Message("BrokerOpRetry: removed %v from instanceOperationRetryQueue"), key)
 }
 func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -482,6 +522,8 @@ func (c *controller) reconcileServiceInstanceAdd(instance *v1beta1.ServiceInstan
 	return c.processProvisionSuccess(instance, response.DashboardURL)
 }
 func (c *controller) reconcileServiceInstanceUpdate(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -602,6 +644,8 @@ func (c *controller) reconcileServiceInstanceUpdate(instance *v1beta1.ServiceIns
 func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceInstance) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if finalizers := sets.NewString(instance.Finalizers...); !finalizers.Has(v1beta1.FinalizerServiceCatalog) {
 		return nil
 	}
@@ -697,6 +741,8 @@ func (c *controller) reconcileServiceInstanceDelete(instance *v1beta1.ServiceIns
 	return c.processDeprovisionSuccess(instance)
 }
 func (c *controller) pollServiceInstance(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -837,10 +883,14 @@ func (c *controller) pollServiceInstance(instance *v1beta1.ServiceInstance) erro
 func clearServiceInstanceAsyncOsbOperation(instance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance.Status.AsyncOpInProgress = false
 	instance.Status.LastOperation = nil
 }
 func isServiceInstanceProcessedAlready(instance *v1beta1.ServiceInstance) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return instance.Status.ObservedGeneration >= instance.Generation && (isServiceInstanceReady(instance) || isServiceInstanceFailed(instance)) && !instance.Status.OrphanMitigationInProgress
@@ -848,11 +898,15 @@ func isServiceInstanceProcessedAlready(instance *v1beta1.ServiceInstance) bool {
 func (c *controller) processServiceInstancePollingFailureRetryTimeout(instance *v1beta1.ServiceInstance, readyCond *v1beta1.ServiceInstanceCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	msg := "Stopping reconciliation retries because too much time has elapsed"
 	failedCond := newServiceInstanceFailedCondition(v1beta1.ConditionTrue, errorReconciliationRetryTimeoutReason, msg)
 	return c.processServiceInstancePollingTerminalFailure(instance, readyCond, failedCond)
 }
 func (c *controller) processServiceInstancePollingTerminalFailure(instance *v1beta1.ServiceInstance, readyCond, failedCond *v1beta1.ServiceInstanceCondition) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	mitigatingOrphan := instance.Status.OrphanMitigationInProgress
@@ -878,6 +932,8 @@ func (c *controller) processServiceInstancePollingTerminalFailure(instance *v1be
 func (c *controller) processServiceInstancePollingTemporaryFailure(instance *v1beta1.ServiceInstance, readyCond *v1beta1.ServiceInstanceCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.recorder.Event(instance, corev1.EventTypeWarning, readyCond.Reason, readyCond.Message)
 	setServiceInstanceCondition(instance, v1beta1.ServiceInstanceConditionReady, readyCond.Status, readyCond.Reason, readyCond.Message)
 	if _, err := c.updateServiceInstanceStatus(instance); err != nil {
@@ -888,6 +944,8 @@ func (c *controller) processServiceInstancePollingTemporaryFailure(instance *v1b
 func (c *controller) resolveReferences(instance *v1beta1.ServiceInstance) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if instance.Spec.ClusterServiceClassSpecified() {
 		return c.resolveClusterReferences(instance)
 	} else if instance.Spec.ServiceClassSpecified() {
@@ -896,6 +954,8 @@ func (c *controller) resolveReferences(instance *v1beta1.ServiceInstance) (bool,
 	return false, stderrors.New(errorAmbiguousPlanReferenceScope)
 }
 func (c *controller) resolveClusterReferences(instance *v1beta1.ServiceInstance) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if instance.Spec.ClusterServiceClassRef != nil && instance.Spec.ClusterServicePlanRef != nil {
@@ -935,6 +995,8 @@ func (c *controller) resolveClusterReferences(instance *v1beta1.ServiceInstance)
 func (c *controller) resolveNamespacedReferences(instance *v1beta1.ServiceInstance) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if instance.Spec.ServiceClassRef != nil && instance.Spec.ServicePlanRef != nil {
 		return false, nil
 	}
@@ -972,6 +1034,8 @@ func (c *controller) resolveNamespacedReferences(instance *v1beta1.ServiceInstan
 func (c *controller) resolveClusterServiceClassRef(instance *v1beta1.ServiceInstance) (*v1beta1.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !instance.Spec.ClusterServiceClassSpecified() {
 		return nil, fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ClusterServiceClassExternalName, ClusterServiceClassExternalID, nor ClusterServiceClassName is set", instance.Namespace, instance.Name)
 	}
@@ -1004,6 +1068,8 @@ func (c *controller) resolveClusterServiceClassRef(instance *v1beta1.ServiceInst
 	return sc, nil
 }
 func (c *controller) resolveServiceClassRef(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !instance.Spec.ServiceClassSpecified() {
@@ -1040,6 +1106,8 @@ func (c *controller) resolveServiceClassRef(instance *v1beta1.ServiceInstance) (
 func (c *controller) resolveClusterServicePlanRef(instance *v1beta1.ServiceInstance, brokerName string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !instance.Spec.ClusterServicePlanSpecified() {
 		return fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ClusterServicePlanExternalName, ClusterServicePlanExternalID, nor ClusterServicePlanName is set", instance.Namespace, instance.Name)
 	}
@@ -1070,6 +1138,8 @@ func (c *controller) resolveClusterServicePlanRef(instance *v1beta1.ServiceInsta
 func (c *controller) resolveServicePlanRef(instance *v1beta1.ServiceInstance, brokerName string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !instance.Spec.ServicePlanSpecified() {
 		return fmt.Errorf("ServiceInstance %s/%s is in invalid state, neither ServicePlanExternalName, ServicePlanExternalID, nor ServicePlanName is set", instance.Namespace, instance.Name)
 	}
@@ -1098,6 +1168,8 @@ func (c *controller) resolveServicePlanRef(instance *v1beta1.ServiceInstance, br
 	return nil
 }
 func (c *controller) applyDefaultProvisioningParameters(instance *v1beta1.ServiceInstance) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if instance.Status.DefaultProvisionParameters != nil {
@@ -1131,6 +1203,8 @@ func (c *controller) applyDefaultProvisioningParameters(instance *v1beta1.Servic
 	return updatedInstance.ResourceVersion != instance.ResourceVersion, err
 }
 func (c *controller) getDefaultProvisioningParameters(instance *v1beta1.ServiceInstance) (*runtime.RawExtension, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var classDefaults, planDefaults *runtime.RawExtension
@@ -1169,6 +1243,8 @@ func (c *controller) getDefaultProvisioningParameters(instance *v1beta1.ServiceI
 func (c *controller) prepareProvisionRequest(instance *v1beta1.ServiceInstance) (*osb.ProvisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if instance.Spec.ClusterServiceClassSpecified() {
 		serviceClass, servicePlan, _, _, err := c.getClusterServiceClassPlanAndClusterServiceBroker(instance)
 		if err != nil {
@@ -1201,9 +1277,13 @@ func (c *controller) prepareProvisionRequest(instance *v1beta1.ServiceInstance) 
 func newServiceInstanceCondition(status v1beta1.ConditionStatus, condType v1beta1.ServiceInstanceConditionType, reason, message string) *v1beta1.ServiceInstanceCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceInstanceCondition{Type: condType, Status: status, Reason: reason, Message: message, LastTransitionTime: metav1.Now()}
 }
 func newServiceInstanceReadyCondition(status v1beta1.ConditionStatus, reason, message string) *v1beta1.ServiceInstanceCondition {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newServiceInstanceCondition(status, v1beta1.ServiceInstanceConditionReady, reason, message)
@@ -1211,9 +1291,13 @@ func newServiceInstanceReadyCondition(status v1beta1.ConditionStatus, reason, me
 func newServiceInstanceFailedCondition(status v1beta1.ConditionStatus, reason, message string) *v1beta1.ServiceInstanceCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServiceInstanceCondition(status, v1beta1.ServiceInstanceConditionFailed, reason, message)
 }
 func removeServiceInstanceCondition(toUpdate *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(toUpdate)
@@ -1231,9 +1315,13 @@ func removeServiceInstanceCondition(toUpdate *v1beta1.ServiceInstance, condition
 func setServiceInstanceCondition(toUpdate *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType, status v1beta1.ConditionStatus, reason, message string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceInstanceConditionInternal(toUpdate, conditionType, status, reason, message, metav1.Now())
 }
 func setServiceInstanceConditionInternal(toUpdate *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType, status v1beta1.ConditionStatus, reason, message string, t metav1.Time) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(toUpdate)
@@ -1265,6 +1353,8 @@ func setServiceInstanceConditionInternal(toUpdate *v1beta1.ServiceInstance, cond
 func (c *controller) updateServiceInstanceReferences(toUpdate *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(toUpdate)
 	klog.V(4).Info(pcb.Message("Updating references"))
 	status := toUpdate.Status
@@ -1276,6 +1366,8 @@ func (c *controller) updateServiceInstanceReferences(toUpdate *v1beta1.ServiceIn
 	return updatedInstance, err
 }
 func (c *controller) updateServiceInstanceWithRetries(instance *v1beta1.ServiceInstance, conflictResolutionFunc func(*v1beta1.ServiceInstance)) (*v1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -1309,9 +1401,13 @@ func (c *controller) updateServiceInstanceWithRetries(instance *v1beta1.ServiceI
 func (c *controller) updateServiceInstanceStatus(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.updateServiceInstanceStatusWithRetries(instance, nil)
 }
 func (c *controller) updateServiceInstanceStatusWithRetries(instance *v1beta1.ServiceInstance, postConflictUpdateFunc func(*v1beta1.ServiceInstance)) (*v1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -1348,6 +1444,8 @@ func (c *controller) updateServiceInstanceStatusWithRetries(instance *v1beta1.Se
 func (c *controller) updateServiceInstanceCondition(instance *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType, status v1beta1.ConditionStatus, reason, message string) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	toUpdate := instance.DeepCopy()
 	setServiceInstanceCondition(toUpdate, conditionType, status, reason, message)
@@ -1361,10 +1459,14 @@ func (c *controller) updateServiceInstanceCondition(instance *v1beta1.ServiceIns
 func (c *controller) prepareObservedGeneration(toUpdate *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	toUpdate.Status.ObservedGeneration = toUpdate.Generation
 	removeServiceInstanceCondition(toUpdate, v1beta1.ServiceInstanceConditionFailed)
 }
 func isServiceInstancePropertiesStateEqual(s1 *v1beta1.ServiceInstancePropertiesState, s2 *v1beta1.ServiceInstancePropertiesState) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s1 == nil && s2 == nil {
@@ -1397,6 +1499,8 @@ func isServiceInstancePropertiesStateEqual(s1 *v1beta1.ServiceInstanceProperties
 func (c *controller) recordStartOfServiceInstanceOperation(toUpdate *v1beta1.ServiceInstance, operation v1beta1.ServiceInstanceOperation, inProgressProperties *v1beta1.ServiceInstancePropertiesState) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	clearServiceInstanceCurrentOperation(toUpdate)
 	toUpdate.Status.CurrentOperation = operation
 	now := metav1.Now()
@@ -1423,6 +1527,8 @@ func (c *controller) recordStartOfServiceInstanceOperation(toUpdate *v1beta1.Ser
 func (c *controller) checkForRemovedClusterClassAndPlan(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ClusterServiceClass, servicePlan *v1beta1.ClusterServicePlan) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	classDeleted := serviceClass.Status.RemovedFromBrokerCatalog
 	planDeleted := servicePlan.Status.RemovedFromBrokerCatalog
 	if !classDeleted && !planDeleted {
@@ -1438,6 +1544,8 @@ func (c *controller) checkForRemovedClusterClassAndPlan(instance *v1beta1.Servic
 	return &operationError{reason: errorDeletedClusterServiceClassReason, message: fmt.Sprintf("%s has been deleted; cannot provision.", pretty.ClusterServiceClassName(serviceClass))}
 }
 func (c *controller) checkForRemovedClassAndPlan(instance *v1beta1.ServiceInstance, serviceClass *v1beta1.ServiceClass, servicePlan *v1beta1.ServicePlan) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	classDeleted := serviceClass.Status.RemovedFromBrokerCatalog
@@ -1457,6 +1565,8 @@ func (c *controller) checkForRemovedClassAndPlan(instance *v1beta1.ServiceInstan
 func clearServiceInstanceCurrentOperation(toUpdate *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	toUpdate.Status.CurrentOperation = ""
 	toUpdate.Status.OperationStartTime = nil
 	toUpdate.Status.AsyncOpInProgress = false
@@ -1464,6 +1574,8 @@ func clearServiceInstanceCurrentOperation(toUpdate *v1beta1.ServiceInstance) {
 	toUpdate.Status.InProgressProperties = nil
 }
 func (c *controller) checkServiceInstanceHasExistingBindings(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bindingLister := c.bindingLister.ServiceBindings(instance.Namespace)
@@ -1489,6 +1601,8 @@ type requestHelper struct {
 }
 
 func (c *controller) prepareRequestHelper(instance *v1beta1.ServiceInstance, planName string, planID string, setInProgressProperties bool) (*requestHelper, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rh := &requestHelper{}
@@ -1530,6 +1644,8 @@ func (c *controller) prepareRequestHelper(instance *v1beta1.ServiceInstance, pla
 func (c *controller) innerPrepareProvisionRequest(instance *v1beta1.ServiceInstance, classCommon v1beta1.CommonServiceClassSpec, planCommon v1beta1.CommonServicePlanSpec) (*osb.ProvisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rh, err := c.prepareRequestHelper(instance, planCommon.ExternalName, planCommon.ExternalID, true)
 	if err != nil {
 		return nil, nil, err
@@ -1538,6 +1654,8 @@ func (c *controller) innerPrepareProvisionRequest(instance *v1beta1.ServiceInsta
 	return request, rh.inProgressProperties, nil
 }
 func (c *controller) prepareUpdateInstanceRequest(instance *v1beta1.ServiceInstance) (*osb.UpdateInstanceRequest, *v1beta1.ServiceInstancePropertiesState, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var rh *requestHelper
@@ -1588,6 +1706,8 @@ func (c *controller) prepareUpdateInstanceRequest(instance *v1beta1.ServiceInsta
 	return request, rh.inProgressProperties, nil
 }
 func (c *controller) prepareDeprovisionRequest(instance *v1beta1.ServiceInstance) (*osb.DeprovisionRequest, *v1beta1.ServiceInstancePropertiesState, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rh, err := c.prepareRequestHelper(instance, "", "", true)
@@ -1645,6 +1765,8 @@ func (c *controller) prepareDeprovisionRequest(instance *v1beta1.ServiceInstance
 func (c *controller) prepareServiceInstanceLastOperationRequest(instance *v1beta1.ServiceInstance) (*osb.LastOperationRequest, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if instance.Status.InProgressProperties == nil {
 		pcb := pretty.NewInstanceContextBuilder(instance)
 		err := stderrors.New("Instance.Status.InProgressProperties can not be nil")
@@ -1699,6 +1821,8 @@ func (c *controller) prepareServiceInstanceLastOperationRequest(instance *v1beta
 func (c *controller) processServiceInstanceGracefulDeletionSuccess(instance *v1beta1.ServiceInstance) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.removeFinalizer(instance)
 	if _, err := c.updateServiceInstanceStatusWithRetries(instance, c.removeFinalizer); err != nil {
 		return err
@@ -1711,11 +1835,15 @@ func (c *controller) processServiceInstanceGracefulDeletionSuccess(instance *v1b
 func (c *controller) removeFinalizer(instance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	finalizers := sets.NewString(instance.Finalizers...)
 	finalizers.Delete(v1beta1.FinalizerServiceCatalog)
 	instance.Finalizers = finalizers.List()
 }
 func (c *controller) handleServiceInstanceReconciliationError(instance *v1beta1.ServiceInstance, err error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if resourceErr, ok := err.(*operationError); ok {
@@ -1731,6 +1859,8 @@ func (c *controller) handleServiceInstanceReconciliationError(instance *v1beta1.
 func (c *controller) processServiceInstanceOperationError(instance *v1beta1.ServiceInstance, readyCond *v1beta1.ServiceInstanceCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceInstanceCondition(instance, v1beta1.ServiceInstanceConditionReady, readyCond.Status, readyCond.Reason, readyCond.Message)
 	if _, err := c.updateServiceInstanceStatus(instance); err != nil {
 		return err
@@ -1739,6 +1869,8 @@ func (c *controller) processServiceInstanceOperationError(instance *v1beta1.Serv
 	return fmt.Errorf(readyCond.Message)
 }
 func (c *controller) processProvisionSuccess(instance *v1beta1.ServiceInstance, dashboardURL *string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	setServiceInstanceDashboardURL(instance, dashboardURL)
@@ -1757,6 +1889,8 @@ func (c *controller) processProvisionSuccess(instance *v1beta1.ServiceInstance, 
 func (c *controller) processTerminalProvisionFailure(instance *v1beta1.ServiceInstance, readyCond, failedCond *v1beta1.ServiceInstanceCondition, shouldMitigateOrphan bool) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if failedCond == nil {
 		return fmt.Errorf("failedCond must not be nil")
 	}
@@ -1766,9 +1900,13 @@ func (c *controller) processTerminalProvisionFailure(instance *v1beta1.ServiceIn
 func (c *controller) processTemporaryProvisionFailure(instance *v1beta1.ServiceInstance, readyCond *v1beta1.ServiceInstanceCondition, shouldMitigateOrphan bool) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.processProvisionFailure(instance, readyCond, nil, shouldMitigateOrphan)
 }
 func (c *controller) processProvisionFailure(instance *v1beta1.ServiceInstance, readyCond, failedCond *v1beta1.ServiceInstanceCondition, shouldMitigateOrphan bool) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.recorder.Event(instance, corev1.EventTypeWarning, readyCond.Reason, readyCond.Message)
@@ -1805,6 +1943,8 @@ func (c *controller) processProvisionFailure(instance *v1beta1.ServiceInstance, 
 func (c *controller) processProvisionAsyncResponse(instance *v1beta1.ServiceInstance, response *osb.ProvisionResponse) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceInstanceDashboardURL(instance, response.DashboardURL)
 	setServiceInstanceLastOperation(instance, response.OperationKey)
 	setServiceInstanceCondition(instance, v1beta1.ServiceInstanceConditionReady, v1beta1.ConditionFalse, asyncProvisioningReason, asyncProvisioningMessage)
@@ -1816,6 +1956,8 @@ func (c *controller) processProvisionAsyncResponse(instance *v1beta1.ServiceInst
 	return c.beginPollingServiceInstance(instance)
 }
 func (c *controller) processUpdateServiceInstanceSuccess(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	setServiceInstanceCondition(instance, v1beta1.ServiceInstanceConditionReady, v1beta1.ConditionTrue, successUpdateInstanceReason, successUpdateInstanceMessage)
@@ -1832,6 +1974,8 @@ func (c *controller) processUpdateServiceInstanceSuccess(instance *v1beta1.Servi
 func (c *controller) processTerminalUpdateServiceInstanceFailure(instance *v1beta1.ServiceInstance, readyCond, failedCond *v1beta1.ServiceInstanceCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if failedCond == nil {
 		return fmt.Errorf("failedCond must not be nil")
 	}
@@ -1841,9 +1985,13 @@ func (c *controller) processTerminalUpdateServiceInstanceFailure(instance *v1bet
 func (c *controller) processTemporaryUpdateServiceInstanceFailure(instance *v1beta1.ServiceInstance, readyCond *v1beta1.ServiceInstanceCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.processUpdateServiceInstanceFailure(instance, readyCond, nil)
 }
 func (c *controller) processUpdateServiceInstanceFailure(instance *v1beta1.ServiceInstance, readyCond, failedCond *v1beta1.ServiceInstanceCondition) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.recorder.Event(instance, corev1.EventTypeWarning, readyCond.Reason, readyCond.Message)
@@ -1865,6 +2013,8 @@ func (c *controller) processUpdateServiceInstanceFailure(instance *v1beta1.Servi
 func (c *controller) processUpdateServiceInstanceAsyncResponse(instance *v1beta1.ServiceInstance, response *osb.UpdateInstanceResponse) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceInstanceLastOperation(instance, response.OperationKey)
 	setServiceInstanceCondition(instance, v1beta1.ServiceInstanceConditionReady, v1beta1.ConditionFalse, asyncUpdatingInstanceReason, asyncUpdatingInstanceMessage)
 	instance.Status.AsyncOpInProgress = true
@@ -1875,6 +2025,8 @@ func (c *controller) processUpdateServiceInstanceAsyncResponse(instance *v1beta1
 	return c.beginPollingServiceInstance(instance)
 }
 func (c *controller) processDeprovisionSuccess(instance *v1beta1.ServiceInstance) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	mitigatingOrphan := instance.Status.OrphanMitigationInProgress
@@ -1906,6 +2058,8 @@ func (c *controller) processDeprovisionSuccess(instance *v1beta1.ServiceInstance
 func (c *controller) processDeprovisionFailure(instance *v1beta1.ServiceInstance, readyCond, failedCond *v1beta1.ServiceInstanceCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if failedCond == nil {
 		return fmt.Errorf("failedCond must not be nil")
 	}
@@ -1932,6 +2086,8 @@ func (c *controller) processDeprovisionFailure(instance *v1beta1.ServiceInstance
 func (c *controller) processDeprovisionAsyncResponse(instance *v1beta1.ServiceInstance, response *osb.DeprovisionResponse) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceInstanceLastOperation(instance, response.OperationKey)
 	setServiceInstanceCondition(instance, v1beta1.ServiceInstanceConditionReady, v1beta1.ConditionFalse, asyncDeprovisioningReason, asyncDeprovisioningMessage)
 	instance.Status.AsyncOpInProgress = true
@@ -1944,11 +2100,15 @@ func (c *controller) processDeprovisionAsyncResponse(instance *v1beta1.ServiceIn
 func (c *controller) handleServiceInstancePollingError(instance *v1beta1.ServiceInstance, err error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	klog.V(4).Info(pcb.Messagef("Error during polling: %v", err))
 	return c.continuePollingServiceInstance(instance)
 }
 func setServiceInstanceDashboardURL(instance *v1beta1.ServiceInstance, dashboardURL *string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if dashboardURL != nil && *dashboardURL != "" {
@@ -1957,6 +2117,8 @@ func setServiceInstanceDashboardURL(instance *v1beta1.ServiceInstance, dashboard
 	}
 }
 func setServiceInstanceLastOperation(instance *v1beta1.ServiceInstance, operationKey *osb.OperationKey) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if operationKey != nil && *operationKey != "" {

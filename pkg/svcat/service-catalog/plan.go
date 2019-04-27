@@ -34,6 +34,8 @@ type Plan interface {
 func (sdk *SDK) RetrievePlans(classID string, opts ScopeOptions) ([]Plan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	plans, err := sdk.retrievePlansByListOptions(opts, metav1.ListOptions{})
 	if err != nil {
 		return nil, err
@@ -50,6 +52,8 @@ func (sdk *SDK) RetrievePlans(classID string, opts ScopeOptions) ([]Plan, error)
 	return filtered, nil
 }
 func (sdk *SDK) retrievePlansByListOptions(scopeOpts ScopeOptions, listOpts metav1.ListOptions) ([]Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var plans []Plan
@@ -81,6 +85,8 @@ func (sdk *SDK) retrievePlansByListOptions(scopeOpts ScopeOptions, listOpts meta
 func (sdk *SDK) RetrievePlanByName(name string, opts ScopeOptions) (Plan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if opts.Scope == AllScope {
 		return nil, errors.New("invalid scope: all")
 	}
@@ -88,6 +94,8 @@ func (sdk *SDK) RetrievePlanByName(name string, opts ScopeOptions) (Plan, error)
 	return sdk.retrieveSinglePlanByListOptions(name, opts, listOpts)
 }
 func (sdk *SDK) RetrievePlanByClassAndName(className, planName string, opts ScopeOptions) (Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if opts.Scope == AllScope {
@@ -108,6 +116,8 @@ func (sdk *SDK) RetrievePlanByClassAndName(className, planName string, opts Scop
 	return sdk.retrieveSinglePlanByListOptions(strings.Join(ss, "/"), opts, listOpts)
 }
 func (sdk *SDK) RetrievePlanByClassIDAndName(classKubeName, planName string, scopeOpts ScopeOptions) (Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var classRefSelector fields.Selector
@@ -141,6 +151,8 @@ func (sdk *SDK) RetrievePlanByClassIDAndName(classKubeName, planName string, sco
 func (sdk *SDK) retrieveSinglePlanByListOptions(name string, scopeOpts ScopeOptions, listOpts metav1.ListOptions) (Plan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	plans, err := sdk.retrievePlansByListOptions(scopeOpts, listOpts)
 	if err != nil {
 		return nil, err
@@ -154,6 +166,8 @@ func (sdk *SDK) retrieveSinglePlanByListOptions(name string, scopeOpts ScopeOpti
 	return plans[0], nil
 }
 func (sdk *SDK) RetrievePlanByID(kubeName string, opts ScopeOptions) (Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if opts.Scope == AllScope {

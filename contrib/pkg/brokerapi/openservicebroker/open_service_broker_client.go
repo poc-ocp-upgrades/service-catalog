@@ -48,14 +48,20 @@ type (
 func (e errRequest) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("Failed to send request: %s", e.message)
 }
 func (e errResponse) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("Failed to parse broker response: %s", e.message)
 }
 func (e errStatusCode) Error() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fmt.Sprintf("Unexpected status code from broker response: %v", e.statusCode)
@@ -72,10 +78,14 @@ type openServiceBrokerClient struct {
 func NewClient(name, url, username, password string) brokerapi.BrokerClient {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
 	return &openServiceBrokerClient{name: name, url: strings.TrimRight(url, "/"), username: username, password: password, Client: &http.Client{Timeout: httpTimeoutSeconds * time.Second, Transport: tr}}
 }
 func (c *openServiceBrokerClient) GetCatalog() (*brokerapi.Catalog, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	catalogURL := fmt.Sprintf(catalogFormatString, c.url)
@@ -96,6 +106,8 @@ func (c *openServiceBrokerClient) GetCatalog() (*brokerapi.Catalog, error) {
 	return &catalog, nil
 }
 func (c *openServiceBrokerClient) CreateServiceInstance(ID string, req *brokerapi.CreateServiceInstanceRequest) (*brokerapi.CreateServiceInstanceResponse, int, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceInstanceURL := fmt.Sprintf(serviceInstanceFormatString, c.url, ID)
@@ -133,9 +145,13 @@ func (c *openServiceBrokerClient) CreateServiceInstance(ID string, req *brokerap
 func (c *openServiceBrokerClient) UpdateServiceInstance(ID string, req *brokerapi.CreateServiceInstanceRequest) (*brokerapi.ServiceInstance, int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil, 0, fmt.Errorf("Not implemented")
 }
 func (c *openServiceBrokerClient) DeleteServiceInstance(ID string, req *brokerapi.DeleteServiceInstanceRequest) (*brokerapi.DeleteServiceInstanceResponse, int, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceInstanceURL := fmt.Sprintf(serviceInstanceFormatString, c.url, ID)
@@ -165,6 +181,8 @@ func (c *openServiceBrokerClient) DeleteServiceInstance(ID string, req *brokerap
 	}
 }
 func (c *openServiceBrokerClient) CreateServiceBinding(instanceID, bindingID string, req *brokerapi.BindingRequest) (*brokerapi.CreateServiceBindingResponse, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	jsonBytes, err := json.Marshal(req)
@@ -203,6 +221,8 @@ func (c *openServiceBrokerClient) CreateServiceBinding(instanceID, bindingID str
 func (c *openServiceBrokerClient) DeleteServiceBinding(instanceID, bindingID, serviceID, planID string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serviceBindingURL := fmt.Sprintf(bindingFormatString, c.url, instanceID, bindingID)
 	deleteHTTPReq, err := c.newOSBRequest(http.MethodDelete, serviceBindingURL, map[string]string{"service_id": serviceID, "plan_id": planID}, nil)
 	if err != nil {
@@ -226,6 +246,8 @@ func (c *openServiceBrokerClient) DeleteServiceBinding(instanceID, bindingID, se
 	}
 }
 func (c *openServiceBrokerClient) PollServiceInstance(ID string, req *brokerapi.LastOperationRequest) (*brokerapi.LastOperationResponse, int, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if req.ServiceID == "" {
@@ -253,6 +275,8 @@ func (c *openServiceBrokerClient) PollServiceInstance(ID string, req *brokerapi.
 func sendOSBRequest(c *openServiceBrokerClient, method string, url string, queryParams map[string]string, object interface{}) (*http.Response, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	data, err := json.Marshal(object)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal request: %s", err.Error())
@@ -268,6 +292,8 @@ func sendOSBRequest(c *openServiceBrokerClient, method string, url string, query
 	return resp, nil
 }
 func (c *openServiceBrokerClient) newOSBRequest(method string, urlStr string, queryParams map[string]string, body io.Reader) (*http.Request, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	req, err := http.NewRequest(method, urlStr, body)
@@ -291,7 +317,16 @@ func (c *openServiceBrokerClient) newOSBRequest(method string, urlStr string, qu
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

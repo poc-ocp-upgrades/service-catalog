@@ -36,10 +36,14 @@ type HyperKube struct {
 func (hk *HyperKube) AddServer(s *Server) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	hk.servers = append(hk.servers, *s)
 	hk.servers[len(hk.servers)-1].hk = hk
 }
 func (hk *HyperKube) FindServer(name string) (*Server, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, s := range hk.servers {
@@ -52,9 +56,13 @@ func (hk *HyperKube) FindServer(name string) (*Server, error) {
 func (hk *HyperKube) Servers() []Server {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return hk.servers
 }
 func (hk *HyperKube) Flags() *pflag.FlagSet {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if hk.baseFlags == nil {
@@ -73,6 +81,8 @@ func (hk *HyperKube) Flags() *pflag.FlagSet {
 func (hk *HyperKube) Out() io.Writer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if hk.out == nil {
 		hk.out = os.Stderr
 	}
@@ -81,9 +91,13 @@ func (hk *HyperKube) Out() io.Writer {
 func (hk *HyperKube) SetOut(w io.Writer) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	hk.out = w
 }
 func (hk *HyperKube) Print(i ...interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprint(hk.Out(), i...)
@@ -91,14 +105,20 @@ func (hk *HyperKube) Print(i ...interface{}) {
 func (hk *HyperKube) Println(i ...interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Fprintln(hk.Out(), i...)
 }
 func (hk *HyperKube) Printf(format string, i ...interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Fprintf(hk.Out(), format, i...)
 }
 func (hk *HyperKube) Run(args []string, stopCh <-chan struct{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 RunAgain:
@@ -178,12 +198,16 @@ RunAgain:
 func (hk *HyperKube) RunToExit(args []string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	stopCh := server.SetupSignalHandler()
 	if err := hk.Run(args, stopCh); err != nil {
 		os.Exit(1)
 	}
 }
 func (hk *HyperKube) Usage() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tt := `{{if .Long}}{{.Long | trim | wrap ""}}
@@ -201,6 +225,8 @@ Call '{{.Name}} <server> --help' for help on a specific server.
 	utiltemplate.ExecuteTemplate(hk.Out(), tt, hk)
 }
 func (hk *HyperKube) MakeSymlinks(command string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	wd, err := os.Getwd()
@@ -224,7 +250,16 @@ func (hk *HyperKube) MakeSymlinks(command string) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

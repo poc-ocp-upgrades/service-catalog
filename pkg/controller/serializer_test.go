@@ -16,6 +16,8 @@ var fuzzer = fuzz.New()
 func TestSerializeInt(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
 		var intVal int
 		fuzzer.Fuzz(&intVal)
@@ -34,6 +36,8 @@ func TestSerializeInt(t *testing.T) {
 	}
 }
 func TestSerializeFloat(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
@@ -56,6 +60,8 @@ func TestSerializeFloat(t *testing.T) {
 func TestSerializeString(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {
 		var strVal string
 		fuzzer.Fuzz(&strVal)
@@ -70,6 +76,8 @@ func TestSerializeString(t *testing.T) {
 	}
 }
 func TestSerializeMap(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var mapVal map[string]string
@@ -92,6 +100,8 @@ func TestSerializeMap(t *testing.T) {
 func TestSerializeSlice(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var sliceVal []string
 	for i := 0; i < fuzzIters; i++ {
 		fuzzer.Fuzz(&sliceVal)
@@ -110,6 +120,8 @@ func TestSerializeSlice(t *testing.T) {
 	}
 }
 func TestSerializeByteSlice(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for i := 0; i < fuzzIters; i++ {

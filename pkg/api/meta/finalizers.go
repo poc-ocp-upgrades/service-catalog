@@ -9,6 +9,8 @@ import (
 func GetFinalizers(obj runtime.Object) ([]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)
 	if err != nil {
 		return nil, err
@@ -16,6 +18,8 @@ func GetFinalizers(obj runtime.Object) ([]string, error) {
 	return accessor.GetFinalizers(), nil
 }
 func AddFinalizer(obj runtime.Object, value string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)
@@ -28,6 +32,8 @@ func AddFinalizer(obj runtime.Object, value string) error {
 	return nil
 }
 func RemoveFinalizer(obj runtime.Object, value string) ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)

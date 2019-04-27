@@ -27,6 +27,8 @@ import (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testapi.Groups[servicecatalog.GroupName] = serviceCatalogAPIGroup()
 }
 
@@ -36,6 +38,8 @@ var codecsToTest = []func(version schema.GroupVersion, item runtime.Object) (run
 }}
 
 func fuzzInternalObject(t *testing.T, forVersion schema.GroupVersion, item runtime.Object, seed int64) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fuzzer.FuzzerFor(apitesting.FuzzerFuncs, rand.NewSource(seed), api.Codecs).Fuzz(item)
@@ -50,6 +54,8 @@ func fuzzInternalObject(t *testing.T, forVersion schema.GroupVersion, item runti
 func dataAsString(data []byte) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dataString := string(data)
 	if !strings.HasPrefix(dataString, "{") {
 		dataString = "\n" + hex.Dump(data)
@@ -58,6 +64,8 @@ func dataAsString(data []byte) string {
 	return dataString
 }
 func roundTripSame(t *testing.T, group testapi.TestGroup, item runtime.Object, except ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	set := sets.NewString(except...)
@@ -86,6 +94,8 @@ func roundTripSame(t *testing.T, group testapi.TestGroup, item runtime.Object, e
 	}
 }
 func roundTrip(t *testing.T, codec runtime.Codec, item runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	printer := spew.ConfigState{DisableMethods: true}
@@ -129,6 +139,8 @@ func roundTrip(t *testing.T, codec runtime.Codec, item runtime.Object) {
 func serviceCatalogAPIGroup() testapi.TestGroup {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	groupVersion, err := schema.ParseGroupVersion("servicecatalog.k8s.io/v1beta1")
 	if err != nil {
 		panic(fmt.Sprintf("Error parsing groupversion: %v", err))
@@ -137,6 +149,8 @@ func serviceCatalogAPIGroup() testapi.TestGroup {
 	return testapi.NewTestGroup(groupVersion, servicecatalog.SchemeGroupVersion, api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion), api.Scheme.KnownTypes(externalGroupVersion))
 }
 func TestSpecificKind(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	group := serviceCatalogAPIGroup()
@@ -149,6 +163,8 @@ func TestSpecificKind(t *testing.T) {
 	roundtrip.RoundTripSpecificKindWithoutProtobuf(t, internalGVK, api.Scheme, api.Codecs, fuzzer, nil)
 }
 func TestClusterServiceBrokerList(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kind := "ClusterServiceBrokerList"
@@ -165,12 +181,16 @@ var catalogGroups = map[string]testapi.TestGroup{"servicecatalog": serviceCatalo
 func TestRoundTripTypes(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	seed := rand.Int63()
 	fuzzer := fuzzer.FuzzerFor(apitesting.FuzzerFuncs, rand.NewSource(seed), api.Codecs)
 	nonRoundTrippableTypes := map[schema.GroupVersionKind]bool{}
 	roundtrip.RoundTripTypesWithoutProtobuf(t, api.Scheme, api.Codecs, fuzzer, nonRoundTrippableTypes)
 }
 func TestBadJSONRejection(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	badJSONMissingKind := []byte(`{ }`)

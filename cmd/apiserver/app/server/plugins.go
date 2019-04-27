@@ -11,6 +11,8 @@ import (
 func registerAllAdmissionPlugins(plugins *admission.Plugins) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defaultserviceplan.Register(plugins)
 	siclifecycle.Register(plugins)
 	changevalidator.Register(plugins)

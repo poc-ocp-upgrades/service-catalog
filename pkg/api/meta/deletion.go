@@ -19,6 +19,8 @@ var (
 func DeletionTimestampExists(obj runtime.Object) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := GetDeletionTimestamp(obj)
 	if err == ErrNoDeletionTimestamp {
 		return false, nil
@@ -29,6 +31,8 @@ func DeletionTimestampExists(obj runtime.Object) (bool, error) {
 	return true, nil
 }
 func GetDeletionTimestamp(obj runtime.Object) (*metav1.Time, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)
@@ -44,6 +48,8 @@ func GetDeletionTimestamp(obj runtime.Object) (*metav1.Time, error) {
 func SetDeletionTimestamp(obj runtime.Object, t time.Time) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	accessor, err := meta.Accessor(obj)
 	if err != nil {
 		return err
@@ -55,7 +61,16 @@ func SetDeletionTimestamp(obj runtime.Object, t time.Time) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

@@ -10,6 +10,8 @@ import (
 func TestClientsetStoresServiceInstanceClone(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	clientset := Clientset{&servicecatalogclientset.Clientset{}}
 	instance := &v1beta1.ServiceInstance{}
 	instance.Name = "test-instance"
@@ -42,6 +44,8 @@ func TestClientsetStoresServiceInstanceClone(t *testing.T) {
 	}
 }
 func TestClientsetStoresServiceBindingClone(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clientset := Clientset{&servicecatalogclientset.Clientset{}}

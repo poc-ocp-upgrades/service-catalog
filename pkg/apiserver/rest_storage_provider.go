@@ -12,9 +12,13 @@ type ErrAPIGroupDisabled struct{ Name string }
 func (e ErrAPIGroupDisabled) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("API group %s is disabled", e.Name)
 }
 func IsErrAPIGroupDisabled(e error) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, ok := e.(ErrAPIGroupDisabled)

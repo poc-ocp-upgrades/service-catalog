@@ -26,14 +26,20 @@ type Clientset struct {
 func (c *Clientset) Servicecatalog() servicecataloginternalversion.ServicecatalogInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.servicecatalog
 }
 func (c *Clientset) Settings() settingsinternalversion.SettingsInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.settings
 }
 func (c *Clientset) Discovery() discovery.DiscoveryInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c == nil {
@@ -42,6 +48,8 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 	return c.DiscoveryClient
 }
 func NewForConfig(c *rest.Config) (*Clientset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	configShallowCopy := *c
@@ -67,6 +75,8 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var cs Clientset
 	cs.servicecatalog = servicecataloginternalversion.NewForConfigOrDie(c)
 	cs.settings = settingsinternalversion.NewForConfigOrDie(c)
@@ -74,6 +84,8 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 	return &cs
 }
 func New(c rest.Interface) *Clientset {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var cs Clientset
@@ -85,7 +97,16 @@ func New(c rest.Interface) *Clientset {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

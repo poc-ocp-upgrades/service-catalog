@@ -14,6 +14,8 @@ import (
 func RunE2ETests(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	logs.InitLogs()
 	defer logs.FlushLogs()
 	gomega.RegisterFailHandler(ginkgo.Fail)

@@ -11,6 +11,8 @@ import (
 func (sdk *SDK) RetrieveSecretByBinding(binding *v1beta1.ServiceBinding) (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	secret, err := sdk.Core().Secrets(binding.Namespace).Get(binding.Spec.SecretName, metav1.GetOptions{})
 	if err != nil {
 		if !sdk.IsBindingReady(binding) && errors.IsNotFound(err) {

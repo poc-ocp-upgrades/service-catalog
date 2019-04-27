@@ -15,6 +15,8 @@ type MarketplaceCmd struct {
 func NewMarketplaceCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	mpCmd := &MarketplaceCmd{Namespaced: command.NewNamespaced(cxt), Formatted: command.NewFormatted()}
 	cmd := &cobra.Command{Use: "marketplace", Aliases: []string{"marketplace", "mp"}, Short: "List available service offerings", Example: command.NormalizeExamples(`
   svcat marketplace
@@ -27,9 +29,13 @@ func NewMarketplaceCmd(cxt *command.Context) *cobra.Command {
 func (c *MarketplaceCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (c *MarketplaceCmd) Run() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	opts := servicecatalog.ScopeOptions{Namespace: c.Namespace, Scope: servicecatalog.AllScope}

@@ -14,9 +14,13 @@ type Namespaced struct {
 func NewNamespaced(cxt *Context) *Namespaced {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Namespaced{Context: cxt}
 }
 func (c *Namespaced) AddNamespaceFlags(flags *pflag.FlagSet, allowAll bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	flags.StringP("namespace", "n", "", "If present, the namespace scope for this request")
@@ -27,9 +31,13 @@ func (c *Namespaced) AddNamespaceFlags(flags *pflag.FlagSet, allowAll bool) {
 func (c *Namespaced) ApplyNamespaceFlags(flags *pflag.FlagSet) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.Namespace = c.determineNamespace(flags)
 }
 func (c *Namespaced) determineNamespace(flags *pflag.FlagSet) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	currentNamespace := c.Context.App.CurrentNamespace

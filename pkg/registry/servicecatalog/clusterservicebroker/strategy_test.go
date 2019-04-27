@@ -10,9 +10,13 @@ import (
 func clusterServiceBrokerWithOldSpec() *sc.ClusterServiceBroker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &sc.ClusterServiceBroker{ObjectMeta: metav1.ObjectMeta{Generation: 1}, Spec: sc.ClusterServiceBrokerSpec{CommonServiceBrokerSpec: sc.CommonServiceBrokerSpec{URL: "https://kubernetes.default.svc:443/brokers/template.k8s.io"}}, Status: sc.ClusterServiceBrokerStatus{CommonServiceBrokerStatus: sc.CommonServiceBrokerStatus{Conditions: []sc.ServiceBrokerCondition{{Type: sc.ServiceBrokerConditionReady, Status: sc.ConditionFalse}}}}}
 }
 func clusterServiceBrokerWithNewSpec() *sc.ClusterServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b := clusterServiceBrokerWithOldSpec()
@@ -20,6 +24,8 @@ func clusterServiceBrokerWithNewSpec() *sc.ClusterServiceBroker {
 	return b
 }
 func TestClusterServiceBrokerStrategyTrivial(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if clusterServiceBrokerRESTStrategies.NamespaceScoped() {
@@ -35,6 +41,8 @@ func TestClusterServiceBrokerStrategyTrivial(t *testing.T) {
 func TestClusterServiceBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := &sc.ClusterServiceBroker{Spec: sc.ClusterServiceBrokerSpec{CommonServiceBrokerSpec: sc.CommonServiceBrokerSpec{URL: "abcd"}}, Status: sc.ClusterServiceBrokerStatus{CommonServiceBrokerStatus: sc.CommonServiceBrokerStatus{Conditions: nil}}}
 	creatorUserName := "creator"
 	createContext := sctestutil.ContextWithUserName(creatorUserName)
@@ -47,6 +55,8 @@ func TestClusterServiceBroker(t *testing.T) {
 	}
 }
 func TestClusterServiceBrokerUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -71,6 +81,8 @@ func TestClusterServiceBrokerUpdate(t *testing.T) {
 	}
 }
 func TestClusterServiceBrokerUpdateForRelistRequests(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

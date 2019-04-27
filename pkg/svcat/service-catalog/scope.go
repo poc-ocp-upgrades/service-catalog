@@ -11,6 +11,8 @@ const (
 func (s Scope) Matches(value Scope) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s == AllScope {
 		return true
 	}

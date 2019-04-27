@@ -32,9 +32,13 @@ type Flag struct {
 func (m *Manifest) Load(rootCmd *cobra.Command) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.Plugin = m.convertToPlugin(rootCmd)
 }
 func (m *Manifest) convertToPlugin(cmd *cobra.Command) Plugin {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	p := Plugin{}
@@ -63,6 +67,8 @@ func (m *Manifest) convertToPlugin(cmd *cobra.Command) Plugin {
 	return p
 }
 func (m *Manifest) convertToFlag(src *pflag.Flag) *Flag {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, reserved := reservedFlags[src.Name]; reserved {

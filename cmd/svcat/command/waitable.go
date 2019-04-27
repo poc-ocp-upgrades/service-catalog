@@ -18,9 +18,13 @@ type Waitable struct {
 func NewWaitable() *Waitable {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Waitable{}
 }
 func (c *Waitable) AddWaitFlags(cmd *cobra.Command) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cmd.Flags().BoolVar(&c.Wait, "wait", false, "Wait until the operation completes.")
@@ -28,6 +32,8 @@ func (c *Waitable) AddWaitFlags(cmd *cobra.Command) {
 	cmd.Flags().StringVar(&c.rawInterval, "interval", "1s", "Poll interval for --wait, specified in human readable format: 30s, 1m, 1h")
 }
 func (c *Waitable) ApplyWaitFlags() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !c.Wait {

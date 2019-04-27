@@ -20,12 +20,16 @@ type Framework struct {
 func NewDefaultFramework(baseName string) *Framework {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f := &Framework{BaseName: baseName}
 	BeforeEach(f.BeforeEach)
 	AfterEach(f.AfterEach)
 	return f
 }
 func (f *Framework) BeforeEach() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	f.cleanupHandle = AddCleanupAction(f.AfterEach)
@@ -51,11 +55,15 @@ func (f *Framework) BeforeEach() {
 func (f *Framework) AfterEach() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	RemoveCleanupAction(f.cleanupHandle)
 	err := DeleteKubeNamespace(f.KubeClientSet, f.Namespace.Name)
 	Expect(err).NotTo(HaveOccurred())
 }
 func ServiceCatalogDescribe(text string, body func()) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return Describe("[service-catalog] "+text, body)

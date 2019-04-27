@@ -25,6 +25,8 @@ import (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rand.Seed(time.Now().UnixNano())
 	restfullog.SetLogger(log.New(ioutil.Discard, "[restful]", log.LstdFlags|log.Lshortfile))
 }
@@ -37,9 +39,13 @@ type TestServerConfig struct {
 func NewTestServerConfig() *TestServerConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &TestServerConfig{etcdServerList: []string{"http://localhost:2379"}}
 }
 func withConfigGetFreshApiserverAndClient(t *testing.T, serverConfig *TestServerConfig) (servicecatalogclient.Interface, *restclient.Config, func()) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stopCh := make(chan struct{})
@@ -88,11 +94,15 @@ func withConfigGetFreshApiserverAndClient(t *testing.T, serverConfig *TestServer
 func getFreshApiserverAndClient(t *testing.T, newEmptyObj func() runtime.Object) (servicecatalogclient.Interface, *restclient.Config, func()) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serverConfig := &TestServerConfig{etcdServerList: []string{"http://localhost:2379"}, emptyObjFunc: newEmptyObj}
 	client, clientConfig, shutdownFunc := withConfigGetFreshApiserverAndClient(t, serverConfig)
 	return client, clientConfig, shutdownFunc
 }
 func waitForApiserverUp(serverURL string, stopCh <-chan struct{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	interval := 1 * time.Second

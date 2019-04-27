@@ -23,9 +23,13 @@ type version struct {
 func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
 }
 func (v *version) ClusterServiceBrokers() ClusterServiceBrokerInformer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &clusterServiceBrokerInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
@@ -33,9 +37,13 @@ func (v *version) ClusterServiceBrokers() ClusterServiceBrokerInformer {
 func (v *version) ClusterServiceClasses() ClusterServiceClassInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &clusterServiceClassInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
 }
 func (v *version) ClusterServicePlans() ClusterServicePlanInformer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &clusterServicePlanInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
@@ -43,9 +51,13 @@ func (v *version) ClusterServicePlans() ClusterServicePlanInformer {
 func (v *version) ServiceBindings() ServiceBindingInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &serviceBindingInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 func (v *version) ServiceBrokers() ServiceBrokerInformer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &serviceBrokerInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
@@ -53,14 +65,20 @@ func (v *version) ServiceBrokers() ServiceBrokerInformer {
 func (v *version) ServiceClasses() ServiceClassInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &serviceClassInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 func (v *version) ServiceInstances() ServiceInstanceInformer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &serviceInstanceInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 func (v *version) ServicePlans() ServicePlanInformer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &servicePlanInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}

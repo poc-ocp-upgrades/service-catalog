@@ -20,6 +20,8 @@ type result struct {
 func testServer(n string) *Server {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Server{SimpleUsage: n, Long: fmt.Sprintf("A simple server named %s", n), Run: func(s *Server, args []string, stopCh <-chan struct{}) error {
 		s.hk.Printf("%s Run\n", s.Name())
 		return nil
@@ -28,12 +30,16 @@ func testServer(n string) *Server {
 func testServerError(n string) *Server {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Server{SimpleUsage: n, Long: fmt.Sprintf("A simple server named %s that returns an error", n), Run: func(s *Server, args []string, stopCh <-chan struct{}) error {
 		s.hk.Printf("%s Run\n", s.Name())
 		return errors.New("server returning error")
 	}}
 }
 func testStopChRespectingServer(n string) *Server {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &Server{SimpleUsage: n, Long: fmt.Sprintf("A simple server named %s", n), Run: func(s *Server, args []string, stopCh <-chan struct{}) error {
@@ -45,12 +51,16 @@ func testStopChRespectingServer(n string) *Server {
 func testStopChIgnoringServer(n string) *Server {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Server{SimpleUsage: n, Long: fmt.Sprintf("A simple server named %s", n), Run: func(s *Server, args []string, stopCh <-chan struct{}) error {
 		<-wait.NeverStop
 		return nil
 	}, RespectsStopCh: false}
 }
 func testStopChRespectingServerWithError(n string) *Server {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &Server{SimpleUsage: n, Long: fmt.Sprintf("A simple server named %s", n), Run: func(s *Server, args []string, stopCh <-chan struct{}) error {
@@ -66,6 +76,8 @@ const cobraMessageDesc = "message to print"
 const cobraSubMessageDesc = "sub-message to print"
 
 func testCobraCommand(n string) *Server {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var cobraServer *Server
@@ -94,6 +106,8 @@ func testCobraCommand(n string) *Server {
 func runFull(t *testing.T, args string, stopCh <-chan struct{}) *result {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	buf := new(bytes.Buffer)
 	hk := HyperKube{Name: "hyperkube", Long: "hyperkube is an all-in-one server binary."}
 	hk.SetOut(buf)
@@ -115,11 +129,15 @@ func runFull(t *testing.T, args string, stopCh <-chan struct{}) *result {
 func TestRun(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test1", wait.NeverStop)
 	util.AssertContains(t, x.output, "test1 Run")
 	util.AssertNoError(t, x.err)
 }
 func TestLinkRun(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	x := runFull(t, "test1", wait.NeverStop)
@@ -129,10 +147,14 @@ func TestLinkRun(t *testing.T) {
 func TestTopNoArgs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube", wait.NeverStop)
 	util.AssertEqualError(t, x.err, "no server specified")
 }
 func TestBadServer(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube bad-server", wait.NeverStop)
@@ -142,12 +164,16 @@ func TestBadServer(t *testing.T) {
 func TestTopHelp(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube --help", wait.NeverStop)
 	util.AssertNoError(t, x.err)
 	util.AssertContains(t, x.output, "all-in-one")
 	util.AssertContains(t, x.output, "A simple server named test1")
 }
 func TestTopFlags(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube --help test1", wait.NeverStop)
@@ -159,12 +185,16 @@ func TestTopFlags(t *testing.T) {
 func TestTopFlagsBad(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube --bad-flag", wait.NeverStop)
 	util.AssertEqualError(t, x.err, "unknown flag: --bad-flag")
 	util.AssertContains(t, x.output, "all-in-one")
 	util.AssertContains(t, x.output, "A simple server named test1")
 }
 func TestServerHelp(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test1 --help", wait.NeverStop)
@@ -177,6 +207,8 @@ func TestServerHelp(t *testing.T) {
 func TestServerFlagsBad(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test1 --bad-flag", wait.NeverStop)
 	util.AssertEqualError(t, x.err, "unknown flag: --bad-flag")
 	util.AssertContains(t, x.output, "A simple server named test1")
@@ -187,11 +219,15 @@ func TestServerFlagsBad(t *testing.T) {
 func TestServerError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-error", wait.NeverStop)
 	util.AssertContains(t, x.output, "test-error Run")
 	util.AssertEqualError(t, x.err, "server returning error")
 }
 func TestStopChIgnoringServer(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stopCh := make(chan struct{})
@@ -210,6 +246,8 @@ func TestStopChIgnoringServer(t *testing.T) {
 	util.AssertEqualError(t, x.err, "interrupted")
 }
 func TestStopChRespectingServer(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stopCh := make(chan struct{})
@@ -231,6 +269,8 @@ func TestStopChRespectingServer(t *testing.T) {
 func TestStopChRespectingServerWithError(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	stopCh := make(chan struct{})
 	returnedCh := make(chan struct{})
 	var x *result
@@ -250,6 +290,8 @@ func TestStopChRespectingServerWithError(t *testing.T) {
 func TestCobraCommandHelp(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-cobra-command --help", wait.NeverStop)
 	util.AssertNoError(t, x.err)
 	util.AssertContains(t, x.output, "A server named test-cobra-command which uses a cobra command")
@@ -258,16 +300,22 @@ func TestCobraCommandHelp(t *testing.T) {
 func TestCobraCommandDefaultMessage(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-cobra-command", wait.NeverStop)
 	util.AssertContains(t, x.output, fmt.Sprintf("msg: %s", defaultCobraMessage))
 }
 func TestCobraCommandMessage(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-cobra-command --msg foobar", wait.NeverStop)
 	util.AssertContains(t, x.output, "msg: foobar")
 }
 func TestCobraSubCommandHelp(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-cobra-command subcommand --help", wait.NeverStop)
@@ -277,10 +325,14 @@ func TestCobraSubCommandHelp(t *testing.T) {
 func TestCobraSubCommandDefaultMessage(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-cobra-command subcommand", wait.NeverStop)
 	util.AssertContains(t, x.output, fmt.Sprintf("submsg: %s", defaultCobraSubMessage))
 }
 func TestCobraSubCommandMessage(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	x := runFull(t, "hyperkube test-cobra-command subcommand --submsg foobar", wait.NeverStop)

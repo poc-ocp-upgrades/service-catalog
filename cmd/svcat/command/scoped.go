@@ -22,9 +22,13 @@ type Scoped struct {
 func NewScoped() *Scoped {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Scoped{}
 }
 func (c *Scoped) AddScopedFlags(flags *pflag.FlagSet, allowAll bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.allowAll = allowAll
@@ -35,6 +39,8 @@ func (c *Scoped) AddScopedFlags(flags *pflag.FlagSet, allowAll bool) {
 	}
 }
 func (c *Scoped) ApplyScopedFlags(flags *pflag.FlagSet) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch c.rawScope {

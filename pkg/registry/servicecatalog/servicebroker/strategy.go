@@ -16,6 +16,8 @@ import (
 func NewScopeStrategy() rest.NamespaceScopedStrategy {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return serviceBrokerRESTStrategies
 }
 
@@ -37,6 +39,8 @@ var (
 func (serviceBrokerRESTStrategy) Canonicalize(obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, ok := obj.(*sc.ServiceBroker)
 	if !ok {
 		klog.Fatal("received a non-servicebroker object to create")
@@ -45,9 +49,13 @@ func (serviceBrokerRESTStrategy) Canonicalize(obj runtime.Object) {
 func (serviceBrokerRESTStrategy) NamespaceScoped() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (serviceBrokerRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, ok := obj.(*sc.ServiceBroker)
@@ -62,9 +70,13 @@ func (serviceBrokerRESTStrategy) PrepareForCreate(ctx context.Context, obj runti
 func (serviceBrokerRESTStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return scv.ValidateServiceBroker(obj.(*sc.ServiceBroker))
 }
 func (serviceBrokerRESTStrategy) AllowCreateOnUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return false
@@ -72,9 +84,13 @@ func (serviceBrokerRESTStrategy) AllowCreateOnUpdate() bool {
 func (serviceBrokerRESTStrategy) AllowUnconditionalUpdate() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (serviceBrokerRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceBroker, ok := new.(*sc.ServiceBroker)
@@ -96,6 +112,8 @@ func (serviceBrokerRESTStrategy) PrepareForUpdate(ctx context.Context, new, old 
 func (serviceBrokerRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceBroker, ok := new.(*sc.ServiceBroker)
 	if !ok {
 		klog.Fatal("received a non-servicebroker object to validate to")
@@ -109,6 +127,8 @@ func (serviceBrokerRESTStrategy) ValidateUpdate(ctx context.Context, new, old ru
 func (serviceBrokerStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceBroker, ok := new.(*sc.ServiceBroker)
 	if !ok {
 		klog.Fatal("received a non-servicebroker object to update to")
@@ -120,6 +140,8 @@ func (serviceBrokerStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new
 	newServiceBroker.Spec = oldServiceBroker.Spec
 }
 func (serviceBrokerStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceBroker, ok := new.(*sc.ServiceBroker)

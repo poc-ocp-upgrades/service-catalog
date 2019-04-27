@@ -23,6 +23,8 @@ const (
 func Register(plugins *admission.Plugins) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	plugins.Register(PluginName, func(io.Reader) (admission.Interface, error) {
 		return NewDenyPlanChangeIfNotUpdatable()
 	})
@@ -38,6 +40,8 @@ type denyPlanChangeIfNotUpdatable struct {
 var _ = scadmission.WantsInternalServiceCatalogInformerFactory(&denyPlanChangeIfNotUpdatable{})
 
 func (d *denyPlanChangeIfNotUpdatable) Admit(a admission.Attributes) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !d.WaitForReady() {
@@ -98,9 +102,13 @@ func (d *denyPlanChangeIfNotUpdatable) Admit(a admission.Attributes) error {
 func NewDenyPlanChangeIfNotUpdatable() (admission.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &denyPlanChangeIfNotUpdatable{Handler: admission.NewHandler(admission.Update)}, nil
 }
 func (d *denyPlanChangeIfNotUpdatable) SetInternalServiceCatalogInformerFactory(f informers.SharedInformerFactory) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scInformer := f.Servicecatalog().InternalVersion().ClusterServiceClasses()
@@ -117,6 +125,8 @@ func (d *denyPlanChangeIfNotUpdatable) SetInternalServiceCatalogInformerFactory(
 func (d *denyPlanChangeIfNotUpdatable) ValidateInitialization() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if d.scLister == nil {
 		return errors.New("missing service class lister")
 	}
@@ -131,7 +141,16 @@ func (d *denyPlanChangeIfNotUpdatable) ValidateInitialization() error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

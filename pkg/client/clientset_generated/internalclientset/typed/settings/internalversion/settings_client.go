@@ -14,9 +14,13 @@ type SettingsClient struct{ restClient rest.Interface }
 func (c *SettingsClient) PodPresets(namespace string) PodPresetInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newPodPresets(c, namespace)
 }
 func NewForConfig(c *rest.Config) (*SettingsClient, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	config := *c
@@ -32,6 +36,8 @@ func NewForConfig(c *rest.Config) (*SettingsClient, error) {
 func NewForConfigOrDie(c *rest.Config) *SettingsClient {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -41,9 +47,13 @@ func NewForConfigOrDie(c *rest.Config) *SettingsClient {
 func New(c rest.Interface) *SettingsClient {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &SettingsClient{c}
 }
 func setConfigDefaults(config *rest.Config) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	config.APIPath = "/apis"
@@ -64,6 +74,8 @@ func setConfigDefaults(config *rest.Config) error {
 	return nil
 }
 func (c *SettingsClient) RESTClient() rest.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c == nil {

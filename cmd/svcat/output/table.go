@@ -19,9 +19,13 @@ type ListTable struct {
 func (lt *ListTable) SetBorder(b bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lt.table.SetBorder(b)
 }
 func (lt *ListTable) SetVariableColumn(c int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	lt.variableColumn = c
@@ -29,14 +33,20 @@ func (lt *ListTable) SetVariableColumn(c int) {
 func (lt *ListTable) SetColMinWidth(c, w int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lt.table.SetColMinWidth(c, w)
 }
 func (lt *ListTable) SetPageWidth(w int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lt.pageWidth = w
 }
 func (lt *ListTable) SetHeader(keys []string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if tmp := (len(keys) - len(lt.columnWidths)); tmp > 0 {
@@ -52,6 +62,8 @@ func (lt *ListTable) SetHeader(keys []string) {
 func (lt *ListTable) Append(row []string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if tmp := (len(row) - len(lt.columnWidths)); tmp > 0 {
 		lt.columnWidths = append(lt.columnWidths, make([]int, tmp)...)
 	}
@@ -63,6 +75,8 @@ func (lt *ListTable) Append(row []string) {
 	lt.rows = append(lt.rows, row)
 }
 func (lt *ListTable) Render() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if lt.variableColumn > 0 && lt.variableColumn <= len(lt.columnWidths)+1 {
@@ -89,12 +103,16 @@ func (lt *ListTable) Render() {
 func NewListTable(w io.Writer) *ListTable {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t := tablewriter.NewWriter(w)
 	t.SetBorder(false)
 	t.SetColumnSeparator(" ")
 	return &ListTable{table: t, pageWidth: DefaultPageWidth}
 }
 func NewDetailsTable(w io.Writer) *tablewriter.Table {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := tablewriter.NewWriter(w)

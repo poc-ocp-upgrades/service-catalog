@@ -23,6 +23,8 @@ const (
 func RestclientConfig(config, context string) (*api.Config, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if config == "" {
 		return nil, fmt.Errorf("Config file must be specified to load client config")
 	}
@@ -38,6 +40,8 @@ func RestclientConfig(config, context string) (*api.Config, error) {
 func LoadConfig(config, context string) (*rest.Config, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c, err := RestclientConfig(config, context)
 	if err != nil {
 		return nil, err
@@ -45,6 +49,8 @@ func LoadConfig(config, context string) (*rest.Config, error) {
 	return clientcmd.NewDefaultClientConfig(*c, &clientcmd.ConfigOverrides{}).ClientConfig()
 }
 func CreateKubeNamespace(c kubernetes.Interface) (*corev1.Namespace, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ns := &corev1.Namespace{ObjectMeta: metav1.ObjectMeta{GenerateName: fmt.Sprintf("svc-catalog-health-check-%v-", uuid.NewUUID())}}
@@ -66,14 +72,20 @@ func CreateKubeNamespace(c kubernetes.Interface) (*corev1.Namespace, error) {
 func DeleteKubeNamespace(c kubernetes.Interface, namespace string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.CoreV1().Namespaces().Delete(namespace, nil)
 }
 func WaitForEndpoint(c kubernetes.Interface, namespace, name string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return wait.PollImmediate(poll, defaultTimeout, endpointAvailable(c, namespace, name))
 }
 func endpointAvailable(c kubernetes.Interface, namespace, name string) wait.ConditionFunc {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func() (bool, error) {

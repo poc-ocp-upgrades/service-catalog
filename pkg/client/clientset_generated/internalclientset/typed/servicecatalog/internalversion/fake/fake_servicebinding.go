@@ -21,6 +21,8 @@ var servicebindingsKind = schema.GroupVersionKind{Group: "servicecatalog.k8s.io"
 func (c *FakeServiceBindings) Get(name string, options v1.GetOptions) (result *servicecatalog.ServiceBinding, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewGetAction(servicebindingsResource, c.ns, name), &servicecatalog.ServiceBinding{})
 	if obj == nil {
 		return nil, err
@@ -28,6 +30,8 @@ func (c *FakeServiceBindings) Get(name string, options v1.GetOptions) (result *s
 	return obj.(*servicecatalog.ServiceBinding), err
 }
 func (c *FakeServiceBindings) List(opts v1.ListOptions) (result *servicecatalog.ServiceBindingList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewListAction(servicebindingsResource, servicebindingsKind, c.ns, opts), &servicecatalog.ServiceBindingList{})
@@ -49,9 +53,13 @@ func (c *FakeServiceBindings) List(opts v1.ListOptions) (result *servicecatalog.
 func (c *FakeServiceBindings) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewWatchAction(servicebindingsResource, c.ns, opts))
 }
 func (c *FakeServiceBindings) Create(serviceBinding *servicecatalog.ServiceBinding) (result *servicecatalog.ServiceBinding, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewCreateAction(servicebindingsResource, c.ns, serviceBinding), &servicecatalog.ServiceBinding{})
@@ -63,6 +71,8 @@ func (c *FakeServiceBindings) Create(serviceBinding *servicecatalog.ServiceBindi
 func (c *FakeServiceBindings) Update(serviceBinding *servicecatalog.ServiceBinding) (result *servicecatalog.ServiceBinding, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateAction(servicebindingsResource, c.ns, serviceBinding), &servicecatalog.ServiceBinding{})
 	if obj == nil {
 		return nil, err
@@ -70,6 +80,8 @@ func (c *FakeServiceBindings) Update(serviceBinding *servicecatalog.ServiceBindi
 	return obj.(*servicecatalog.ServiceBinding), err
 }
 func (c *FakeServiceBindings) UpdateStatus(serviceBinding *servicecatalog.ServiceBinding) (*servicecatalog.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateSubresourceAction(servicebindingsResource, "status", c.ns, serviceBinding), &servicecatalog.ServiceBinding{})
@@ -81,10 +93,14 @@ func (c *FakeServiceBindings) UpdateStatus(serviceBinding *servicecatalog.Servic
 func (c *FakeServiceBindings) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewDeleteAction(servicebindingsResource, c.ns, name), &servicecatalog.ServiceBinding{})
 	return err
 }
 func (c *FakeServiceBindings) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewDeleteCollectionAction(servicebindingsResource, c.ns, listOptions)
@@ -92,6 +108,8 @@ func (c *FakeServiceBindings) DeleteCollection(options *v1.DeleteOptions, listOp
 	return err
 }
 func (c *FakeServiceBindings) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *servicecatalog.ServiceBinding, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewPatchSubresourceAction(servicebindingsResource, c.ns, name, pt, data, subresources...), &servicecatalog.ServiceBinding{})

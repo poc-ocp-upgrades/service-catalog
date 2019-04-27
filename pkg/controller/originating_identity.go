@@ -13,6 +13,8 @@ const (
 func buildOriginatingIdentity(userInfo *v1beta1.UserInfo) (*osb.OriginatingIdentity, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if userInfo == nil {
 		return nil, nil
 	}

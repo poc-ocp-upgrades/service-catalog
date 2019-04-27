@@ -9,6 +9,8 @@ import (
 func TestParseVariableAssignments(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testcases := []struct{ Name, Raw, Variable, Value string }{{"simple", "a=b", "a", "b"}, {"multiple equal signs", "c=abc1232===", "c", "abc1232==="}, {"empty value", "d=", "d", ""}, {"extra whitespace", " a = b ", "a", "b"}}
 	for _, tc := range testcases {
 		t.Run(tc.Name, func(t *testing.T) {
@@ -28,6 +30,8 @@ func TestParseVariableAssignments(t *testing.T) {
 func TestParseVariableAssignments_MissingVariableName(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	params := []string{"=b"}
 	_, err := ParseVariableAssignments(params)
 	if err == nil {
@@ -35,6 +39,8 @@ func TestParseVariableAssignments_MissingVariableName(t *testing.T) {
 	}
 }
 func TestParseVariableAssignments_OneVariableThreeValues(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	params := []string{"a=banana", "a=pineapple", "a=coconut"}
@@ -48,6 +54,8 @@ func TestParseVariableAssignments_OneVariableThreeValues(t *testing.T) {
 	}
 }
 func TestParseKeyMaps(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct{ Name, Raw, MapName, Key string }{{"simple", "a[b]", "a", "b"}, {"multiple brackets signs", "c[[d]]", "c", "[d]"}, {"extra whitespace", " a [ b ] ", "a", "b"}}
@@ -66,6 +74,8 @@ func TestParseKeyMaps(t *testing.T) {
 	}
 }
 func TestParseKeyMaps_InvalidInput(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct{ Name, Raw string }{{"missing map", "[b]"}, {"missing key", "a[]"}}

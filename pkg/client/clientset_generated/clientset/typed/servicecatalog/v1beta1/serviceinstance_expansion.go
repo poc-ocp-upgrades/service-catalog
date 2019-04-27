@@ -11,6 +11,8 @@ type ServiceInstanceExpansion interface {
 func (c *serviceInstances) UpdateReferences(serviceInstance *v1beta1.ServiceInstance) (result *v1beta1.ServiceInstance, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ServiceInstance{}
 	err = c.client.Put().Namespace(serviceInstance.Namespace).Resource("serviceinstances").Name(serviceInstance.Name).SubResource("reference").Body(serviceInstance).Do().Into(result)
 	return

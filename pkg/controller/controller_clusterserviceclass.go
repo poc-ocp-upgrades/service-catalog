@@ -12,6 +12,8 @@ import (
 func (c *controller) clusterServiceClassAdd(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
 	if err != nil {
 		klog.Errorf("Couldn't get key for object %+v: %v", obj, err)
@@ -22,9 +24,13 @@ func (c *controller) clusterServiceClassAdd(obj interface{}) {
 func (c *controller) clusterServiceClassUpdate(oldObj, newObj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.clusterServiceClassAdd(newObj)
 }
 func (c *controller) clusterServiceClassDelete(obj interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass, ok := obj.(*v1beta1.ClusterServiceClass)
@@ -34,6 +40,8 @@ func (c *controller) clusterServiceClassDelete(obj interface{}) {
 	klog.V(4).Infof("Received delete event for ServiceClass %v; no further processing will occur", serviceClass.Name)
 }
 func (c *controller) reconcileClusterServiceClassKey(key string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	class, err := c.clusterServiceClassLister.Get(key)
@@ -48,6 +56,8 @@ func (c *controller) reconcileClusterServiceClassKey(key string) error {
 	return c.reconcileClusterServiceClass(class)
 }
 func (c *controller) reconcileClusterServiceClass(serviceClass *v1beta1.ClusterServiceClass) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Infof("ClusterServiceClass %q (ExternalName: %q): processing", serviceClass.Name, serviceClass.Spec.ExternalName)
@@ -66,6 +76,8 @@ func (c *controller) reconcileClusterServiceClass(serviceClass *v1beta1.ClusterS
 	return c.serviceCatalogClient.ClusterServiceClasses().Delete(serviceClass.Name, &metav1.DeleteOptions{})
 }
 func (c *controller) findServiceInstancesOnClusterServiceClass(serviceClass *v1beta1.ClusterServiceClass) (*v1beta1.ServiceInstanceList, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fieldSet := fields.Set{"spec.clusterServiceClassRef.name": serviceClass.Name}

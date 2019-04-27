@@ -15,14 +15,20 @@ type Formatted struct{ OutputFormat string }
 func NewFormatted() *Formatted {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Formatted{OutputFormat: output.FormatTable}
 }
 func (c *Formatted) AddOutputFlags(flags *pflag.FlagSet) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	flags.StringVarP(&c.OutputFormat, "output", "o", output.FormatTable, "The output format to use. Valid options are table, json or yaml. If not present, defaults to table")
 }
 func (c *Formatted) ApplyFormatFlags(flags *pflag.FlagSet) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.OutputFormat = strings.ToLower(c.OutputFormat)

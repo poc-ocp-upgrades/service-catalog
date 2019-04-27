@@ -10,6 +10,8 @@ import (
 func Test_appendInstanceDashboardURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dashboardURL := "grafana.example.com"
 	table := &tablewriter.Table{}
 	tests := []struct {

@@ -544,6 +544,8 @@ type FakeSvcatClient struct {
 func (fake *FakeSvcatClient) Bind(arg1 string, arg2 string, arg3 string, arg4 string, arg5 string, arg6 interface{}, arg7 map[string]string) (*apiv1beta1.ServiceBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.bindMutex.Lock()
 	ret, specificReturn := fake.bindReturnsOnCall[len(fake.bindArgsForCall)]
 	fake.bindArgsForCall = append(fake.bindArgsForCall, struct {
@@ -568,11 +570,15 @@ func (fake *FakeSvcatClient) Bind(arg1 string, arg2 string, arg3 string, arg4 st
 func (fake *FakeSvcatClient) BindCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.bindMutex.RLock()
 	defer fake.bindMutex.RUnlock()
 	return len(fake.bindArgsForCall)
 }
 func (fake *FakeSvcatClient) BindArgsForCall(i int) (string, string, string, string, string, interface{}, map[string]string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.bindMutex.RLock()
@@ -582,6 +588,8 @@ func (fake *FakeSvcatClient) BindArgsForCall(i int) (string, string, string, str
 func (fake *FakeSvcatClient) BindReturns(result1 *apiv1beta1.ServiceBinding, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.BindStub = nil
 	fake.bindReturns = struct {
 		result1	*apiv1beta1.ServiceBinding
@@ -589,6 +597,8 @@ func (fake *FakeSvcatClient) BindReturns(result1 *apiv1beta1.ServiceBinding, res
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) BindReturnsOnCall(i int, result1 *apiv1beta1.ServiceBinding, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.BindStub = nil
@@ -604,6 +614,8 @@ func (fake *FakeSvcatClient) BindReturnsOnCall(i int, result1 *apiv1beta1.Servic
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) BindingParentHierarchy(arg1 *apiv1beta1.ServiceBinding) (*apiv1beta1.ServiceInstance, *apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, *apiv1beta1.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.bindingParentHierarchyMutex.Lock()
@@ -622,6 +634,8 @@ func (fake *FakeSvcatClient) BindingParentHierarchy(arg1 *apiv1beta1.ServiceBind
 func (fake *FakeSvcatClient) BindingParentHierarchyCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.bindingParentHierarchyMutex.RLock()
 	defer fake.bindingParentHierarchyMutex.RUnlock()
 	return len(fake.bindingParentHierarchyArgsForCall)
@@ -629,11 +643,15 @@ func (fake *FakeSvcatClient) BindingParentHierarchyCallCount() int {
 func (fake *FakeSvcatClient) BindingParentHierarchyArgsForCall(i int) *apiv1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.bindingParentHierarchyMutex.RLock()
 	defer fake.bindingParentHierarchyMutex.RUnlock()
 	return fake.bindingParentHierarchyArgsForCall[i].arg1
 }
 func (fake *FakeSvcatClient) BindingParentHierarchyReturns(result1 *apiv1beta1.ServiceInstance, result2 *apiv1beta1.ClusterServiceClass, result3 *apiv1beta1.ClusterServicePlan, result4 *apiv1beta1.ClusterServiceBroker, result5 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.BindingParentHierarchyStub = nil
@@ -646,6 +664,8 @@ func (fake *FakeSvcatClient) BindingParentHierarchyReturns(result1 *apiv1beta1.S
 	}{result1, result2, result3, result4, result5}
 }
 func (fake *FakeSvcatClient) BindingParentHierarchyReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstance, result2 *apiv1beta1.ClusterServiceClass, result3 *apiv1beta1.ClusterServicePlan, result4 *apiv1beta1.ClusterServiceBroker, result5 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.BindingParentHierarchyStub = nil
@@ -669,6 +689,8 @@ func (fake *FakeSvcatClient) BindingParentHierarchyReturnsOnCall(i int, result1 
 func (fake *FakeSvcatClient) DeleteBinding(arg1 string, arg2 string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.deleteBindingMutex.Lock()
 	ret, specificReturn := fake.deleteBindingReturnsOnCall[len(fake.deleteBindingArgsForCall)]
 	fake.deleteBindingArgsForCall = append(fake.deleteBindingArgsForCall, struct {
@@ -688,11 +710,15 @@ func (fake *FakeSvcatClient) DeleteBinding(arg1 string, arg2 string) error {
 func (fake *FakeSvcatClient) DeleteBindingCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.deleteBindingMutex.RLock()
 	defer fake.deleteBindingMutex.RUnlock()
 	return len(fake.deleteBindingArgsForCall)
 }
 func (fake *FakeSvcatClient) DeleteBindingArgsForCall(i int) (string, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.deleteBindingMutex.RLock()
@@ -702,10 +728,14 @@ func (fake *FakeSvcatClient) DeleteBindingArgsForCall(i int) (string, string) {
 func (fake *FakeSvcatClient) DeleteBindingReturns(result1 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.DeleteBindingStub = nil
 	fake.deleteBindingReturns = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) DeleteBindingReturnsOnCall(i int, result1 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.DeleteBindingStub = nil
@@ -715,6 +745,8 @@ func (fake *FakeSvcatClient) DeleteBindingReturnsOnCall(i int, result1 error) {
 	fake.deleteBindingReturnsOnCall[i] = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) DeleteBindings(arg1 []types.NamespacedName) ([]types.NamespacedName, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var arg1Copy []types.NamespacedName
@@ -738,11 +770,15 @@ func (fake *FakeSvcatClient) DeleteBindings(arg1 []types.NamespacedName) ([]type
 func (fake *FakeSvcatClient) DeleteBindingsCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.deleteBindingsMutex.RLock()
 	defer fake.deleteBindingsMutex.RUnlock()
 	return len(fake.deleteBindingsArgsForCall)
 }
 func (fake *FakeSvcatClient) DeleteBindingsArgsForCall(i int) []types.NamespacedName {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.deleteBindingsMutex.RLock()
@@ -752,6 +788,8 @@ func (fake *FakeSvcatClient) DeleteBindingsArgsForCall(i int) []types.Namespaced
 func (fake *FakeSvcatClient) DeleteBindingsReturns(result1 []types.NamespacedName, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.DeleteBindingsStub = nil
 	fake.deleteBindingsReturns = struct {
 		result1	[]types.NamespacedName
@@ -759,6 +797,8 @@ func (fake *FakeSvcatClient) DeleteBindingsReturns(result1 []types.NamespacedNam
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) DeleteBindingsReturnsOnCall(i int, result1 []types.NamespacedName, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.DeleteBindingsStub = nil
@@ -774,6 +814,8 @@ func (fake *FakeSvcatClient) DeleteBindingsReturnsOnCall(i int, result1 []types.
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) IsBindingFailed(arg1 *apiv1beta1.ServiceBinding) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isBindingFailedMutex.Lock()
@@ -792,11 +834,15 @@ func (fake *FakeSvcatClient) IsBindingFailed(arg1 *apiv1beta1.ServiceBinding) bo
 func (fake *FakeSvcatClient) IsBindingFailedCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.isBindingFailedMutex.RLock()
 	defer fake.isBindingFailedMutex.RUnlock()
 	return len(fake.isBindingFailedArgsForCall)
 }
 func (fake *FakeSvcatClient) IsBindingFailedArgsForCall(i int) *apiv1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isBindingFailedMutex.RLock()
@@ -806,10 +852,14 @@ func (fake *FakeSvcatClient) IsBindingFailedArgsForCall(i int) *apiv1beta1.Servi
 func (fake *FakeSvcatClient) IsBindingFailedReturns(result1 bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.IsBindingFailedStub = nil
 	fake.isBindingFailedReturns = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) IsBindingFailedReturnsOnCall(i int, result1 bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.IsBindingFailedStub = nil
@@ -819,6 +869,8 @@ func (fake *FakeSvcatClient) IsBindingFailedReturnsOnCall(i int, result1 bool) {
 	fake.isBindingFailedReturnsOnCall[i] = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) IsBindingReady(arg1 *apiv1beta1.ServiceBinding) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isBindingReadyMutex.Lock()
@@ -837,11 +889,15 @@ func (fake *FakeSvcatClient) IsBindingReady(arg1 *apiv1beta1.ServiceBinding) boo
 func (fake *FakeSvcatClient) IsBindingReadyCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.isBindingReadyMutex.RLock()
 	defer fake.isBindingReadyMutex.RUnlock()
 	return len(fake.isBindingReadyArgsForCall)
 }
 func (fake *FakeSvcatClient) IsBindingReadyArgsForCall(i int) *apiv1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isBindingReadyMutex.RLock()
@@ -851,10 +907,14 @@ func (fake *FakeSvcatClient) IsBindingReadyArgsForCall(i int) *apiv1beta1.Servic
 func (fake *FakeSvcatClient) IsBindingReadyReturns(result1 bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.IsBindingReadyStub = nil
 	fake.isBindingReadyReturns = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) IsBindingReadyReturnsOnCall(i int, result1 bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.IsBindingReadyStub = nil
@@ -864,6 +924,8 @@ func (fake *FakeSvcatClient) IsBindingReadyReturnsOnCall(i int, result1 bool) {
 	fake.isBindingReadyReturnsOnCall[i] = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) RetrieveBinding(arg1 string, arg2 string) (*apiv1beta1.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBindingMutex.Lock()
@@ -885,11 +947,15 @@ func (fake *FakeSvcatClient) RetrieveBinding(arg1 string, arg2 string) (*apiv1be
 func (fake *FakeSvcatClient) RetrieveBindingCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveBindingMutex.RLock()
 	defer fake.retrieveBindingMutex.RUnlock()
 	return len(fake.retrieveBindingArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveBindingArgsForCall(i int) (string, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBindingMutex.RLock()
@@ -899,6 +965,8 @@ func (fake *FakeSvcatClient) RetrieveBindingArgsForCall(i int) (string, string) 
 func (fake *FakeSvcatClient) RetrieveBindingReturns(result1 *apiv1beta1.ServiceBinding, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveBindingStub = nil
 	fake.retrieveBindingReturns = struct {
 		result1	*apiv1beta1.ServiceBinding
@@ -906,6 +974,8 @@ func (fake *FakeSvcatClient) RetrieveBindingReturns(result1 *apiv1beta1.ServiceB
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBindingReturnsOnCall(i int, result1 *apiv1beta1.ServiceBinding, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveBindingStub = nil
@@ -921,6 +991,8 @@ func (fake *FakeSvcatClient) RetrieveBindingReturnsOnCall(i int, result1 *apiv1b
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBindings(arg1 string) (*apiv1beta1.ServiceBindingList, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBindingsMutex.Lock()
@@ -939,11 +1011,15 @@ func (fake *FakeSvcatClient) RetrieveBindings(arg1 string) (*apiv1beta1.ServiceB
 func (fake *FakeSvcatClient) RetrieveBindingsCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveBindingsMutex.RLock()
 	defer fake.retrieveBindingsMutex.RUnlock()
 	return len(fake.retrieveBindingsArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveBindingsArgsForCall(i int) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBindingsMutex.RLock()
@@ -953,6 +1029,8 @@ func (fake *FakeSvcatClient) RetrieveBindingsArgsForCall(i int) string {
 func (fake *FakeSvcatClient) RetrieveBindingsReturns(result1 *apiv1beta1.ServiceBindingList, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveBindingsStub = nil
 	fake.retrieveBindingsReturns = struct {
 		result1	*apiv1beta1.ServiceBindingList
@@ -960,6 +1038,8 @@ func (fake *FakeSvcatClient) RetrieveBindingsReturns(result1 *apiv1beta1.Service
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBindingsReturnsOnCall(i int, result1 *apiv1beta1.ServiceBindingList, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveBindingsStub = nil
@@ -975,6 +1055,8 @@ func (fake *FakeSvcatClient) RetrieveBindingsReturnsOnCall(i int, result1 *apiv1
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBindingsByInstance(arg1 *apiv1beta1.ServiceInstance) ([]apiv1beta1.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBindingsByInstanceMutex.Lock()
@@ -993,11 +1075,15 @@ func (fake *FakeSvcatClient) RetrieveBindingsByInstance(arg1 *apiv1beta1.Service
 func (fake *FakeSvcatClient) RetrieveBindingsByInstanceCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveBindingsByInstanceMutex.RLock()
 	defer fake.retrieveBindingsByInstanceMutex.RUnlock()
 	return len(fake.retrieveBindingsByInstanceArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveBindingsByInstanceArgsForCall(i int) *apiv1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBindingsByInstanceMutex.RLock()
@@ -1007,6 +1093,8 @@ func (fake *FakeSvcatClient) RetrieveBindingsByInstanceArgsForCall(i int) *apiv1
 func (fake *FakeSvcatClient) RetrieveBindingsByInstanceReturns(result1 []apiv1beta1.ServiceBinding, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveBindingsByInstanceStub = nil
 	fake.retrieveBindingsByInstanceReturns = struct {
 		result1	[]apiv1beta1.ServiceBinding
@@ -1014,6 +1102,8 @@ func (fake *FakeSvcatClient) RetrieveBindingsByInstanceReturns(result1 []apiv1be
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBindingsByInstanceReturnsOnCall(i int, result1 []apiv1beta1.ServiceBinding, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveBindingsByInstanceStub = nil
@@ -1029,6 +1119,8 @@ func (fake *FakeSvcatClient) RetrieveBindingsByInstanceReturnsOnCall(i int, resu
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) Unbind(arg1 string, arg2 string) ([]types.NamespacedName, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.unbindMutex.Lock()
@@ -1050,11 +1142,15 @@ func (fake *FakeSvcatClient) Unbind(arg1 string, arg2 string) ([]types.Namespace
 func (fake *FakeSvcatClient) UnbindCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.unbindMutex.RLock()
 	defer fake.unbindMutex.RUnlock()
 	return len(fake.unbindArgsForCall)
 }
 func (fake *FakeSvcatClient) UnbindArgsForCall(i int) (string, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.unbindMutex.RLock()
@@ -1064,6 +1160,8 @@ func (fake *FakeSvcatClient) UnbindArgsForCall(i int) (string, string) {
 func (fake *FakeSvcatClient) UnbindReturns(result1 []types.NamespacedName, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.UnbindStub = nil
 	fake.unbindReturns = struct {
 		result1	[]types.NamespacedName
@@ -1071,6 +1169,8 @@ func (fake *FakeSvcatClient) UnbindReturns(result1 []types.NamespacedName, resul
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) UnbindReturnsOnCall(i int, result1 []types.NamespacedName, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.UnbindStub = nil
@@ -1086,6 +1186,8 @@ func (fake *FakeSvcatClient) UnbindReturnsOnCall(i int, result1 []types.Namespac
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) WaitForBinding(arg1 string, arg2 string, arg3 time.Duration, arg4 *time.Duration) (*apiv1beta1.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForBindingMutex.Lock()
@@ -1109,11 +1211,15 @@ func (fake *FakeSvcatClient) WaitForBinding(arg1 string, arg2 string, arg3 time.
 func (fake *FakeSvcatClient) WaitForBindingCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.waitForBindingMutex.RLock()
 	defer fake.waitForBindingMutex.RUnlock()
 	return len(fake.waitForBindingArgsForCall)
 }
 func (fake *FakeSvcatClient) WaitForBindingArgsForCall(i int) (string, string, time.Duration, *time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForBindingMutex.RLock()
@@ -1123,6 +1229,8 @@ func (fake *FakeSvcatClient) WaitForBindingArgsForCall(i int) (string, string, t
 func (fake *FakeSvcatClient) WaitForBindingReturns(result1 *apiv1beta1.ServiceBinding, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.WaitForBindingStub = nil
 	fake.waitForBindingReturns = struct {
 		result1	*apiv1beta1.ServiceBinding
@@ -1130,6 +1238,8 @@ func (fake *FakeSvcatClient) WaitForBindingReturns(result1 *apiv1beta1.ServiceBi
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) WaitForBindingReturnsOnCall(i int, result1 *apiv1beta1.ServiceBinding, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.WaitForBindingStub = nil
@@ -1145,6 +1255,8 @@ func (fake *FakeSvcatClient) WaitForBindingReturnsOnCall(i int, result1 *apiv1be
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) Deregister(arg1 string, arg2 *servicecatalog.ScopeOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.deregisterMutex.Lock()
@@ -1166,11 +1278,15 @@ func (fake *FakeSvcatClient) Deregister(arg1 string, arg2 *servicecatalog.ScopeO
 func (fake *FakeSvcatClient) DeregisterCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.deregisterMutex.RLock()
 	defer fake.deregisterMutex.RUnlock()
 	return len(fake.deregisterArgsForCall)
 }
 func (fake *FakeSvcatClient) DeregisterArgsForCall(i int) (string, *servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.deregisterMutex.RLock()
@@ -1180,10 +1296,14 @@ func (fake *FakeSvcatClient) DeregisterArgsForCall(i int) (string, *servicecatal
 func (fake *FakeSvcatClient) DeregisterReturns(result1 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.DeregisterStub = nil
 	fake.deregisterReturns = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) DeregisterReturnsOnCall(i int, result1 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.DeregisterStub = nil
@@ -1193,6 +1313,8 @@ func (fake *FakeSvcatClient) DeregisterReturnsOnCall(i int, result1 error) {
 	fake.deregisterReturnsOnCall[i] = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) RetrieveBrokers(opts servicecatalog.ScopeOptions) ([]servicecatalog.Broker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBrokersMutex.Lock()
@@ -1211,11 +1333,15 @@ func (fake *FakeSvcatClient) RetrieveBrokers(opts servicecatalog.ScopeOptions) (
 func (fake *FakeSvcatClient) RetrieveBrokersCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveBrokersMutex.RLock()
 	defer fake.retrieveBrokersMutex.RUnlock()
 	return len(fake.retrieveBrokersArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveBrokersArgsForCall(i int) servicecatalog.ScopeOptions {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBrokersMutex.RLock()
@@ -1225,6 +1351,8 @@ func (fake *FakeSvcatClient) RetrieveBrokersArgsForCall(i int) servicecatalog.Sc
 func (fake *FakeSvcatClient) RetrieveBrokersReturns(result1 []servicecatalog.Broker, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveBrokersStub = nil
 	fake.retrieveBrokersReturns = struct {
 		result1	[]servicecatalog.Broker
@@ -1232,6 +1360,8 @@ func (fake *FakeSvcatClient) RetrieveBrokersReturns(result1 []servicecatalog.Bro
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBrokersReturnsOnCall(i int, result1 []servicecatalog.Broker, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveBrokersStub = nil
@@ -1247,6 +1377,8 @@ func (fake *FakeSvcatClient) RetrieveBrokersReturnsOnCall(i int, result1 []servi
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBroker(arg1 string) (*apiv1beta1.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBrokerMutex.Lock()
@@ -1265,11 +1397,15 @@ func (fake *FakeSvcatClient) RetrieveBroker(arg1 string) (*apiv1beta1.ClusterSer
 func (fake *FakeSvcatClient) RetrieveBrokerCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveBrokerMutex.RLock()
 	defer fake.retrieveBrokerMutex.RUnlock()
 	return len(fake.retrieveBrokerArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveBrokerArgsForCall(i int) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBrokerMutex.RLock()
@@ -1279,6 +1415,8 @@ func (fake *FakeSvcatClient) RetrieveBrokerArgsForCall(i int) string {
 func (fake *FakeSvcatClient) RetrieveBrokerReturns(result1 *apiv1beta1.ClusterServiceBroker, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveBrokerStub = nil
 	fake.retrieveBrokerReturns = struct {
 		result1	*apiv1beta1.ClusterServiceBroker
@@ -1286,6 +1424,8 @@ func (fake *FakeSvcatClient) RetrieveBrokerReturns(result1 *apiv1beta1.ClusterSe
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBrokerReturnsOnCall(i int, result1 *apiv1beta1.ClusterServiceBroker, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveBrokerStub = nil
@@ -1301,6 +1441,8 @@ func (fake *FakeSvcatClient) RetrieveBrokerReturnsOnCall(i int, result1 *apiv1be
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBrokerByClass(arg1 *apiv1beta1.ClusterServiceClass) (*apiv1beta1.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBrokerByClassMutex.Lock()
@@ -1321,11 +1463,15 @@ func (fake *FakeSvcatClient) RetrieveBrokerByClass(arg1 *apiv1beta1.ClusterServi
 func (fake *FakeSvcatClient) RetrieveBrokerByClassCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveBrokerByClassMutex.RLock()
 	defer fake.retrieveBrokerByClassMutex.RUnlock()
 	return len(fake.retrieveBrokerByClassArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveBrokerByClassArgsForCall(i int) *apiv1beta1.ClusterServiceClass {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveBrokerByClassMutex.RLock()
@@ -1335,6 +1481,8 @@ func (fake *FakeSvcatClient) RetrieveBrokerByClassArgsForCall(i int) *apiv1beta1
 func (fake *FakeSvcatClient) RetrieveBrokerByClassReturns(result1 *apiv1beta1.ClusterServiceBroker, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveBrokerByClassStub = nil
 	fake.retrieveBrokerByClassReturns = struct {
 		result1	*apiv1beta1.ClusterServiceBroker
@@ -1342,6 +1490,8 @@ func (fake *FakeSvcatClient) RetrieveBrokerByClassReturns(result1 *apiv1beta1.Cl
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveBrokerByClassReturnsOnCall(i int, result1 *apiv1beta1.ClusterServiceBroker, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveBrokerByClassStub = nil
@@ -1357,6 +1507,8 @@ func (fake *FakeSvcatClient) RetrieveBrokerByClassReturnsOnCall(i int, result1 *
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) Register(arg1 string, arg2 string, arg3 *servicecatalog.RegisterOptions, arg4 *servicecatalog.ScopeOptions) (servicecatalog.Broker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.registerMutex.Lock()
@@ -1380,11 +1532,15 @@ func (fake *FakeSvcatClient) Register(arg1 string, arg2 string, arg3 *servicecat
 func (fake *FakeSvcatClient) RegisterCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.registerMutex.RLock()
 	defer fake.registerMutex.RUnlock()
 	return len(fake.registerArgsForCall)
 }
 func (fake *FakeSvcatClient) RegisterArgsForCall(i int) (string, string, *servicecatalog.RegisterOptions, *servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.registerMutex.RLock()
@@ -1394,6 +1550,8 @@ func (fake *FakeSvcatClient) RegisterArgsForCall(i int) (string, string, *servic
 func (fake *FakeSvcatClient) RegisterReturns(result1 servicecatalog.Broker, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RegisterStub = nil
 	fake.registerReturns = struct {
 		result1	servicecatalog.Broker
@@ -1401,6 +1559,8 @@ func (fake *FakeSvcatClient) RegisterReturns(result1 servicecatalog.Broker, resu
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RegisterReturnsOnCall(i int, result1 servicecatalog.Broker, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RegisterStub = nil
@@ -1416,6 +1576,8 @@ func (fake *FakeSvcatClient) RegisterReturnsOnCall(i int, result1 servicecatalog
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) Sync(arg1 string, arg2 servicecatalog.ScopeOptions, arg3 int) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.syncMutex.Lock()
@@ -1438,11 +1600,15 @@ func (fake *FakeSvcatClient) Sync(arg1 string, arg2 servicecatalog.ScopeOptions,
 func (fake *FakeSvcatClient) SyncCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.syncMutex.RLock()
 	defer fake.syncMutex.RUnlock()
 	return len(fake.syncArgsForCall)
 }
 func (fake *FakeSvcatClient) SyncArgsForCall(i int) (string, servicecatalog.ScopeOptions, int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.syncMutex.RLock()
@@ -1452,10 +1618,14 @@ func (fake *FakeSvcatClient) SyncArgsForCall(i int) (string, servicecatalog.Scop
 func (fake *FakeSvcatClient) SyncReturns(result1 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.SyncStub = nil
 	fake.syncReturns = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) SyncReturnsOnCall(i int, result1 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.SyncStub = nil
@@ -1465,6 +1635,8 @@ func (fake *FakeSvcatClient) SyncReturnsOnCall(i int, result1 error) {
 	fake.syncReturnsOnCall[i] = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) WaitForBroker(arg1 string, arg2 time.Duration, arg3 *time.Duration) (servicecatalog.Broker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForBrokerMutex.Lock()
@@ -1487,11 +1659,15 @@ func (fake *FakeSvcatClient) WaitForBroker(arg1 string, arg2 time.Duration, arg3
 func (fake *FakeSvcatClient) WaitForBrokerCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.waitForBrokerMutex.RLock()
 	defer fake.waitForBrokerMutex.RUnlock()
 	return len(fake.waitForBrokerArgsForCall)
 }
 func (fake *FakeSvcatClient) WaitForBrokerArgsForCall(i int) (string, time.Duration, *time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForBrokerMutex.RLock()
@@ -1501,6 +1677,8 @@ func (fake *FakeSvcatClient) WaitForBrokerArgsForCall(i int) (string, time.Durat
 func (fake *FakeSvcatClient) WaitForBrokerReturns(result1 servicecatalog.Broker, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.WaitForBrokerStub = nil
 	fake.waitForBrokerReturns = struct {
 		result1	servicecatalog.Broker
@@ -1508,6 +1686,8 @@ func (fake *FakeSvcatClient) WaitForBrokerReturns(result1 servicecatalog.Broker,
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) WaitForBrokerReturnsOnCall(i int, result1 servicecatalog.Broker, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.WaitForBrokerStub = nil
@@ -1523,6 +1703,8 @@ func (fake *FakeSvcatClient) WaitForBrokerReturnsOnCall(i int, result1 serviceca
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClasses(arg1 servicecatalog.ScopeOptions) ([]servicecatalog.Class, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassesMutex.Lock()
@@ -1541,11 +1723,15 @@ func (fake *FakeSvcatClient) RetrieveClasses(arg1 servicecatalog.ScopeOptions) (
 func (fake *FakeSvcatClient) RetrieveClassesCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveClassesMutex.RLock()
 	defer fake.retrieveClassesMutex.RUnlock()
 	return len(fake.retrieveClassesArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveClassesArgsForCall(i int) servicecatalog.ScopeOptions {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassesMutex.RLock()
@@ -1555,6 +1741,8 @@ func (fake *FakeSvcatClient) RetrieveClassesArgsForCall(i int) servicecatalog.Sc
 func (fake *FakeSvcatClient) RetrieveClassesReturns(result1 []servicecatalog.Class, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveClassesStub = nil
 	fake.retrieveClassesReturns = struct {
 		result1	[]servicecatalog.Class
@@ -1562,6 +1750,8 @@ func (fake *FakeSvcatClient) RetrieveClassesReturns(result1 []servicecatalog.Cla
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassesReturnsOnCall(i int, result1 []servicecatalog.Class, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveClassesStub = nil
@@ -1577,6 +1767,8 @@ func (fake *FakeSvcatClient) RetrieveClassesReturnsOnCall(i int, result1 []servi
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassByName(arg1 string, arg2 servicecatalog.ScopeOptions) (servicecatalog.Class, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassByNameMutex.Lock()
@@ -1598,11 +1790,15 @@ func (fake *FakeSvcatClient) RetrieveClassByName(arg1 string, arg2 servicecatalo
 func (fake *FakeSvcatClient) RetrieveClassByNameCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveClassByNameMutex.RLock()
 	defer fake.retrieveClassByNameMutex.RUnlock()
 	return len(fake.retrieveClassByNameArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveClassByNameArgsForCall(i int) (string, servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassByNameMutex.RLock()
@@ -1612,6 +1808,8 @@ func (fake *FakeSvcatClient) RetrieveClassByNameArgsForCall(i int) (string, serv
 func (fake *FakeSvcatClient) RetrieveClassByNameReturns(result1 servicecatalog.Class, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveClassByNameStub = nil
 	fake.retrieveClassByNameReturns = struct {
 		result1	servicecatalog.Class
@@ -1619,6 +1817,8 @@ func (fake *FakeSvcatClient) RetrieveClassByNameReturns(result1 servicecatalog.C
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassByNameReturnsOnCall(i int, result1 servicecatalog.Class, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveClassByNameStub = nil
@@ -1634,6 +1834,8 @@ func (fake *FakeSvcatClient) RetrieveClassByNameReturnsOnCall(i int, result1 ser
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassByID(arg1 string) (*apiv1beta1.ClusterServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassByIDMutex.Lock()
@@ -1652,11 +1854,15 @@ func (fake *FakeSvcatClient) RetrieveClassByID(arg1 string) (*apiv1beta1.Cluster
 func (fake *FakeSvcatClient) RetrieveClassByIDCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveClassByIDMutex.RLock()
 	defer fake.retrieveClassByIDMutex.RUnlock()
 	return len(fake.retrieveClassByIDArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveClassByIDArgsForCall(i int) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassByIDMutex.RLock()
@@ -1666,6 +1872,8 @@ func (fake *FakeSvcatClient) RetrieveClassByIDArgsForCall(i int) string {
 func (fake *FakeSvcatClient) RetrieveClassByIDReturns(result1 *apiv1beta1.ClusterServiceClass, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveClassByIDStub = nil
 	fake.retrieveClassByIDReturns = struct {
 		result1	*apiv1beta1.ClusterServiceClass
@@ -1673,6 +1881,8 @@ func (fake *FakeSvcatClient) RetrieveClassByIDReturns(result1 *apiv1beta1.Cluste
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassByIDReturnsOnCall(i int, result1 *apiv1beta1.ClusterServiceClass, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveClassByIDStub = nil
@@ -1688,6 +1898,8 @@ func (fake *FakeSvcatClient) RetrieveClassByIDReturnsOnCall(i int, result1 *apiv
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassByPlan(arg1 servicecatalog.Plan) (*apiv1beta1.ClusterServiceClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassByPlanMutex.Lock()
@@ -1706,11 +1918,15 @@ func (fake *FakeSvcatClient) RetrieveClassByPlan(arg1 servicecatalog.Plan) (*api
 func (fake *FakeSvcatClient) RetrieveClassByPlanCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveClassByPlanMutex.RLock()
 	defer fake.retrieveClassByPlanMutex.RUnlock()
 	return len(fake.retrieveClassByPlanArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveClassByPlanArgsForCall(i int) servicecatalog.Plan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveClassByPlanMutex.RLock()
@@ -1720,6 +1936,8 @@ func (fake *FakeSvcatClient) RetrieveClassByPlanArgsForCall(i int) servicecatalo
 func (fake *FakeSvcatClient) RetrieveClassByPlanReturns(result1 *apiv1beta1.ClusterServiceClass, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveClassByPlanStub = nil
 	fake.retrieveClassByPlanReturns = struct {
 		result1	*apiv1beta1.ClusterServiceClass
@@ -1727,6 +1945,8 @@ func (fake *FakeSvcatClient) RetrieveClassByPlanReturns(result1 *apiv1beta1.Clus
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveClassByPlanReturnsOnCall(i int, result1 *apiv1beta1.ClusterServiceClass, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveClassByPlanStub = nil
@@ -1742,6 +1962,8 @@ func (fake *FakeSvcatClient) RetrieveClassByPlanReturnsOnCall(i int, result1 *ap
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) CreateClassFrom(arg1 servicecatalog.CreateClassFromOptions) (servicecatalog.Class, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.createClassFromMutex.Lock()
@@ -1762,11 +1984,15 @@ func (fake *FakeSvcatClient) CreateClassFrom(arg1 servicecatalog.CreateClassFrom
 func (fake *FakeSvcatClient) CreateClassFromCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.createClassFromMutex.RLock()
 	defer fake.createClassFromMutex.RUnlock()
 	return len(fake.createClassFromArgsForCall)
 }
 func (fake *FakeSvcatClient) CreateClassFromArgsForCall(i int) servicecatalog.CreateClassFromOptions {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.createClassFromMutex.RLock()
@@ -1776,6 +2002,8 @@ func (fake *FakeSvcatClient) CreateClassFromArgsForCall(i int) servicecatalog.Cr
 func (fake *FakeSvcatClient) CreateClassFromReturns(result1 servicecatalog.Class, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.CreateClassFromStub = nil
 	fake.createClassFromReturns = struct {
 		result1	servicecatalog.Class
@@ -1783,6 +2011,8 @@ func (fake *FakeSvcatClient) CreateClassFromReturns(result1 servicecatalog.Class
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) CreateClassFromReturnsOnCall(i int, result1 servicecatalog.Class, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.CreateClassFromStub = nil
@@ -1798,6 +2028,8 @@ func (fake *FakeSvcatClient) CreateClassFromReturnsOnCall(i int, result1 service
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) Deprovision(arg1 string, arg2 string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.deprovisionMutex.Lock()
@@ -1819,11 +2051,15 @@ func (fake *FakeSvcatClient) Deprovision(arg1 string, arg2 string) error {
 func (fake *FakeSvcatClient) DeprovisionCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.deprovisionMutex.RLock()
 	defer fake.deprovisionMutex.RUnlock()
 	return len(fake.deprovisionArgsForCall)
 }
 func (fake *FakeSvcatClient) DeprovisionArgsForCall(i int) (string, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.deprovisionMutex.RLock()
@@ -1833,10 +2069,14 @@ func (fake *FakeSvcatClient) DeprovisionArgsForCall(i int) (string, string) {
 func (fake *FakeSvcatClient) DeprovisionReturns(result1 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.DeprovisionStub = nil
 	fake.deprovisionReturns = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) DeprovisionReturnsOnCall(i int, result1 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.DeprovisionStub = nil
@@ -1846,6 +2086,8 @@ func (fake *FakeSvcatClient) DeprovisionReturnsOnCall(i int, result1 error) {
 	fake.deprovisionReturnsOnCall[i] = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) InstanceParentHierarchy(arg1 *apiv1beta1.ServiceInstance) (*apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, *apiv1beta1.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.instanceParentHierarchyMutex.Lock()
@@ -1864,6 +2106,8 @@ func (fake *FakeSvcatClient) InstanceParentHierarchy(arg1 *apiv1beta1.ServiceIns
 func (fake *FakeSvcatClient) InstanceParentHierarchyCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.instanceParentHierarchyMutex.RLock()
 	defer fake.instanceParentHierarchyMutex.RUnlock()
 	return len(fake.instanceParentHierarchyArgsForCall)
@@ -1871,11 +2115,15 @@ func (fake *FakeSvcatClient) InstanceParentHierarchyCallCount() int {
 func (fake *FakeSvcatClient) InstanceParentHierarchyArgsForCall(i int) *apiv1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.instanceParentHierarchyMutex.RLock()
 	defer fake.instanceParentHierarchyMutex.RUnlock()
 	return fake.instanceParentHierarchyArgsForCall[i].arg1
 }
 func (fake *FakeSvcatClient) InstanceParentHierarchyReturns(result1 *apiv1beta1.ClusterServiceClass, result2 *apiv1beta1.ClusterServicePlan, result3 *apiv1beta1.ClusterServiceBroker, result4 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.InstanceParentHierarchyStub = nil
@@ -1887,6 +2135,8 @@ func (fake *FakeSvcatClient) InstanceParentHierarchyReturns(result1 *apiv1beta1.
 	}{result1, result2, result3, result4}
 }
 func (fake *FakeSvcatClient) InstanceParentHierarchyReturnsOnCall(i int, result1 *apiv1beta1.ClusterServiceClass, result2 *apiv1beta1.ClusterServicePlan, result3 *apiv1beta1.ClusterServiceBroker, result4 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.InstanceParentHierarchyStub = nil
@@ -1908,6 +2158,8 @@ func (fake *FakeSvcatClient) InstanceParentHierarchyReturnsOnCall(i int, result1
 func (fake *FakeSvcatClient) InstanceToServiceClassAndPlan(arg1 *apiv1beta1.ServiceInstance) (*apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.instanceToServiceClassAndPlanMutex.Lock()
 	ret, specificReturn := fake.instanceToServiceClassAndPlanReturnsOnCall[len(fake.instanceToServiceClassAndPlanArgsForCall)]
 	fake.instanceToServiceClassAndPlanArgsForCall = append(fake.instanceToServiceClassAndPlanArgsForCall, struct{ arg1 *apiv1beta1.ServiceInstance }{arg1})
@@ -1924,6 +2176,8 @@ func (fake *FakeSvcatClient) InstanceToServiceClassAndPlan(arg1 *apiv1beta1.Serv
 func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.instanceToServiceClassAndPlanMutex.RLock()
 	defer fake.instanceToServiceClassAndPlanMutex.RUnlock()
 	return len(fake.instanceToServiceClassAndPlanArgsForCall)
@@ -1931,11 +2185,15 @@ func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanCallCount() int {
 func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanArgsForCall(i int) *apiv1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.instanceToServiceClassAndPlanMutex.RLock()
 	defer fake.instanceToServiceClassAndPlanMutex.RUnlock()
 	return fake.instanceToServiceClassAndPlanArgsForCall[i].arg1
 }
 func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanReturns(result1 *apiv1beta1.ClusterServiceClass, result2 *apiv1beta1.ClusterServicePlan, result3 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.InstanceToServiceClassAndPlanStub = nil
@@ -1946,6 +2204,8 @@ func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanReturns(result1 *apiv1
 	}{result1, result2, result3}
 }
 func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanReturnsOnCall(i int, result1 *apiv1beta1.ClusterServiceClass, result2 *apiv1beta1.ClusterServicePlan, result3 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.InstanceToServiceClassAndPlanStub = nil
@@ -1965,6 +2225,8 @@ func (fake *FakeSvcatClient) InstanceToServiceClassAndPlanReturnsOnCall(i int, r
 func (fake *FakeSvcatClient) IsInstanceFailed(arg1 *apiv1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.isInstanceFailedMutex.Lock()
 	ret, specificReturn := fake.isInstanceFailedReturnsOnCall[len(fake.isInstanceFailedArgsForCall)]
 	fake.isInstanceFailedArgsForCall = append(fake.isInstanceFailedArgsForCall, struct{ arg1 *apiv1beta1.ServiceInstance }{arg1})
@@ -1981,11 +2243,15 @@ func (fake *FakeSvcatClient) IsInstanceFailed(arg1 *apiv1beta1.ServiceInstance) 
 func (fake *FakeSvcatClient) IsInstanceFailedCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.isInstanceFailedMutex.RLock()
 	defer fake.isInstanceFailedMutex.RUnlock()
 	return len(fake.isInstanceFailedArgsForCall)
 }
 func (fake *FakeSvcatClient) IsInstanceFailedArgsForCall(i int) *apiv1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isInstanceFailedMutex.RLock()
@@ -1995,10 +2261,14 @@ func (fake *FakeSvcatClient) IsInstanceFailedArgsForCall(i int) *apiv1beta1.Serv
 func (fake *FakeSvcatClient) IsInstanceFailedReturns(result1 bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.IsInstanceFailedStub = nil
 	fake.isInstanceFailedReturns = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) IsInstanceFailedReturnsOnCall(i int, result1 bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.IsInstanceFailedStub = nil
@@ -2008,6 +2278,8 @@ func (fake *FakeSvcatClient) IsInstanceFailedReturnsOnCall(i int, result1 bool) 
 	fake.isInstanceFailedReturnsOnCall[i] = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) IsInstanceReady(arg1 *apiv1beta1.ServiceInstance) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isInstanceReadyMutex.Lock()
@@ -2026,11 +2298,15 @@ func (fake *FakeSvcatClient) IsInstanceReady(arg1 *apiv1beta1.ServiceInstance) b
 func (fake *FakeSvcatClient) IsInstanceReadyCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.isInstanceReadyMutex.RLock()
 	defer fake.isInstanceReadyMutex.RUnlock()
 	return len(fake.isInstanceReadyArgsForCall)
 }
 func (fake *FakeSvcatClient) IsInstanceReadyArgsForCall(i int) *apiv1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.isInstanceReadyMutex.RLock()
@@ -2040,10 +2316,14 @@ func (fake *FakeSvcatClient) IsInstanceReadyArgsForCall(i int) *apiv1beta1.Servi
 func (fake *FakeSvcatClient) IsInstanceReadyReturns(result1 bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.IsInstanceReadyStub = nil
 	fake.isInstanceReadyReturns = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) IsInstanceReadyReturnsOnCall(i int, result1 bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.IsInstanceReadyStub = nil
@@ -2053,6 +2333,8 @@ func (fake *FakeSvcatClient) IsInstanceReadyReturnsOnCall(i int, result1 bool) {
 	fake.isInstanceReadyReturnsOnCall[i] = struct{ result1 bool }{result1}
 }
 func (fake *FakeSvcatClient) Provision(arg1 string, arg2 string, arg3 string, arg4 *servicecatalog.ProvisionOptions) (*apiv1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.provisionMutex.Lock()
@@ -2076,11 +2358,15 @@ func (fake *FakeSvcatClient) Provision(arg1 string, arg2 string, arg3 string, ar
 func (fake *FakeSvcatClient) ProvisionCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.provisionMutex.RLock()
 	defer fake.provisionMutex.RUnlock()
 	return len(fake.provisionArgsForCall)
 }
 func (fake *FakeSvcatClient) ProvisionArgsForCall(i int) (string, string, string, *servicecatalog.ProvisionOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.provisionMutex.RLock()
@@ -2090,6 +2376,8 @@ func (fake *FakeSvcatClient) ProvisionArgsForCall(i int) (string, string, string
 func (fake *FakeSvcatClient) ProvisionReturns(result1 *apiv1beta1.ServiceInstance, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.ProvisionStub = nil
 	fake.provisionReturns = struct {
 		result1	*apiv1beta1.ServiceInstance
@@ -2097,6 +2385,8 @@ func (fake *FakeSvcatClient) ProvisionReturns(result1 *apiv1beta1.ServiceInstanc
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) ProvisionReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstance, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.ProvisionStub = nil
@@ -2112,6 +2402,8 @@ func (fake *FakeSvcatClient) ProvisionReturnsOnCall(i int, result1 *apiv1beta1.S
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstance(arg1 string, arg2 string) (*apiv1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstanceMutex.Lock()
@@ -2133,11 +2425,15 @@ func (fake *FakeSvcatClient) RetrieveInstance(arg1 string, arg2 string) (*apiv1b
 func (fake *FakeSvcatClient) RetrieveInstanceCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveInstanceMutex.RLock()
 	defer fake.retrieveInstanceMutex.RUnlock()
 	return len(fake.retrieveInstanceArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveInstanceArgsForCall(i int) (string, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstanceMutex.RLock()
@@ -2147,6 +2443,8 @@ func (fake *FakeSvcatClient) RetrieveInstanceArgsForCall(i int) (string, string)
 func (fake *FakeSvcatClient) RetrieveInstanceReturns(result1 *apiv1beta1.ServiceInstance, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveInstanceStub = nil
 	fake.retrieveInstanceReturns = struct {
 		result1	*apiv1beta1.ServiceInstance
@@ -2154,6 +2452,8 @@ func (fake *FakeSvcatClient) RetrieveInstanceReturns(result1 *apiv1beta1.Service
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstanceReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstance, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveInstanceStub = nil
@@ -2169,6 +2469,8 @@ func (fake *FakeSvcatClient) RetrieveInstanceReturnsOnCall(i int, result1 *apiv1
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstanceByBinding(arg1 *apiv1beta1.ServiceBinding) (*apiv1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstanceByBindingMutex.Lock()
@@ -2187,11 +2489,15 @@ func (fake *FakeSvcatClient) RetrieveInstanceByBinding(arg1 *apiv1beta1.ServiceB
 func (fake *FakeSvcatClient) RetrieveInstanceByBindingCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveInstanceByBindingMutex.RLock()
 	defer fake.retrieveInstanceByBindingMutex.RUnlock()
 	return len(fake.retrieveInstanceByBindingArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveInstanceByBindingArgsForCall(i int) *apiv1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstanceByBindingMutex.RLock()
@@ -2201,6 +2507,8 @@ func (fake *FakeSvcatClient) RetrieveInstanceByBindingArgsForCall(i int) *apiv1b
 func (fake *FakeSvcatClient) RetrieveInstanceByBindingReturns(result1 *apiv1beta1.ServiceInstance, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveInstanceByBindingStub = nil
 	fake.retrieveInstanceByBindingReturns = struct {
 		result1	*apiv1beta1.ServiceInstance
@@ -2208,6 +2516,8 @@ func (fake *FakeSvcatClient) RetrieveInstanceByBindingReturns(result1 *apiv1beta
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstanceByBindingReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstance, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveInstanceByBindingStub = nil
@@ -2223,6 +2533,8 @@ func (fake *FakeSvcatClient) RetrieveInstanceByBindingReturnsOnCall(i int, resul
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstances(arg1 string, arg2 string, arg3 string) (*apiv1beta1.ServiceInstanceList, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstancesMutex.Lock()
@@ -2245,11 +2557,15 @@ func (fake *FakeSvcatClient) RetrieveInstances(arg1 string, arg2 string, arg3 st
 func (fake *FakeSvcatClient) RetrieveInstancesCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveInstancesMutex.RLock()
 	defer fake.retrieveInstancesMutex.RUnlock()
 	return len(fake.retrieveInstancesArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveInstancesArgsForCall(i int) (string, string, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstancesMutex.RLock()
@@ -2259,6 +2575,8 @@ func (fake *FakeSvcatClient) RetrieveInstancesArgsForCall(i int) (string, string
 func (fake *FakeSvcatClient) RetrieveInstancesReturns(result1 *apiv1beta1.ServiceInstanceList, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveInstancesStub = nil
 	fake.retrieveInstancesReturns = struct {
 		result1	*apiv1beta1.ServiceInstanceList
@@ -2266,6 +2584,8 @@ func (fake *FakeSvcatClient) RetrieveInstancesReturns(result1 *apiv1beta1.Servic
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstancesReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstanceList, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveInstancesStub = nil
@@ -2281,6 +2601,8 @@ func (fake *FakeSvcatClient) RetrieveInstancesReturnsOnCall(i int, result1 *apiv
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstancesByPlan(arg1 servicecatalog.Plan) ([]apiv1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstancesByPlanMutex.Lock()
@@ -2299,11 +2621,15 @@ func (fake *FakeSvcatClient) RetrieveInstancesByPlan(arg1 servicecatalog.Plan) (
 func (fake *FakeSvcatClient) RetrieveInstancesByPlanCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveInstancesByPlanMutex.RLock()
 	defer fake.retrieveInstancesByPlanMutex.RUnlock()
 	return len(fake.retrieveInstancesByPlanArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveInstancesByPlanArgsForCall(i int) servicecatalog.Plan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveInstancesByPlanMutex.RLock()
@@ -2313,6 +2639,8 @@ func (fake *FakeSvcatClient) RetrieveInstancesByPlanArgsForCall(i int) serviceca
 func (fake *FakeSvcatClient) RetrieveInstancesByPlanReturns(result1 []apiv1beta1.ServiceInstance, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveInstancesByPlanStub = nil
 	fake.retrieveInstancesByPlanReturns = struct {
 		result1	[]apiv1beta1.ServiceInstance
@@ -2320,6 +2648,8 @@ func (fake *FakeSvcatClient) RetrieveInstancesByPlanReturns(result1 []apiv1beta1
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveInstancesByPlanReturnsOnCall(i int, result1 []apiv1beta1.ServiceInstance, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveInstancesByPlanStub = nil
@@ -2335,6 +2665,8 @@ func (fake *FakeSvcatClient) RetrieveInstancesByPlanReturnsOnCall(i int, result1
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) TouchInstance(arg1 string, arg2 string, arg3 int) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.touchInstanceMutex.Lock()
@@ -2357,11 +2689,15 @@ func (fake *FakeSvcatClient) TouchInstance(arg1 string, arg2 string, arg3 int) e
 func (fake *FakeSvcatClient) TouchInstanceCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.touchInstanceMutex.RLock()
 	defer fake.touchInstanceMutex.RUnlock()
 	return len(fake.touchInstanceArgsForCall)
 }
 func (fake *FakeSvcatClient) TouchInstanceArgsForCall(i int) (string, string, int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.touchInstanceMutex.RLock()
@@ -2371,10 +2707,14 @@ func (fake *FakeSvcatClient) TouchInstanceArgsForCall(i int) (string, string, in
 func (fake *FakeSvcatClient) TouchInstanceReturns(result1 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.TouchInstanceStub = nil
 	fake.touchInstanceReturns = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) TouchInstanceReturnsOnCall(i int, result1 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.TouchInstanceStub = nil
@@ -2384,6 +2724,8 @@ func (fake *FakeSvcatClient) TouchInstanceReturnsOnCall(i int, result1 error) {
 	fake.touchInstanceReturnsOnCall[i] = struct{ result1 error }{result1}
 }
 func (fake *FakeSvcatClient) WaitForInstance(arg1 string, arg2 string, arg3 time.Duration, arg4 *time.Duration) (*apiv1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForInstanceMutex.Lock()
@@ -2407,11 +2749,15 @@ func (fake *FakeSvcatClient) WaitForInstance(arg1 string, arg2 string, arg3 time
 func (fake *FakeSvcatClient) WaitForInstanceCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.waitForInstanceMutex.RLock()
 	defer fake.waitForInstanceMutex.RUnlock()
 	return len(fake.waitForInstanceArgsForCall)
 }
 func (fake *FakeSvcatClient) WaitForInstanceArgsForCall(i int) (string, string, time.Duration, *time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForInstanceMutex.RLock()
@@ -2421,6 +2767,8 @@ func (fake *FakeSvcatClient) WaitForInstanceArgsForCall(i int) (string, string, 
 func (fake *FakeSvcatClient) WaitForInstanceReturns(result1 *apiv1beta1.ServiceInstance, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.WaitForInstanceStub = nil
 	fake.waitForInstanceReturns = struct {
 		result1	*apiv1beta1.ServiceInstance
@@ -2428,6 +2776,8 @@ func (fake *FakeSvcatClient) WaitForInstanceReturns(result1 *apiv1beta1.ServiceI
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) WaitForInstanceReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstance, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.WaitForInstanceStub = nil
@@ -2443,6 +2793,8 @@ func (fake *FakeSvcatClient) WaitForInstanceReturnsOnCall(i int, result1 *apiv1b
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) WaitForInstanceToNotExist(arg1 string, arg2 string, arg3 time.Duration, arg4 *time.Duration) (*apiv1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForInstanceToNotExistMutex.Lock()
@@ -2466,11 +2818,15 @@ func (fake *FakeSvcatClient) WaitForInstanceToNotExist(arg1 string, arg2 string,
 func (fake *FakeSvcatClient) WaitForInstanceToNotExistCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.waitForInstanceToNotExistMutex.RLock()
 	defer fake.waitForInstanceToNotExistMutex.RUnlock()
 	return len(fake.waitForInstanceToNotExistArgsForCall)
 }
 func (fake *FakeSvcatClient) WaitForInstanceToNotExistArgsForCall(i int) (string, string, time.Duration, *time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.waitForInstanceToNotExistMutex.RLock()
@@ -2480,6 +2836,8 @@ func (fake *FakeSvcatClient) WaitForInstanceToNotExistArgsForCall(i int) (string
 func (fake *FakeSvcatClient) WaitForInstanceToNotExistReturns(result1 *apiv1beta1.ServiceInstance, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.WaitForInstanceToNotExistStub = nil
 	fake.waitForInstanceToNotExistReturns = struct {
 		result1	*apiv1beta1.ServiceInstance
@@ -2487,6 +2845,8 @@ func (fake *FakeSvcatClient) WaitForInstanceToNotExistReturns(result1 *apiv1beta
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) WaitForInstanceToNotExistReturnsOnCall(i int, result1 *apiv1beta1.ServiceInstance, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.WaitForInstanceToNotExistStub = nil
@@ -2502,6 +2862,8 @@ func (fake *FakeSvcatClient) WaitForInstanceToNotExistReturnsOnCall(i int, resul
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlans(arg1 string, arg2 servicecatalog.ScopeOptions) ([]servicecatalog.Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlansMutex.Lock()
@@ -2523,11 +2885,15 @@ func (fake *FakeSvcatClient) RetrievePlans(arg1 string, arg2 servicecatalog.Scop
 func (fake *FakeSvcatClient) RetrievePlansCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrievePlansMutex.RLock()
 	defer fake.retrievePlansMutex.RUnlock()
 	return len(fake.retrievePlansArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrievePlansArgsForCall(i int) (string, servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlansMutex.RLock()
@@ -2537,6 +2903,8 @@ func (fake *FakeSvcatClient) RetrievePlansArgsForCall(i int) (string, servicecat
 func (fake *FakeSvcatClient) RetrievePlansReturns(result1 []servicecatalog.Plan, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrievePlansStub = nil
 	fake.retrievePlansReturns = struct {
 		result1	[]servicecatalog.Plan
@@ -2544,6 +2912,8 @@ func (fake *FakeSvcatClient) RetrievePlansReturns(result1 []servicecatalog.Plan,
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlansReturnsOnCall(i int, result1 []servicecatalog.Plan, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrievePlansStub = nil
@@ -2559,6 +2929,8 @@ func (fake *FakeSvcatClient) RetrievePlansReturnsOnCall(i int, result1 []service
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByName(arg1 string, arg2 servicecatalog.ScopeOptions) (servicecatalog.Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByNameMutex.Lock()
@@ -2580,11 +2952,15 @@ func (fake *FakeSvcatClient) RetrievePlanByName(arg1 string, arg2 servicecatalog
 func (fake *FakeSvcatClient) RetrievePlanByNameCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrievePlanByNameMutex.RLock()
 	defer fake.retrievePlanByNameMutex.RUnlock()
 	return len(fake.retrievePlanByNameArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrievePlanByNameArgsForCall(i int) (string, servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByNameMutex.RLock()
@@ -2594,6 +2970,8 @@ func (fake *FakeSvcatClient) RetrievePlanByNameArgsForCall(i int) (string, servi
 func (fake *FakeSvcatClient) RetrievePlanByNameReturns(result1 servicecatalog.Plan, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrievePlanByNameStub = nil
 	fake.retrievePlanByNameReturns = struct {
 		result1	servicecatalog.Plan
@@ -2601,6 +2979,8 @@ func (fake *FakeSvcatClient) RetrievePlanByNameReturns(result1 servicecatalog.Pl
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByNameReturnsOnCall(i int, result1 servicecatalog.Plan, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrievePlanByNameStub = nil
@@ -2616,6 +2996,8 @@ func (fake *FakeSvcatClient) RetrievePlanByNameReturnsOnCall(i int, result1 serv
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByClassAndName(arg1 string, arg2 string, arg3 servicecatalog.ScopeOptions) (servicecatalog.Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByClassAndNameMutex.Lock()
@@ -2638,11 +3020,15 @@ func (fake *FakeSvcatClient) RetrievePlanByClassAndName(arg1 string, arg2 string
 func (fake *FakeSvcatClient) RetrievePlanByClassAndNameCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrievePlanByClassAndNameMutex.RLock()
 	defer fake.retrievePlanByClassAndNameMutex.RUnlock()
 	return len(fake.retrievePlanByClassAndNameArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrievePlanByClassAndNameArgsForCall(i int) (string, string, servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByClassAndNameMutex.RLock()
@@ -2652,6 +3038,8 @@ func (fake *FakeSvcatClient) RetrievePlanByClassAndNameArgsForCall(i int) (strin
 func (fake *FakeSvcatClient) RetrievePlanByClassAndNameReturns(result1 servicecatalog.Plan, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrievePlanByClassAndNameStub = nil
 	fake.retrievePlanByClassAndNameReturns = struct {
 		result1	servicecatalog.Plan
@@ -2659,6 +3047,8 @@ func (fake *FakeSvcatClient) RetrievePlanByClassAndNameReturns(result1 serviceca
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByClassAndNameReturnsOnCall(i int, result1 servicecatalog.Plan, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrievePlanByClassAndNameStub = nil
@@ -2674,6 +3064,8 @@ func (fake *FakeSvcatClient) RetrievePlanByClassAndNameReturnsOnCall(i int, resu
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByClassIDAndName(arg1 string, arg2 string, arg3 servicecatalog.ScopeOptions) (servicecatalog.Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByClassIDAndNameMutex.Lock()
@@ -2696,11 +3088,15 @@ func (fake *FakeSvcatClient) RetrievePlanByClassIDAndName(arg1 string, arg2 stri
 func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrievePlanByClassIDAndNameMutex.RLock()
 	defer fake.retrievePlanByClassIDAndNameMutex.RUnlock()
 	return len(fake.retrievePlanByClassIDAndNameArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameArgsForCall(i int) (string, string, servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByClassIDAndNameMutex.RLock()
@@ -2710,6 +3106,8 @@ func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameArgsForCall(i int) (str
 func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameReturns(result1 servicecatalog.Plan, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrievePlanByClassIDAndNameStub = nil
 	fake.retrievePlanByClassIDAndNameReturns = struct {
 		result1	servicecatalog.Plan
@@ -2717,6 +3115,8 @@ func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameReturns(result1 service
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameReturnsOnCall(i int, result1 servicecatalog.Plan, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrievePlanByClassIDAndNameStub = nil
@@ -2732,6 +3132,8 @@ func (fake *FakeSvcatClient) RetrievePlanByClassIDAndNameReturnsOnCall(i int, re
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByID(arg1 string, arg2 servicecatalog.ScopeOptions) (servicecatalog.Plan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByIDMutex.Lock()
@@ -2753,11 +3155,15 @@ func (fake *FakeSvcatClient) RetrievePlanByID(arg1 string, arg2 servicecatalog.S
 func (fake *FakeSvcatClient) RetrievePlanByIDCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrievePlanByIDMutex.RLock()
 	defer fake.retrievePlanByIDMutex.RUnlock()
 	return len(fake.retrievePlanByIDArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrievePlanByIDArgsForCall(i int) (string, servicecatalog.ScopeOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrievePlanByIDMutex.RLock()
@@ -2767,6 +3173,8 @@ func (fake *FakeSvcatClient) RetrievePlanByIDArgsForCall(i int) (string, service
 func (fake *FakeSvcatClient) RetrievePlanByIDReturns(result1 servicecatalog.Plan, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrievePlanByIDStub = nil
 	fake.retrievePlanByIDReturns = struct {
 		result1	servicecatalog.Plan
@@ -2774,6 +3182,8 @@ func (fake *FakeSvcatClient) RetrievePlanByIDReturns(result1 servicecatalog.Plan
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrievePlanByIDReturnsOnCall(i int, result1 servicecatalog.Plan, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrievePlanByIDStub = nil
@@ -2789,6 +3199,8 @@ func (fake *FakeSvcatClient) RetrievePlanByIDReturnsOnCall(i int, result1 servic
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveSecretByBinding(arg1 *apiv1beta1.ServiceBinding) (*apicorev1.Secret, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveSecretByBindingMutex.Lock()
@@ -2807,11 +3219,15 @@ func (fake *FakeSvcatClient) RetrieveSecretByBinding(arg1 *apiv1beta1.ServiceBin
 func (fake *FakeSvcatClient) RetrieveSecretByBindingCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.retrieveSecretByBindingMutex.RLock()
 	defer fake.retrieveSecretByBindingMutex.RUnlock()
 	return len(fake.retrieveSecretByBindingArgsForCall)
 }
 func (fake *FakeSvcatClient) RetrieveSecretByBindingArgsForCall(i int) *apiv1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.retrieveSecretByBindingMutex.RLock()
@@ -2821,6 +3237,8 @@ func (fake *FakeSvcatClient) RetrieveSecretByBindingArgsForCall(i int) *apiv1bet
 func (fake *FakeSvcatClient) RetrieveSecretByBindingReturns(result1 *apicorev1.Secret, result2 error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.RetrieveSecretByBindingStub = nil
 	fake.retrieveSecretByBindingReturns = struct {
 		result1	*apicorev1.Secret
@@ -2828,6 +3246,8 @@ func (fake *FakeSvcatClient) RetrieveSecretByBindingReturns(result1 *apicorev1.S
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) RetrieveSecretByBindingReturnsOnCall(i int, result1 *apicorev1.Secret, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.RetrieveSecretByBindingStub = nil
@@ -2843,6 +3263,8 @@ func (fake *FakeSvcatClient) RetrieveSecretByBindingReturnsOnCall(i int, result1
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) ServerVersion() (*version.Info, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.serverVersionMutex.Lock()
@@ -2861,11 +3283,15 @@ func (fake *FakeSvcatClient) ServerVersion() (*version.Info, error) {
 func (fake *FakeSvcatClient) ServerVersionCallCount() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.serverVersionMutex.RLock()
 	defer fake.serverVersionMutex.RUnlock()
 	return len(fake.serverVersionArgsForCall)
 }
 func (fake *FakeSvcatClient) ServerVersionReturns(result1 *version.Info, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.ServerVersionStub = nil
@@ -2875,6 +3301,8 @@ func (fake *FakeSvcatClient) ServerVersionReturns(result1 *version.Info, result2
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) ServerVersionReturnsOnCall(i int, result1 *version.Info, result2 error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.ServerVersionStub = nil
@@ -2890,6 +3318,8 @@ func (fake *FakeSvcatClient) ServerVersionReturnsOnCall(i int, result1 *version.
 	}{result1, result2}
 }
 func (fake *FakeSvcatClient) Invocations() map[string][][]interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fake.invocationsMutex.RLock()
@@ -2989,6 +3419,8 @@ func (fake *FakeSvcatClient) Invocations() map[string][][]interface{} {
 func (fake *FakeSvcatClient) recordInvocation(key string, args []interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fake.invocationsMutex.Lock()
 	defer fake.invocationsMutex.Unlock()
 	if fake.invocations == nil {
@@ -3005,7 +3437,16 @@ var _ servicecatalog.SvcatClient = new(FakeSvcatClient)
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

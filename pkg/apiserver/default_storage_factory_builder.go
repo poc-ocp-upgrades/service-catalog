@@ -15,6 +15,8 @@ import (
 func NewStorageFactory(storageConfig storagebackend.Config, defaultMediaType string, serializer runtime.StorageSerializer, defaultResourceEncoding *serverstorage.DefaultResourceEncodingConfig, storageEncodingOverrides map[string]schema.GroupVersion, resourceEncodingOverrides []schema.GroupVersionResource, defaultAPIResourceConfig *serverstorage.ResourceConfig, resourceConfigOverrides utilflag.ConfigurationMap) (*serverstorage.DefaultStorageFactory, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	resourceEncodingConfig := mergeGroupEncodingConfigs(defaultResourceEncoding, storageEncodingOverrides)
 	resourceEncodingConfig = mergeResourceEncodingConfigs(resourceEncodingConfig, resourceEncodingOverrides)
 	apiResourceConfig, err := resourceconfig.MergeAPIResourceConfigs(defaultAPIResourceConfig, resourceConfigOverrides, api.Scheme)
@@ -26,6 +28,8 @@ func NewStorageFactory(storageConfig storagebackend.Config, defaultMediaType str
 func mergeResourceEncodingConfigs(defaultResourceEncoding *serverstorage.DefaultResourceEncodingConfig, resourceEncodingOverrides []schema.GroupVersionResource) *serverstorage.DefaultResourceEncodingConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	resourceEncodingConfig := defaultResourceEncoding
 	for _, gvr := range resourceEncodingOverrides {
 		resourceEncodingConfig.SetResourceEncoding(gvr.GroupResource(), gvr.GroupVersion(), schema.GroupVersion{Group: gvr.Group, Version: runtime.APIVersionInternal})
@@ -35,6 +39,8 @@ func mergeResourceEncodingConfigs(defaultResourceEncoding *serverstorage.Default
 func mergeGroupEncodingConfigs(defaultResourceEncoding *serverstorage.DefaultResourceEncodingConfig, storageEncodingOverrides map[string]schema.GroupVersion) *serverstorage.DefaultResourceEncodingConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	resourceEncodingConfig := defaultResourceEncoding
 	for group, storageEncodingVersion := range storageEncodingOverrides {
 		resourceEncodingConfig.SetVersionEncoding(group, storageEncodingVersion, schema.GroupVersion{Group: group, Version: runtime.APIVersionInternal})
@@ -42,6 +48,8 @@ func mergeGroupEncodingConfigs(defaultResourceEncoding *serverstorage.DefaultRes
 	return resourceEncodingConfig
 }
 func getRuntimeConfigValue(overrides utilflag.ConfigurationMap, apiKey string, defaultValue bool) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	flagValue, ok := overrides[apiKey]

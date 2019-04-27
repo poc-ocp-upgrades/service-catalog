@@ -14,9 +14,13 @@ var (
 func strPtr(s string) *string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &s
 }
 func truePtr() *bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b := true
@@ -25,10 +29,14 @@ func truePtr() *bool {
 func falsePtr() *bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := false
 	return &b
 }
 func enableNamespacedResources() (resetFeaturesFunc func(), err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	previousFeatureGate := feature.DefaultFeatureGate

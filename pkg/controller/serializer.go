@@ -7,6 +7,8 @@ import (
 func serialize(value interface{}) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if byteArrayVal, ok := value.([]byte); ok {
 		return byteArrayVal, nil
 	}

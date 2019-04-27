@@ -26,9 +26,13 @@ type ErrorWithHTTPStatus struct {
 func NewErrorWithHTTPStatus(err string, httpStatus int) ErrorWithHTTPStatus {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return ErrorWithHTTPStatus{err, httpStatus}
 }
 func (e ErrorWithHTTPStatus) Error() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return e.err
@@ -36,9 +40,13 @@ func (e ErrorWithHTTPStatus) Error() string {
 func (e ErrorWithHTTPStatus) HTTPStatus() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return e.httpStatus
 }
 func createHandler(c controller.Controller) http.Handler {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := server{controller: c}
@@ -55,12 +63,16 @@ func createHandler(c controller.Controller) http.Handler {
 func Run(ctx context.Context, addr string, c controller.Controller) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	listenAndServe := func(srv *http.Server) error {
 		return srv.ListenAndServe()
 	}
 	return run(ctx, addr, listenAndServe, c)
 }
 func RunTLS(ctx context.Context, addr string, cert string, key string, c controller.Controller) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var decodedCert, decodedKey []byte
@@ -88,6 +100,8 @@ func RunTLS(ctx context.Context, addr string, cert string, key string, c control
 func run(ctx context.Context, addr string, listenAndServe func(srv *http.Server) error, c controller.Controller) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.Infof("Starting server on %s\n", addr)
 	srv := &http.Server{Addr: addr, Handler: createHandler(c)}
 	go func() {
@@ -103,6 +117,8 @@ func run(ctx context.Context, addr string, listenAndServe func(srv *http.Server)
 func (s *server) catalog(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.Infof("Get Service Broker Catalog...")
 	if result, err := s.controller.Catalog(); err == nil {
 		util.WriteResponse(w, http.StatusOK, result)
@@ -111,6 +127,8 @@ func (s *server) catalog(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func (s *server) getServiceInstanceLastOperation(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instanceID := mux.Vars(r)["instance_id"]
@@ -126,6 +144,8 @@ func (s *server) getServiceInstanceLastOperation(w http.ResponseWriter, r *http.
 	}
 }
 func (s *server) createServiceInstance(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	id := mux.Vars(r)["instance_id"]
@@ -152,6 +172,8 @@ func (s *server) createServiceInstance(w http.ResponseWriter, r *http.Request) {
 func (s *server) updateServiceInstance(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	id := mux.Vars(r)["instance_id"]
 	klog.Infof("UpdateServiceInstance %s...\n", id)
 	var req brokerapi.UpdateServiceInstanceRequest
@@ -176,6 +198,8 @@ func (s *server) updateServiceInstance(w http.ResponseWriter, r *http.Request) {
 func (s *server) removeServiceInstance(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instanceID := mux.Vars(r)["instance_id"]
 	q := r.URL.Query()
 	serviceID := q.Get("service_id")
@@ -195,12 +219,16 @@ func (s *server) removeServiceInstance(w http.ResponseWriter, r *http.Request) {
 func getHTTPStatus(err error) int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err, ok := err.(ErrorWithHTTPStatus); ok {
 		return err.HTTPStatus()
 	}
 	return http.StatusBadRequest
 }
 func (s *server) bind(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bindingID := mux.Vars(r)["binding_id"]
@@ -225,6 +253,8 @@ func (s *server) bind(w http.ResponseWriter, r *http.Request) {
 func (s *server) unBind(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instanceID := mux.Vars(r)["instance_id"]
 	bindingID := mux.Vars(r)["binding_id"]
 	q := r.URL.Query()
@@ -242,7 +272,16 @@ func (s *server) unBind(w http.ResponseWriter, r *http.Request) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

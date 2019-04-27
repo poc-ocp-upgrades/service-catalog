@@ -26,6 +26,8 @@ type provisonCmd struct {
 func NewProvisionCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	provisionCmd := &provisonCmd{Namespaced: command.NewNamespaced(cxt), Waitable: command.NewWaitable()}
 	cmd := &cobra.Command{Use: "provision NAME --plan PLAN --class CLASS", Short: "Create a new instance of a service", Example: command.NormalizeExamples(`
   svcat provision wordpress-mysql-instance --class mysqldb --plan free -p location=eastus -p sslEnforcement=disabled
@@ -57,6 +59,8 @@ func NewProvisionCmd(cxt *command.Context) *cobra.Command {
 func (c *provisonCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) == 0 {
 		return fmt.Errorf("an instance name is required")
 	}
@@ -85,9 +89,13 @@ func (c *provisonCmd) Validate(args []string) error {
 func (c *provisonCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Provision()
 }
 func (c *provisonCmd) Provision() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	opts := &servicecatalog.ProvisionOptions{ExternalID: c.externalID, Namespace: c.Namespace, Params: c.params, Secrets: c.secrets}

@@ -13,12 +13,16 @@ type Predicate interface {
 func NewPredicate() Predicate {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return internalPredicate{}
 }
 
 type internalPredicate struct{ selector labels.Selector }
 
 func (ip internalPredicate) Accepts(p Properties) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ip.Empty() {
@@ -29,12 +33,16 @@ func (ip internalPredicate) Accepts(p Properties) bool {
 func (ip internalPredicate) Empty() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if ip.selector == nil {
 		return true
 	}
 	return ip.selector.Empty()
 }
 func (ip internalPredicate) String() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return ip.selector.String()

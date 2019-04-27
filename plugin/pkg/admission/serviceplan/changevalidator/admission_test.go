@@ -19,6 +19,8 @@ import (
 func newHandlerForTest(internalClient internalclientset.Interface) (admission.Interface, informers.SharedInformerFactory, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f := informers.NewSharedInformerFactory(internalClient, 5*time.Minute)
 	handler, err := NewDenyPlanChangeIfNotUpdatable()
 	if err != nil {
@@ -32,6 +34,8 @@ func newHandlerForTest(internalClient internalclientset.Interface) (admission.In
 func newFakeServiceCatalogClientForTest(sc *servicecatalog.ClusterServiceClass) *fake.Clientset {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeClient := &fake.Clientset{}
 	scList := &servicecatalog.ClusterServiceClassList{ListMeta: metav1.ListMeta{ResourceVersion: "1"}}
 	scList.Items = append(scList.Items, *sc)
@@ -43,16 +47,22 @@ func newFakeServiceCatalogClientForTest(sc *servicecatalog.ClusterServiceClass) 
 func newServiceInstance(namespace string, serviceClassName string, planName string) servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := servicecatalog.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: "instance", Namespace: namespace}, Spec: servicecatalog.ServiceInstanceSpec{PlanReference: servicecatalog.PlanReference{ClusterServicePlanExternalName: planName}, ClusterServiceClassRef: &servicecatalog.ClusterObjectReference{Name: serviceClassName}}}
 	return instance
 }
 func newClusterServiceClass(name string, plan string, updateablePlan bool) *servicecatalog.ClusterServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sc := &servicecatalog.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: name}, Spec: servicecatalog.ClusterServiceClassSpec{CommonServiceClassSpec: servicecatalog.CommonServiceClassSpec{PlanUpdatable: updateablePlan}}}
 	return sc
 }
 func setupInstanceLister(fakeClient *fake.Clientset) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := newServiceInstance("dummy", "foo", "original-plan-name")
@@ -63,6 +73,8 @@ func setupInstanceLister(fakeClient *fake.Clientset) {
 	})
 }
 func TestClusterServicePlanChangeBlockedByUpdateablePlanSetting(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc := newClusterServiceClass("foo", "bar", false)
@@ -84,6 +96,8 @@ func TestClusterServicePlanChangeBlockedByUpdateablePlanSetting(t *testing.T) {
 	}
 }
 func TestClusterServicePlanChangePermittedByUpdateablePlanSetting(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc := newClusterServiceClass("foo", "bar", true)

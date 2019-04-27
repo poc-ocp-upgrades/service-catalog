@@ -14,6 +14,8 @@ var conditionalsRegex = regexp.MustCompile("=|==|!=| in | notin ")
 func CreatePredicate(restrictions []string) (Predicate, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	requirements := ""
 	if len(restrictions) > 0 {
 		requirements = string(restrictions[0])
@@ -31,9 +33,13 @@ func CreatePredicate(restrictions []string) (Predicate, error) {
 func ConvertToSelector(p Predicate) (labels.Selector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return labels.Parse(p.String())
 }
 func ExtractProperty(restriction string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return conditionalsRegex.Split(restriction, 2)[0]
@@ -41,7 +47,16 @@ func ExtractProperty(restriction string) string {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

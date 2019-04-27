@@ -8,6 +8,8 @@ import (
 func TestNewListNilField(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newList := NewList()
 	realObj := newList.(*servicecatalog.ServiceInstanceList)
 	if realObj.Items == nil {

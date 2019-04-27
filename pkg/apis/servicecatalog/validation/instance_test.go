@@ -29,9 +29,13 @@ const (
 func validPlanReferenceClusterServiceExternalName() servicecatalog.PlanReference {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicecatalog.PlanReference{ClusterServiceClassExternalName: clusterServiceClassExternalName, ClusterServicePlanExternalName: clusterServicePlanExternalName}
 }
 func validPlanReferenceClusterServiceExternalID() servicecatalog.PlanReference {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return servicecatalog.PlanReference{ClusterServiceClassExternalID: clusterServiceClassExternalID, ClusterServicePlanExternalID: clusterServicePlanExternalID}
@@ -39,9 +43,13 @@ func validPlanReferenceClusterServiceExternalID() servicecatalog.PlanReference {
 func validPlanReferenceClusterK8S() servicecatalog.PlanReference {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicecatalog.PlanReference{ClusterServiceClassName: clusterServiceClassName, ClusterServicePlanName: clusterServicePlanName}
 }
 func validPlanReferenceServiceExternalName() servicecatalog.PlanReference {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return servicecatalog.PlanReference{ServiceClassExternalName: serviceClassExternalName, ServicePlanExternalName: servicePlanExternalName}
@@ -49,9 +57,13 @@ func validPlanReferenceServiceExternalName() servicecatalog.PlanReference {
 func validPlanReferenceServiceExternalID() servicecatalog.PlanReference {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicecatalog.PlanReference{ServiceClassExternalID: serviceClassExternalID, ServicePlanExternalID: servicePlanExternalID}
 }
 func validPlanReferenceServiceK8S() servicecatalog.PlanReference {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return servicecatalog.PlanReference{ServiceClassName: serviceClassName, ServicePlanName: servicePlanName}
@@ -59,14 +71,20 @@ func validPlanReferenceServiceK8S() servicecatalog.PlanReference {
 func validServiceInstanceForCreateClusterPlanRef() *servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: "test-instance", Namespace: "test-ns", Generation: 1}, Spec: servicecatalog.ServiceInstanceSpec{PlanReference: validPlanReferenceClusterServiceExternalName()}, Status: servicecatalog.ServiceInstanceStatus{DeprovisionStatus: servicecatalog.ServiceInstanceDeprovisionStatusNotRequired}}
 }
 func validServiceInstanceForCreateNamespacedPlanRef() *servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: "test-instance", Namespace: "test-ns", Generation: 1}, Spec: servicecatalog.ServiceInstanceSpec{PlanReference: validPlanReferenceServiceExternalName()}, Status: servicecatalog.ServiceInstanceStatus{DeprovisionStatus: servicecatalog.ServiceInstanceDeprovisionStatusNotRequired}}
 }
 func validClusterRefServiceInstance() *servicecatalog.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := validServiceInstanceForCreateClusterPlanRef()
@@ -77,12 +95,16 @@ func validClusterRefServiceInstance() *servicecatalog.ServiceInstance {
 func validNamespacedRefServiceInstance() *servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := validServiceInstanceForCreateNamespacedPlanRef()
 	instance.Spec.ServiceClassRef = &servicecatalog.LocalObjectReference{}
 	instance.Spec.ServicePlanRef = &servicecatalog.LocalObjectReference{}
 	return instance
 }
 func validServiceInstanceWithInProgressProvision() *servicecatalog.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := validClusterRefServiceInstance()
@@ -95,6 +117,8 @@ func validServiceInstanceWithInProgressProvision() *servicecatalog.ServiceInstan
 	return instance
 }
 func validServiceInstanceWithInProgressDeprovision() *servicecatalog.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := validClusterRefServiceInstance()
@@ -110,14 +134,20 @@ func validServiceInstanceWithInProgressDeprovision() *servicecatalog.ServiceInst
 func validServiceInstancePropertiesStateClusterPlan() *servicecatalog.ServiceInstancePropertiesState {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceInstancePropertiesState{ClusterServicePlanExternalName: "plan-name", ClusterServicePlanExternalID: "plan-id", Parameters: &runtime.RawExtension{Raw: []byte("a: 1\nb: \"2\"")}, ParameterChecksum: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"}
 }
 func validServiceInstancePropertiesStateNamespacedPlan() *servicecatalog.ServiceInstancePropertiesState {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceInstancePropertiesState{ServicePlanExternalName: "ns-plan-name", ServicePlanExternalID: "ns-plan-id", Parameters: &runtime.RawExtension{Raw: []byte("a: 1\nb: \"2\"")}, ParameterChecksum: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"}
 }
 func invalidServiceInstanceStatusLastOperation() *string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	runes := make([]rune, 10001)
@@ -128,6 +158,8 @@ func invalidServiceInstanceStatusLastOperation() *string {
 	return &lastOperation
 }
 func TestValidateServiceInstance(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -442,6 +474,8 @@ func TestValidateServiceInstance(t *testing.T) {
 func TestInternalValidateServiceInstanceUpdateAllowed(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		specChange		bool
@@ -494,6 +528,8 @@ func TestInternalValidateServiceInstanceUpdateAllowed(t *testing.T) {
 func TestInternalValidateServiceInstanceUpdateAllowedForClusterPlanChange(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newClusterPlanExternalName := servicecatalog.PlanReference{ClusterServiceClassExternalName: clusterServiceClassExternalName, ClusterServicePlanExternalName: "new-plan"}
 	newClusterPlanExternalID := servicecatalog.PlanReference{ClusterServiceClassExternalName: clusterServiceClassExternalID, ClusterServicePlanExternalID: "new-plan"}
 	newClusterPlanK8sName := servicecatalog.PlanReference{ClusterServiceClassName: clusterServiceClassName, ClusterServicePlanName: "new-plan"}
@@ -520,6 +556,8 @@ func TestInternalValidateServiceInstanceUpdateAllowedForClusterPlanChange(t *tes
 func TestInternalValidateServiceInstanceUpdateAllowedForPlanChange(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newPlanExternalName := servicecatalog.PlanReference{ServiceClassExternalName: serviceClassExternalName, ServicePlanExternalName: "new-plan"}
 	newPlanExternalID := servicecatalog.PlanReference{ServiceClassExternalName: serviceClassExternalID, ServicePlanExternalID: "new-plan"}
 	newPlanK8sName := servicecatalog.PlanReference{ServiceClassName: serviceClassName, ServicePlanName: "new-plan"}
@@ -544,6 +582,8 @@ func TestInternalValidateServiceInstanceUpdateAllowedForPlanChange(t *testing.T)
 	}
 }
 func TestValidateServiceInstanceStatusUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := metav1.Now()
@@ -598,6 +638,8 @@ func TestValidateServiceInstanceStatusUpdate(t *testing.T) {
 	}
 }
 func TestValidateServiceInstanceReferencesUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -662,6 +704,8 @@ func TestValidateServiceInstanceReferencesUpdate(t *testing.T) {
 func TestValidateClusterOrNamespacedPlanReference(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cFields := []string{"ClusterServiceClassExternalName", "ClusterServiceClassExternalID", "ClusterServiceClassName"}
 	pFields := []string{"ServiceClassExternalName", "ServiceClassExternalID", "ServiceClassName"}
 	type testcase struct {
@@ -700,6 +744,8 @@ func TestValidateClusterOrNamespacedPlanReference(t *testing.T) {
 func TestValidatePlanReference(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		ref		servicecatalog.PlanReference
@@ -729,6 +775,8 @@ func TestValidatePlanReference(t *testing.T) {
 	}
 }
 func TestValidatePlanReferenceUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

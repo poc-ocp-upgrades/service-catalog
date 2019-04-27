@@ -23,9 +23,13 @@ type ServicecatalogV1beta1Client struct{ restClient rest.Interface }
 func (c *ServicecatalogV1beta1Client) ClusterServiceBrokers() ClusterServiceBrokerInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newClusterServiceBrokers(c)
 }
 func (c *ServicecatalogV1beta1Client) ClusterServiceClasses() ClusterServiceClassInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newClusterServiceClasses(c)
@@ -33,9 +37,13 @@ func (c *ServicecatalogV1beta1Client) ClusterServiceClasses() ClusterServiceClas
 func (c *ServicecatalogV1beta1Client) ClusterServicePlans() ClusterServicePlanInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newClusterServicePlans(c)
 }
 func (c *ServicecatalogV1beta1Client) ServiceBindings(namespace string) ServiceBindingInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newServiceBindings(c, namespace)
@@ -43,9 +51,13 @@ func (c *ServicecatalogV1beta1Client) ServiceBindings(namespace string) ServiceB
 func (c *ServicecatalogV1beta1Client) ServiceBrokers(namespace string) ServiceBrokerInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServiceBrokers(c, namespace)
 }
 func (c *ServicecatalogV1beta1Client) ServiceClasses(namespace string) ServiceClassInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newServiceClasses(c, namespace)
@@ -53,14 +65,20 @@ func (c *ServicecatalogV1beta1Client) ServiceClasses(namespace string) ServiceCl
 func (c *ServicecatalogV1beta1Client) ServiceInstances(namespace string) ServiceInstanceInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServiceInstances(c, namespace)
 }
 func (c *ServicecatalogV1beta1Client) ServicePlans(namespace string) ServicePlanInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServicePlans(c, namespace)
 }
 func NewForConfig(c *rest.Config) (*ServicecatalogV1beta1Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	config := *c
@@ -76,6 +94,8 @@ func NewForConfig(c *rest.Config) (*ServicecatalogV1beta1Client, error) {
 func NewForConfigOrDie(c *rest.Config) *ServicecatalogV1beta1Client {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -85,9 +105,13 @@ func NewForConfigOrDie(c *rest.Config) *ServicecatalogV1beta1Client {
 func New(c rest.Interface) *ServicecatalogV1beta1Client {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &ServicecatalogV1beta1Client{c}
 }
 func setConfigDefaults(config *rest.Config) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	gv := v1beta1.SchemeGroupVersion
@@ -100,6 +124,8 @@ func setConfigDefaults(config *rest.Config) error {
 	return nil
 }
 func (c *ServicecatalogV1beta1Client) RESTClient() rest.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c == nil {

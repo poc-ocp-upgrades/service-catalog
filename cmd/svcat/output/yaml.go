@@ -13,6 +13,8 @@ import (
 func writeYAML(w io.Writer, obj interface{}, n int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	yBytes, err := yaml.Marshal(obj)
 	if err != nil {
 		fmt.Fprintf(w, "err marshaling yaml: %v\n", err)
@@ -29,6 +31,8 @@ func writeYAML(w io.Writer, obj interface{}, n int) {
 func writeParameters(w io.Writer, parameters *runtime.RawExtension) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Fprintln(w, "\nParameters:")
 	if parameters == nil || string(parameters.Raw) == "" || string(parameters.Raw) == "{}" {
 		fmt.Fprintln(w, "  No parameters defined")
@@ -43,6 +47,8 @@ func writeParameters(w io.Writer, parameters *runtime.RawExtension) {
 	}
 }
 func writeParametersFrom(w io.Writer, parametersFrom []v1beta1.ParametersFromSource) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(parametersFrom) == 0 {

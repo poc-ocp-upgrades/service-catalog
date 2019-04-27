@@ -49,6 +49,8 @@ var bindingControllerKind = v1beta1.SchemeGroupVersion.WithKind("ServiceBinding"
 func (c *controller) bindingAdd(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
 	if err != nil {
 		pcb := pretty.NewContextBuilder(pretty.ServiceBinding, "", "", "")
@@ -67,12 +69,16 @@ func (c *controller) bindingAdd(obj interface{}) {
 func (c *controller) bindingUpdate(oldObj, newObj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	binding := newObj.(*v1beta1.ServiceBinding)
 	if !binding.Status.AsyncOpInProgress {
 		c.bindingAdd(newObj)
 	}
 }
 func (c *controller) bindingDelete(obj interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*v1beta1.ServiceBinding)
@@ -83,6 +89,8 @@ func (c *controller) bindingDelete(obj interface{}) {
 	klog.V(4).Info(pcb.Messagef("Received DELETE event; no further processing will occur; resourceVersion %v", binding.ResourceVersion))
 }
 func (c *controller) reconcileServiceBindingKey(key string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	namespace, name, err := cache.SplitMetaNamespaceKey(key)
@@ -104,6 +112,8 @@ func (c *controller) reconcileServiceBindingKey(key string) error {
 func isServiceBindingFailed(binding *v1beta1.ServiceBinding) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, condition := range binding.Status.Conditions {
 		if condition.Type == v1beta1.ServiceBindingConditionFailed && condition.Status == v1beta1.ConditionTrue {
 			return true
@@ -112,6 +122,8 @@ func isServiceBindingFailed(binding *v1beta1.ServiceBinding) bool {
 	return false
 }
 func getReconciliationActionForServiceBinding(binding *v1beta1.ServiceBinding) ReconciliationAction {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch {
@@ -124,6 +136,8 @@ func getReconciliationActionForServiceBinding(binding *v1beta1.ServiceBinding) R
 	}
 }
 func (c *controller) reconcileServiceBinding(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(binding)
@@ -141,6 +155,8 @@ func (c *controller) reconcileServiceBinding(binding *v1beta1.ServiceBinding) er
 	}
 }
 func (c *controller) reconcileServiceBindingAdd(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(binding)
@@ -270,6 +286,8 @@ func (c *controller) reconcileServiceBindingAdd(binding *v1beta1.ServiceBinding)
 func (c *controller) reconcileServiceBindingDelete(binding *v1beta1.ServiceBinding) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var err error
 	pcb := pretty.NewBindingContextBuilder(binding)
 	if binding.DeletionTimestamp == nil && !binding.Status.OrphanMitigationInProgress {
@@ -369,6 +387,8 @@ func (c *controller) reconcileServiceBindingDelete(binding *v1beta1.ServiceBindi
 func isClusterServicePlanBindable(serviceClass *v1beta1.ClusterServiceClass, plan *v1beta1.ClusterServicePlan) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if plan.Spec.Bindable != nil {
 		return *plan.Spec.Bindable
 	}
@@ -377,12 +397,16 @@ func isClusterServicePlanBindable(serviceClass *v1beta1.ClusterServiceClass, pla
 func isServicePlanBindable(serviceClass *v1beta1.ServiceClass, plan *v1beta1.ServicePlan) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if plan.Spec.Bindable != nil {
 		return *plan.Spec.Bindable
 	}
 	return serviceClass.Spec.Bindable
 }
 func (c *controller) injectServiceBinding(binding *v1beta1.ServiceBinding, credentials map[string]interface{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(binding)
@@ -429,6 +453,8 @@ func (c *controller) injectServiceBinding(binding *v1beta1.ServiceBinding, crede
 func (c *controller) transformCredentials(transforms []v1beta1.SecretTransform, credentials map[string]interface{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, t := range transforms {
 		switch {
 		case t.AddKey != nil:
@@ -468,6 +494,8 @@ func (c *controller) transformCredentials(transforms []v1beta1.SecretTransform, 
 func evaluateJSONPath(jsonPath string, credentials map[string]interface{}) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	j := jsonpath.New("expression")
 	buf := new(bytes.Buffer)
 	if err := j.Parse(jsonPath); err != nil {
@@ -481,6 +509,8 @@ func evaluateJSONPath(jsonPath string, credentials map[string]interface{}) (stri
 func (c *controller) ejectServiceBinding(binding *v1beta1.ServiceBinding) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var err error
 	pcb := pretty.NewBindingContextBuilder(binding)
 	klog.V(5).Info(pcb.Messagef(`Deleting Secret "%s/%s"`, binding.Namespace, binding.Spec.SecretName))
@@ -492,9 +522,13 @@ func (c *controller) ejectServiceBinding(binding *v1beta1.ServiceBinding) error 
 func setServiceBindingCondition(toUpdate *v1beta1.ServiceBinding, conditionType v1beta1.ServiceBindingConditionType, status v1beta1.ConditionStatus, reason, message string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceBindingConditionInternal(toUpdate, conditionType, status, reason, message, metav1.Now())
 }
 func setServiceBindingConditionInternal(toUpdate *v1beta1.ServiceBinding, conditionType v1beta1.ServiceBindingConditionType, status v1beta1.ConditionStatus, reason, message string, t metav1.Time) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(toUpdate)
@@ -526,6 +560,8 @@ func setServiceBindingConditionInternal(toUpdate *v1beta1.ServiceBinding, condit
 func (c *controller) updateServiceBindingStatus(toUpdate *v1beta1.ServiceBinding) (*v1beta1.ServiceBinding, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(toUpdate)
 	klog.V(4).Info(pcb.Message("Updating status"))
 	updatedBinding, err := c.serviceCatalogClient.ServiceBindings(toUpdate.Namespace).UpdateStatus(toUpdate)
@@ -539,6 +575,8 @@ func (c *controller) updateServiceBindingStatus(toUpdate *v1beta1.ServiceBinding
 func (c *controller) updateServiceBindingCondition(binding *v1beta1.ServiceBinding, conditionType v1beta1.ServiceBindingConditionType, status v1beta1.ConditionStatus, reason, message string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(binding)
 	toUpdate := binding.DeepCopy()
 	setServiceBindingCondition(toUpdate, conditionType, status, reason, message)
@@ -550,6 +588,8 @@ func (c *controller) updateServiceBindingCondition(binding *v1beta1.ServiceBindi
 	return err
 }
 func (c *controller) recordStartOfServiceBindingOperation(toUpdate *v1beta1.ServiceBinding, operation v1beta1.ServiceBindingOperation, inProgressProperties *v1beta1.ServiceBindingPropertiesState) (*v1beta1.ServiceBinding, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	currentReconciledGeneration := toUpdate.Status.ReconciledGeneration
@@ -576,6 +616,8 @@ func (c *controller) recordStartOfServiceBindingOperation(toUpdate *v1beta1.Serv
 func clearServiceBindingCurrentOperation(toUpdate *v1beta1.ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	toUpdate.Status.CurrentOperation = ""
 	toUpdate.Status.OperationStartTime = nil
 	toUpdate.Status.AsyncOpInProgress = false
@@ -587,6 +629,8 @@ func clearServiceBindingCurrentOperation(toUpdate *v1beta1.ServiceBinding) {
 func rollbackBindingReconciledGenerationOnDeletion(binding *v1beta1.ServiceBinding, currentReconciledGeneration int64) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if binding.DeletionTimestamp != nil {
 		klog.V(4).Infof("Not updating ReconciledGeneration after async operation because there is a deletion pending.")
 		binding.Status.ReconciledGeneration = currentReconciledGeneration
@@ -595,10 +639,14 @@ func rollbackBindingReconciledGenerationOnDeletion(binding *v1beta1.ServiceBindi
 func (c *controller) requeueServiceBindingForPoll(key string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.bindingQueue.Add(key)
 	return nil
 }
 func (c *controller) beginPollingServiceBinding(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(binding)
@@ -612,9 +660,13 @@ func (c *controller) beginPollingServiceBinding(binding *v1beta1.ServiceBinding)
 func (c *controller) continuePollingServiceBinding(binding *v1beta1.ServiceBinding) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.beginPollingServiceBinding(binding)
 }
 func (c *controller) finishPollingServiceBinding(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(binding)
@@ -626,6 +678,8 @@ func (c *controller) finishPollingServiceBinding(binding *v1beta1.ServiceBinding
 	return nil
 }
 func (c *controller) pollServiceBinding(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(binding)
@@ -760,6 +814,8 @@ func (c *controller) pollServiceBinding(binding *v1beta1.ServiceBinding) error {
 func (c *controller) processServiceBindingPollingFailureRetryTimeout(binding *v1beta1.ServiceBinding, readyCond *v1beta1.ServiceBindingCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	mitigatingOrphan := binding.Status.OrphanMitigationInProgress
 	deleting := binding.Status.CurrentOperation == v1beta1.ServiceBindingOperationUnbind || mitigatingOrphan
 	if readyCond == nil {
@@ -789,14 +845,20 @@ func (c *controller) processServiceBindingPollingFailureRetryTimeout(binding *v1
 func newServiceBindingReadyCondition(status v1beta1.ConditionStatus, reason, message string) *v1beta1.ServiceBindingCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBindingCondition{Type: v1beta1.ServiceBindingConditionReady, Status: status, Reason: reason, Message: message, LastTransitionTime: metav1.Now()}
 }
 func newServiceBindingFailedCondition(status v1beta1.ConditionStatus, reason, message string) *v1beta1.ServiceBindingCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBindingCondition{Type: v1beta1.ServiceBindingConditionFailed, Status: status, Reason: reason, Message: message, LastTransitionTime: metav1.Now()}
 }
 func setServiceBindingLastOperation(binding *v1beta1.ServiceBinding, operationKey *osb.OperationKey) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if operationKey != nil && *operationKey != "" {
@@ -805,6 +867,8 @@ func setServiceBindingLastOperation(binding *v1beta1.ServiceBinding, operationKe
 	}
 }
 func (c *controller) prepareBindRequest(binding *v1beta1.ServiceBinding, instance *v1beta1.ServiceInstance) (*osb.BindRequest, *v1beta1.ServiceBindingPropertiesState, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var scExternalID string
@@ -863,6 +927,8 @@ func (c *controller) prepareBindRequest(binding *v1beta1.ServiceBinding, instanc
 func (c *controller) prepareUnbindRequest(binding *v1beta1.ServiceBinding, instance *v1beta1.ServiceInstance) (*osb.UnbindRequest, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var scExternalID string
 	var scBindingRetrievable bool
 	var planExternalID string
@@ -897,6 +963,8 @@ func (c *controller) prepareUnbindRequest(binding *v1beta1.ServiceBinding, insta
 	return request, nil
 }
 func (c *controller) prepareServiceBindingLastOperationRequest(binding *v1beta1.ServiceBinding, instance *v1beta1.ServiceInstance) (*osb.BindingLastOperationRequest, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var scExternalID string
@@ -941,6 +1009,8 @@ func (c *controller) prepareServiceBindingLastOperationRequest(binding *v1beta1.
 func (c *controller) processServiceBindingOperationError(binding *v1beta1.ServiceBinding, readyCond *v1beta1.ServiceBindingCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.recorder.Event(binding, corev1.EventTypeWarning, readyCond.Reason, readyCond.Message)
 	setServiceBindingCondition(binding, readyCond.Type, readyCond.Status, readyCond.Reason, readyCond.Message)
 	if _, err := c.updateServiceBindingStatus(binding); err != nil {
@@ -949,6 +1019,8 @@ func (c *controller) processServiceBindingOperationError(binding *v1beta1.Servic
 	return fmt.Errorf(readyCond.Message)
 }
 func (c *controller) processBindSuccess(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	setServiceBindingCondition(binding, v1beta1.ServiceBindingConditionReady, v1beta1.ConditionTrue, successInjectedBindResultReason, successInjectedBindResultMessage)
@@ -962,6 +1034,8 @@ func (c *controller) processBindSuccess(binding *v1beta1.ServiceBinding) error {
 	return nil
 }
 func (c *controller) processBindFailure(binding *v1beta1.ServiceBinding, readyCond, failedCond *v1beta1.ServiceBindingCondition, shouldMitigateOrphan bool) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	currentReconciledGeneration := binding.Status.ReconciledGeneration
@@ -991,6 +1065,8 @@ func (c *controller) processBindFailure(binding *v1beta1.ServiceBinding, readyCo
 func (c *controller) processBindAsyncResponse(binding *v1beta1.ServiceBinding, response *osb.BindResponse) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceBindingLastOperation(binding, response.OperationKey)
 	setServiceBindingCondition(binding, v1beta1.ServiceBindingConditionReady, v1beta1.ConditionFalse, asyncBindingReason, asyncBindingMessage)
 	binding.Status.AsyncOpInProgress = true
@@ -1003,6 +1079,8 @@ func (c *controller) processBindAsyncResponse(binding *v1beta1.ServiceBinding, r
 func (c *controller) handleServiceBindingReconciliationError(binding *v1beta1.ServiceBinding, err error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if resourceErr, ok := err.(*operationError); ok {
 		readyCond := newServiceBindingReadyCondition(v1beta1.ConditionFalse, resourceErr.reason, resourceErr.message)
 		return c.processServiceBindingOperationError(binding, readyCond)
@@ -1010,6 +1088,8 @@ func (c *controller) handleServiceBindingReconciliationError(binding *v1beta1.Se
 	return err
 }
 func (c *controller) processServiceBindingGracefulDeletionSuccess(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	finalizers := sets.NewString(binding.Finalizers...)
@@ -1023,6 +1103,8 @@ func (c *controller) processServiceBindingGracefulDeletionSuccess(binding *v1bet
 	return nil
 }
 func (c *controller) processUnbindSuccess(binding *v1beta1.ServiceBinding) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	mitigatingOrphan := binding.Status.OrphanMitigationInProgress
@@ -1051,6 +1133,8 @@ func (c *controller) processUnbindSuccess(binding *v1beta1.ServiceBinding) error
 func (c *controller) processUnbindFailure(binding *v1beta1.ServiceBinding, readyCond, failedCond *v1beta1.ServiceBindingCondition) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if failedCond == nil {
 		return fmt.Errorf("failedCond must not be nil")
 	}
@@ -1077,6 +1161,8 @@ func (c *controller) processUnbindFailure(binding *v1beta1.ServiceBinding, ready
 func (c *controller) processUnbindAsyncResponse(binding *v1beta1.ServiceBinding, response *osb.UnbindResponse) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	setServiceBindingLastOperation(binding, response.OperationKey)
 	setServiceBindingCondition(binding, v1beta1.ServiceBindingConditionReady, v1beta1.ConditionFalse, asyncUnbindingReason, asyncUnbindingMessage)
 	binding.Status.AsyncOpInProgress = true
@@ -1087,6 +1173,8 @@ func (c *controller) processUnbindAsyncResponse(binding *v1beta1.ServiceBinding,
 	return c.beginPollingServiceBinding(binding)
 }
 func (c *controller) handleServiceBindingPollingError(binding *v1beta1.ServiceBinding, err error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewBindingContextBuilder(binding)

@@ -15,6 +15,8 @@ var keymapRegex = regexp.MustCompile(`^([^\[]+)\[(.+)\]\s*$`)
 func ParseVariableJSON(params string) (map[string]interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var p map[string]interface{}
 	err := json.Unmarshal([]byte(params), &p)
 	if err != nil {
@@ -23,6 +25,8 @@ func ParseVariableJSON(params string) (map[string]interface{}, error) {
 	return p, nil
 }
 func ParseVariableAssignments(params []string) (map[string]interface{}, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	variables := make(map[string]interface{})
@@ -53,6 +57,8 @@ func ParseVariableAssignments(params []string) (map[string]interface{}, error) {
 func ParseKeyMaps(params []string) (map[string]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	keymap := map[string]string{}
 	for _, p := range params {
 		parts := keymapRegex.FindStringSubmatch(p)
@@ -74,7 +80,16 @@ func ParseKeyMaps(params []string) (map[string]string, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

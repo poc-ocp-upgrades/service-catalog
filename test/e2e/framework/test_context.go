@@ -25,6 +25,8 @@ var TestContext TestContextType
 func RegisterCommonFlags() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	config.DefaultReporterConfig.Verbose = true
 	config.GinkgoConfig.EmitSpecProgress = true
 	config.GinkgoConfig.RandomizeAllSpecs = true
@@ -36,6 +38,8 @@ func RegisterCommonFlags() {
 	flag.StringVar(&TestContext.ServiceCatalogContext, "service-catalog-context", "", "config context to use for service catalog. If unset, will use value from 'current-context'")
 }
 func RegisterParseFlags() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	RegisterCommonFlags()

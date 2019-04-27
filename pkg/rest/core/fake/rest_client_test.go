@@ -25,11 +25,15 @@ const (
 func createSingleItemStorage() NamespacedStorage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	storage := make(NamespacedStorage)
 	storage.Set(ns1, tipe1, name1, &servicecatalog.ClusterServiceBroker{})
 	return storage
 }
 func createMultipleItemStorage() NamespacedStorage {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	storage := make(NamespacedStorage)
@@ -41,6 +45,8 @@ func createMultipleItemStorage() NamespacedStorage {
 	return storage
 }
 func TestNamespacedStorageSetDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	storage := make(NamespacedStorage)
@@ -59,6 +65,8 @@ func TestNamespacedStorageSetDelete(t *testing.T) {
 func TestNamespacedStorageGetList(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	storage := createMultipleItemStorage()
 	objects := storage.GetList(ns1, tipe1)
 	if count := len(objects); count != 3 {
@@ -70,6 +78,8 @@ func TestNamespacedStorageGetList(t *testing.T) {
 	}
 }
 func TestResponseWriter(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw := newResponseWriter()
@@ -84,6 +94,8 @@ func TestResponseWriter(t *testing.T) {
 func TestResponseWriterGetResponsePanic(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rw := newResponseWriter()
 	defer func() {
 		if r := recover(); r == nil {
@@ -95,6 +107,8 @@ func TestResponseWriterGetResponsePanic(t *testing.T) {
 func TestResponseWriterGetResponse(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rw := newResponseWriter()
 	rw.WriteHeader(http.StatusFound)
 	if response := rw.getResponse(); response.StatusCode != http.StatusFound {
@@ -102,6 +116,8 @@ func TestResponseWriterGetResponse(t *testing.T) {
 	}
 }
 func TestGetItem(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {
@@ -139,6 +155,8 @@ func TestGetItem(t *testing.T) {
 func TestGetItems(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testCases := []struct {
 		name		string
 		storage		NamespacedStorage
@@ -172,6 +190,8 @@ func TestGetItems(t *testing.T) {
 	}
 }
 func TestCreateItem(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {

@@ -21,6 +21,8 @@ import (
 func NewScopeStrategy() rest.NamespaceScopedStrategy {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return instanceRESTStrategies
 }
 
@@ -46,6 +48,8 @@ var (
 func (instanceRESTStrategy) Canonicalize(obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, ok := obj.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to create")
@@ -54,9 +58,13 @@ func (instanceRESTStrategy) Canonicalize(obj runtime.Object) {
 func (instanceRESTStrategy) NamespaceScoped() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (instanceRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, ok := obj.(*sc.ServiceInstance)
@@ -78,9 +86,13 @@ func (instanceRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Ob
 func (instanceRESTStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return scv.ValidateServiceInstance(obj.(*sc.ServiceInstance))
 }
 func (instanceRESTStrategy) AllowCreateOnUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return false
@@ -88,9 +100,13 @@ func (instanceRESTStrategy) AllowCreateOnUpdate() bool {
 func (instanceRESTStrategy) AllowUnconditionalUpdate() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (instanceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
@@ -121,6 +137,8 @@ func (instanceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runti
 func (instanceRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to validate to")
@@ -134,6 +152,8 @@ func (instanceRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime
 func (instanceRESTStrategy) CheckGracefulDelete(ctx context.Context, obj runtime.Object, options *metav1.DeleteOptions) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity) {
 		serviceInstance, ok := obj.(*sc.ServiceInstance)
 		if !ok {
@@ -144,6 +164,8 @@ func (instanceRESTStrategy) CheckGracefulDelete(ctx context.Context, obj runtime
 	return false
 }
 func (instanceStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
@@ -159,6 +181,8 @@ func (instanceStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old
 func (instanceStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to validate to")
@@ -170,6 +194,8 @@ func (instanceStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old r
 	return scv.ValidateServiceInstanceStatusUpdate(newServiceInstance, oldServiceInstance)
 }
 func (instanceReferenceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
@@ -194,6 +220,8 @@ func (instanceReferenceRESTStrategy) PrepareForUpdate(ctx context.Context, new, 
 func (instanceReferenceRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to validate to")
@@ -205,6 +233,8 @@ func (instanceReferenceRESTStrategy) ValidateUpdate(ctx context.Context, new, ol
 	return scv.ValidateServiceInstanceReferencesUpdate(newServiceInstance, oldServiceInstance)
 }
 func setServiceInstanceUserInfo(ctx context.Context, instance *sc.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance.Spec.UserInfo = nil

@@ -19,14 +19,20 @@ const (
 func getTestCommonServiceBrokerSpec() v1beta1.CommonServiceBrokerSpec {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return v1beta1.CommonServiceBrokerSpec{URL: "https://example.com", RelistBehavior: v1beta1.ServiceBrokerRelistBehaviorDuration, RelistDuration: &metav1.Duration{Duration: 15 * time.Minute}}
 }
 func getTestServiceBroker() *v1beta1.ServiceBroker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBroker{ObjectMeta: metav1.ObjectMeta{Name: testServiceBrokerName, Namespace: testNamespace}, Spec: v1beta1.ServiceBrokerSpec{CommonServiceBrokerSpec: getTestCommonServiceBrokerSpec()}}
 }
 func getTestServiceBrokerWithAuth(authInfo *v1beta1.ServiceBrokerAuthInfo) *v1beta1.ServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker := getTestServiceBroker()
@@ -36,9 +42,13 @@ func getTestServiceBrokerWithAuth(authInfo *v1beta1.ServiceBrokerAuthInfo) *v1be
 func getTestBrokerBasicAuthInfo() *v1beta1.ServiceBrokerAuthInfo {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBrokerAuthInfo{Basic: &v1beta1.BasicAuthConfig{SecretRef: &v1beta1.LocalObjectReference{Name: "auth-secret"}}}
 }
 func getTestBrokerBearerAuthInfo() *v1beta1.ServiceBrokerAuthInfo {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1beta1.ServiceBrokerAuthInfo{Bearer: &v1beta1.BearerTokenAuthConfig{SecretRef: &v1beta1.LocalObjectReference{Name: "auth-secret"}}}
@@ -46,9 +56,13 @@ func getTestBrokerBearerAuthInfo() *v1beta1.ServiceBrokerAuthInfo {
 func assertServiceBrokerReadyFalse(t *testing.T, obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	assertServiceBrokerCondition(t, obj, v1beta1.ServiceBrokerConditionReady, v1beta1.ConditionFalse)
 }
 func assertServiceBrokerCondition(t *testing.T, obj runtime.Object, conditionType v1beta1.ServiceBrokerConditionType, status v1beta1.ConditionStatus) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, ok := obj.(*v1beta1.ServiceBroker)
@@ -64,9 +78,13 @@ func assertServiceBrokerCondition(t *testing.T, obj runtime.Object, conditionTyp
 func getTestCommonServiceClassSpec() v1beta1.CommonServiceClassSpec {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return v1beta1.CommonServiceClassSpec{Description: "a test service", ExternalName: testServiceClassName, ExternalID: testServiceClassGUID, Bindable: true}
 }
 func getTestServiceClass() *v1beta1.ServiceClass {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1beta1.ServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testServiceClassGUID, Namespace: testNamespace}, Spec: v1beta1.ServiceClassSpec{ServiceBrokerName: testServiceBrokerName, CommonServiceClassSpec: getTestCommonServiceClassSpec()}}
@@ -74,9 +92,13 @@ func getTestServiceClass() *v1beta1.ServiceClass {
 func getTestCommonServicePlanSpec() v1beta1.CommonServicePlanSpec {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return v1beta1.CommonServicePlanSpec{ExternalID: testServicePlanGUID, ExternalName: testServicePlanName, Bindable: truePtr()}
 }
 func getTestServicePlan() *v1beta1.ServicePlan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1beta1.ServicePlan{ObjectMeta: metav1.ObjectMeta{Name: testServicePlanGUID, Namespace: testNamespace}, Spec: v1beta1.ServicePlanSpec{ServiceBrokerName: testServiceBrokerName, CommonServicePlanSpec: getTestCommonServicePlanSpec(), ServiceClassRef: v1beta1.LocalObjectReference{Name: testServiceClassGUID}}, Status: v1beta1.ServicePlanStatus{}}
@@ -84,9 +106,13 @@ func getTestServicePlan() *v1beta1.ServicePlan {
 func getTestServiceInstanceWithNamespacedPlanReference() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: testServiceInstanceName, Namespace: testNamespace, Generation: 1}, Spec: v1beta1.ServiceInstanceSpec{PlanReference: v1beta1.PlanReference{ServiceClassExternalName: testServiceClassName, ServicePlanExternalName: testServicePlanName}, ExternalID: testServiceInstanceGUID}, Status: v1beta1.ServiceInstanceStatus{DeprovisionStatus: v1beta1.ServiceInstanceDeprovisionStatusRequired}}
 }
 func getTestServiceInstanceAsyncProvisioningWithNamespacedRefs(operation string) *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithNamespacedRefs()
@@ -98,6 +124,8 @@ func getTestServiceInstanceAsyncProvisioningWithNamespacedRefs(operation string)
 	return instance
 }
 func getTestServiceInstanceAsyncDeprovisioningWithNamespacedRefs(operation string) *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithNamespacedRefs()
@@ -114,11 +142,15 @@ func getTestServiceInstanceAsyncDeprovisioningWithNamespacedRefs(operation strin
 func getTestServiceInstanceWithNamespacedRefsAndStatus(status v1beta1.ConditionStatus) *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance := getTestServiceInstanceWithNamespacedRefsAndExternalProperties()
 	instance.Status.Conditions = []v1beta1.ServiceInstanceCondition{{Type: v1beta1.ServiceInstanceConditionReady, Status: status, LastTransitionTime: metav1.NewTime(time.Now().Add(-5 * time.Minute))}}
 	return instance
 }
 func getTestServiceInstanceWithNamespacedRefsAndExternalProperties() *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc := getTestServiceInstanceWithNamespacedRefs()

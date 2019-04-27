@@ -12,9 +12,13 @@ type Watcher struct{ ch chan watch.Event }
 func NewWatcher() *Watcher {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Watcher{ch: make(chan watch.Event)}
 }
 func (w *Watcher) SendObject(evtType watch.EventType, obj runtime.Object, timeout time.Duration) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	evt := watch.Event{Type: evtType, Object: obj}
@@ -28,9 +32,13 @@ func (w *Watcher) SendObject(evtType watch.EventType, obj runtime.Object, timeou
 func (w *Watcher) ReceiveChan() <-chan watch.Event {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return w.ch
 }
 func (w *Watcher) Close() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	close(w.ch)

@@ -21,9 +21,13 @@ type ServicecatalogClient struct{ restClient rest.Interface }
 func (c *ServicecatalogClient) ClusterServiceBrokers() ClusterServiceBrokerInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newClusterServiceBrokers(c)
 }
 func (c *ServicecatalogClient) ClusterServiceClasses() ClusterServiceClassInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newClusterServiceClasses(c)
@@ -31,9 +35,13 @@ func (c *ServicecatalogClient) ClusterServiceClasses() ClusterServiceClassInterf
 func (c *ServicecatalogClient) ClusterServicePlans() ClusterServicePlanInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newClusterServicePlans(c)
 }
 func (c *ServicecatalogClient) ServiceBindings(namespace string) ServiceBindingInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newServiceBindings(c, namespace)
@@ -41,9 +49,13 @@ func (c *ServicecatalogClient) ServiceBindings(namespace string) ServiceBindingI
 func (c *ServicecatalogClient) ServiceBrokers(namespace string) ServiceBrokerInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServiceBrokers(c, namespace)
 }
 func (c *ServicecatalogClient) ServiceClasses(namespace string) ServiceClassInterface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return newServiceClasses(c, namespace)
@@ -51,14 +63,20 @@ func (c *ServicecatalogClient) ServiceClasses(namespace string) ServiceClassInte
 func (c *ServicecatalogClient) ServiceInstances(namespace string) ServiceInstanceInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServiceInstances(c, namespace)
 }
 func (c *ServicecatalogClient) ServicePlans(namespace string) ServicePlanInterface {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newServicePlans(c, namespace)
 }
 func NewForConfig(c *rest.Config) (*ServicecatalogClient, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	config := *c
@@ -74,6 +92,8 @@ func NewForConfig(c *rest.Config) (*ServicecatalogClient, error) {
 func NewForConfigOrDie(c *rest.Config) *ServicecatalogClient {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -83,9 +103,13 @@ func NewForConfigOrDie(c *rest.Config) *ServicecatalogClient {
 func New(c rest.Interface) *ServicecatalogClient {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &ServicecatalogClient{c}
 }
 func setConfigDefaults(config *rest.Config) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	config.APIPath = "/apis"
@@ -106,6 +130,8 @@ func setConfigDefaults(config *rest.Config) error {
 	return nil
 }
 func (c *ServicecatalogClient) RESTClient() rest.Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if c == nil {

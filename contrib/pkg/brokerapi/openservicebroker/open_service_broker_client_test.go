@@ -24,12 +24,16 @@ const (
 func setup() (*util.FakeServiceBrokerServer, *servicecatalog.ClusterServiceBroker) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs := &util.FakeServiceBrokerServer{}
 	url := fbs.Start()
 	fakeClusterServiceBroker := &servicecatalog.ClusterServiceBroker{Spec: servicecatalog.ClusterServiceBrokerSpec{CommonServiceBrokerSpec: servicecatalog.CommonServiceBrokerSpec{URL: url}}}
 	return fbs, fakeClusterServiceBroker
 }
 func TestTrailingSlash(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const (
@@ -48,6 +52,8 @@ func TestTrailingSlash(t *testing.T) {
 func TestProvisionServiceInstanceCreated(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -64,6 +70,8 @@ func TestProvisionServiceInstanceCreated(t *testing.T) {
 func TestProvisionServiceInstanceOK(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -77,6 +85,8 @@ func TestProvisionServiceInstanceOK(t *testing.T) {
 	}
 }
 func TestProvisionServiceInstanceConflict(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -97,6 +107,8 @@ func TestProvisionServiceInstanceConflict(t *testing.T) {
 func TestProvisionServiceInstanceUnprocessableEntity(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -113,6 +125,8 @@ func TestProvisionServiceInstanceUnprocessableEntity(t *testing.T) {
 	}
 }
 func TestProvisionServiceInstanceAcceptedSuccessAsynchronous(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -133,6 +147,8 @@ func TestProvisionServiceInstanceAcceptedSuccessAsynchronous(t *testing.T) {
 	}
 }
 func TestDeprovisionServiceInstanceOK(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -158,6 +174,8 @@ func TestDeprovisionServiceInstanceOK(t *testing.T) {
 func TestDeprovisionServiceInstanceGone(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -174,6 +192,8 @@ func TestDeprovisionServiceInstanceGone(t *testing.T) {
 	}
 }
 func TestDeprovisionServiceInstanceUnprocessableEntity(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -197,6 +217,8 @@ func TestDeprovisionServiceInstanceUnprocessableEntity(t *testing.T) {
 func TestDeprovisionServiceInstanceAcceptedSuccessAsynchronous(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -215,6 +237,8 @@ func TestDeprovisionServiceInstanceAcceptedSuccessAsynchronous(t *testing.T) {
 	}
 }
 func TestBindOk(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -243,6 +267,8 @@ func TestBindOk(t *testing.T) {
 func TestBindConflict(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -268,6 +294,8 @@ func TestBindConflict(t *testing.T) {
 func TestUnbindOk(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -283,6 +311,8 @@ func TestUnbindOk(t *testing.T) {
 	}
 }
 func TestUnbindGone(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -301,6 +331,8 @@ func TestUnbindGone(t *testing.T) {
 func TestPollServiceInstanceWithMissingServiceID(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -316,6 +348,8 @@ func TestPollServiceInstanceWithMissingServiceID(t *testing.T) {
 func TestPollServiceInstanceWithMissingPlanID(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -329,6 +363,8 @@ func TestPollServiceInstanceWithMissingPlanID(t *testing.T) {
 	}
 }
 func TestPollServiceInstanceWithFailure(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -350,6 +386,8 @@ func TestPollServiceInstanceWithFailure(t *testing.T) {
 func TestPollServiceInstanceWithGone(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -364,6 +402,8 @@ func TestPollServiceInstanceWithGone(t *testing.T) {
 	}
 }
 func TestPollServiceInstanceWithSuccess(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
@@ -394,6 +434,8 @@ func TestPollServiceInstanceWithSuccess(t *testing.T) {
 func TestPollServiceInstanceWithNoOperation(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fbs, fakeClusterServiceBroker := setup()
 	defer fbs.Stop()
 	c := NewClient(testClusterServiceBrokerName, fakeClusterServiceBroker.Spec.URL, "", "")
@@ -422,10 +464,14 @@ func TestPollServiceInstanceWithNoOperation(t *testing.T) {
 func verifyServiceBindingMethodAndPath(method, serviceID, bindingID string, req *http.Request, t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	expectedPath := fmt.Sprintf(bindingSuffixFormatString, serviceID, bindingID)
 	verifyRequestMethodAndPath(method, expectedPath, req, t)
 }
 func verifyRequestMethodAndPath(method, expectedPath string, req *http.Request, t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if req.Method != method {
@@ -438,12 +484,16 @@ func verifyRequestMethodAndPath(method, expectedPath string, req *http.Request, 
 func verifyRequestParameter(paramName string, expectedValue string, req *http.Request, t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	actualValue := req.FormValue(paramName)
 	if actualValue != expectedValue {
 		t.Fatalf("Expected %s parameter to be %s, but was %s", paramName, expectedValue, actualValue)
 	}
 }
 func verifyRequestContentType(req *http.Request, t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	contentType := req.Header.Get("Content-Type")

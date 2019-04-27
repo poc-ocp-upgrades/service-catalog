@@ -21,9 +21,13 @@ type extraConfig struct {
 func NewEtcdConfig(genCfg *genericapiserver.RecommendedConfig, deleteCollWorkers int, factory storage.StorageFactory) Config {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &etcdConfig{genericConfig: genCfg, extraConfig: &extraConfig{deleteCollectionWorkers: deleteCollWorkers, storageFactory: factory}}
 }
 func (c *etcdConfig) Complete() CompletedConfig {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	completedGenericConfig := completeGenericConfig(c.genericConfig)
@@ -37,6 +41,8 @@ type completedEtcdConfig struct {
 }
 
 func (c completedEtcdConfig) NewServer(stopCh <-chan struct{}) (*ServiceCatalogAPIServer, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := createSkeletonServer(c.genericConfig)

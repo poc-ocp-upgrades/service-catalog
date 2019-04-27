@@ -7,6 +7,8 @@ import (
 func TestPrettyContextBuilderKind(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
 	pcb.SetKind(ServiceInstance)
 	e := "ServiceInstance"
@@ -16,6 +18,8 @@ func TestPrettyContextBuilderKind(t *testing.T) {
 	}
 }
 func TestPrettyContextBuilderNamespace(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
@@ -29,6 +33,8 @@ func TestPrettyContextBuilderNamespace(t *testing.T) {
 func TestPrettyContextBuilderName(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
 	pcb.SetName("Name")
 	e := `"Name"`
@@ -38,6 +44,8 @@ func TestPrettyContextBuilderName(t *testing.T) {
 	}
 }
 func TestPrettyContextBuilderKindAndNamespace(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
@@ -51,6 +59,8 @@ func TestPrettyContextBuilderKindAndNamespace(t *testing.T) {
 func TestPrettyContextBuilderKindAndName(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
 	pcb.SetKind(ServiceInstance).SetName("Name")
 	e := `ServiceInstance "Name"`
@@ -60,6 +70,8 @@ func TestPrettyContextBuilderKindAndName(t *testing.T) {
 	}
 }
 func TestPrettyContextBuilderKindNamespaceName(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
@@ -73,6 +85,8 @@ func TestPrettyContextBuilderKindNamespaceName(t *testing.T) {
 func TestPrettyContextBuilderKindNamespaceNameNew(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := NewContextBuilder(ServiceInstance, "Namespace", "Name", "")
 	e := `ServiceInstance "Namespace/Name"`
 	g := pcb.String()
@@ -83,6 +97,8 @@ func TestPrettyContextBuilderKindNamespaceNameNew(t *testing.T) {
 func TestPrettyContextBuilderMessage(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
 	e := `Msg`
 	g := pcb.Message("Msg")
@@ -91,6 +107,8 @@ func TestPrettyContextBuilderMessage(t *testing.T) {
 	}
 }
 func TestPrettyContextBuilderContextAndMessage(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
@@ -104,6 +122,8 @@ func TestPrettyContextBuilderContextAndMessage(t *testing.T) {
 func TestPrettyContextBuilderMessagef(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
 	e := `This was built.`
 	g := pcb.Messagef("This %s built.", "was")
@@ -114,6 +134,8 @@ func TestPrettyContextBuilderMessagef(t *testing.T) {
 func TestPrettyContextBuilderMessagefMany(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
 	e := `One 2 three 4 "five" 6`
 	g := pcb.Messagef("%s %d %s %v %q %d", "One", 2, "three", 4, "five", 6)
@@ -122,6 +144,8 @@ func TestPrettyContextBuilderMessagefMany(t *testing.T) {
 	}
 }
 func TestPrettyContextBuilderContextMessagefAndContext(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := ContextBuilder{}
@@ -135,6 +159,8 @@ func TestPrettyContextBuilderContextMessagefAndContext(t *testing.T) {
 func TestPrettyContextBuilderNamespaceNameAndResourceVersion(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := NewContextBuilder(ServiceInstance, "Namespace", "Name", "877")
 	e := `ServiceInstance "Namespace/Name" v877`
 	g := pcb.String()
@@ -146,6 +172,8 @@ func TestPrettyContextBuilderNamespaceNameAndResourceVersion(t *testing.T) {
 var bResult string
 
 func BenchmarkPCB(b *testing.B) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := NewContextBuilder(ServiceInstance, "Namespace", "Name", "877")

@@ -18,6 +18,8 @@ type getCmd struct {
 func NewGetCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	getCmd := &getCmd{Namespaced: command.NewNamespaced(cxt), Formatted: command.NewFormatted(), ClassFiltered: command.NewClassFiltered(), PlanFiltered: command.NewPlanFiltered()}
 	cmd := &cobra.Command{Use: "instances [NAME]", Aliases: []string{"instance", "inst"}, Short: "List instances, optionally filtered by name", Example: command.NormalizeExamples(`
   svcat get instances
@@ -36,6 +38,8 @@ func NewGetCmd(cxt *command.Context) *cobra.Command {
 func (c *getCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) > 0 {
 		c.name = args[0]
 		if c.ClassFilter != "" {
@@ -50,12 +54,16 @@ func (c *getCmd) Validate(args []string) error {
 func (c *getCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c.name == "" {
 		return c.getAll()
 	}
 	return c.get()
 }
 func (c *getCmd) getAll() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instances, err := c.App.RetrieveInstances(c.Namespace, c.ClassFilter, c.PlanFilter)
@@ -66,6 +74,8 @@ func (c *getCmd) getAll() error {
 	return nil
 }
 func (c *getCmd) get() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instance, err := c.App.RetrieveInstance(c.Namespace, c.name)

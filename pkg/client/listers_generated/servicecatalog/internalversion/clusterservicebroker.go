@@ -21,9 +21,13 @@ type clusterServiceBrokerLister struct{ indexer cache.Indexer }
 func NewClusterServiceBrokerLister(indexer cache.Indexer) ClusterServiceBrokerLister {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &clusterServiceBrokerLister{indexer: indexer}
 }
 func (s *clusterServiceBrokerLister) List(selector labels.Selector) (ret []*servicecatalog.ClusterServiceBroker, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
@@ -32,6 +36,8 @@ func (s *clusterServiceBrokerLister) List(selector labels.Selector) (ret []*serv
 	return ret, err
 }
 func (s *clusterServiceBrokerLister) Get(name string) (*servicecatalog.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, exists, err := s.indexer.GetByKey(name)
@@ -46,7 +52,16 @@ func (s *clusterServiceBrokerLister) Get(name string) (*servicecatalog.ClusterSe
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

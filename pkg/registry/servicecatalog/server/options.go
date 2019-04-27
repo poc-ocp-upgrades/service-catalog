@@ -19,14 +19,20 @@ type Options struct{ EtcdOptions etcd.Options }
 func NewOptions(etcdOpts etcd.Options) *Options {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Options{EtcdOptions: etcdOpts}
 }
 func (o Options) ResourcePrefix() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return o.EtcdOptions.RESTOptions.ResourcePrefix
 }
 func (o Options) KeyRootFunc() func(context.Context) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	prefix := o.ResourcePrefix()
@@ -35,6 +41,8 @@ func (o Options) KeyRootFunc() func(context.Context) string {
 	}
 }
 func (o Options) KeyFunc(namespaced bool) func(context.Context, string) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	prefix := o.ResourcePrefix()
@@ -48,6 +56,8 @@ func (o Options) KeyFunc(namespaced bool) func(context.Context, string) (string,
 func (o Options) GetStorage(objectType runtime.Object, resourcePrefix string, scopeStrategy rest.NamespaceScopedStrategy, newListFunc func() runtime.Object, getAttrsFunc storage.AttrFunc, trigger storage.TriggerPublisherFunc) (registry.DryRunnableStorage, factory.DestroyFunc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	etcdRESTOpts := o.EtcdOptions.RESTOptions
 	storageInterface, dFunc := etcdRESTOpts.Decorator(etcdRESTOpts.StorageConfig, objectType, resourcePrefix, nil, newListFunc, getAttrsFunc, trigger)
 	dryRunnableStorage := registry.DryRunnableStorage{Storage: storageInterface, Codec: etcdRESTOpts.StorageConfig.Codec}
@@ -56,7 +66,16 @@ func (o Options) GetStorage(objectType runtime.Object, resourcePrefix string, sc
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

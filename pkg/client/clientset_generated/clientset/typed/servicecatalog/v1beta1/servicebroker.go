@@ -33,9 +33,13 @@ type serviceBrokers struct {
 func newServiceBrokers(c *ServicecatalogV1beta1Client, namespace string) *serviceBrokers {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &serviceBrokers{client: c.RESTClient(), ns: namespace}
 }
 func (c *serviceBrokers) Get(name string, options v1.GetOptions) (result *v1beta1.ServiceBroker, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ServiceBroker{}
@@ -43,6 +47,8 @@ func (c *serviceBrokers) Get(name string, options v1.GetOptions) (result *v1beta
 	return
 }
 func (c *serviceBrokers) List(opts v1.ListOptions) (result *v1beta1.ServiceBrokerList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -56,6 +62,8 @@ func (c *serviceBrokers) List(opts v1.ListOptions) (result *v1beta1.ServiceBroke
 func (c *serviceBrokers) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -66,11 +74,15 @@ func (c *serviceBrokers) Watch(opts v1.ListOptions) (watch.Interface, error) {
 func (c *serviceBrokers) Create(serviceBroker *v1beta1.ServiceBroker) (result *v1beta1.ServiceBroker, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ServiceBroker{}
 	err = c.client.Post().Namespace(c.ns).Resource("servicebrokers").Body(serviceBroker).Do().Into(result)
 	return
 }
 func (c *serviceBrokers) Update(serviceBroker *v1beta1.ServiceBroker) (result *v1beta1.ServiceBroker, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ServiceBroker{}
@@ -80,6 +92,8 @@ func (c *serviceBrokers) Update(serviceBroker *v1beta1.ServiceBroker) (result *v
 func (c *serviceBrokers) UpdateStatus(serviceBroker *v1beta1.ServiceBroker) (result *v1beta1.ServiceBroker, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ServiceBroker{}
 	err = c.client.Put().Namespace(c.ns).Resource("servicebrokers").Name(serviceBroker.Name).SubResource("status").Body(serviceBroker).Do().Into(result)
 	return
@@ -87,9 +101,13 @@ func (c *serviceBrokers) UpdateStatus(serviceBroker *v1beta1.ServiceBroker) (res
 func (c *serviceBrokers) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.client.Delete().Namespace(c.ns).Resource("servicebrokers").Name(name).Body(options).Do().Error()
 }
 func (c *serviceBrokers) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -99,6 +117,8 @@ func (c *serviceBrokers) DeleteCollection(options *v1.DeleteOptions, listOptions
 	return c.client.Delete().Namespace(c.ns).Resource("servicebrokers").VersionedParams(&listOptions, scheme.ParameterCodec).Timeout(timeout).Body(options).Do().Error()
 }
 func (c *serviceBrokers) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1beta1.ServiceBroker, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ServiceBroker{}

@@ -30,12 +30,16 @@ type ServiceCatalogServerOptions struct {
 func NewServiceCatalogServerOptions() *ServiceCatalogServerOptions {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	opts := &ServiceCatalogServerOptions{GenericServerRunOptions: genericserveroptions.NewServerRunOptions(), AdmissionOptions: genericserveroptions.NewAdmissionOptions(), SecureServingOptions: genericserveroptions.NewSecureServingOptions().WithLoopback(), AuthenticationOptions: genericserveroptions.NewDelegatingAuthenticationOptions(), AuthorizationOptions: genericserveroptions.NewDelegatingAuthorizationOptions(), AuditOptions: genericserveroptions.NewAuditOptions(), EtcdOptions: NewEtcdOptions(), StandaloneMode: standaloneMode()}
 	registerAllAdmissionPlugins(opts.AdmissionOptions.Plugins)
 	opts.SecureServingOptions.ServerCert.CertDirectory = certDirectory
 	return opts
 }
 func (s *ServiceCatalogServerOptions) AddFlags(flags *pflag.FlagSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_ = flags.String(storageTypeFlagName, "", "The type of backing storage this API server should use")
@@ -55,6 +59,8 @@ func (s *ServiceCatalogServerOptions) AddFlags(flags *pflag.FlagSet) {
 func (s *ServiceCatalogServerOptions) Validate() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	errors := []error{}
 	errors = append(errors, s.SecureServingOptions.Validate()...)
 	errors = append(errors, s.AuthenticationOptions.Validate()...)
@@ -67,6 +73,8 @@ func (s *ServiceCatalogServerOptions) Validate() error {
 	return utilerrors.NewAggregate(errors)
 }
 func standaloneMode() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	val := os.Getenv("SERVICE_CATALOG_STANDALONE")

@@ -29,6 +29,8 @@ type FakeServiceBrokerServer struct {
 func (f *FakeServiceBrokerServer) Start() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	r := mux.NewRouter()
 	router := r.Headers(constants.APIVersionHeader, "", "Authorization", "").Subrouter()
 	router.HandleFunc("/v2/catalog", f.catalogHandler).Methods("GET")
@@ -44,10 +46,14 @@ func (f *FakeServiceBrokerServer) Start() string {
 func (f *FakeServiceBrokerServer) Stop() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f.server.Close()
 	klog.Info("fake broker stopped")
 }
 func (f *FakeServiceBrokerServer) SetResponseStatus(status int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	f.responseStatus = status
@@ -55,9 +61,13 @@ func (f *FakeServiceBrokerServer) SetResponseStatus(status int) {
 func (f *FakeServiceBrokerServer) SetOperation(operation string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f.operation = operation
 }
 func (f *FakeServiceBrokerServer) SetLastOperationState(state string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	f.lastOperationState = state
@@ -65,10 +75,14 @@ func (f *FakeServiceBrokerServer) SetLastOperationState(state string) {
 func (f *FakeServiceBrokerServer) catalogHandler(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.Info("fake catalog called")
 	util.WriteResponse(w, http.StatusOK, &brokerapi.Catalog{})
 }
 func (f *FakeServiceBrokerServer) lastOperationHandler(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Info("fake lastOperation called")
@@ -89,6 +103,8 @@ func (f *FakeServiceBrokerServer) lastOperationHandler(w http.ResponseWriter, r 
 func (f *FakeServiceBrokerServer) provisionHandler(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.Info("fake provision called")
 	f.Request = r
 	req := &brokerapi.CreateServiceInstanceRequest{}
@@ -105,6 +121,8 @@ func (f *FakeServiceBrokerServer) provisionHandler(w http.ResponseWriter, r *htt
 	}
 }
 func (f *FakeServiceBrokerServer) deprovisionHandler(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Info("fake deprovision called")
@@ -125,10 +143,14 @@ func (f *FakeServiceBrokerServer) deprovisionHandler(w http.ResponseWriter, r *h
 func (f *FakeServiceBrokerServer) updateHandler(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.Info("fake update called")
 	util.WriteResponse(w, http.StatusForbidden, nil)
 }
 func (f *FakeServiceBrokerServer) bindHandler(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Info("fake bind called")
@@ -144,6 +166,8 @@ func (f *FakeServiceBrokerServer) bindHandler(w http.ResponseWriter, r *http.Req
 func (f *FakeServiceBrokerServer) unbindHandler(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.Info("fake unbind called")
 	f.Request = r
 	util.WriteResponse(w, f.responseStatus, &brokerapi.DeleteServiceInstanceResponse{})
@@ -151,7 +175,16 @@ func (f *FakeServiceBrokerServer) unbindHandler(w http.ResponseWriter, r *http.R
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

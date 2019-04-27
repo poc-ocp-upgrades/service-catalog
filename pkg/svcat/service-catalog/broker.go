@@ -23,6 +23,8 @@ type Broker interface {
 func (sdk *SDK) Deregister(brokerName string, scopeOpts *ScopeOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if scopeOpts.Scope.Matches(NamespaceScope) {
 		err := sdk.ServiceCatalog().ServiceBrokers(scopeOpts.Namespace).Delete(brokerName, &v1.DeleteOptions{})
 		if err != nil {
@@ -39,6 +41,8 @@ func (sdk *SDK) Deregister(brokerName string, scopeOpts *ScopeOptions) error {
 	return fmt.Errorf("cannot deregister broker, unrecognized scope provided (%s)", scopeOpts.Scope)
 }
 func (sdk *SDK) RetrieveBrokers(opts ScopeOptions) ([]Broker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var brokers []Broker
@@ -70,6 +74,8 @@ func (sdk *SDK) RetrieveBrokers(opts ScopeOptions) ([]Broker, error) {
 func (sdk *SDK) RetrieveBroker(name string) (*v1beta1.ClusterServiceBroker, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker, err := sdk.ServiceCatalog().ClusterServiceBrokers().Get(name, v1.GetOptions{})
 	if err != nil {
 		return nil, errors.Wrapf(err, "unable to get broker '%s'", name)
@@ -77,6 +83,8 @@ func (sdk *SDK) RetrieveBroker(name string) (*v1beta1.ClusterServiceBroker, erro
 	return broker, nil
 }
 func (sdk *SDK) RetrieveNamespacedBroker(namespace string, name string) (*v1beta1.ServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, err := sdk.ServiceCatalog().ServiceBrokers(namespace).Get(name, v1.GetOptions{})
@@ -88,6 +96,8 @@ func (sdk *SDK) RetrieveNamespacedBroker(namespace string, name string) (*v1beta
 func (sdk *SDK) RetrieveBrokerByClass(class *v1beta1.ClusterServiceClass) (*v1beta1.ClusterServiceBroker, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	brokerName := class.Spec.ClusterServiceBrokerName
 	broker, err := sdk.ServiceCatalog().ClusterServiceBrokers().Get(brokerName, v1.GetOptions{})
 	if err != nil {
@@ -96,6 +106,8 @@ func (sdk *SDK) RetrieveBrokerByClass(class *v1beta1.ClusterServiceClass) (*v1be
 	return broker, nil
 }
 func (sdk *SDK) Register(brokerName string, url string, opts *RegisterOptions, scopeOpts *ScopeOptions) (Broker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var err error
@@ -136,6 +148,8 @@ func (sdk *SDK) Register(brokerName string, url string, opts *RegisterOptions, s
 	return result, nil
 }
 func (sdk *SDK) Sync(name string, scopeOpts ScopeOptions, retries int) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	success := false
@@ -182,6 +196,8 @@ func (sdk *SDK) Sync(name string, scopeOpts ScopeOptions, retries int) error {
 func (sdk *SDK) WaitForBroker(name string, interval time.Duration, timeout *time.Duration) (broker Broker, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if timeout == nil {
 		notimeout := time.Duration(math.MaxInt64)
 		timeout = &notimeout
@@ -202,14 +218,20 @@ func (sdk *SDK) WaitForBroker(name string, interval time.Duration, timeout *time
 func (sdk *SDK) IsBrokerReady(broker Broker) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.BrokerHasStatus(broker, v1beta1.ServiceBrokerConditionReady)
 }
 func (sdk *SDK) IsBrokerFailed(broker Broker) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.BrokerHasStatus(broker, v1beta1.ServiceBrokerConditionFailed)
 }
 func (sdk *SDK) BrokerHasStatus(broker Broker, status v1beta1.ServiceBrokerConditionType) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, cond := range broker.GetStatus().Conditions {

@@ -17,9 +17,13 @@ type podPresetLister struct{ indexer cache.Indexer }
 func NewPodPresetLister(indexer cache.Indexer) PodPresetLister {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &podPresetLister{indexer: indexer}
 }
 func (s *podPresetLister) List(selector labels.Selector) (ret []*settings.PodPreset, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
@@ -28,6 +32,8 @@ func (s *podPresetLister) List(selector labels.Selector) (ret []*settings.PodPre
 	return ret, err
 }
 func (s *podPresetLister) PodPresets(namespace string) PodPresetNamespaceLister {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return podPresetNamespaceLister{indexer: s.indexer, namespace: namespace}
@@ -46,12 +52,16 @@ type podPresetNamespaceLister struct {
 func (s podPresetNamespaceLister) List(selector labels.Selector) (ret []*settings.PodPreset, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err = cache.ListAllByNamespace(s.indexer, s.namespace, selector, func(m interface{}) {
 		ret = append(ret, m.(*settings.PodPreset))
 	})
 	return ret, err
 }
 func (s podPresetNamespaceLister) Get(name string) (*settings.PodPreset, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, exists, err := s.indexer.GetByKey(s.namespace + "/" + name)

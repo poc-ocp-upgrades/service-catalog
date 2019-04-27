@@ -15,12 +15,16 @@ var validateCommonServiceBrokerName = apivalidation.NameIsDNSSubdomain
 func ValidateClusterServiceBroker(broker *sc.ClusterServiceBroker) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, apivalidation.ValidateObjectMeta(&broker.ObjectMeta, false, validateCommonServiceBrokerName, field.NewPath("metadata"))...)
 	allErrs = append(allErrs, validateClusterServiceBrokerSpec(&broker.Spec, field.NewPath("spec"))...)
 	return allErrs
 }
 func validateClusterServiceBrokerSpec(spec *sc.ClusterServiceBrokerSpec, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -62,12 +66,16 @@ func validateClusterServiceBrokerSpec(spec *sc.ClusterServiceBrokerSpec, fldPath
 func ValidateServiceBroker(broker *sc.ServiceBroker) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, apivalidation.ValidateObjectMeta(&broker.ObjectMeta, true, validateCommonServiceBrokerName, field.NewPath("metadata"))...)
 	allErrs = append(allErrs, validateServiceBrokerSpec(&broker.Spec, field.NewPath("spec"))...)
 	return allErrs
 }
 func validateServiceBrokerSpec(spec *sc.ServiceBrokerSpec, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -101,6 +109,8 @@ func validateServiceBrokerSpec(spec *sc.ServiceBrokerSpec, fldPath *field.Path) 
 	return allErrs
 }
 func validateCommonServiceBrokerSpec(spec *sc.CommonServiceBrokerSpec, fldPath *field.Path, isClusterServiceBroker bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	commonErrs := field.ErrorList{}
@@ -158,6 +168,8 @@ func validateCommonServiceBrokerSpec(spec *sc.CommonServiceBrokerSpec, fldPath *
 func ValidateClusterServiceBrokerUpdate(new *sc.ClusterServiceBroker, old *sc.ClusterServiceBroker) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := validateCommonServiceBrokerUpdate(&new.Spec.CommonServiceBrokerSpec, &old.Spec.CommonServiceBrokerSpec)
 	allErrs = append(allErrs, ValidateClusterServiceBroker(new)...)
 	return allErrs
@@ -165,11 +177,15 @@ func ValidateClusterServiceBrokerUpdate(new *sc.ClusterServiceBroker, old *sc.Cl
 func ValidateServiceBrokerUpdate(new *sc.ServiceBroker, old *sc.ServiceBroker) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := validateCommonServiceBrokerUpdate(&new.Spec.CommonServiceBrokerSpec, &old.Spec.CommonServiceBrokerSpec)
 	allErrs = append(allErrs, ValidateServiceBroker(new)...)
 	return allErrs
 }
 func validateCommonServiceBrokerUpdate(new *sc.CommonServiceBrokerSpec, old *sc.CommonServiceBrokerSpec) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	commonErrs := field.ErrorList{}
@@ -181,11 +197,15 @@ func validateCommonServiceBrokerUpdate(new *sc.CommonServiceBrokerSpec, old *sc.
 func ValidateClusterServiceBrokerStatusUpdate(new *sc.ClusterServiceBroker, old *sc.ClusterServiceBroker) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, ValidateClusterServiceBrokerUpdate(new, old)...)
 	return allErrs
 }
 func ValidateServiceBrokerStatusUpdate(new *sc.ServiceBroker, old *sc.ServiceBroker) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}

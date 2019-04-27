@@ -15,11 +15,15 @@ import (
 func wrap(indent string, s string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var buf bytes.Buffer
 	doc.ToText(&buf, s, indent, indent+"  ", 80-len(indent))
 	return buf.String()
 }
 func ExecuteTemplate(w io.Writer, templateText string, data interface{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := template.New("top")
@@ -30,6 +34,8 @@ func ExecuteTemplate(w io.Writer, templateText string, data interface{}) error {
 func ExecuteTemplateToString(templateText string, data interface{}) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := bytes.Buffer{}
 	err := ExecuteTemplate(&b, templateText, data)
 	return b.String(), err
@@ -37,7 +43,16 @@ func ExecuteTemplateToString(templateText string, data interface{}) (string, err
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

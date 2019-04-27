@@ -16,6 +16,8 @@ type describeCmd struct {
 func NewDescribeCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	describeCmd := &describeCmd{Namespaced: command.NewNamespaced(cxt)}
 	cmd := &cobra.Command{Use: "binding NAME", Aliases: []string{"bindings", "bnd"}, Short: "Show details of a specific binding", Example: command.NormalizeExamples(`svcat describe binding wordpress-mysql-binding`), PreRunE: command.PreRunE(describeCmd), RunE: command.RunE(describeCmd)}
 	describeCmd.AddNamespaceFlags(cmd.Flags(), false)
@@ -23,6 +25,8 @@ func NewDescribeCmd(cxt *command.Context) *cobra.Command {
 	return cmd
 }
 func (c *describeCmd) Validate(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) == 0 {
@@ -34,9 +38,13 @@ func (c *describeCmd) Validate(args []string) error {
 func (c *describeCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.describe()
 }
 func (c *describeCmd) describe() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, err := c.App.RetrieveBinding(c.Namespace, c.name)

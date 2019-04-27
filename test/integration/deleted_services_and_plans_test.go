@@ -11,6 +11,8 @@ import (
 func TestClusterServicePlanRemovedFromCatalogWithoutInstances(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, broker: getTestBroker()}
 	ct.run(func(ct *controllerTest) {
 		removedPlan := getTestClusterServicePlanRemoved()
@@ -45,9 +47,13 @@ const (
 func getTestClusterServicePlanRemoved() *v1beta1.ClusterServicePlan {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ClusterServicePlan{ObjectMeta: metav1.ObjectMeta{Name: testRemovedClusterServicePlanGUID}, Spec: v1beta1.ClusterServicePlanSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServicePlanSpec: v1beta1.CommonServicePlanSpec{ExternalID: testRemovedClusterServicePlanGUID, ExternalName: testRemovedClusterServicePlanExternalName, Description: "a plan that will be removed", Bindable: truePtr()}, ClusterServiceClassRef: v1beta1.ClusterObjectReference{Name: testClusterServiceClassGUID}}, Status: v1beta1.ClusterServicePlanStatus{}}
 }
 func TestClusterServiceClassRemovedFromCatalogWithoutInstances(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, broker: getTestBroker()}
@@ -74,6 +80,8 @@ func TestClusterServiceClassRemovedFromCatalogWithoutInstances(t *testing.T) {
 	})
 }
 func getTestClusterServiceClassRemoved() *v1beta1.ClusterServiceClass {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: testRemovedClusterServiceClassGUID}, Spec: v1beta1.ClusterServiceClassSpec{ClusterServiceBrokerName: testClusterServiceBrokerName, CommonServiceClassSpec: v1beta1.CommonServiceClassSpec{ExternalID: testRemovedClusterServiceClassGUID, ExternalName: testRemovedClusterServiceClassExternalName, Description: "a serviceclass that will be removed", Bindable: true}}, Status: v1beta1.ClusterServiceClassStatus{}}

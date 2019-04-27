@@ -7,6 +7,8 @@ import (
 func TestCreatePredicate(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		restrictions	[]string

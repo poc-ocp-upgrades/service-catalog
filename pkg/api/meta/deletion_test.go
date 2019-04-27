@@ -10,6 +10,8 @@ import (
 func TestDeletionTimestampExists(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj := &sc.ServiceInstance{ObjectMeta: metav1.ObjectMeta{}}
 	exists, err := DeletionTimestampExists(obj)
 	if err != nil {
@@ -29,6 +31,8 @@ func TestDeletionTimestampExists(t *testing.T) {
 	}
 }
 func TestRoundTripDeletionTimestamp(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t1 := metav1.NewTime(time.Now())

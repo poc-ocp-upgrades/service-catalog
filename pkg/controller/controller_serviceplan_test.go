@@ -15,6 +15,8 @@ import (
 func TestReconcileServicePlanRemovedFromCatalog(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	getRemovedPlan := func() *v1beta1.ServicePlan {
 		p := getTestServicePlan()
 		p.Status.RemovedFromBrokerCatalog = true
@@ -74,6 +76,8 @@ func TestReconcileServicePlanRemovedFromCatalog(t *testing.T) {
 	}
 }
 func reconcileServicePlan(t *testing.T, testController *controller, servicePlan *v1beta1.ServicePlan) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clone := servicePlan.DeepCopy()

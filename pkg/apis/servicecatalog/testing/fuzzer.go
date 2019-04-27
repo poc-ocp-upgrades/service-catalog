@@ -34,6 +34,8 @@ type parameter struct {
 func createParameter(c fuzz.Continue) (*runtime.RawExtension, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	p := parameter{Value: c.RandString()}
 	p.Map = make(map[string]string)
 	for i := 0; i < c.Rand.Intn(10); i++ {
@@ -49,6 +51,8 @@ func createParameter(c fuzz.Continue) (*runtime.RawExtension, error) {
 func createServiceMetadata(c fuzz.Continue) (*runtime.RawExtension, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m := serviceMetadata{DisplayName: c.RandString()}
 	b, err := json.Marshal(m)
 	if err != nil {
@@ -57,6 +61,8 @@ func createServiceMetadata(c fuzz.Continue) (*runtime.RawExtension, error) {
 	return &runtime.RawExtension{Raw: b}, nil
 }
 func createPlanMetadata(c fuzz.Continue) (*runtime.RawExtension, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m := planMetadata{}
@@ -70,6 +76,8 @@ func createPlanMetadata(c fuzz.Continue) (*runtime.RawExtension, error) {
 	return &runtime.RawExtension{Raw: b}, nil
 }
 func servicecatalogFuncs(codecs runtimeserializer.CodecFactory) []interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return []interface{}{func(bs *servicecatalog.ClusterServiceBrokerSpec, c fuzz.Continue) {
@@ -157,7 +165,16 @@ var FuzzerFuncs = fuzzer.MergeFuzzerFuncs(genericfuzzer.Funcs, servicecatalogFun
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

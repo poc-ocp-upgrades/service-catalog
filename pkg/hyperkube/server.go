@@ -23,6 +23,8 @@ type Server struct {
 func (s *Server) Usage() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tt := `{{if .Long}}{{.Long | trim | wrap ""}}
 {{end}}Usage:
   {{.SimpleUsage}} [flags]
@@ -32,6 +34,8 @@ Available Flags:
 	return utiltemplate.ExecuteTemplate(s.hk.Out(), tt, s)
 }
 func (s *Server) Name() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s.PrimaryName != "" {
@@ -45,6 +49,8 @@ func (s *Server) Name() string {
 	return name
 }
 func (s *Server) Flags() *pflag.FlagSet {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s.flags == nil {

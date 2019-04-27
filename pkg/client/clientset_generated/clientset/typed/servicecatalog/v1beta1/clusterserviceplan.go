@@ -30,9 +30,13 @@ type clusterServicePlans struct{ client rest.Interface }
 func newClusterServicePlans(c *ServicecatalogV1beta1Client) *clusterServicePlans {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &clusterServicePlans{client: c.RESTClient()}
 }
 func (c *clusterServicePlans) Get(name string, options v1.GetOptions) (result *v1beta1.ClusterServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ClusterServicePlan{}
@@ -40,6 +44,8 @@ func (c *clusterServicePlans) Get(name string, options v1.GetOptions) (result *v
 	return
 }
 func (c *clusterServicePlans) List(opts v1.ListOptions) (result *v1beta1.ClusterServicePlanList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -53,6 +59,8 @@ func (c *clusterServicePlans) List(opts v1.ListOptions) (result *v1beta1.Cluster
 func (c *clusterServicePlans) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -63,11 +71,15 @@ func (c *clusterServicePlans) Watch(opts v1.ListOptions) (watch.Interface, error
 func (c *clusterServicePlans) Create(clusterServicePlan *v1beta1.ClusterServicePlan) (result *v1beta1.ClusterServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ClusterServicePlan{}
 	err = c.client.Post().Resource("clusterserviceplans").Body(clusterServicePlan).Do().Into(result)
 	return
 }
 func (c *clusterServicePlans) Update(clusterServicePlan *v1beta1.ClusterServicePlan) (result *v1beta1.ClusterServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ClusterServicePlan{}
@@ -77,6 +89,8 @@ func (c *clusterServicePlans) Update(clusterServicePlan *v1beta1.ClusterServiceP
 func (c *clusterServicePlans) UpdateStatus(clusterServicePlan *v1beta1.ClusterServicePlan) (result *v1beta1.ClusterServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &v1beta1.ClusterServicePlan{}
 	err = c.client.Put().Resource("clusterserviceplans").Name(clusterServicePlan.Name).SubResource("status").Body(clusterServicePlan).Do().Into(result)
 	return
@@ -84,9 +98,13 @@ func (c *clusterServicePlans) UpdateStatus(clusterServicePlan *v1beta1.ClusterSe
 func (c *clusterServicePlans) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.client.Delete().Resource("clusterserviceplans").Name(name).Body(options).Do().Error()
 }
 func (c *clusterServicePlans) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -96,6 +114,8 @@ func (c *clusterServicePlans) DeleteCollection(options *v1.DeleteOptions, listOp
 	return c.client.Delete().Resource("clusterserviceplans").VersionedParams(&listOptions, scheme.ParameterCodec).Timeout(timeout).Body(options).Do().Error()
 }
 func (c *clusterServicePlans) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v1beta1.ClusterServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &v1beta1.ClusterServicePlan{}

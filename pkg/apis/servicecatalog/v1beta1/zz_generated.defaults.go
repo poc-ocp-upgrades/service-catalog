@@ -7,6 +7,8 @@ import (
 func RegisterDefaults(scheme *runtime.Scheme) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	scheme.AddTypeDefaultingFunc(&ClusterServiceBroker{}, func(obj interface{}) {
 		SetObjectDefaults_ClusterServiceBroker(obj.(*ClusterServiceBroker))
 	})
@@ -30,9 +32,13 @@ func RegisterDefaults(scheme *runtime.Scheme) error {
 func SetObjectDefaults_ClusterServiceBroker(in *ClusterServiceBroker) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	SetDefaults_ClusterServiceBrokerSpec(&in.Spec)
 }
 func SetObjectDefaults_ClusterServiceBrokerList(in *ClusterServiceBrokerList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for i := range in.Items {
@@ -43,9 +49,13 @@ func SetObjectDefaults_ClusterServiceBrokerList(in *ClusterServiceBrokerList) {
 func SetObjectDefaults_ServiceBinding(in *ServiceBinding) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	SetDefaults_ServiceBinding(in)
 }
 func SetObjectDefaults_ServiceBindingList(in *ServiceBindingList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for i := range in.Items {
@@ -56,9 +66,13 @@ func SetObjectDefaults_ServiceBindingList(in *ServiceBindingList) {
 func SetObjectDefaults_ServiceBroker(in *ServiceBroker) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	SetDefaults_ServiceBrokerSpec(&in.Spec)
 }
 func SetObjectDefaults_ServiceBrokerList(in *ServiceBrokerList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for i := range in.Items {

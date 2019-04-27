@@ -44,6 +44,8 @@ const (
 func NewController(kubeClient kubernetes.Interface, serviceCatalogClient servicecatalogclientset.ServicecatalogV1beta1Interface, clusterServiceBrokerInformer informers.ClusterServiceBrokerInformer, serviceBrokerInformer informers.ServiceBrokerInformer, clusterServiceClassInformer informers.ClusterServiceClassInformer, serviceClassInformer informers.ServiceClassInformer, instanceInformer informers.ServiceInstanceInformer, bindingInformer informers.ServiceBindingInformer, clusterServicePlanInformer informers.ClusterServicePlanInformer, servicePlanInformer informers.ServicePlanInformer, brokerClientCreateFunc osb.CreateFunc, brokerRelistInterval time.Duration, osbAPIPreferredVersion string, recorder record.EventRecorder, reconciliationRetryDuration time.Duration, operationPollingMaximumBackoffDuration time.Duration, clusterIDConfigMapName string, clusterIDConfigMapNamespace string) (Controller, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	controller := &controller{kubeClient: kubeClient, serviceCatalogClient: serviceCatalogClient, brokerRelistInterval: brokerRelistInterval, OSBAPIPreferredVersion: osbAPIPreferredVersion, recorder: recorder, reconciliationRetryDuration: reconciliationRetryDuration, clusterServiceBrokerQueue: workqueue.NewNamedRateLimitingQueue(workqueue.NewItemExponentialFailureRateLimiter(pollingStartInterval, operationPollingMaximumBackoffDuration), "cluster-service-broker"), serviceBrokerQueue: workqueue.NewNamedRateLimitingQueue(workqueue.NewItemExponentialFailureRateLimiter(pollingStartInterval, operationPollingMaximumBackoffDuration), "service-broker"), clusterServiceClassQueue: workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "cluster-service-class"), serviceClassQueue: workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "service-class"), clusterServicePlanQueue: workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "cluster-service-plan"), servicePlanQueue: workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "service-plan"), instanceQueue: workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "service-instance"), bindingQueue: workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "service-binding"), instancePollingQueue: workqueue.NewNamedRateLimitingQueue(workqueue.NewItemExponentialFailureRateLimiter(pollingStartInterval, operationPollingMaximumBackoffDuration), "instance-poller"), bindingPollingQueue: workqueue.NewNamedRateLimitingQueue(workqueue.NewItemExponentialFailureRateLimiter(pollingStartInterval, operationPollingMaximumBackoffDuration), "binding-poller"), clusterIDConfigMapName: clusterIDConfigMapName, clusterIDConfigMapNamespace: clusterIDConfigMapNamespace, brokerClientManager: NewBrokerClientManager(brokerClientCreateFunc)}
 	controller.clusterServiceBrokerLister = clusterServiceBrokerInformer.Lister()
 	clusterServiceBrokerInformer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{AddFunc: controller.clusterServiceBrokerAdd, UpdateFunc: controller.clusterServiceBrokerUpdate, DeleteFunc: controller.clusterServiceBrokerDelete})
@@ -107,6 +109,8 @@ type controller struct {
 func (c *controller) Run(workers int, stopCh <-chan struct{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defer runtimeutil.HandleCrash()
 	klog.Info("Starting service-catalog controller")
 	var waitGroup sync.WaitGroup
@@ -148,6 +152,8 @@ func (c *controller) Run(workers int, stopCh <-chan struct{}) {
 func createWorker(queue workqueue.RateLimitingInterface, resourceType string, maxRetries int, forgetAfterSuccess bool, reconciler func(key string) error, stopCh <-chan struct{}, waitGroup *sync.WaitGroup) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	waitGroup.Add(1)
 	go func() {
 		wait.Until(worker(queue, resourceType, maxRetries, forgetAfterSuccess, reconciler), time.Second, stopCh)
@@ -155,6 +161,8 @@ func createWorker(queue workqueue.RateLimitingInterface, resourceType string, ma
 	}()
 }
 func (c *controller) createConfigMapMonitorWorker(stopCh <-chan struct{}, waitGroup *sync.WaitGroup) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	waitGroup.Add(1)
@@ -166,6 +174,8 @@ func (c *controller) createConfigMapMonitorWorker(stopCh <-chan struct{}, waitGr
 func (c *controller) createPurgeExpiredRetryEntriesWorker(stopCh <-chan struct{}, waitGroup *sync.WaitGroup) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	waitGroup.Add(1)
 	go func() {
 		wait.Until(c.purgeExpiredRetryEntries, 2*maxBrokerOperationRetryDelay, stopCh)
@@ -173,6 +183,8 @@ func (c *controller) createPurgeExpiredRetryEntriesWorker(stopCh <-chan struct{}
 	}()
 }
 func (c *controller) monitorConfigMap() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.V(9).Info("cluster ID monitor loop enter")
@@ -202,6 +214,8 @@ func (c *controller) monitorConfigMap() {
 	klog.V(9).Info("cluster ID monitor loop exit")
 }
 func worker(queue workqueue.RateLimitingInterface, resourceType string, maxRetries int, forgetAfterSuccess bool, reconciler func(key string) error) func() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func() {
@@ -242,9 +256,13 @@ type operationError struct {
 func (e *operationError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return e.message
 }
 func (c *controller) getClusterServiceClassPlanAndClusterServiceBroker(instance *v1beta1.ServiceInstance) (*v1beta1.ClusterServiceClass, *v1beta1.ClusterServicePlan, string, osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass, brokerName, brokerClient, err := c.getClusterServiceClassAndClusterServiceBroker(instance)
@@ -264,6 +282,8 @@ func (c *controller) getClusterServiceClassPlanAndClusterServiceBroker(instance 
 func (c *controller) getServiceClassPlanAndServiceBroker(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceClass, *v1beta1.ServicePlan, string, osb.Client, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serviceClass, brokerName, brokerClient, err := c.getServiceClassAndServiceBroker(instance)
 	if err != nil {
 		return nil, nil, "", nil, err
@@ -279,6 +299,8 @@ func (c *controller) getServiceClassPlanAndServiceBroker(instance *v1beta1.Servi
 	return serviceClass, servicePlan, brokerName, brokerClient, nil
 }
 func (c *controller) getClusterServiceClassAndClusterServiceBroker(instance *v1beta1.ServiceInstance) (*v1beta1.ClusterServiceClass, string, osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass, err := c.clusterServiceClassLister.Get(instance.Spec.ClusterServiceClassRef.Name)
@@ -298,6 +320,8 @@ func (c *controller) getClusterServiceClassAndClusterServiceBroker(instance *v1b
 func (c *controller) getServiceClassAndServiceBroker(instance *v1beta1.ServiceInstance) (*v1beta1.ServiceClass, string, osb.Client, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serviceClass, err := c.serviceClassLister.ServiceClasses(instance.Namespace).Get(instance.Spec.ServiceClassRef.Name)
 	if err != nil {
 		return nil, "", nil, &operationError{reason: errorNonexistentServiceClassReason, message: fmt.Sprintf("The instance references a non-existent ServiceClass (K8S: %q ExternalName: %q)", instance.Spec.ServiceClassRef.Name, instance.Spec.ServiceClassExternalName)}
@@ -315,6 +339,8 @@ func (c *controller) getServiceClassAndServiceBroker(instance *v1beta1.ServiceIn
 func (c *controller) getClusterServiceClassPlanAndClusterServiceBrokerForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (*v1beta1.ClusterServiceClass, *v1beta1.ClusterServicePlan, string, osb.Client, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serviceClass, serviceBrokerName, osbClient, err := c.getClusterServiceClassAndClusterServiceBrokerForServiceBinding(instance, binding)
 	if err != nil {
 		return nil, nil, "", nil, err
@@ -326,6 +352,8 @@ func (c *controller) getClusterServiceClassPlanAndClusterServiceBrokerForService
 	return serviceClass, servicePlan, serviceBrokerName, osbClient, nil
 }
 func (c *controller) getClusterServiceClassAndClusterServiceBrokerForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (*v1beta1.ClusterServiceClass, string, osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass, err := c.getClusterServiceClassForServiceBinding(instance, binding)
@@ -345,6 +373,8 @@ func (c *controller) getClusterServiceClassAndClusterServiceBrokerForServiceBind
 func (c *controller) getClusterServiceClassForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (*v1beta1.ClusterServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	serviceClass, err := c.clusterServiceClassLister.Get(instance.Spec.ClusterServiceClassRef.Name)
 	if err != nil {
@@ -357,6 +387,8 @@ func (c *controller) getClusterServiceClassForServiceBinding(instance *v1beta1.S
 	return serviceClass, nil
 }
 func (c *controller) getClusterServicePlanForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding, serviceClass *v1beta1.ClusterServiceClass) (*v1beta1.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -373,6 +405,8 @@ func (c *controller) getClusterServicePlanForServiceBinding(instance *v1beta1.Se
 func (c *controller) getClusterServiceBrokerForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding, serviceClass *v1beta1.ClusterServiceClass) (*v1beta1.ClusterServiceBroker, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	broker, err := c.clusterServiceBrokerLister.Get(serviceClass.Spec.ClusterServiceBrokerName)
 	if err != nil {
@@ -385,6 +419,8 @@ func (c *controller) getClusterServiceBrokerForServiceBinding(instance *v1beta1.
 	return broker, nil
 }
 func (c *controller) getBrokerClientForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var brokerClient osb.Client
@@ -422,6 +458,8 @@ func (c *controller) getBrokerClientForServiceBinding(instance *v1beta1.ServiceI
 func getAuthCredentialsFromClusterServiceBroker(client kubernetes.Interface, broker *v1beta1.ClusterServiceBroker) (*osb.AuthConfig, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if broker.Spec.AuthInfo == nil {
 		return nil, nil
 	}
@@ -452,6 +490,8 @@ func getAuthCredentialsFromClusterServiceBroker(client kubernetes.Interface, bro
 	return nil, fmt.Errorf("empty auth info or unsupported auth mode: %s", authInfo)
 }
 func getAuthCredentialsFromServiceBroker(client kubernetes.Interface, broker *v1beta1.ServiceBroker) (*osb.AuthConfig, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if broker.Spec.AuthInfo == nil {
@@ -486,6 +526,8 @@ func getAuthCredentialsFromServiceBroker(client kubernetes.Interface, broker *v1
 func getBasicAuthConfig(secret *corev1.Secret) (*osb.BasicAuthConfig, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	usernameBytes, ok := secret.Data["username"]
 	if !ok {
 		return nil, fmt.Errorf("auth secret didn't contain username")
@@ -499,6 +541,8 @@ func getBasicAuthConfig(secret *corev1.Secret) (*osb.BasicAuthConfig, error) {
 func getBearerConfig(secret *corev1.Secret) (*osb.BearerConfig, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tokenBytes, ok := secret.Data["token"]
 	if !ok {
 		return nil, fmt.Errorf("auth secret didn't contain token")
@@ -506,6 +550,8 @@ func getBearerConfig(secret *corev1.Secret) (*osb.BearerConfig, error) {
 	return &osb.BearerConfig{Token: string(tokenBytes)}, nil
 }
 func convertAndFilterCatalogToNamespacedTypes(namespace string, in *osb.CatalogResponse, restrictions *v1beta1.CatalogRestrictions, existingServiceClasses map[string]*v1beta1.ServiceClass, existingServicePlans map[string]*v1beta1.ServicePlan) ([]*v1beta1.ServiceClass, []*v1beta1.ServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var predicate filter.Predicate
@@ -560,6 +606,8 @@ func convertAndFilterCatalogToNamespacedTypes(namespace string, in *osb.CatalogR
 func GenerateEscapedName(externalID string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	buffer := bytes.Buffer{}
 	lenOrigin := len(externalID)
 	prevDot := false
@@ -593,6 +641,8 @@ func GenerateEscapedName(externalID string) string {
 	return escapedName
 }
 func convertAndFilterCatalog(in *osb.CatalogResponse, restrictions *v1beta1.CatalogRestrictions, existingServiceClasses map[string]*v1beta1.ClusterServiceClass, existingServicePlans map[string]*v1beta1.ClusterServicePlan) ([]*v1beta1.ClusterServiceClass, []*v1beta1.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var predicate filter.Predicate
@@ -646,6 +696,8 @@ func convertAndFilterCatalog(in *osb.CatalogResponse, restrictions *v1beta1.Cata
 func filterNamespacedServicePlans(restrictions *v1beta1.CatalogRestrictions, servicePlans []*v1beta1.ServicePlan) ([]*v1beta1.ServicePlan, []*v1beta1.ServicePlan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var predicate filter.Predicate
 	var err error
 	if restrictions != nil && len(restrictions.ServicePlan) > 0 {
@@ -672,6 +724,8 @@ func filterNamespacedServicePlans(restrictions *v1beta1.CatalogRestrictions, ser
 	return accepted, rejected, nil
 }
 func filterServicePlans(restrictions *v1beta1.CatalogRestrictions, servicePlans []*v1beta1.ClusterServicePlan) ([]*v1beta1.ClusterServicePlan, []*v1beta1.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var predicate filter.Predicate
@@ -702,6 +756,8 @@ func filterServicePlans(restrictions *v1beta1.CatalogRestrictions, servicePlans 
 func convertServicePlans(namespace string, plans []osb.Plan, serviceClassID string, existingServicePlans map[string]*v1beta1.ServicePlan) ([]*v1beta1.ServicePlan, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if 0 == len(plans) {
 		return nil, fmt.Errorf("ServiceClass (K8S: %q) must have at least one plan", serviceClassID)
 	}
@@ -723,6 +779,8 @@ func convertServicePlans(namespace string, plans []osb.Plan, serviceClassID stri
 	return servicePlans, nil
 }
 func convertCommonServicePlan(plan osb.Plan, commonServicePlanSpec *v1beta1.CommonServicePlanSpec) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if plan.Bindable != nil {
@@ -785,6 +843,8 @@ func convertCommonServicePlan(plan osb.Plan, commonServicePlanSpec *v1beta1.Comm
 	return nil
 }
 func convertClusterServicePlans(plans []osb.Plan, serviceClassID string, existingServicePlans map[string]*v1beta1.ClusterServicePlan) ([]*v1beta1.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if 0 == len(plans) {
@@ -861,6 +921,8 @@ func convertClusterServicePlans(plans []osb.Plan, serviceClassID string, existin
 func isServiceInstanceConditionTrue(instance *v1beta1.ServiceInstance, conditionType v1beta1.ServiceInstanceConditionType) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, cond := range instance.Status.Conditions {
 		if cond.Type == conditionType {
 			return cond.Status == v1beta1.ConditionTrue
@@ -871,9 +933,13 @@ func isServiceInstanceConditionTrue(instance *v1beta1.ServiceInstance, condition
 func isServiceInstanceReady(instance *v1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return isServiceInstanceConditionTrue(instance, v1beta1.ServiceInstanceConditionReady)
 }
 func isServiceInstanceFailed(instance *v1beta1.ServiceInstance) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return isServiceInstanceConditionTrue(instance, v1beta1.ServiceInstanceConditionFailed)
@@ -881,9 +947,13 @@ func isServiceInstanceFailed(instance *v1beta1.ServiceInstance) bool {
 func isServiceInstanceOrphanMitigation(instance *v1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return isServiceInstanceConditionTrue(instance, v1beta1.ServiceInstanceConditionOrphanMitigation)
 }
 func NewClientConfigurationForBroker(meta metav1.ObjectMeta, commonSpec *v1beta1.CommonServiceBrokerSpec, authConfig *osb.AuthConfig) *osb.ClientConfiguration {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clientConfig := osb.DefaultClientConfiguration()
@@ -898,6 +968,8 @@ func NewClientConfigurationForBroker(meta metav1.ObjectMeta, commonSpec *v1beta1
 func (c *controller) reconciliationRetryDurationExceeded(operationStartTime *metav1.Time) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if operationStartTime == nil || time.Now().Before(operationStartTime.Time.Add(c.reconciliationRetryDuration)) {
 		return false
 	}
@@ -906,11 +978,15 @@ func (c *controller) reconciliationRetryDurationExceeded(operationStartTime *met
 func shouldStartOrphanMitigation(statusCode int) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	is2XX := statusCode >= 200 && statusCode < 300
 	is5XX := statusCode >= 500 && statusCode < 600
 	return (is2XX && statusCode != http.StatusOK) || is5XX
 }
 func isRetriableHTTPStatus(statusCode int) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return statusCode != http.StatusBadRequest
@@ -926,6 +1002,8 @@ const (
 )
 
 func (c *controller) getClusterID() (id string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.clusterIDLock.RLock()
@@ -945,11 +1023,15 @@ func (c *controller) getClusterID() (id string) {
 func (c *controller) setClusterID(id string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.clusterIDLock.Lock()
 	c.clusterID = id
 	c.clusterIDLock.Unlock()
 }
 func (c *controller) getServiceClassPlanAndServiceBrokerForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (*v1beta1.ServiceClass, *v1beta1.ServicePlan, string, osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass, serviceBrokerName, osbClient, err := c.getServiceClassAndServiceBrokerForServiceBinding(instance, binding)
@@ -963,6 +1045,8 @@ func (c *controller) getServiceClassPlanAndServiceBrokerForServiceBinding(instan
 	return serviceClass, servicePlan, serviceBrokerName, osbClient, nil
 }
 func (c *controller) getServiceClassAndServiceBrokerForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (*v1beta1.ServiceClass, string, osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClass, err := c.getServiceClassForServiceBinding(instance, binding)
@@ -982,6 +1066,8 @@ func (c *controller) getServiceClassAndServiceBrokerForServiceBinding(instance *
 func (c *controller) getServiceClassForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding) (*v1beta1.ServiceClass, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	serviceClass, err := c.serviceClassLister.ServiceClasses(instance.Namespace).Get(instance.Spec.ServiceClassRef.Name)
 	if err != nil {
@@ -994,6 +1080,8 @@ func (c *controller) getServiceClassForServiceBinding(instance *v1beta1.ServiceI
 	return serviceClass, nil
 }
 func (c *controller) getServicePlanForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding, serviceClass *v1beta1.ServiceClass) (*v1beta1.ServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
@@ -1010,6 +1098,8 @@ func (c *controller) getServicePlanForServiceBinding(instance *v1beta1.ServiceIn
 func (c *controller) getServiceBrokerForServiceBinding(instance *v1beta1.ServiceInstance, binding *v1beta1.ServiceBinding, serviceClass *v1beta1.ServiceClass) (*v1beta1.ServiceBroker, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewInstanceContextBuilder(instance)
 	broker, err := c.serviceBrokerLister.ServiceBrokers(instance.Namespace).Get(serviceClass.Spec.ServiceBrokerName)
 	if err != nil {
@@ -1022,6 +1112,8 @@ func (c *controller) getServiceBrokerForServiceBinding(instance *v1beta1.Service
 	return broker, nil
 }
 func shouldReconcileServiceBrokerCommon(pcb *pretty.ContextBuilder, brokerMeta *metav1.ObjectMeta, brokerSpec *v1beta1.CommonServiceBrokerSpec, brokerStatus *v1beta1.CommonServiceBrokerStatus, now time.Time, defaultRelistInterval time.Duration) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if brokerStatus.ReconciledGeneration != brokerMeta.Generation {
@@ -1056,6 +1148,8 @@ func shouldReconcileServiceBrokerCommon(pcb *pretty.ContextBuilder, brokerMeta *
 	return true
 }
 func toJSON(obj interface{}) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, _ := json.Marshal(obj)

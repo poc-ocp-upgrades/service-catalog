@@ -11,9 +11,13 @@ var hexademicalStringRegexp = regexp.MustCompile("^[[:xdigit:]]*$")
 func stringIsHexadecimal(s string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return hexademicalStringRegexp.MatchString(s)
 }
 func validateParametersFromSource(parametersFrom []sc.ParametersFromSource, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}

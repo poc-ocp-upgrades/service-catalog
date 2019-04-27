@@ -8,6 +8,8 @@ import (
 func (in *PodPreset) DeepCopyInto(out *PodPreset) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*out = *in
 	out.TypeMeta = in.TypeMeta
 	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
@@ -15,6 +17,8 @@ func (in *PodPreset) DeepCopyInto(out *PodPreset) {
 	return
 }
 func (in *PodPreset) DeepCopy() *PodPreset {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if in == nil {
@@ -27,12 +31,16 @@ func (in *PodPreset) DeepCopy() *PodPreset {
 func (in *PodPreset) DeepCopyObject() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c := in.DeepCopy(); c != nil {
 		return c
 	}
 	return nil
 }
 func (in *PodPresetList) DeepCopyInto(out *PodPresetList) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*out = *in
@@ -50,6 +58,8 @@ func (in *PodPresetList) DeepCopyInto(out *PodPresetList) {
 func (in *PodPresetList) DeepCopy() *PodPresetList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if in == nil {
 		return nil
 	}
@@ -60,12 +70,16 @@ func (in *PodPresetList) DeepCopy() *PodPresetList {
 func (in *PodPresetList) DeepCopyObject() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c := in.DeepCopy(); c != nil {
 		return c
 	}
 	return nil
 }
 func (in *PodPresetSpec) DeepCopyInto(out *PodPresetSpec) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*out = *in
@@ -101,6 +115,8 @@ func (in *PodPresetSpec) DeepCopyInto(out *PodPresetSpec) {
 	return
 }
 func (in *PodPresetSpec) DeepCopy() *PodPresetSpec {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if in == nil {

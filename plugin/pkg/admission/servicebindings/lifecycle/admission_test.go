@@ -18,6 +18,8 @@ import (
 func newHandlerForTest(internalClient internalclientset.Interface) (admission.Interface, informers.SharedInformerFactory, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f := informers.NewSharedInformerFactory(internalClient, 5*time.Minute)
 	handler, err := NewCredentialsBlocker()
 	if err != nil {
@@ -31,14 +33,20 @@ func newHandlerForTest(internalClient internalclientset.Interface) (admission.In
 func newServiceInstance() servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicecatalog.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: "test-instance", Namespace: "test-ns"}}
 }
 func newServiceBinding() servicecatalog.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicecatalog.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Name: "test-cred", Namespace: "test-ns"}, Spec: servicecatalog.ServiceBindingSpec{InstanceRef: servicecatalog.LocalObjectReference{Name: "test-instance"}, SecretName: "test-secret"}}
 }
 func TestBlockNewCredentialsForDeletedInstance(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeClient := &fake.Clientset{}
@@ -65,6 +73,8 @@ func TestBlockNewCredentialsForDeletedInstance(t *testing.T) {
 	}
 }
 func TestAllowNewCredentialsForNonDeletedInstance(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeClient := &fake.Clientset{}

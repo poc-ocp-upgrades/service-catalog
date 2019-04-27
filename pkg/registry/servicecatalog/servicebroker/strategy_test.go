@@ -10,9 +10,13 @@ import (
 func serviceBrokerWithOldSpec() *sc.ServiceBroker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &sc.ServiceBroker{ObjectMeta: metav1.ObjectMeta{Generation: 1}, Spec: sc.ServiceBrokerSpec{CommonServiceBrokerSpec: sc.CommonServiceBrokerSpec{URL: "https://kubernetes.default.svc:443/brokers/template.k8s.io"}}, Status: sc.ServiceBrokerStatus{CommonServiceBrokerStatus: sc.CommonServiceBrokerStatus{Conditions: []sc.ServiceBrokerCondition{{Type: sc.ServiceBrokerConditionReady, Status: sc.ConditionFalse}}}}}
 }
 func serviceBrokerWithNewSpec() *sc.ServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b := serviceBrokerWithOldSpec()
@@ -20,6 +24,8 @@ func serviceBrokerWithNewSpec() *sc.ServiceBroker {
 	return b
 }
 func TestServiceBrokerStrategyTrivial(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !serviceBrokerRESTStrategies.NamespaceScoped() {
@@ -35,6 +41,8 @@ func TestServiceBrokerStrategyTrivial(t *testing.T) {
 func TestServiceBroker(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	broker := &sc.ServiceBroker{Spec: sc.ServiceBrokerSpec{CommonServiceBrokerSpec: sc.CommonServiceBrokerSpec{URL: "abcd"}}, Status: sc.ServiceBrokerStatus{CommonServiceBrokerStatus: sc.CommonServiceBrokerStatus{Conditions: nil}}}
 	creatorUserName := "creator"
 	createContext := sctestutil.ContextWithUserName(creatorUserName)
@@ -47,6 +55,8 @@ func TestServiceBroker(t *testing.T) {
 	}
 }
 func TestServiceBrokerUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -71,6 +81,8 @@ func TestServiceBrokerUpdate(t *testing.T) {
 	}
 }
 func TestServiceBrokerUpdateForRelistRequests(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

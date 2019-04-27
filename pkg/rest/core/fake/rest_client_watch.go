@@ -14,6 +14,8 @@ import (
 func doWatch(ch <-chan pkgwatch.Event, w http.ResponseWriter) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for evt := range ch {
 		codec, err := testapi.GetCodecForObject(evt.Object)
 		if err != nil {

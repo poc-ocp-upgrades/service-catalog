@@ -20,6 +20,8 @@ import (
 func doUnstructuredRoundTrip(t *testing.T, group testapi.TestGroup, kind string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	internalObj, err := api.Scheme.New(group.InternalGroupVersion().WithKind(kind))
 	if err != nil {
 		t.Fatalf("Couldn't create internal object %v: %v", kind, err)
@@ -107,6 +109,8 @@ func doUnstructuredRoundTrip(t *testing.T, group testapi.TestGroup, kind string)
 	}
 }
 func TestRoundTripTypesToUnstructured(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for groupKey, group := range catalogGroups {

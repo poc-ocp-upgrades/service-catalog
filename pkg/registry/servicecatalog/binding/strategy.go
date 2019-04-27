@@ -21,6 +21,8 @@ import (
 func NewScopeStrategy() rest.NamespaceScopedStrategy {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return bindingRESTStrategies
 }
 
@@ -43,6 +45,8 @@ var (
 func (bindingRESTStrategy) Canonicalize(obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, ok := obj.(*sc.ServiceBinding)
 	if !ok {
 		klog.Fatal("received a non-binding object to create")
@@ -51,9 +55,13 @@ func (bindingRESTStrategy) Canonicalize(obj runtime.Object) {
 func (bindingRESTStrategy) NamespaceScoped() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (bindingRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	binding, ok := obj.(*sc.ServiceBinding)
@@ -74,9 +82,13 @@ func (bindingRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Obj
 func (bindingRESTStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return scv.ValidateServiceBinding(obj.(*sc.ServiceBinding))
 }
 func (bindingRESTStrategy) AllowCreateOnUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return false
@@ -84,9 +96,13 @@ func (bindingRESTStrategy) AllowCreateOnUpdate() bool {
 func (bindingRESTStrategy) AllowUnconditionalUpdate() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (bindingRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceBinding, ok := new.(*sc.ServiceBinding)
@@ -109,6 +125,8 @@ func (bindingRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtim
 func (bindingRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceBinding, ok := new.(*sc.ServiceBinding)
 	if !ok {
 		klog.Fatal("received a non-binding object to validate to")
@@ -122,6 +140,8 @@ func (bindingRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.
 func (bindingRESTStrategy) CheckGracefulDelete(ctx context.Context, obj runtime.Object, options *metav1.DeleteOptions) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity) {
 		serviceInstanceCredential, ok := obj.(*sc.ServiceBinding)
 		if !ok {
@@ -132,6 +152,8 @@ func (bindingRESTStrategy) CheckGracefulDelete(ctx context.Context, obj runtime.
 	return false
 }
 func (bindingStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newServiceBinding, ok := new.(*sc.ServiceBinding)
@@ -147,6 +169,8 @@ func (bindingStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old 
 func (bindingStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceBinding, ok := new.(*sc.ServiceBinding)
 	if !ok {
 		klog.Fatal("received a non-binding object to validate to")
@@ -158,6 +182,8 @@ func (bindingStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old ru
 	return scv.ValidateServiceBindingStatusUpdate(newServiceBinding, oldServiceBinding)
 }
 func setServiceBindingUserInfo(ctx context.Context, instanceCredential *sc.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	instanceCredential.Spec.UserInfo = nil

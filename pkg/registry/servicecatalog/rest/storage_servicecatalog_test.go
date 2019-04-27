@@ -119,11 +119,15 @@ type GetRESTOptionsHelper struct {
 func (g GetRESTOptionsHelper) GetRESTOptions(resource schema.GroupResource) (generic.RESTOptions, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return generic.RESTOptions{ResourcePrefix: resource.Group + "/" + resource.Resource, StorageConfig: &storagebackend.Config{}, Decorator: generic.StorageDecorator(func(config *storagebackend.Config, objectType runtime.Object, resourcePrefix string, keyFunc func(obj runtime.Object) (string, error), newListFunc func() runtime.Object, getAttrsFunc storage.AttrFunc, trigger storage.TriggerPublisherFunc) (storage.Interface, factory.DestroyFunc) {
 		return g.retStorageInterface, g.retDestroyFunc
 	})}, nil
 }
 func testRESTOptionsGetter(retStorageInterface storage.Interface, retDestroyFunc func()) generic.RESTOptionsGetter {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return GetRESTOptionsHelper{retStorageInterface, retDestroyFunc}

@@ -15,6 +15,8 @@ import (
 func TestVersionCommand(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pkg.VERSION = "v0.0.0"
 	testcases := []struct {
 		name		string

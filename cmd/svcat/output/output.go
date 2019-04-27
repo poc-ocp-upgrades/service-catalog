@@ -21,12 +21,16 @@ const (
 func formatStatusShort(condition string, conditionStatus v1beta1.ConditionStatus, reason string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if conditionStatus == v1beta1.ConditionTrue {
 		return condition
 	}
 	return reason
 }
 func formatStatusFull(condition string, conditionStatus v1beta1.ConditionStatus, reason string, message string, timestamp v1.Time) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	status := formatStatusShort(condition, conditionStatus, reason)
@@ -37,6 +41,8 @@ func formatStatusFull(condition string, conditionStatus v1beta1.ConditionStatus,
 	return fmt.Sprintf("%s - %s @ %s", status, message, timestamp.UTC())
 }
 func WriteDeletedResourceName(w io.Writer, resourceName string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprintf(w, "deleted %s\n", resourceName)

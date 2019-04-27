@@ -13,6 +13,8 @@ var SchemeGroupVersion = schema.GroupVersion{Group: GroupName, Version: "v1alpha
 func Resource(resource string) schema.GroupResource {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
@@ -23,6 +25,8 @@ var (
 )
 
 func addKnownTypes(scheme *runtime.Scheme) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scheme.AddKnownTypes(SchemeGroupVersion, &PodPreset{}, &PodPresetList{})

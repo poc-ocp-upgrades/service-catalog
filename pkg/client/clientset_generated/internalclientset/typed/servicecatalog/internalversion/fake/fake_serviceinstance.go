@@ -21,6 +21,8 @@ var serviceinstancesKind = schema.GroupVersionKind{Group: "servicecatalog.k8s.io
 func (c *FakeServiceInstances) Get(name string, options v1.GetOptions) (result *servicecatalog.ServiceInstance, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewGetAction(serviceinstancesResource, c.ns, name), &servicecatalog.ServiceInstance{})
 	if obj == nil {
 		return nil, err
@@ -28,6 +30,8 @@ func (c *FakeServiceInstances) Get(name string, options v1.GetOptions) (result *
 	return obj.(*servicecatalog.ServiceInstance), err
 }
 func (c *FakeServiceInstances) List(opts v1.ListOptions) (result *servicecatalog.ServiceInstanceList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewListAction(serviceinstancesResource, serviceinstancesKind, c.ns, opts), &servicecatalog.ServiceInstanceList{})
@@ -49,9 +53,13 @@ func (c *FakeServiceInstances) List(opts v1.ListOptions) (result *servicecatalog
 func (c *FakeServiceInstances) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewWatchAction(serviceinstancesResource, c.ns, opts))
 }
 func (c *FakeServiceInstances) Create(serviceInstance *servicecatalog.ServiceInstance) (result *servicecatalog.ServiceInstance, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewCreateAction(serviceinstancesResource, c.ns, serviceInstance), &servicecatalog.ServiceInstance{})
@@ -63,6 +71,8 @@ func (c *FakeServiceInstances) Create(serviceInstance *servicecatalog.ServiceIns
 func (c *FakeServiceInstances) Update(serviceInstance *servicecatalog.ServiceInstance) (result *servicecatalog.ServiceInstance, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateAction(serviceinstancesResource, c.ns, serviceInstance), &servicecatalog.ServiceInstance{})
 	if obj == nil {
 		return nil, err
@@ -70,6 +80,8 @@ func (c *FakeServiceInstances) Update(serviceInstance *servicecatalog.ServiceIns
 	return obj.(*servicecatalog.ServiceInstance), err
 }
 func (c *FakeServiceInstances) UpdateStatus(serviceInstance *servicecatalog.ServiceInstance) (*servicecatalog.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewUpdateSubresourceAction(serviceinstancesResource, "status", c.ns, serviceInstance), &servicecatalog.ServiceInstance{})
@@ -81,10 +93,14 @@ func (c *FakeServiceInstances) UpdateStatus(serviceInstance *servicecatalog.Serv
 func (c *FakeServiceInstances) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewDeleteAction(serviceinstancesResource, c.ns, name), &servicecatalog.ServiceInstance{})
 	return err
 }
 func (c *FakeServiceInstances) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewDeleteCollectionAction(serviceinstancesResource, c.ns, listOptions)
@@ -92,6 +108,8 @@ func (c *FakeServiceInstances) DeleteCollection(options *v1.DeleteOptions, listO
 	return err
 }
 func (c *FakeServiceInstances) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *servicecatalog.ServiceInstance, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewPatchSubresourceAction(serviceinstancesResource, c.ns, name, pt, data, subresources...), &servicecatalog.ServiceInstance{})

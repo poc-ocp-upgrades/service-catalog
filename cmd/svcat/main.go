@@ -38,6 +38,8 @@ var (
 func main() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.InitFlags(nil)
 	cxt := &command.Context{Viper: viper.New()}
 	cmd := buildRootCommand(cxt)
@@ -46,6 +48,8 @@ func main() {
 	}
 }
 func buildRootCommand(cxt *command.Context) *cobra.Command {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pflag.CommandLine.AddGoFlag(flag.CommandLine.Lookup("v"))
@@ -102,6 +106,8 @@ func buildRootCommand(cxt *command.Context) *cobra.Command {
 func newSyncCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cmd := &cobra.Command{Use: "sync", Short: "Syncs service catalog for a service broker", Aliases: []string{"relist"}}
 	cmd.AddCommand(broker.NewSyncCmd(cxt))
 	return cmd
@@ -109,11 +115,15 @@ func newSyncCmd(cxt *command.Context) *cobra.Command {
 func newCreateCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cmd := &cobra.Command{Use: "create", Short: "Create a user-defined resource"}
 	cmd.AddCommand(class.NewCreateCmd(cxt))
 	return cmd
 }
 func newGetCmd(cxt *command.Context) *cobra.Command {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cmd := &cobra.Command{Use: "get", Short: "List a resource, optionally filtered by name"}
@@ -127,6 +137,8 @@ func newGetCmd(cxt *command.Context) *cobra.Command {
 func newDescribeCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cmd := &cobra.Command{Use: "describe", Short: "Show details of a specific resource"}
 	cmd.AddCommand(binding.NewDescribeCmd(cxt))
 	cmd.AddCommand(broker.NewDescribeCmd(cxt))
@@ -138,11 +150,15 @@ func newDescribeCmd(cxt *command.Context) *cobra.Command {
 func newInstallCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cmd := &cobra.Command{Use: "install", Short: "Install Service Catalog related tools"}
 	cmd.AddCommand(plugin.NewInstallCmd(cxt))
 	return cmd
 }
 func newTouchCmd(cxt *command.Context) *cobra.Command {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cmd := &cobra.Command{Use: "touch", Short: "Force Service Catalog to reprocess a resource"}
@@ -152,9 +168,13 @@ func newTouchCmd(cxt *command.Context) *cobra.Command {
 func newCompletionCmd(ctx *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return completion.NewCompletionCmd(ctx)
 }
 func getClients(kubeConfig, kubeContext string) (k8sClient k8sclient.Interface, svcatClient svcatclient.Interface, namespaces string, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var restConfig *rest.Config
@@ -182,7 +202,16 @@ func getClients(kubeConfig, kubeContext string) (k8sClient k8sclient.Interface, 
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

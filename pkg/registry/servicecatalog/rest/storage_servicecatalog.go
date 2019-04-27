@@ -32,6 +32,8 @@ type StorageProvider struct {
 func (p StorageProvider) NewRESTStorage(apiResourceConfigSource serverstorage.APIResourceConfigSource, restOptionsGetter generic.RESTOptionsGetter) (*genericapiserver.APIGroupInfo, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	storage, err := p.v1beta1Storage(apiResourceConfigSource, restOptionsGetter)
 	if err != nil {
 		return nil, err
@@ -41,6 +43,8 @@ func (p StorageProvider) NewRESTStorage(apiResourceConfigSource serverstorage.AP
 	return &apiGroupInfo, nil
 }
 func (p StorageProvider) v1beta1Storage(apiResourceConfigSource serverstorage.APIResourceConfigSource, restOptionsGetter generic.RESTOptionsGetter) (map[string]rest.Storage, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clusterServiceBrokerRESTOptions, err := restOptionsGetter.GetRESTOptions(servicecatalog.Resource("clusterservicebrokers"))
@@ -106,6 +110,8 @@ func (p StorageProvider) v1beta1Storage(apiResourceConfigSource serverstorage.AP
 	return storageMap, nil
 }
 func (p StorageProvider) GroupName() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return servicecatalog.GroupName

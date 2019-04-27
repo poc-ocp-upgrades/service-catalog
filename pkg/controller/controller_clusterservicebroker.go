@@ -41,6 +41,8 @@ const (
 func (c *controller) clusterServiceBrokerAdd(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
 	if err != nil {
 		klog.Errorf("Couldn't get key for object %+v: %v", obj, err)
@@ -51,9 +53,13 @@ func (c *controller) clusterServiceBrokerAdd(obj interface{}) {
 func (c *controller) clusterServiceBrokerUpdate(oldObj, newObj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.clusterServiceBrokerAdd(newObj)
 }
 func (c *controller) clusterServiceBrokerDelete(obj interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, ok := obj.(*v1beta1.ClusterServiceBroker)
@@ -65,9 +71,13 @@ func (c *controller) clusterServiceBrokerDelete(obj interface{}) {
 func shouldReconcileClusterServiceBroker(broker *v1beta1.ClusterServiceBroker, now time.Time, defaultRelistInterval time.Duration) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return shouldReconcileServiceBrokerCommon(pretty.NewClusterServiceBrokerContextBuilder(broker), &broker.ObjectMeta, &broker.Spec.CommonServiceBrokerSpec, &broker.Status.CommonServiceBrokerStatus, now, defaultRelistInterval)
 }
 func (c *controller) reconcileClusterServiceBrokerKey(key string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	broker, err := c.clusterServiceBrokerLister.Get(key)
@@ -85,6 +95,8 @@ func (c *controller) reconcileClusterServiceBrokerKey(key string) error {
 	return c.reconcileClusterServiceBroker(broker)
 }
 func (c *controller) updateClusterServiceBrokerClient(broker *v1beta1.ClusterServiceBroker) (osb.Client, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewClusterServiceBrokerContextBuilder(broker)
@@ -113,6 +125,8 @@ func (c *controller) updateClusterServiceBrokerClient(broker *v1beta1.ClusterSer
 	return brokerClient, nil
 }
 func (c *controller) reconcileClusterServiceBroker(broker *v1beta1.ClusterServiceBroker) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewClusterServiceBrokerContextBuilder(broker)
@@ -311,6 +325,8 @@ func (c *controller) reconcileClusterServiceBroker(broker *v1beta1.ClusterServic
 func (c *controller) reconcileClusterServiceClassFromClusterServiceBrokerCatalog(broker *v1beta1.ClusterServiceBroker, serviceClass, existingServiceClass *v1beta1.ClusterServiceClass) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewClusterServiceBrokerContextBuilder(broker)
 	serviceClass.Spec.ClusterServiceBrokerName = broker.Name
 	if existingServiceClass == nil {
@@ -372,6 +388,8 @@ func (c *controller) reconcileClusterServiceClassFromClusterServiceBrokerCatalog
 	return nil
 }
 func (c *controller) reconcileClusterServicePlanFromClusterServiceBrokerCatalog(broker *v1beta1.ClusterServiceBroker, servicePlan, existingServicePlan *v1beta1.ClusterServicePlan) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pcb := pretty.NewClusterServiceBrokerContextBuilder(broker)
@@ -436,6 +454,8 @@ func (c *controller) reconcileClusterServicePlanFromClusterServiceBrokerCatalog(
 func (c *controller) updateClusterServiceBrokerCondition(broker *v1beta1.ClusterServiceBroker, conditionType v1beta1.ServiceBrokerConditionType, status v1beta1.ConditionStatus, reason, message string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewClusterServiceBrokerContextBuilder(broker)
 	toUpdate := broker.DeepCopy()
 	newCondition := v1beta1.ServiceBrokerCondition{Type: conditionType, Status: status, Reason: reason, Message: message}
@@ -475,6 +495,8 @@ func (c *controller) updateClusterServiceBrokerCondition(broker *v1beta1.Cluster
 func (c *controller) updateClusterServiceBrokerFinalizers(broker *v1beta1.ClusterServiceBroker, finalizers []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pcb := pretty.NewClusterServiceBrokerContextBuilder(broker)
 	broker, err := c.serviceCatalogClient.ClusterServiceBrokers().Get(broker.Name, metav1.GetOptions{})
 	if err != nil {
@@ -491,6 +513,8 @@ func (c *controller) updateClusterServiceBrokerFinalizers(broker *v1beta1.Cluste
 	return err
 }
 func (c *controller) getCurrentServiceClassesAndPlansForBroker(broker *v1beta1.ClusterServiceBroker) ([]v1beta1.ClusterServiceClass, []v1beta1.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fieldSet := fields.Set{"spec.clusterServiceBrokerName": broker.Name}
@@ -517,6 +541,8 @@ func (c *controller) getCurrentServiceClassesAndPlansForBroker(broker *v1beta1.C
 func convertClusterServiceClassListToMap(list []v1beta1.ClusterServiceClass) map[string]*v1beta1.ClusterServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ret := make(map[string]*v1beta1.ClusterServiceClass, len(list))
 	for i := range list {
 		ret[list[i].Name] = &list[i]
@@ -524,6 +550,8 @@ func convertClusterServiceClassListToMap(list []v1beta1.ClusterServiceClass) map
 	return ret
 }
 func convertClusterServicePlanListToMap(list []v1beta1.ClusterServicePlan) map[string]*v1beta1.ClusterServicePlan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ret := make(map[string]*v1beta1.ClusterServicePlan, len(list))
@@ -535,6 +563,8 @@ func convertClusterServicePlanListToMap(list []v1beta1.ClusterServicePlan) map[s
 func markAsServiceCatalogManagedResource(obj metav1.Object, broker *v1beta1.ClusterServiceBroker) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if isServiceCatalogManagedResource(obj) {
 		return
 	}
@@ -544,6 +574,8 @@ func markAsServiceCatalogManagedResource(obj metav1.Object, broker *v1beta1.Clus
 	obj.SetOwnerReferences(append(obj.GetOwnerReferences(), controllerRef))
 }
 func isServiceCatalogManagedResource(resource metav1.Object) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c := metav1.GetControllerOf(resource)

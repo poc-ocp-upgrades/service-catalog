@@ -20,6 +20,8 @@ import (
 func TestCreateServiceBindingSuccess(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct{ name string }{{name: "defaults"}}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -34,6 +36,8 @@ func TestCreateServiceBindingSuccess(t *testing.T) {
 	}
 }
 func TestCreateServiceBindingInvalidInstanceFailure(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -56,6 +60,8 @@ func TestCreateServiceBindingInvalidInstanceFailure(t *testing.T) {
 	}
 }
 func TestCreateServiceBindingInvalidInstance(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -83,6 +89,8 @@ func TestCreateServiceBindingInvalidInstance(t *testing.T) {
 func TestCreateServiceBindingNonBindable(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		nonbindablePlan	bool
@@ -106,6 +114,8 @@ func TestCreateServiceBindingNonBindable(t *testing.T) {
 	}
 }
 func TestCreateServiceBindingInstanceNotReady(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -132,6 +142,8 @@ func TestCreateServiceBindingInstanceNotReady(t *testing.T) {
 	}
 }
 func TestCreateServiceBindingWithParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type secretDef struct {
@@ -180,6 +192,8 @@ func TestCreateServiceBindingWithParameters(t *testing.T) {
 func TestCreateServiceBindingWithSecretTransform(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type secretDef struct {
 		name	string
 		data	map[string][]byte
@@ -226,6 +240,8 @@ func TestCreateServiceBindingWithSecretTransform(t *testing.T) {
 func TestDeleteServiceBindingFailureRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const NumberOfUnbindFailures = 2
 	numberOfAttempts := 0
 	ct := &controllerTest{t: t, broker: getTestBroker(), instance: getTestInstance(), binding: getTestBinding(), setup: func(ct *controllerTest) {
@@ -241,6 +257,8 @@ func TestDeleteServiceBindingFailureRetry(t *testing.T) {
 	})
 }
 func TestDeleteServiceBindingFailureRetryAsync(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.AsyncBindingOperations))

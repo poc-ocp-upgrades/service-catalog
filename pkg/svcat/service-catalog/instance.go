@@ -19,6 +19,8 @@ const (
 func (sdk *SDK) RetrieveInstances(ns, classFilter, planFilter string) (*v1beta1.ServiceInstanceList, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instances, err := sdk.ServiceCatalog().ServiceInstances(ns).List(v1.ListOptions{})
 	if err != nil {
 		return nil, errors.Wrapf(err, "unable to list instances in %s", ns)
@@ -41,6 +43,8 @@ func (sdk *SDK) RetrieveInstances(ns, classFilter, planFilter string) (*v1beta1.
 func (sdk *SDK) RetrieveInstance(ns, name string) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, err := sdk.ServiceCatalog().ServiceInstances(ns).Get(name, v1.GetOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("unable to get instance '%s.%s' (%s)", ns, name, err)
@@ -48,6 +52,8 @@ func (sdk *SDK) RetrieveInstance(ns, name string) (*v1beta1.ServiceInstance, err
 	return instance, nil
 }
 func (sdk *SDK) RetrieveInstanceByBinding(b *v1beta1.ServiceBinding) (*v1beta1.ServiceInstance, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ns := b.Namespace
@@ -61,6 +67,8 @@ func (sdk *SDK) RetrieveInstanceByBinding(b *v1beta1.ServiceBinding) (*v1beta1.S
 func (sdk *SDK) RetrieveInstancesByPlan(plan Plan) ([]v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	planOpts := v1.ListOptions{FieldSelector: fields.OneTermEqualSelector(FieldServicePlanRef, plan.GetName()).String()}
 	instances, err := sdk.ServiceCatalog().ServiceInstances("").List(planOpts)
 	if err != nil {
@@ -69,6 +77,8 @@ func (sdk *SDK) RetrieveInstancesByPlan(plan Plan) ([]v1beta1.ServiceInstance, e
 	return instances.Items, nil
 }
 func (sdk *SDK) InstanceParentHierarchy(instance *v1beta1.ServiceInstance) (*v1beta1.ClusterServiceClass, *v1beta1.ClusterServicePlan, *v1beta1.ClusterServiceBroker, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	class, plan, err := sdk.InstanceToServiceClassAndPlan(instance)
@@ -82,6 +92,8 @@ func (sdk *SDK) InstanceParentHierarchy(instance *v1beta1.ServiceInstance) (*v1b
 	return class, plan, broker, nil
 }
 func (sdk *SDK) InstanceToServiceClassAndPlan(instance *v1beta1.ServiceInstance) (*v1beta1.ClusterServiceClass, *v1beta1.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	classID := instance.Spec.ClusterServiceClassRef.Name
@@ -130,6 +142,8 @@ func (sdk *SDK) InstanceToServiceClassAndPlan(instance *v1beta1.ServiceInstance)
 func (sdk *SDK) Provision(instanceName, className, planName string, opts *ProvisionOptions) (*v1beta1.ServiceInstance, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	request := &v1beta1.ServiceInstance{ObjectMeta: v1.ObjectMeta{Name: instanceName, Namespace: opts.Namespace}, Spec: v1beta1.ServiceInstanceSpec{ExternalID: opts.ExternalID, PlanReference: v1beta1.PlanReference{ClusterServiceClassExternalName: className, ClusterServicePlanExternalName: planName}, Parameters: BuildParameters(opts.Params), ParametersFrom: BuildParametersFrom(opts.Secrets)}}
 	result, err := sdk.ServiceCatalog().ServiceInstances(opts.Namespace).Create(request)
 	if err != nil {
@@ -140,6 +154,8 @@ func (sdk *SDK) Provision(instanceName, className, planName string, opts *Provis
 func (sdk *SDK) Deprovision(namespace, instanceName string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := sdk.ServiceCatalog().ServiceInstances(namespace).Delete(instanceName, &v1.DeleteOptions{})
 	if err != nil {
 		return fmt.Errorf("deprovision request failed (%s)", err)
@@ -147,6 +163,8 @@ func (sdk *SDK) Deprovision(namespace, instanceName string) error {
 	return nil
 }
 func (sdk *SDK) TouchInstance(ns, name string, retries int) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for j := 0; j < retries; j++ {
@@ -168,6 +186,8 @@ func (sdk *SDK) TouchInstance(ns, name string, retries int) error {
 func (sdk *SDK) WaitForInstanceToNotExist(ns, name string, interval time.Duration, timeout *time.Duration) (instance *v1beta1.ServiceInstance, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if timeout == nil {
 		notimeout := time.Duration(math.MaxInt64)
 		timeout = &notimeout
@@ -185,6 +205,8 @@ func (sdk *SDK) WaitForInstanceToNotExist(ns, name string, interval time.Duratio
 	return instance, err
 }
 func (sdk *SDK) WaitForInstance(ns, name string, interval time.Duration, timeout *time.Duration) (instance *v1beta1.ServiceInstance, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if timeout == nil {
@@ -207,14 +229,20 @@ func (sdk *SDK) WaitForInstance(ns, name string, interval time.Duration, timeout
 func (sdk *SDK) IsInstanceReady(instance *v1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.InstanceHasStatus(instance, v1beta1.ServiceInstanceConditionReady)
 }
 func (sdk *SDK) IsInstanceFailed(instance *v1beta1.ServiceInstance) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.InstanceHasStatus(instance, v1beta1.ServiceInstanceConditionFailed)
 }
 func (sdk *SDK) InstanceHasStatus(instance *v1beta1.ServiceInstance, status v1beta1.ServiceInstanceConditionType) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, cond := range instance.Status.Conditions {

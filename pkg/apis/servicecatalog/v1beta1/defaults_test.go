@@ -18,6 +18,8 @@ import (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	groupVersion, err := schema.ParseGroupVersion("servicecatalog.k8s.io/v1beta1")
 	if err != nil {
 		panic(fmt.Sprintf("Error parsing groupversion: %v", err))
@@ -26,6 +28,8 @@ func init() {
 	testapi.Groups[servicecatalog.GroupName] = testapi.NewTestGroup(groupVersion, servicecatalog.SchemeGroupVersion, api.Scheme.KnownTypes(servicecatalog.SchemeGroupVersion), api.Scheme.KnownTypes(externalGroupVersion))
 }
 func roundTrip(t *testing.T, obj runtime.Object) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	codec, err := testapi.GetCodecForObject(obj)
@@ -48,6 +52,8 @@ func roundTrip(t *testing.T, obj runtime.Object) runtime.Object {
 	return obj3
 }
 func TestSetDefaultClusterServiceBroker(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

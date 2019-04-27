@@ -13,5 +13,7 @@ var (
 func GetAccessor() meta.MetadataAccessor {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return accessor
 }

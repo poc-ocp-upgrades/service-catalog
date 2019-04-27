@@ -9,6 +9,8 @@ import (
 func getBrokerStatusCondition(status v1beta1.CommonServiceBrokerStatus) v1beta1.ServiceBrokerCondition {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(status.Conditions) > 0 {
 		return status.Conditions[len(status.Conditions)-1]
 	}
@@ -17,16 +19,22 @@ func getBrokerStatusCondition(status v1beta1.CommonServiceBrokerStatus) v1beta1.
 func getBrokerStatusShort(status v1beta1.CommonServiceBrokerStatus) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lastCond := getBrokerStatusCondition(status)
 	return formatStatusShort(string(lastCond.Type), lastCond.Status, lastCond.Reason)
 }
 func getBrokerStatusFull(status v1beta1.CommonServiceBrokerStatus) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lastCond := getBrokerStatusCondition(status)
 	return formatStatusFull(string(lastCond.Type), lastCond.Status, lastCond.Reason, lastCond.Message, lastCond.LastTransitionTime)
 }
 func writeBrokerListTable(w io.Writer, brokers []servicecatalog.Broker) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewListTable(w)
@@ -37,6 +45,8 @@ func writeBrokerListTable(w io.Writer, brokers []servicecatalog.Broker) {
 	t.Render()
 }
 func WriteBrokerList(w io.Writer, outputFormat string, brokers ...servicecatalog.Broker) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch outputFormat {
@@ -51,6 +61,8 @@ func WriteBrokerList(w io.Writer, outputFormat string, brokers ...servicecatalog
 func WriteBroker(w io.Writer, outputFormat string, broker v1beta1.ClusterServiceBroker) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch outputFormat {
 	case FormatJSON:
 		writeJSON(w, broker)
@@ -61,6 +73,8 @@ func WriteBroker(w io.Writer, outputFormat string, broker v1beta1.ClusterService
 	}
 }
 func WriteBrokerDetails(w io.Writer, broker servicecatalog.Broker) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := NewDetailsTable(w)

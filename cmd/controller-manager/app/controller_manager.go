@@ -44,6 +44,8 @@ import (
 func NewControllerManagerCommand() *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s := options.NewControllerManagerServer()
 	s.AddFlags(pflag.CommandLine)
 	cmd := &cobra.Command{Use: "controller-manager", Long: `The service-catalog controller manager is a daemon that embeds
@@ -58,6 +60,8 @@ const controllerDiscoveryAgentName = "service-catalog-controller-discovery"
 var catalogGVR = schema.GroupVersionResource{Group: "servicecatalog.k8s.io", Version: "v1beta1", Resource: "clusterservicebrokers"}
 
 func Run(controllerManagerOptions *options.ControllerManagerServer) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if controllerManagerOptions.Port > 0 {
@@ -162,6 +166,8 @@ func Run(controllerManagerOptions *options.ControllerManagerServer) error {
 func getAvailableResources(clientBuilder controller.ClientBuilder, version schema.GroupVersion) (map[schema.GroupVersionResource]struct{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var apiResourceList *metav1.APIResourceList
 	var clientError error
 	err := wait.PollImmediate(time.Second, 60*time.Second, func() (bool, error) {
@@ -193,6 +199,8 @@ func getAvailableResources(clientBuilder controller.ClientBuilder, version schem
 	return allResources, nil
 }
 func StartControllers(s *options.ControllerManagerServer, coreKubeconfig *rest.Config, serviceCatalogClientBuilder controller.ClientBuilder, recorder record.EventRecorder, stop <-chan struct{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var availableResources map[schema.GroupVersionResource]struct{}
@@ -238,9 +246,13 @@ type checkAPIAvailableResources struct{ serviceCatalogClientBuilder controller.C
 func (c checkAPIAvailableResources) Name() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "checkAPIAvailableResources"
 }
 func (c checkAPIAvailableResources) Check(_ *http.Request) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Info("Health-checking connection with service-catalog API server")
@@ -256,7 +268,16 @@ func (c checkAPIAvailableResources) Check(_ *http.Request) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

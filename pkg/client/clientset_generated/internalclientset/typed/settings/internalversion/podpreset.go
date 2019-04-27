@@ -32,9 +32,13 @@ type podPresets struct {
 func newPodPresets(c *SettingsClient, namespace string) *podPresets {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &podPresets{client: c.RESTClient(), ns: namespace}
 }
 func (c *podPresets) Get(name string, options v1.GetOptions) (result *settings.PodPreset, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &settings.PodPreset{}
@@ -42,6 +46,8 @@ func (c *podPresets) Get(name string, options v1.GetOptions) (result *settings.P
 	return
 }
 func (c *podPresets) List(opts v1.ListOptions) (result *settings.PodPresetList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -55,6 +61,8 @@ func (c *podPresets) List(opts v1.ListOptions) (result *settings.PodPresetList, 
 func (c *podPresets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -65,11 +73,15 @@ func (c *podPresets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 func (c *podPresets) Create(podPreset *settings.PodPreset) (result *settings.PodPreset, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result = &settings.PodPreset{}
 	err = c.client.Post().Namespace(c.ns).Resource("podpresets").Body(podPreset).Do().Into(result)
 	return
 }
 func (c *podPresets) Update(podPreset *settings.PodPreset) (result *settings.PodPreset, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &settings.PodPreset{}
@@ -79,9 +91,13 @@ func (c *podPresets) Update(podPreset *settings.PodPreset) (result *settings.Pod
 func (c *podPresets) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.client.Delete().Namespace(c.ns).Resource("podpresets").Name(name).Body(options).Do().Error()
 }
 func (c *podPresets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var timeout time.Duration
@@ -91,6 +107,8 @@ func (c *podPresets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.
 	return c.client.Delete().Namespace(c.ns).Resource("podpresets").VersionedParams(&listOptions, scheme.ParameterCodec).Timeout(timeout).Body(options).Do().Error()
 }
 func (c *podPresets) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *settings.PodPreset, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result = &settings.PodPreset{}

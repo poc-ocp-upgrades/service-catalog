@@ -16,10 +16,14 @@ var ParameterCodec = runtime.NewParameterCodec(Scheme)
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v1.AddToGroupVersion(Scheme, schema.GroupVersion{Version: "v1"})
 	Install(Scheme)
 }
 func Install(scheme *runtime.Scheme) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	servicecatalog.Install(scheme)

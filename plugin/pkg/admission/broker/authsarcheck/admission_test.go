@@ -20,6 +20,8 @@ import (
 func newHandlerForTest(kubeClient kubeclientset.Interface) (admission.Interface, kubeinformers.SharedInformerFactory, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kf := kubeinformers.NewSharedInformerFactory(kubeClient, 5*time.Minute)
 	handler, err := NewSARCheck()
 	if err != nil {
@@ -31,6 +33,8 @@ func newHandlerForTest(kubeClient kubeclientset.Interface) (admission.Interface,
 	return handler, kf, err
 }
 func newMockKubeClientForTest(userInfo *user.DefaultInfo) *kubefake.Clientset {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	mockClient := &kubefake.Clientset{}
@@ -45,6 +49,8 @@ func newMockKubeClientForTest(userInfo *user.DefaultInfo) *kubefake.Clientset {
 	return mockClient
 }
 func TestAdmissionBroker(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clusterCases := []struct {

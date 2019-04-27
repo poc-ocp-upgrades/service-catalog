@@ -14,6 +14,8 @@ import (
 func TestClusterServiceClassRemovedFromCatalogAfterFiltering(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	name := "Archonei"
 	uuid := generator.IDFrom(name)
 	broker := getTestBroker()

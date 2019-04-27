@@ -18,6 +18,8 @@ var clusterserviceplansKind = schema.GroupVersionKind{Group: "servicecatalog.k8s
 func (c *FakeClusterServicePlans) Get(name string, options v1.GetOptions) (result *servicecatalog.ClusterServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootGetAction(clusterserviceplansResource, name), &servicecatalog.ClusterServicePlan{})
 	if obj == nil {
 		return nil, err
@@ -25,6 +27,8 @@ func (c *FakeClusterServicePlans) Get(name string, options v1.GetOptions) (resul
 	return obj.(*servicecatalog.ClusterServicePlan), err
 }
 func (c *FakeClusterServicePlans) List(opts v1.ListOptions) (result *servicecatalog.ClusterServicePlanList, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootListAction(clusterserviceplansResource, clusterserviceplansKind, opts), &servicecatalog.ClusterServicePlanList{})
@@ -46,9 +50,13 @@ func (c *FakeClusterServicePlans) List(opts v1.ListOptions) (result *servicecata
 func (c *FakeClusterServicePlans) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.Fake.InvokesWatch(testing.NewRootWatchAction(clusterserviceplansResource, opts))
 }
 func (c *FakeClusterServicePlans) Create(clusterServicePlan *servicecatalog.ClusterServicePlan) (result *servicecatalog.ClusterServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootCreateAction(clusterserviceplansResource, clusterServicePlan), &servicecatalog.ClusterServicePlan{})
@@ -60,6 +68,8 @@ func (c *FakeClusterServicePlans) Create(clusterServicePlan *servicecatalog.Clus
 func (c *FakeClusterServicePlans) Update(clusterServicePlan *servicecatalog.ClusterServicePlan) (result *servicecatalog.ClusterServicePlan, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootUpdateAction(clusterserviceplansResource, clusterServicePlan), &servicecatalog.ClusterServicePlan{})
 	if obj == nil {
 		return nil, err
@@ -67,6 +77,8 @@ func (c *FakeClusterServicePlans) Update(clusterServicePlan *servicecatalog.Clus
 	return obj.(*servicecatalog.ClusterServicePlan), err
 }
 func (c *FakeClusterServicePlans) UpdateStatus(clusterServicePlan *servicecatalog.ClusterServicePlan) (*servicecatalog.ClusterServicePlan, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootUpdateSubresourceAction(clusterserviceplansResource, "status", clusterServicePlan), &servicecatalog.ClusterServicePlan{})
@@ -78,10 +90,14 @@ func (c *FakeClusterServicePlans) UpdateStatus(clusterServicePlan *servicecatalo
 func (c *FakeClusterServicePlans) Delete(name string, options *v1.DeleteOptions) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.Fake.Invokes(testing.NewRootDeleteAction(clusterserviceplansResource, name), &servicecatalog.ClusterServicePlan{})
 	return err
 }
 func (c *FakeClusterServicePlans) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	action := testing.NewRootDeleteCollectionAction(clusterserviceplansResource, listOptions)
@@ -89,6 +105,8 @@ func (c *FakeClusterServicePlans) DeleteCollection(options *v1.DeleteOptions, li
 	return err
 }
 func (c *FakeClusterServicePlans) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *servicecatalog.ClusterServicePlan, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	obj, err := c.Fake.Invokes(testing.NewRootPatchSubresourceAction(clusterserviceplansResource, name, pt, data, subresources...), &servicecatalog.ClusterServicePlan{})

@@ -16,6 +16,8 @@ type syncCmd struct {
 func NewSyncCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	syncCmd := &syncCmd{Namespaced: command.NewNamespaced(cxt), Scoped: command.NewScoped()}
 	rootCmd := &cobra.Command{Use: "broker NAME", Short: "Syncs service catalog for a service broker", Example: command.NormalizeExamples(`svcat sync broker asb`), PreRunE: command.PreRunE(syncCmd), RunE: command.RunE(syncCmd)}
 	syncCmd.AddScopedFlags(rootCmd.Flags(), false)
@@ -23,6 +25,8 @@ func NewSyncCmd(cxt *command.Context) *cobra.Command {
 	return rootCmd
 }
 func (c *syncCmd) Validate(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) != 1 {
@@ -34,9 +38,13 @@ func (c *syncCmd) Validate(args []string) error {
 func (c *syncCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.sync()
 }
 func (c *syncCmd) sync() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scopeOpts := servicecatalog.ScopeOptions{Scope: c.Scope, Namespace: c.Namespace}

@@ -18,6 +18,8 @@ import (
 func TestReconcileServiceInstanceNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -64,6 +66,8 @@ func TestReconcileServiceInstanceNamespacedRefs(t *testing.T) {
 func TestReconcileServiceInstanceAsynchronousNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -108,6 +112,8 @@ func TestReconcileServiceInstanceAsynchronousNamespacedRefs(t *testing.T) {
 func TestPollServiceInstanceInProgressProvisioningWithOperationNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -142,6 +148,8 @@ func TestPollServiceInstanceInProgressProvisioningWithOperationNamespacedRefs(t 
 	assertNumberOfActions(t, kubeActions, 0)
 }
 func TestPollServiceInstanceSuccessProvisioningWithOperationNamespacedRefs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
@@ -179,6 +187,8 @@ func TestPollServiceInstanceSuccessProvisioningWithOperationNamespacedRefs(t *te
 func TestPollServiceInstanceFailureProvisioningWithOperationNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -212,6 +222,8 @@ func TestPollServiceInstanceFailureProvisioningWithOperationNamespacedRefs(t *te
 	assertServiceInstanceRequestFailingErrorStartOrphanMitigation(t, updatedServiceInstance, v1beta1.ServiceInstanceOperationProvision, startingInstanceOrphanMitigationReason, errorProvisionCallFailedReason, errorProvisionCallFailedReason, instance)
 }
 func TestReconcileServiceInstanceDeleteWithNamespacedRefs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
@@ -261,6 +273,8 @@ func TestReconcileServiceInstanceDeleteWithNamespacedRefs(t *testing.T) {
 	}
 }
 func TestReconcileServiceInstanceDeleteAsynchronousWithNamespacedRefs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
@@ -320,6 +334,8 @@ func TestReconcileServiceInstanceDeleteAsynchronousWithNamespacedRefs(t *testing
 func TestPollServiceInstanceInProgressDeprovisioningWithOperationNoFinalizerNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -369,6 +385,8 @@ func TestPollServiceInstanceInProgressDeprovisioningWithOperationNoFinalizerName
 func TestPollServiceInstanceSuccessDeprovisioningWithOperationNoFinalizerNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -409,6 +427,8 @@ func TestPollServiceInstanceSuccessDeprovisioningWithOperationNoFinalizerNamespa
 func TestPollServiceInstanceFailureDeprovisioningNamespacedRefs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	err := utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", scfeatures.NamespacedServiceBroker))
 	if err != nil {
 		t.Fatalf("Could not enable NamespacedServiceBroker feature flag.")
@@ -447,6 +467,8 @@ func TestPollServiceInstanceFailureDeprovisioningNamespacedRefs(t *testing.T) {
 	}
 }
 func TestResolveNamespacedReferencesWorks(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient, fakeCatalogClient, _, testController, _ := newTestController(t, noFakeActions())

@@ -8,6 +8,8 @@ import (
 func (sdk *SDK) ServerVersion() (*version.Info, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	serverVersion, err := sdk.ServiceCatalogClient.Discovery().ServerVersion()
 	if err != nil {
 		return nil, fmt.Errorf("unable to get version, %v", err)

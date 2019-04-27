@@ -8,12 +8,16 @@ import (
 func checkEventCounts(actual, expected []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(actual) != len(expected) {
 		return fmt.Errorf("Checking event count: %s", expectedGot(len(expected), len(actual)))
 	}
 	return nil
 }
 func checkEvents(actual, expected []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := checkEventCounts(actual, expected); err != nil {
@@ -27,6 +31,8 @@ func checkEvents(actual, expected []string) error {
 	return nil
 }
 func checkEventPrefixes(actual, expected []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := checkEventCounts(actual, expected); err != nil {
@@ -43,12 +49,16 @@ func checkEventPrefixes(actual, expected []string) error {
 func checkEventContains(actual, expected string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !strings.Contains(actual, expected) {
 		return fmt.Errorf("received unexpected event (contains):\n %s", expectedGot(expected, actual))
 	}
 	return nil
 }
 func expectedGot(a ...interface{}) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fmt.Sprintf("\nexpected:\n\t '%v',\ngot:\n\t '%v'", a...)

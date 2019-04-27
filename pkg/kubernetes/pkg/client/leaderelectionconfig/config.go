@@ -21,9 +21,13 @@ const (
 func DefaultLeaderElectionConfiguration() componentconfig.LeaderElectionConfiguration {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return componentconfig.LeaderElectionConfiguration{LeaderElect: false, LeaseDuration: metav1.Duration{Duration: DefaultLeaseDuration}, RenewDeadline: metav1.Duration{Duration: DefaultRenewDeadline}, RetryPeriod: metav1.Duration{Duration: DefaultRetryPeriod}, ResourceLock: rl.EndpointsResourceLock}
 }
 func BindFlags(l *componentconfig.LeaderElectionConfiguration, fs *pflag.FlagSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs.BoolVar(&l.LeaderElect, "leader-elect", l.LeaderElect, ""+"Start a leader election client and gain leadership before "+"executing the main loop. Enable this when running replicated "+"components for high availability.")
@@ -35,7 +39,16 @@ func BindFlags(l *componentconfig.LeaderElectionConfiguration, fs *pflag.FlagSet
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

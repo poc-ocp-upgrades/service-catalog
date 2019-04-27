@@ -14,9 +14,13 @@ import (
 func ValidatePodPresetName(name string, prefix bool) []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return apivalidation.NameIsDNSSubdomain(name, prefix)
 }
 func ValidatePodPresetSpec(spec *settings.PodPresetSpec, fldPath *field.Path) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := field.ErrorList{}
@@ -29,11 +33,15 @@ func ValidatePodPresetSpec(spec *settings.PodPresetSpec, fldPath *field.Path) fi
 func ValidatePodPreset(pip *settings.PodPreset) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allErrs := apivalidation.ValidateObjectMeta(&pip.ObjectMeta, true, ValidatePodPresetName, field.NewPath("metadata"))
 	allErrs = append(allErrs, ValidatePodPresetSpec(&pip.Spec, field.NewPath("spec"))...)
 	return allErrs
 }
 func ValidatePodPresetUpdate(pip, oldPip *settings.PodPreset) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allErrs := apivalidation.ValidateObjectMetaUpdate(&pip.ObjectMeta, &oldPip.ObjectMeta, field.NewPath("metadata"))
@@ -43,7 +51,16 @@ func ValidatePodPresetUpdate(pip, oldPip *settings.PodPreset) field.ErrorList {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

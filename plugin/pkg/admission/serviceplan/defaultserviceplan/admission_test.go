@@ -23,6 +23,8 @@ import (
 func newHandlerForTest(internalClient internalclientset.Interface) (admission.Interface, informers.SharedInformerFactory, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f := informers.NewSharedInformerFactory(internalClient, 5*time.Minute)
 	handler, err := NewDefaultClusterServicePlan()
 	if err != nil {
@@ -34,6 +36,8 @@ func newHandlerForTest(internalClient internalclientset.Interface) (admission.In
 	return handler, f, err
 }
 func newFakeServiceCatalogClientForTest(sc *servicecatalog.ClusterServiceClass, sps []*servicecatalog.ClusterServicePlan, classFilter string) *fake.Clientset {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeClient := &fake.Clientset{}
@@ -64,6 +68,8 @@ func newFakeServiceCatalogClientForTest(sc *servicecatalog.ClusterServiceClass, 
 func newFakeServiceCatalogClientForNamespacedTest(sc *servicecatalog.ServiceClass, sps []*servicecatalog.ServicePlan, classFilter string) *fake.Clientset {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeClient := &fake.Clientset{}
 	fakeClient.AddReactor("get", "serviceclasses", func(action core.Action) (bool, runtime.Object, error) {
 		if sc != nil {
@@ -92,9 +98,13 @@ func newFakeServiceCatalogClientForNamespacedTest(sc *servicecatalog.ServiceClas
 func newServiceInstance(namespace string) servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return servicecatalog.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Name: "instance", Namespace: namespace}}
 }
 func newClusterServiceClass(id string, name string) *servicecatalog.ClusterServiceClass {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sc := &servicecatalog.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: id}, Spec: servicecatalog.ClusterServiceClassSpec{CommonServiceClassSpec: servicecatalog.CommonServiceClassSpec{ExternalID: id, ExternalName: name}}}
@@ -103,10 +113,14 @@ func newClusterServiceClass(id string, name string) *servicecatalog.ClusterServi
 func newServiceClass(id string, name string) *servicecatalog.ServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sc := &servicecatalog.ServiceClass{ObjectMeta: metav1.ObjectMeta{Name: id}, Spec: servicecatalog.ServiceClassSpec{CommonServiceClassSpec: servicecatalog.CommonServiceClassSpec{ExternalID: id, ExternalName: name}}}
 	return sc
 }
 func newClusterServicePlans(count uint, useDifferentClasses bool) []*servicecatalog.ClusterServicePlan {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	classname := "test-serviceclass"
@@ -129,6 +143,8 @@ func newClusterServicePlans(count uint, useDifferentClasses bool) []*servicecata
 func newServicePlans(count uint, useDifferentClasses bool) []*servicecatalog.ServicePlan {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	classname := "test-serviceclass"
 	sp1 := &servicecatalog.ServicePlan{ObjectMeta: metav1.ObjectMeta{Name: "bar-id"}, Spec: servicecatalog.ServicePlanSpec{CommonServicePlanSpec: servicecatalog.CommonServicePlanSpec{ExternalName: "bar", ExternalID: "12345"}, ServiceClassRef: servicecatalog.LocalObjectReference{Name: classname}}}
 	if useDifferentClasses {
@@ -147,6 +163,8 @@ func newServicePlans(count uint, useDifferentClasses bool) []*servicecatalog.Ser
 	return []*servicecatalog.ServicePlan{}
 }
 func TestWithListFailure(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeClient := &fake.Clientset{}
@@ -169,6 +187,8 @@ func TestWithListFailure(t *testing.T) {
 	assertPlanReference(t, servicecatalog.PlanReference{ClusterServiceClassExternalName: "foo"}, instance.Spec.PlanReference)
 }
 func TestWithPlanWorks(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -206,6 +226,8 @@ func TestWithPlanWorks(t *testing.T) {
 func TestWithNoPlanFailsWithNoClass(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		requestedPlan	servicecatalog.PlanReference
@@ -236,6 +258,8 @@ func TestWithNoPlanFailsWithNoClass(t *testing.T) {
 	}
 }
 func TestWithNoPlanWorksWithSinglePlan(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -280,6 +304,8 @@ func TestWithNoPlanWorksWithSinglePlan(t *testing.T) {
 func TestWithNoPlanFailsWithMultiplePlans(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		requestedPlan	servicecatalog.PlanReference
@@ -317,6 +343,8 @@ func TestWithNoPlanFailsWithMultiplePlans(t *testing.T) {
 	}
 }
 func TestWithNoPlanSucceedsWithMultiplePlansFromDifferentClasses(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -360,6 +388,8 @@ func TestWithNoPlanSucceedsWithMultiplePlansFromDifferentClasses(t *testing.T) {
 	}
 }
 func assertPlanReference(t *testing.T, expected servicecatalog.PlanReference, actual servicecatalog.PlanReference) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if expected != actual {

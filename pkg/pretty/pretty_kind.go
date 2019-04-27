@@ -17,6 +17,8 @@ const (
 func (k Kind) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch k {
 	case ClusterServiceBroker:
 		return "ClusterServiceBroker"

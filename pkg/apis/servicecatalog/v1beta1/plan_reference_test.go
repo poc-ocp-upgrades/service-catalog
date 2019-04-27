@@ -8,6 +8,8 @@ import (
 func TestPlanReference_Format(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testcases := []struct {
 		name	string
 		format	string

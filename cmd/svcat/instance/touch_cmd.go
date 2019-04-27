@@ -14,6 +14,8 @@ type touchInstanceCmd struct {
 func NewTouchCommand(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	touchInstanceCmd := &touchInstanceCmd{Namespaced: command.NewNamespaced(cxt)}
 	cmd := &cobra.Command{Use: "instance", Short: "Touch an instance to make service-catalog try to process the spec again", Long: `Touch instance will increment the updateRequests field on the instance. 
 Then, service catalog will process the instance's spec again. It might do an update, a delete, or 
@@ -24,6 +26,8 @@ nothing.`, Example: command.NormalizeExamples(`svcat touch instance wordpress-my
 func (c *touchInstanceCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) == 0 {
 		return fmt.Errorf("an instance name is required")
 	}
@@ -31,6 +35,8 @@ func (c *touchInstanceCmd) Validate(args []string) error {
 	return nil
 }
 func (c *touchInstanceCmd) Run() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const retries = 3

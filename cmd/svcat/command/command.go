@@ -15,6 +15,8 @@ type Command interface {
 func PreRunE(cmd Command) func(*cobra.Command, []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(c *cobra.Command, args []string) error {
 		if nsCmd, ok := cmd.(HasNamespaceFlags); ok {
 			nsCmd.ApplyNamespaceFlags(c.Flags())
@@ -60,11 +62,15 @@ func PreRunE(cmd Command) func(*cobra.Command, []string) error {
 func RunE(cmd Command) func(*cobra.Command, []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(_ *cobra.Command, args []string) error {
 		return cmd.Run()
 	}
 }
 func NormalizeExamples(examples string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	indentedLines := []string{}

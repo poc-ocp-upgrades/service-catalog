@@ -9,9 +9,13 @@ import (
 func validClusterServiceClass() *servicecatalog.ClusterServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ClusterServiceClass{ObjectMeta: metav1.ObjectMeta{Name: "test-clusterserviceclass"}, Spec: servicecatalog.ClusterServiceClassSpec{CommonServiceClassSpec: servicecatalog.CommonServiceClassSpec{Bindable: true, ExternalName: "test-clusterserviceclass", ExternalID: "1234-4354a-49b", Description: "service description"}, ClusterServiceBrokerName: "test-clusterservicebroker"}}
 }
 func TestValidateClusterServiceClass(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -77,9 +81,13 @@ func TestValidateClusterServiceClass(t *testing.T) {
 func validServiceClass() *servicecatalog.ServiceClass {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceClass{ObjectMeta: metav1.ObjectMeta{Name: "test-clusterserviceclass", Namespace: "test-ns"}, Spec: servicecatalog.ServiceClassSpec{CommonServiceClassSpec: servicecatalog.CommonServiceClassSpec{Bindable: true, ExternalName: "test-clusterserviceclass", ExternalID: "1234-4354a-49b", Description: "service description"}, ServiceBrokerName: "test-clusterservicebroker"}}
 }
 func TestValidateServiceClass(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {

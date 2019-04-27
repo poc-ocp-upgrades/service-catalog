@@ -19,6 +19,8 @@ type getCmd struct {
 func NewGetCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	getCmd := &getCmd{Namespaced: command.NewNamespaced(cxt), Scoped: command.NewScoped(), Formatted: command.NewFormatted()}
 	cmd := &cobra.Command{Use: "classes [NAME]", Aliases: []string{"class", "cl"}, Short: "List classes, optionally filtered by name, scope or namespace", Example: command.NormalizeExamples(`
   svcat get classes
@@ -36,6 +38,8 @@ func NewGetCmd(cxt *command.Context) *cobra.Command {
 func (c *getCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) > 0 {
 		if c.lookupByKubeName {
 			c.kubeName = args[0]
@@ -48,12 +52,16 @@ func (c *getCmd) Validate(args []string) error {
 func (c *getCmd) Run() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c.kubeName == "" && c.name == "" {
 		return c.getAll()
 	}
 	return c.get()
 }
 func (c *getCmd) getAll() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	opts := servicecatalog.ScopeOptions{Namespace: c.Namespace, Scope: c.Scope}
@@ -65,6 +73,8 @@ func (c *getCmd) getAll() error {
 	return nil
 }
 func (c *getCmd) get() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var class servicecatalog.Class

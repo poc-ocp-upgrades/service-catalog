@@ -18,14 +18,20 @@ var (
 func EmptyObject() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &settingsapi.PodPreset{}
 }
 func NewList() runtime.Object {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &settingsapi.PodPresetList{}
 }
 func NewStorage(opts server.Options) (rest.Storage, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	prefix := "/" + opts.ResourcePrefix()

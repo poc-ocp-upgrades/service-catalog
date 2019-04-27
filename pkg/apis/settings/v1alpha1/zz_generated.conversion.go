@@ -11,9 +11,13 @@ import (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	localSchemeBuilder.Register(RegisterConversions)
 }
 func RegisterConversions(s *runtime.Scheme) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := s.AddGeneratedConversionFunc((*PodPreset)(nil), (*settings.PodPreset)(nil), func(a, b interface{}, scope conversion.Scope) error {
@@ -51,6 +55,8 @@ func RegisterConversions(s *runtime.Scheme) error {
 func autoConvert_v1alpha1_PodPreset_To_settings_PodPreset(in *PodPreset, out *settings.PodPreset, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
 	if err := Convert_v1alpha1_PodPresetSpec_To_settings_PodPresetSpec(&in.Spec, &out.Spec, s); err != nil {
 		return err
@@ -60,9 +66,13 @@ func autoConvert_v1alpha1_PodPreset_To_settings_PodPreset(in *PodPreset, out *se
 func Convert_v1alpha1_PodPreset_To_settings_PodPreset(in *PodPreset, out *settings.PodPreset, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1alpha1_PodPreset_To_settings_PodPreset(in, out, s)
 }
 func autoConvert_settings_PodPreset_To_v1alpha1_PodPreset(in *settings.PodPreset, out *PodPreset, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ObjectMeta = in.ObjectMeta
@@ -74,9 +84,13 @@ func autoConvert_settings_PodPreset_To_v1alpha1_PodPreset(in *settings.PodPreset
 func Convert_settings_PodPreset_To_v1alpha1_PodPreset(in *settings.PodPreset, out *PodPreset, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_settings_PodPreset_To_v1alpha1_PodPreset(in, out, s)
 }
 func autoConvert_v1alpha1_PodPresetList_To_settings_PodPresetList(in *PodPresetList, out *settings.PodPresetList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -86,9 +100,13 @@ func autoConvert_v1alpha1_PodPresetList_To_settings_PodPresetList(in *PodPresetL
 func Convert_v1alpha1_PodPresetList_To_settings_PodPresetList(in *PodPresetList, out *settings.PodPresetList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1alpha1_PodPresetList_To_settings_PodPresetList(in, out, s)
 }
 func autoConvert_settings_PodPresetList_To_v1alpha1_PodPresetList(in *settings.PodPresetList, out *PodPresetList, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.ListMeta = in.ListMeta
@@ -98,9 +116,13 @@ func autoConvert_settings_PodPresetList_To_v1alpha1_PodPresetList(in *settings.P
 func Convert_settings_PodPresetList_To_v1alpha1_PodPresetList(in *settings.PodPresetList, out *PodPresetList, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_settings_PodPresetList_To_v1alpha1_PodPresetList(in, out, s)
 }
 func autoConvert_v1alpha1_PodPresetSpec_To_settings_PodPresetSpec(in *PodPresetSpec, out *settings.PodPresetSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Selector = in.Selector
@@ -113,9 +135,13 @@ func autoConvert_v1alpha1_PodPresetSpec_To_settings_PodPresetSpec(in *PodPresetS
 func Convert_v1alpha1_PodPresetSpec_To_settings_PodPresetSpec(in *PodPresetSpec, out *settings.PodPresetSpec, s conversion.Scope) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return autoConvert_v1alpha1_PodPresetSpec_To_settings_PodPresetSpec(in, out, s)
 }
 func autoConvert_settings_PodPresetSpec_To_v1alpha1_PodPresetSpec(in *settings.PodPresetSpec, out *PodPresetSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out.Selector = in.Selector
@@ -126,6 +152,8 @@ func autoConvert_settings_PodPresetSpec_To_v1alpha1_PodPresetSpec(in *settings.P
 	return nil
 }
 func Convert_settings_PodPresetSpec_To_v1alpha1_PodPresetSpec(in *settings.PodPresetSpec, out *PodPresetSpec, s conversion.Scope) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return autoConvert_settings_PodPresetSpec_To_v1alpha1_PodPresetSpec(in, out, s)

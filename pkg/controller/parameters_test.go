@@ -13,6 +13,8 @@ import (
 func TestBuildParameters(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	secret := &corev1.Secret{Data: map[string][]byte{"json-key": []byte("{ \"json\": true }"), "string-key": []byte("textFromSecret")}}
 	cases := []struct {
 		name					string
@@ -30,6 +32,8 @@ func TestBuildParameters(t *testing.T) {
 	}
 }
 func testBuildParameters(t *testing.T, parametersFrom []v1beta1.ParametersFromSource, parameters *runtime.RawExtension, secret *corev1.Secret, expected map[string]interface{}, expectedWithSecretsRdacted map[string]interface{}, shouldSucceed bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient := &clientgofake.Clientset{}
@@ -56,6 +60,8 @@ func testBuildParameters(t *testing.T, parametersFrom []v1beta1.ParametersFromSo
 	}
 }
 func TestGenerateChecksumOfParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -86,6 +92,8 @@ func TestGenerateChecksumOfParameters(t *testing.T) {
 	}
 }
 func TestMergeParameters(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testParams := `{"a":1,"d":{"e":5}}`
@@ -126,6 +134,8 @@ func TestMergeParameters(t *testing.T) {
 	}
 }
 func stringPtr(val string) *string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &val

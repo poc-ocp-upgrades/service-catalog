@@ -42,10 +42,14 @@ var coreRequestRegex = regexp.MustCompile("/api/v1/(.*)")
 func TestMain(m *testing.M) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	klog.InitFlags(nil)
 	os.Exit(m.Run())
 }
 func TestGetSvcatWithNamespacedBrokerFeatureDisabled(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct {
@@ -77,6 +81,8 @@ func TestGetSvcatWithNamespacedBrokerFeatureDisabled(t *testing.T) {
 func TestCommandValidation(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testcases := []struct {
 		name		string
 		cmd		string
@@ -89,6 +95,8 @@ func TestCommandValidation(t *testing.T) {
 	}
 }
 func TestCommandOutput(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct {
@@ -107,6 +115,8 @@ func TestCommandOutput(t *testing.T) {
 func TestGenerateManifest(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	svcat := buildRootCommand(newContext())
 	m := &plugin.Manifest{}
 	m.Load(svcat)
@@ -117,6 +127,8 @@ func TestGenerateManifest(t *testing.T) {
 	test.AssertEqualsGoldenFile(t, "plugin.yaml", string(got))
 }
 func TestNamespacedCommands(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const contextNS = "from-context"
@@ -142,6 +154,8 @@ func TestNamespacedCommands(t *testing.T) {
 	}
 }
 func TestParametersForBinding(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct {
@@ -183,6 +197,8 @@ func TestParametersForBinding(t *testing.T) {
 	}
 }
 func TestPluginFlags(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testcases := []struct {
@@ -236,6 +252,8 @@ func TestPluginFlags(t *testing.T) {
 func executeCommand(t *testing.T, cmd string, continueOnErr bool) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	apisvr := newAPIServer()
 	defer apisvr.Close()
 	kubeconfig, err := writeTestKubeconfig(apisvr.URL)
@@ -258,6 +276,8 @@ func executeCommand(t *testing.T, cmd string, continueOnErr bool) string {
 func executeFakeCommand(t *testing.T, cmd string, fakeContext *command.Context, continueOnErr bool) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	svcat, _, err := buildCommand(cmd, fakeContext, "")
 	if err != nil {
 		t.Fatalf("%+v", err)
@@ -271,6 +291,8 @@ func executeFakeCommand(t *testing.T, cmd string, fakeContext *command.Context, 
 	return output.String()
 }
 func validateCommand(t *testing.T, cmd string, wantError string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	apisvr := newAPIServer()
@@ -307,6 +329,8 @@ func validateCommand(t *testing.T, cmd string, wantError string) {
 func buildCommand(cmd string, cxt *command.Context, kubeconfig string) (rootCmd *cobra.Command, targetCmd *cobra.Command, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rootCmd = buildRootCommand(cxt)
 	args := strings.Split(cmd, " ")
 	if kubeconfig != "" {
@@ -319,14 +343,20 @@ func buildCommand(cmd string, cxt *command.Context, kubeconfig string) (rootCmd 
 func newContext() *command.Context {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &command.Context{Viper: viper.New()}
 }
 func newAPIServer() *httptest.Server {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return httptest.NewServer(http.HandlerFunc(apihandler))
 }
 func apihandler(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	catalogMatch := catalogRequestRegex.FindStringSubmatch(r.RequestURI)
@@ -371,6 +401,8 @@ func apihandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(response)
 }
 func writeTestKubeconfig(fakeURL string) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, configT, err := test.GetTestdata("kubeconfig.tmpl.yaml")

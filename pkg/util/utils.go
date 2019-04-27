@@ -16,6 +16,8 @@ import (
 func WriteResponse(w http.ResponseWriter, code int, object interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	data, err := json.Marshal(object)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -28,10 +30,14 @@ func WriteResponse(w http.ResponseWriter, code int, object interface{}) {
 func WriteErrorResponse(w http.ResponseWriter, code int, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type e struct{ Error string }
 	WriteResponse(w, code, &e{Error: err.Error()})
 }
 func BodyToObject(r *http.Request, object interface{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	body, err := ioutil.ReadAll(r.Body)
@@ -47,6 +53,8 @@ func BodyToObject(r *http.Request, object interface{}) error {
 func ResponseBodyToObject(r *http.Response, object interface{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return err
@@ -59,6 +67,8 @@ func ResponseBodyToObject(r *http.Response, object interface{}) error {
 	return nil
 }
 func ExecCmd(cmd string) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Println("command: " + cmd)
@@ -76,6 +86,8 @@ func ExecCmd(cmd string) (string, error) {
 func Fetch(u string) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Printf("Fetching: %s\n", u)
 	resp, err := http.Get(u)
 	if err != nil {
@@ -89,6 +101,8 @@ func Fetch(u string) (string, error) {
 	return string(body), nil
 }
 func FetchObject(u string, object interface{}) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	r, err := http.Get(u)
@@ -109,7 +123,16 @@ func FetchObject(u string, object interface{}) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

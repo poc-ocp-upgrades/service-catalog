@@ -9,6 +9,8 @@ import (
 func TestBrokerClientManager_CreateBrokerClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	osbCl1, _ := osb.NewClient(testOsbConfig("osb-1"))
 	osbCl2, _ := osb.NewClient(testOsbConfig("osb-2"))
 	brokerClientFunc := clientFunc(osbCl1, osbCl2)
@@ -43,6 +45,8 @@ func TestBrokerClientManager_CreateBrokerClient(t *testing.T) {
 func TestBrokerClientManager_RemoveBrokerClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	osbCl1, _ := osb.NewClient(testOsbConfig("osb-1"))
 	osbCl2, _ := osb.NewClient(testOsbConfig("osb-2"))
 	brokerClientFunc := clientFunc(osbCl1, osbCl2)
@@ -60,6 +64,8 @@ func TestBrokerClientManager_RemoveBrokerClient(t *testing.T) {
 	}
 }
 func TestBrokerClientManager_UpdateBrokerClient(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	osbCl1, _ := osb.NewClient(testOsbConfig("osb-1"))
@@ -85,6 +91,8 @@ func TestBrokerClientManager_UpdateBrokerClient(t *testing.T) {
 func clientFunc(clients ...osb.Client) osb.CreateFunc {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var i = 0
 	return func(_ *osb.ClientConfiguration) (osb.Client, error) {
 		client := clients[i]
@@ -93,6 +101,8 @@ func clientFunc(clients ...osb.Client) osb.CreateFunc {
 	}
 }
 func testOsbConfig(name string) *osb.ClientConfiguration {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &osb.ClientConfiguration{Name: name}

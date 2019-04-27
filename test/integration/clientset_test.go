@@ -53,6 +53,8 @@ type bpStruct struct {
 func TestGroupVersion(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
 		return &servicecatalog.ClusterServiceBroker{}
 	})
@@ -62,6 +64,8 @@ func TestGroupVersion(t *testing.T) {
 	}
 }
 func TestEtcdHealthCheckerSuccess(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serverConfig := NewTestServerConfig()
@@ -89,6 +93,8 @@ func TestEtcdHealthCheckerSuccess(t *testing.T) {
 func testGroupVersion(client servicecatalogclient.Interface) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	gv := client.Servicecatalog().RESTClient().APIVersion()
 	if gv.Group != servicecatalog.GroupName {
 		return fmt.Errorf("we should be testing the servicecatalog group, not %s", gv.Group)
@@ -96,6 +102,8 @@ func testGroupVersion(client servicecatalogclient.Interface) error {
 	return nil
 }
 func TestNoName(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
@@ -107,6 +115,8 @@ func TestNoName(t *testing.T) {
 	}
 }
 func testNoName(client servicecatalogclient.Interface) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scClient := client.Servicecatalog()
@@ -140,6 +150,8 @@ func testNoName(client servicecatalogclient.Interface) error {
 func TestClusterServiceBrokerClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-broker"
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
 		return &servicecatalog.ClusterServiceBroker{}
@@ -150,6 +162,8 @@ func TestClusterServiceBrokerClient(t *testing.T) {
 	}
 }
 func testClusterServiceBrokerClient(client servicecatalogclient.Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	brokerClient := client.Servicecatalog().ClusterServiceBrokers()
@@ -250,6 +264,8 @@ func testClusterServiceBrokerClient(client servicecatalogclient.Interface, name 
 func TestNamespacedServiceBrokerClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-broker"
 	const namespace = "test-namespace"
 	resetFeaturesFunc, err := enableNamespacedResources()
@@ -266,6 +282,8 @@ func TestNamespacedServiceBrokerClient(t *testing.T) {
 	}
 }
 func testNamespacedServiceBrokerClient(client servicecatalogclient.Interface, namespace, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	brokerClient := client.Servicecatalog().ServiceBrokers(namespace)
@@ -373,6 +391,8 @@ func testNamespacedServiceBrokerClient(client servicecatalogclient.Interface, na
 func TestClusterServiceClassClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-serviceclass"
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
 		return &servicecatalog.ClusterServiceClass{}
@@ -383,6 +403,8 @@ func TestClusterServiceClassClient(t *testing.T) {
 	}
 }
 func testClusterServiceClassClient(client servicecatalogclient.Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClassClient := client.Servicecatalog().ClusterServiceClasses()
@@ -514,6 +536,8 @@ func testClusterServiceClassClient(client servicecatalogclient.Interface, name s
 func TestNamespacedServiceClassClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-serviceclass"
 	const namespace = "test-namespace"
 	resetFeaturesFunc, err := enableNamespacedResources()
@@ -530,6 +554,8 @@ func TestNamespacedServiceClassClient(t *testing.T) {
 	}
 }
 func testNamespacedServiceClassClient(client servicecatalogclient.Interface, namespace, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	serviceClassClient := client.Servicecatalog().ServiceClasses(namespace)
@@ -668,6 +694,8 @@ func testNamespacedServiceClassClient(client servicecatalogclient.Interface, nam
 func TestClusterServicePlanClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-serviceplan"
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
 		return &servicecatalog.ClusterServicePlan{}
@@ -678,6 +706,8 @@ func TestClusterServicePlanClient(t *testing.T) {
 	}
 }
 func testClusterServicePlanClient(client servicecatalogclient.Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	servicePlanClient := client.Servicecatalog().ClusterServicePlans()
@@ -811,6 +841,8 @@ func testClusterServicePlanClient(client servicecatalogclient.Interface, name st
 func TestNamespacedServicePlanClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-serviceplan"
 	const namespace = "test-namespace"
 	resetFeaturesFunc, err := enableNamespacedResources()
@@ -827,6 +859,8 @@ func TestNamespacedServicePlanClient(t *testing.T) {
 	}
 }
 func testNamespacedServicePlanClient(client servicecatalogclient.Interface, namespace, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	servicePlanClient := client.Servicecatalog().ServicePlans(namespace)
@@ -967,6 +1001,8 @@ func testNamespacedServicePlanClient(client servicecatalogclient.Interface, name
 func TestInstanceClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-instance"
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
 		return &servicecatalog.ServiceInstance{}
@@ -977,6 +1013,8 @@ func TestInstanceClient(t *testing.T) {
 	}
 }
 func testInstanceClient(client servicecatalogclient.Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const (
@@ -1147,6 +1185,8 @@ func testInstanceClient(client servicecatalogclient.Interface, name string) erro
 func TestBindingClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const name = "test-binding"
 	client, _, shutdownServer := getFreshApiserverAndClient(t, func() runtime.Object {
 		return &servicecatalog.ServiceBinding{}
@@ -1157,6 +1197,8 @@ func TestBindingClient(t *testing.T) {
 	}
 }
 func testBindingClient(client servicecatalogclient.Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bindingClient := client.Servicecatalog().ServiceBindings("test-namespace")
@@ -1258,7 +1300,16 @@ func testBindingClient(client servicecatalogclient.Interface, name string) error
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

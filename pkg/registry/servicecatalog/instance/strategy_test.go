@@ -13,9 +13,13 @@ import (
 func getTestInstance() *servicecatalog.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Generation: 1}, Spec: servicecatalog.ServiceInstanceSpec{PlanReference: servicecatalog.PlanReference{ClusterServiceClassExternalName: "test-clusterserviceclass", ClusterServicePlanExternalName: "test-clusterserviceplan"}, ClusterServiceClassRef: &servicecatalog.ClusterObjectReference{}, ClusterServicePlanRef: &servicecatalog.ClusterObjectReference{}, UserInfo: &servicecatalog.UserInfo{Username: "some-user"}}, Status: servicecatalog.ServiceInstanceStatus{Conditions: []servicecatalog.ServiceInstanceCondition{{Type: servicecatalog.ServiceInstanceConditionReady, Status: servicecatalog.ConditionTrue}}}}
 }
 func TestInstanceUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -91,6 +95,8 @@ func TestInstanceUpdate(t *testing.T) {
 func TestInstanceUserInfo(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	prevOrigIDEnablement := sctestutil.EnableOriginatingIdentity(t, true)
 	defer utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=%v", scfeatures.OriginatingIdentity, prevOrigIDEnablement))
 	creatorUserName := "creator"
@@ -119,6 +125,8 @@ func TestInstanceUserInfo(t *testing.T) {
 func TestInstanceUpdateForUpdateRequests(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name		string
 		oldValue	int64
@@ -141,6 +149,8 @@ func TestInstanceUpdateForUpdateRequests(t *testing.T) {
 func TestExternalIDSet(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	createdInstanceCredential := getTestInstance()
 	creatorUserName := "creator"
 	createContext := sctestutil.ContextWithUserName(creatorUserName)
@@ -150,6 +160,8 @@ func TestExternalIDSet(t *testing.T) {
 	}
 }
 func TestExternalIDUserProvided(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	userExternalID := "my-id"

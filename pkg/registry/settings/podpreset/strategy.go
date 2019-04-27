@@ -19,6 +19,8 @@ import (
 func NewScopeStrategy() rest.NamespaceScopedStrategy {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return podPresetRESTStrategy
 }
 
@@ -37,15 +39,21 @@ var (
 func (podPresetStrategy) NamespaceScoped() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (podPresetStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pip := obj.(*settings.PodPreset)
 	pip.Generation = 1
 }
 func (podPresetStrategy) PrepareForUpdate(ctx context.Context, obj, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	newPodPreset := obj.(*settings.PodPreset)
@@ -55,19 +63,27 @@ func (podPresetStrategy) PrepareForUpdate(ctx context.Context, obj, old runtime.
 func (podPresetStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pip := obj.(*settings.PodPreset)
 	return validation.ValidatePodPreset(pip)
 }
 func (podPresetStrategy) Canonicalize(obj runtime.Object) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 }
 func (podPresetStrategy) AllowCreateOnUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return false
 }
 func (podPresetStrategy) ValidateUpdate(ctx context.Context, obj, old runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	validationErrorList := validation.ValidatePodPreset(obj.(*settings.PodPreset))
@@ -77,14 +93,20 @@ func (podPresetStrategy) ValidateUpdate(ctx context.Context, obj, old runtime.Ob
 func (podPresetStrategy) AllowUnconditionalUpdate() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func SelectableFields(pip *settings.PodPreset) fields.Set {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return generic.ObjectMetaFieldsSet(&pip.ObjectMeta, true)
 }
 func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pip, ok := obj.(*settings.PodPreset)
@@ -94,6 +116,8 @@ func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, bool, error) {
 	return labels.Set(pip.ObjectMeta.Labels), SelectableFields(pip), pip.Initializers != nil, nil
 }
 func Matcher(label labels.Selector, field fields.Selector) apistorage.SelectionPredicate {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return apistorage.SelectionPredicate{Label: label, Field: field, GetAttrs: GetAttrs}

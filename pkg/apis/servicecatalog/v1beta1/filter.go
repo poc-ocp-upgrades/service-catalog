@@ -9,6 +9,8 @@ import (
 func ConvertServiceClassToProperties(serviceClass *ServiceClass) filter.Properties {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if serviceClass == nil {
 		return labels.Set{}
 	}
@@ -17,9 +19,13 @@ func ConvertServiceClassToProperties(serviceClass *ServiceClass) filter.Properti
 func IsValidServiceClassProperty(p string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p == FilterName || p == FilterSpecExternalName || p == FilterSpecExternalID
 }
 func ConvertServicePlanToProperties(servicePlan *ServicePlan) filter.Properties {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if servicePlan == nil {
@@ -30,9 +36,13 @@ func ConvertServicePlanToProperties(servicePlan *ServicePlan) filter.Properties 
 func IsValidServicePlanProperty(p string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p == FilterName || p == FilterSpecExternalName || p == FilterSpecExternalID || p == FilterSpecServiceClassName || p == FilterSpecFree
 }
 func ConvertClusterServiceClassToProperties(serviceClass *ClusterServiceClass) filter.Properties {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if serviceClass == nil {
@@ -43,9 +53,13 @@ func ConvertClusterServiceClassToProperties(serviceClass *ClusterServiceClass) f
 func IsValidClusterServiceClassProperty(p string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p == FilterName || p == FilterSpecExternalName || p == FilterSpecExternalID
 }
 func ConvertClusterServicePlanToProperties(servicePlan *ClusterServicePlan) filter.Properties {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if servicePlan == nil {
@@ -54,6 +68,8 @@ func ConvertClusterServicePlanToProperties(servicePlan *ClusterServicePlan) filt
 	return labels.Set{FilterName: servicePlan.Name, FilterSpecExternalName: servicePlan.Spec.ExternalName, FilterSpecExternalID: servicePlan.Spec.ExternalID, FilterSpecClusterServiceClassName: servicePlan.Spec.ClusterServiceClassRef.Name, FilterSpecFree: strconv.FormatBool(servicePlan.Spec.Free)}
 }
 func IsValidClusterServicePlanProperty(p string) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return p == FilterName || p == FilterSpecExternalName || p == FilterSpecExternalID || p == FilterSpecClusterServiceClassName || p == FilterSpecFree

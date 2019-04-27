@@ -56,6 +56,8 @@ const (
 func TestBasicFlows(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		asyncForInstances	bool
@@ -102,6 +104,8 @@ func TestBasicFlows(t *testing.T) {
 func TestBindingFailure(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, broker: getTestBroker(), instance: getTestInstance(), binding: getTestBinding(), skipVerifyingBindingSuccess: true, setup: func(ct *controllerTest) {
 		ct.osbClient.BindReaction = &fakeosb.BindReaction{Error: osb.HTTPStatusCodeError{StatusCode: http.StatusConflict, ErrorMessage: strPtr("ServiceBindingExists"), Description: strPtr("Service binding with the same id, for the same service instance already exists.")}}
 	}}
@@ -113,6 +117,8 @@ func TestBindingFailure(t *testing.T) {
 	})
 }
 func verifyUsernameInLastBrokerAction(t *testing.T, osbClient *fakeosb.FakeClient, actionType fakeosb.ActionType, username string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	brokerAction := getLastBrokerAction(t, osbClient, actionType)
@@ -150,6 +156,8 @@ func verifyUsernameInLastBrokerAction(t *testing.T, osbClient *fakeosb.FakeClien
 func TestBasicFlowsWithOriginatingIdentity(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	prevOrigIDEnablement := sctestutil.EnableOriginatingIdentity(t, true)
 	defer utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=%v", scfeatures.OriginatingIdentity, prevOrigIDEnablement))
 	createChangeUsernameFunc := func(username string) func(*controllerTest) {
@@ -183,6 +191,8 @@ func TestBasicFlowsWithOriginatingIdentity(t *testing.T) {
 func TestServiceBindingOrphanMitigation(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ct := &controllerTest{t: t, broker: getTestBroker(), instance: getTestInstance(), binding: getTestBinding(), skipVerifyingBindingSuccess: true, setup: func(ct *controllerTest) {
 		ct.osbClient.BindReaction = &fakeosb.BindReaction{Error: osb.HTTPStatusCodeError{StatusCode: http.StatusInternalServerError}}
 	}}
@@ -204,6 +214,8 @@ func TestServiceBindingOrphanMitigation(t *testing.T) {
 func TestAsyncProvisionWithMultiplePolls(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const NumberOfInProgressResponses = 2
 	numberOfPolls := 0
 	ct := &controllerTest{t: t, broker: getTestBroker(), instance: getTestInstance(), skipVerifyingInstanceSuccess: true, setup: func(ct *controllerTest) {
@@ -222,6 +234,8 @@ func TestAsyncProvisionWithMultiplePolls(t *testing.T) {
 	})
 }
 func TestServiceInstanceDeleteWithAsyncUpdateInProgress(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -274,6 +288,8 @@ func TestServiceInstanceDeleteWithAsyncUpdateInProgress(t *testing.T) {
 func TestServiceInstanceDeleteWithAsyncProvisionInProgress(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		name			string
 		provisionSucceeds	bool
@@ -314,6 +330,8 @@ func TestServiceInstanceDeleteWithAsyncProvisionInProgress(t *testing.T) {
 	}
 }
 func TestServiceBindingDeleteWithAsyncBindInProgress(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cases := []struct {
@@ -360,6 +378,8 @@ func TestServiceBindingDeleteWithAsyncBindInProgress(t *testing.T) {
 func getProvisionResponseByPollCountReactions(numOfResponses int, stateProgressions []fakeosb.ProvisionReaction) fakeosb.DynamicProvisionReaction {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	numberOfPolls := 0
 	numberOfStates := len(stateProgressions)
 	return func(_ *osb.ProvisionRequest) (*osb.ProvisionResponse, error) {
@@ -380,6 +400,8 @@ func getProvisionResponseByPollCountReactions(numOfResponses int, stateProgressi
 	}
 }
 func getDeprovisionResponseByPollCountReactions(numOfResponses int, stateProgressions []fakeosb.DeprovisionReaction) fakeosb.DynamicDeprovisionReaction {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	numberOfPolls := 0
@@ -404,6 +426,8 @@ func getDeprovisionResponseByPollCountReactions(numOfResponses int, stateProgres
 func getUpdateInstanceResponseByPollCountReactions(numOfResponses int, stateProgressions []fakeosb.UpdateInstanceReaction) fakeosb.DynamicUpdateInstanceReaction {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	numberOfPolls := 0
 	numberOfStates := len(stateProgressions)
 	return func(_ *osb.UpdateInstanceRequest) (*osb.UpdateInstanceResponse, error) {
@@ -424,6 +448,8 @@ func getUpdateInstanceResponseByPollCountReactions(numOfResponses int, stateProg
 	}
 }
 func getLastOperationResponseByPollCountReactions(numOfResponses int, stateProgressions []fakeosb.PollLastOperationReaction) fakeosb.DynamicPollLastOperationReaction {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	numberOfPolls := 0
@@ -448,6 +474,8 @@ func getLastOperationResponseByPollCountReactions(numOfResponses int, stateProgr
 func getLastOperationResponseByPollCountStates(numOfResponses int, stateProgressions []osb.LastOperationState) func(*osb.LastOperationRequest) (*osb.LastOperationResponse, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	reactionProgressions := make([]fakeosb.PollLastOperationReaction, len(stateProgressions))
 	for i, item := range stateProgressions {
 		newReaction := fakeosb.PollLastOperationReaction{Response: &osb.LastOperationResponse{State: item}}
@@ -456,6 +484,8 @@ func getLastOperationResponseByPollCountStates(numOfResponses int, stateProgress
 	return getLastOperationResponseByPollCountReactions(numOfResponses, reactionProgressions)
 }
 func newControllerTestTestController(ct *controllerTest) (*fake.Clientset, clientset.Interface, *restclient.Config, *fakeosb.FakeClient, controller.Controller, informers.Interface, func(), func()) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := ct.t
@@ -555,6 +585,8 @@ func newControllerTestTestController(ct *controllerTest) (*fake.Clientset, clien
 func newTestController(t *testing.T) (*fake.Clientset, clientset.Interface, *restclient.Config, *fakeosb.FakeClient, controller.Controller, informers.Interface, func(), func()) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient := &fake.Clientset{}
 	fakeKubeClient.Lock()
 	prependGetSecretNotFoundReaction(fakeKubeClient)
@@ -589,6 +621,8 @@ func newTestController(t *testing.T) (*fake.Clientset, clientset.Interface, *res
 func changeUsernameForCatalogClient(catalogClient clientset.Interface, catalogClientConfig *restclient.Config, username string) (clientset.Interface, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	catalogClientConfig.Username = username
 	var err error
 	catalogClient, err = clientset.NewForConfig(catalogClientConfig)
@@ -600,11 +634,15 @@ func changeUsernameForCatalogClient(catalogClient clientset.Interface, catalogCl
 func prependGetSecretNotFoundReaction(fakeKubeClient *fake.Clientset) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fakeKubeClient.PrependReactor("get", "secrets", func(action clientgotesting.Action) (bool, runtime.Object, error) {
 		return true, nil, apierrors.NewNotFound(action.GetResource().GroupResource(), action.(clientgotesting.GetAction).GetName())
 	})
 }
 func prependGetSecretReaction(fakeKubeClient *fake.Clientset, secretName string, secretData map[string][]byte) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeKubeClient.PrependReactor("get", "secrets", func(action clientgotesting.Action) (bool, runtime.Object, error) {
@@ -622,9 +660,13 @@ func prependGetSecretReaction(fakeKubeClient *fake.Clientset, secretName string,
 func getTestCatalogResponse() *osb.CatalogResponse {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &osb.CatalogResponse{Services: []osb.Service{{Name: testClusterServiceClassName, ID: testClassExternalID, Description: "a test service", Bindable: true, Plans: []osb.Plan{{Name: testClusterServicePlanName, Free: truePtr(), ID: testPlanExternalID, Description: "a test plan"}, {Name: testNonbindableClusterServicePlanName, Free: truePtr(), ID: testNonbindablePlanExternalID, Description: "an non-bindable test plan", Bindable: falsePtr()}}}}}
 }
 func getTestLargeCatalogResponse() *osb.CatalogResponse {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	g := generator.CreateGenerator(4, generator.Parameters{Services: generator.ServiceRanges{Plans: 5, Tags: 6, Metadata: 4, Requires: 2, Bindable: 10, BindingsRetrievable: 1}, Plans: generator.PlanRanges{Metadata: 4, Bindable: 10, Free: 4}})
@@ -635,9 +677,13 @@ func getTestLargeCatalogResponse() *osb.CatalogResponse {
 func getTestBindCredentials() map[string]interface{} {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return map[string]interface{}{"foo": "bar", "baz": "zap"}
 }
 func getTestHappyPathBrokerClientConfig() fakeosb.FakeClientConfiguration {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fakeosb.FakeClientConfiguration{CatalogReaction: &fakeosb.CatalogReaction{Response: getTestCatalogResponse()}, ProvisionReaction: &fakeosb.ProvisionReaction{Response: &osb.ProvisionResponse{}}, UpdateInstanceReaction: &fakeosb.UpdateInstanceReaction{Response: &osb.UpdateInstanceResponse{}}, DeprovisionReaction: &fakeosb.DeprovisionReaction{Response: &osb.DeprovisionResponse{}}, BindReaction: &fakeosb.BindReaction{Response: &osb.BindResponse{Credentials: getTestBindCredentials()}}, UnbindReaction: &fakeosb.UnbindReaction{Response: &osb.UnbindResponse{}}, PollLastOperationReaction: &fakeosb.PollLastOperationReaction{Response: &osb.LastOperationResponse{State: osb.StateSucceeded}}, PollBindingLastOperationReaction: &fakeosb.PollBindingLastOperationReaction{Response: &osb.LastOperationResponse{State: osb.StateSucceeded}}, GetBindingReaction: &fakeosb.GetBindingReaction{Response: &osb.GetBindingResponse{Credentials: getTestBindCredentials()}}}
@@ -645,9 +691,13 @@ func getTestHappyPathBrokerClientConfig() fakeosb.FakeClientConfiguration {
 func getTestBroker() *v1beta1.ClusterServiceBroker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ClusterServiceBroker{ObjectMeta: metav1.ObjectMeta{Name: testClusterServiceBrokerName}, Spec: v1beta1.ClusterServiceBrokerSpec{CommonServiceBrokerSpec: v1beta1.CommonServiceBrokerSpec{URL: testBrokerURL}}}
 }
 func getTestFilteredBroker(serviceClassRestrictions, servicePlanRestrictions []string) *v1beta1.ClusterServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testBroker := getTestBroker()
@@ -655,6 +705,8 @@ func getTestFilteredBroker(serviceClassRestrictions, servicePlanRestrictions []s
 	return testBroker
 }
 func verifyBrokerCreated(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interface, broker *v1beta1.ClusterServiceBroker) *v1beta1.ClusterServiceBroker {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := util.WaitForBrokerCondition(client, broker.Name, v1beta1.ServiceBrokerCondition{Type: v1beta1.ServiceBrokerConditionReady, Status: v1beta1.ConditionTrue}); err != nil {
@@ -672,6 +724,8 @@ func verifyBrokerCreated(t *testing.T, client clientsetsc.ServicecatalogV1beta1I
 func deleteBroker(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interface, broker *v1beta1.ClusterServiceBroker) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := client.ClusterServiceBrokers().Delete(broker.Name, &metav1.DeleteOptions{}); err != nil {
 		t.Fatalf("broker should be deleted (%s)", err)
 	}
@@ -685,9 +739,13 @@ func deleteBroker(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interfac
 func getTestInstance() *v1beta1.ServiceInstance {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceInstance{ObjectMeta: metav1.ObjectMeta{Namespace: testNamespace, Name: testInstanceName}, Spec: v1beta1.ServiceInstanceSpec{PlanReference: v1beta1.PlanReference{ClusterServiceClassExternalName: testClusterServiceClassName, ClusterServicePlanExternalName: testClusterServicePlanName}, ExternalID: testExternalID}}
 }
 func verifyInstanceCreated(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interface, instance *v1beta1.ServiceInstance) *v1beta1.ServiceInstance {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := util.WaitForInstanceCondition(client, instance.Namespace, instance.Name, v1beta1.ServiceInstanceCondition{Type: v1beta1.ServiceInstanceConditionReady, Status: v1beta1.ConditionTrue}); err != nil {
@@ -705,6 +763,8 @@ func verifyInstanceCreated(t *testing.T, client clientsetsc.ServicecatalogV1beta
 func deleteInstance(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interface, instance *v1beta1.ServiceInstance) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := client.ServiceInstances(instance.Namespace).Delete(instance.Name, &metav1.DeleteOptions{}); err != nil {
 		t.Fatalf("instance delete should have been accepted: %v", err)
 	}
@@ -715,9 +775,13 @@ func deleteInstance(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interf
 func getTestBinding() *v1beta1.ServiceBinding {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &v1beta1.ServiceBinding{ObjectMeta: metav1.ObjectMeta{Namespace: testNamespace, Name: testBindingName}, Spec: v1beta1.ServiceBindingSpec{InstanceRef: v1beta1.LocalObjectReference{Name: testInstanceName}}}
 }
 func verifyBindingCreated(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interface, binding *v1beta1.ServiceBinding) *v1beta1.ServiceBinding {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	condition := v1beta1.ServiceBindingCondition{Type: v1beta1.ServiceBindingConditionReady, Status: v1beta1.ConditionTrue}
@@ -731,6 +795,8 @@ func verifyBindingCreated(t *testing.T, client clientsetsc.ServicecatalogV1beta1
 	return retBinding
 }
 func deleteBinding(t *testing.T, client clientsetsc.ServicecatalogV1beta1Interface, binding *v1beta1.ServiceBinding) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := client.ServiceBindings(binding.Namespace).Delete(binding.Name, &metav1.DeleteOptions{}); err != nil {
@@ -772,6 +838,8 @@ type controllerTest struct {
 }
 
 func (ct *controllerTest) run(test func(*controllerTest)) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kubeClient, catalogClient, catalogClientConfig, osbClient, controller, informers, shutdownServer, shutdownController := newControllerTestTestController(ct)
@@ -818,6 +886,8 @@ func (ct *controllerTest) run(test func(*controllerTest)) {
 func getLastBrokerAction(t *testing.T, osbClient *fakeosb.FakeClient, actionType fakeosb.ActionType) fakeosb.Action {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	brokerActions := osbClient.Actions()
 	if len(brokerActions) == 0 {
 		t.Fatalf("no broker actions")
@@ -829,6 +899,8 @@ func getLastBrokerAction(t *testing.T, osbClient *fakeosb.FakeClient, actionType
 	return brokerAction
 }
 func findBrokerActions(t *testing.T, osbClient *fakeosb.FakeClient, actionType fakeosb.ActionType) []fakeosb.Action {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	brokerActions := osbClient.Actions()
@@ -843,6 +915,8 @@ func findBrokerActions(t *testing.T, osbClient *fakeosb.FakeClient, actionType f
 func convertParametersIntoRawExtension(t *testing.T, parameters map[string]interface{}) *runtime.RawExtension {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	marshalledParams, err := json.Marshal(parameters)
 	if err != nil {
 		t.Fatalf("Failed to marshal parameters %v : %v", parameters, err)
@@ -850,6 +924,8 @@ func convertParametersIntoRawExtension(t *testing.T, parameters map[string]inter
 	return &runtime.RawExtension{Raw: marshalledParams}
 }
 func findKubeActions(kubeClient *fake.Clientset, verb, resource string) []clientgotesting.Action {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	actions := kubeClient.Actions()

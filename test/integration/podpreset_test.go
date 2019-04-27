@@ -16,6 +16,8 @@ import (
 func TestPodPresetClient(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	enablePodPresetFeature()
 	defer disablePodPresetFeature()
 	const name = "test-podpreset"
@@ -30,14 +32,20 @@ func TestPodPresetClient(t *testing.T) {
 func enablePodPresetFeature() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", features.PodPreset))
 }
 func disablePodPresetFeature() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	utilfeature.DefaultFeatureGate.Set(fmt.Sprintf("%v=true", features.PodPreset))
 }
 func testPodPresetClient(client servicecatalogclient.Interface, name string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testNamespace := "test-namespace"

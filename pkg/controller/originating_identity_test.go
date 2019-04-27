@@ -12,6 +12,8 @@ import (
 func TestBuildOriginatingIdentity(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	userInfo := v1beta1.UserInfo{Username: "person@place.com", UID: "abcd-1234", Groups: []string{"stuff-dev", "main-eng"}, Extra: map[string]v1beta1.ExtraValue{"foo": {"bar", "baz"}}}
 	e := osb.OriginatingIdentity{Platform: "kubernetes", Value: `{extra: {"foo":["bar","baz"]},"groups":["stuff-dev","main-eng"],"uid":"abcd-1234","username":"person@place.com"}`}
 	g, err := buildOriginatingIdentity(&userInfo)

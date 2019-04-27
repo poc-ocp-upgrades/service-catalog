@@ -12,6 +12,8 @@ import (
 func (c *controller) clusterServicePlanAdd(obj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
 	if err != nil {
 		klog.Errorf("ClusterServicePlan: Couldn't get key for object %+v: %v", obj, err)
@@ -22,9 +24,13 @@ func (c *controller) clusterServicePlanAdd(obj interface{}) {
 func (c *controller) clusterServicePlanUpdate(oldObj, newObj interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.clusterServicePlanAdd(newObj)
 }
 func (c *controller) clusterServicePlanDelete(obj interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clusterServicePlan, ok := obj.(*v1beta1.ClusterServicePlan)
@@ -34,6 +40,8 @@ func (c *controller) clusterServicePlanDelete(obj interface{}) {
 	klog.V(4).Infof("ClusterServicePlan: Received delete event for %v; no further processing will occur", clusterServicePlan.Name)
 }
 func (c *controller) reconcileClusterServicePlanKey(key string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	plan, err := c.clusterServicePlanLister.Get(key)
@@ -48,6 +56,8 @@ func (c *controller) reconcileClusterServicePlanKey(key string) error {
 	return c.reconcileClusterServicePlan(plan)
 }
 func (c *controller) reconcileClusterServicePlan(clusterServicePlan *v1beta1.ClusterServicePlan) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	klog.Infof("ClusterServicePlan %q (ExternalName: %q): processing", clusterServicePlan.Name, clusterServicePlan.Spec.ExternalName)
@@ -66,6 +76,8 @@ func (c *controller) reconcileClusterServicePlan(clusterServicePlan *v1beta1.Clu
 	return c.serviceCatalogClient.ClusterServicePlans().Delete(clusterServicePlan.Name, &metav1.DeleteOptions{})
 }
 func (c *controller) findServiceInstancesOnClusterServicePlan(clusterServicePlan *v1beta1.ClusterServicePlan) (*v1beta1.ServiceInstanceList, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fieldSet := fields.Set{"spec.clusterServicePlanRef.name": clusterServicePlan.Name}

@@ -18,6 +18,8 @@ type CreateCmd struct {
 func NewCreateCmd(cxt *command.Context) *cobra.Command {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	createCmd := &CreateCmd{Namespaced: command.NewNamespaced(cxt), Scoped: command.NewScoped()}
 	cmd := &cobra.Command{Use: "class [NAME] --from [EXISTING_NAME]", Short: "Copies an existing class into a new user-defined cluster-scoped class", Example: command.NormalizeExamples(`
   svcat create class newclass --from mysqldb
@@ -33,6 +35,8 @@ func NewCreateCmd(cxt *command.Context) *cobra.Command {
 func (c *CreateCmd) Validate(args []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(args) <= 0 {
 		return fmt.Errorf("new class name should be provided")
 	}
@@ -40,6 +44,8 @@ func (c *CreateCmd) Validate(args []string) error {
 	return nil
 }
 func (c *CreateCmd) Run() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	opts := servicecatalog.CreateClassFromOptions{Scope: c.Scope, Namespace: c.Namespace, Name: c.Name, From: c.From}

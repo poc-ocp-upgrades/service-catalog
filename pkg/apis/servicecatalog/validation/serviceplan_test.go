@@ -9,14 +9,20 @@ import (
 func validClusterServicePlan() *servicecatalog.ClusterServicePlan {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ClusterServicePlan{ObjectMeta: metav1.ObjectMeta{Name: "test-clusterserviceplan"}, Spec: servicecatalog.ClusterServicePlanSpec{CommonServicePlanSpec: servicecatalog.CommonServicePlanSpec{ExternalName: "test-clusterserviceplan", ExternalID: "40d-0983-1b89", Description: "plan description"}, ClusterServiceBrokerName: "test-clusterservicebroker", ClusterServiceClassRef: servicecatalog.ClusterObjectReference{Name: "test-service-class"}}}
 }
 func validServicePlan() *servicecatalog.ServicePlan {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &servicecatalog.ServicePlan{ObjectMeta: metav1.ObjectMeta{Name: "test-clusterserviceplan", Namespace: "test-ns"}, Spec: servicecatalog.ServicePlanSpec{CommonServicePlanSpec: servicecatalog.CommonServicePlanSpec{ExternalName: "test-clusterserviceplan", ExternalID: "40d-0983-1b89", Description: "plan description"}, ServiceBrokerName: "test-clusterservicebroker", ServiceClassRef: servicecatalog.LocalObjectReference{Name: "test-service-class"}}}
 }
 func TestValidateClusterServicePlan(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {
@@ -79,6 +85,8 @@ func TestValidateClusterServicePlan(t *testing.T) {
 	}
 }
 func TestValidateServicePlan(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {
@@ -147,6 +155,8 @@ func TestValidateServicePlan(t *testing.T) {
 func TestValidateClusterServicePlanUpdate(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testCases := []struct {
 		name	string
 		old	*servicecatalog.ClusterServicePlan
@@ -176,6 +186,8 @@ func TestValidateClusterServicePlanUpdate(t *testing.T) {
 	}
 }
 func TestValidateServicePlanUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {

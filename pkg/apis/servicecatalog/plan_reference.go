@@ -8,9 +8,13 @@ import (
 func (pr PlanReference) ClusterServiceClassSpecified() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return pr.ClusterServiceClassExternalName != "" || pr.ClusterServiceClassExternalID != "" || pr.ClusterServiceClassName != ""
 }
 func (pr PlanReference) ClusterServicePlanSpecified() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return pr.ClusterServicePlanExternalName != "" || pr.ClusterServicePlanExternalID != "" || pr.ClusterServicePlanName != ""
@@ -18,14 +22,20 @@ func (pr PlanReference) ClusterServicePlanSpecified() bool {
 func (pr PlanReference) ServiceClassSpecified() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return pr.ServiceClassExternalName != "" || pr.ServiceClassExternalID != "" || pr.ServiceClassName != ""
 }
 func (pr PlanReference) ServicePlanSpecified() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return pr.ServicePlanExternalName != "" || pr.ServicePlanExternalID != "" || pr.ServicePlanName != ""
 }
 func (pr PlanReference) GetSpecifiedClusterServiceClass() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if pr.ClusterServiceClassExternalName != "" {
@@ -42,6 +52,8 @@ func (pr PlanReference) GetSpecifiedClusterServiceClass() string {
 func (pr PlanReference) GetSpecifiedServiceClass() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if pr.ServiceClassExternalName != "" {
 		return pr.ServiceClassExternalName
 	}
@@ -54,6 +66,8 @@ func (pr PlanReference) GetSpecifiedServiceClass() string {
 	return ""
 }
 func (pr PlanReference) GetSpecifiedClusterServicePlan() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if pr.ClusterServicePlanExternalName != "" {
@@ -70,6 +84,8 @@ func (pr PlanReference) GetSpecifiedClusterServicePlan() string {
 func (pr PlanReference) GetSpecifiedServicePlan() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if pr.ServicePlanExternalName != "" {
 		return pr.ServicePlanExternalName
 	}
@@ -84,6 +100,8 @@ func (pr PlanReference) GetSpecifiedServicePlan() string {
 func (pr PlanReference) GetClusterServiceClassFilterFieldName() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if pr.ClusterServiceClassExternalName != "" {
 		return "spec.externalName"
 	}
@@ -93,6 +111,8 @@ func (pr PlanReference) GetClusterServiceClassFilterFieldName() string {
 	return ""
 }
 func (pr PlanReference) GetClusterServicePlanFilterFieldName() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if pr.ClusterServicePlanExternalName != "" {
@@ -106,6 +126,8 @@ func (pr PlanReference) GetClusterServicePlanFilterFieldName() string {
 func (pr PlanReference) GetServiceClassFilterFieldName() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if pr.ServiceClassExternalName != "" {
 		return "spec.externalName"
 	}
@@ -115,6 +137,8 @@ func (pr PlanReference) GetServiceClassFilterFieldName() string {
 	return ""
 }
 func (pr PlanReference) GetServicePlanFilterFieldName() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if pr.ServicePlanExternalName != "" {
@@ -128,6 +152,8 @@ func (pr PlanReference) GetServicePlanFilterFieldName() string {
 func (pr PlanReference) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var rep string
 	if pr.ClusterServiceClassSpecified() && pr.ClusterServicePlanSpecified() {
 		rep = fmt.Sprintf("%s/%s", pr.GetSpecifiedClusterServiceClass(), pr.GetSpecifiedClusterServicePlan())
@@ -137,6 +163,8 @@ func (pr PlanReference) String() string {
 	return rep
 }
 func (pr PlanReference) Format(s fmt.State, verb rune) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var classFields []string
