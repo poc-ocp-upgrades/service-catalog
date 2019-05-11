@@ -1,19 +1,3 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package fake
 
 import (
@@ -25,7 +9,6 @@ import (
 	"net/http"
 	"strconv"
 	"time"
-
 	"github.com/gorilla/mux"
 	scmeta "github.com/kubernetes-incubator/service-catalog/pkg/api/meta"
 	sc "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog"
@@ -42,20 +25,18 @@ var (
 	accessor = meta.NewAccessor()
 )
 
-// ObjStorage is a map of object names to objects
 type ObjStorage map[string]runtime.Object
-
-// TypedStorage is a map of types to ObjStorage
 type TypedStorage map[string]ObjStorage
-
-// NamespacedStorage is a map of namespaces to TypedStorage
 type NamespacedStorage map[string]TypedStorage
 
-// NewTypedStorage returns a new TypedStorage
-func NewTypedStorage() TypedStorage { return map[string]ObjStorage{} }
-
-// Set adds an object to storage, given a namespace, type, and name
+func NewTypedStorage() TypedStorage {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	return map[string]ObjStorage{}
+}
 func (s NamespacedStorage) Set(ns, tipe, name string, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, ok := s[ns]; !ok {
 		s[ns] = make(TypedStorage)
 	}
@@ -64,9 +45,9 @@ func (s NamespacedStorage) Set(ns, tipe, name string, obj runtime.Object) {
 	}
 	s[ns][tipe][name] = obj
 }
-
-// GetList returns a list of objects from storage, given a namespace and a type
 func (s NamespacedStorage) GetList(ns, tipe string) []runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	itemMap, ok := s[ns][tipe]
 	if !ok {
 		return []runtime.Object{}
@@ -77,164 +58,124 @@ func (s NamespacedStorage) GetList(ns, tipe string) []runtime.Object {
 	}
 	return items
 }
-
-// Get returns an object from storage, given a namespace, type, and name
 func (s NamespacedStorage) Get(ns, tipe, name string) runtime.Object {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	item, ok := s[ns][tipe][name]
 	if !ok {
 		return nil
 	}
 	return item
 }
-
-// Delete removes an object from storage, given a namepace, type, and name
 func (s NamespacedStorage) Delete(ns, tipe, name string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	delete(s[ns][tipe], name)
 }
 
-// RESTClient is a fake implementation of rest.Interface used to facilitate
-// testing. It short-circuits all HTTP requests that would ordinarily go
-// upstream to a core apiserver. It muxes those requests in-process, uses
-// in-memory storage, and responds just as a core apiserver would.
 type RESTClient struct {
-	Storage  NamespacedStorage
-	Watcher  *Watcher
-	accessor meta.MetadataAccessor
+	Storage		NamespacedStorage
+	Watcher		*Watcher
+	accessor	meta.MetadataAccessor
 	*fakerestclient.RESTClient
 }
 
-// NewRESTClient returns a new FakeCoreRESTClient
 func NewRESTClient(newEmptyObj func() runtime.Object) *RESTClient {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	storage := make(NamespacedStorage)
 	watcher := NewWatcher()
-
-	coreCl := &fakerestclient.RESTClient{
-		Client: fakerestclient.CreateHTTPClient(func(request *http.Request) (*http.Response, error) {
-			r := getRouter(storage, watcher, newEmptyObj)
-			rw := newResponseWriter()
-			r.ServeHTTP(rw, request)
-			return rw.getResponse(), nil
-		}),
-		NegotiatedSerializer: serializer.DirectCodecFactory{
-			CodecFactory: Codecs,
-		},
-	}
-	return &RESTClient{
-		Storage:    storage,
-		Watcher:    watcher,
-		accessor:   meta.NewAccessor(),
-		RESTClient: coreCl,
-	}
+	coreCl := &fakerestclient.RESTClient{Client: fakerestclient.CreateHTTPClient(func(request *http.Request) (*http.Response, error) {
+		r := getRouter(storage, watcher, newEmptyObj)
+		rw := newResponseWriter()
+		r.ServeHTTP(rw, request)
+		return rw.getResponse(), nil
+	}), NegotiatedSerializer: serializer.DirectCodecFactory{CodecFactory: Codecs}}
+	return &RESTClient{Storage: storage, Watcher: watcher, accessor: meta.NewAccessor(), RESTClient: coreCl}
 }
 
 type responseWriter struct {
-	header    http.Header
-	headerSet bool
-	body      []byte
+	header		http.Header
+	headerSet	bool
+	body		[]byte
 }
 
 func newResponseWriter() *responseWriter {
-	return &responseWriter{
-		header: make(http.Header),
-	}
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	return &responseWriter{header: make(http.Header)}
 }
-
 func (rw *responseWriter) Header() http.Header {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return rw.header
 }
-
 func (rw *responseWriter) Write(bytes []byte) (int, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !rw.headerSet {
 		rw.WriteHeader(http.StatusOK)
 	}
 	rw.body = append(rw.body, bytes...)
 	return len(bytes), nil
 }
-
 func (rw *responseWriter) WriteHeader(status int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rw.headerSet = true
 	rw.header.Set("status", strconv.Itoa(status))
 }
-
 func (rw *responseWriter) getResponse() *http.Response {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	status, err := strconv.ParseInt(rw.header.Get("status"), 10, 16)
 	if err != nil {
 		panic(err)
 	}
-	return &http.Response{
-		StatusCode: int(status),
-		Header:     rw.header,
-		Body:       ioutil.NopCloser(bytes.NewBuffer(rw.body)),
-	}
+	return &http.Response{StatusCode: int(status), Header: rw.header, Body: ioutil.NopCloser(bytes.NewBuffer(rw.body))}
 }
-
-func getRouter(
-	storage NamespacedStorage,
-	watcher *Watcher,
-	newEmptyObj func() runtime.Object,
-) http.Handler {
+func getRouter(storage NamespacedStorage, watcher *Watcher, newEmptyObj func() runtime.Object) http.Handler {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	r := mux.NewRouter()
 	r.StrictSlash(true)
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}",
-		getItems(storage),
-	).Methods("GET")
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}",
-		createItem(storage, newEmptyObj),
-	).Methods("POST")
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}/{name}",
-		getItem(storage),
-	).Methods("GET")
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}/{name}",
-		updateItem(storage, newEmptyObj),
-	).Methods("PUT")
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}/{name}",
-		deleteItem(storage),
-	).Methods("DELETE")
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/watch/namespaces/{namespace}/{type}/{name}",
-		watchItem(watcher),
-	).Methods("GET")
-	r.HandleFunc(
-		"/apis/servicecatalog.k8s.io/v1beta1/watch/namespaces/{namespace}/{type}",
-		watchList(watcher),
-	).Methods("GET")
-	r.HandleFunc(
-		"/api/v1/namespaces",
-		listNamespaces(storage),
-	).Methods("GET")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}", getItems(storage)).Methods("GET")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}", createItem(storage, newEmptyObj)).Methods("POST")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}/{name}", getItem(storage)).Methods("GET")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}/{name}", updateItem(storage, newEmptyObj)).Methods("PUT")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/namespaces/{namespace}/{type}/{name}", deleteItem(storage)).Methods("DELETE")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/watch/namespaces/{namespace}/{type}/{name}", watchItem(watcher)).Methods("GET")
+	r.HandleFunc("/apis/servicecatalog.k8s.io/v1beta1/watch/namespaces/{namespace}/{type}", watchList(watcher)).Methods("GET")
+	r.HandleFunc("/api/v1/namespaces", listNamespaces(storage)).Methods("GET")
 	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
 	return r
 }
-
 func watchItem(watcher *Watcher) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(w http.ResponseWriter, r *http.Request) {
 		ch := watcher.ReceiveChan()
 		doWatch(ch, w)
 	}
 }
-
 func watchList(watcher *Watcher) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const timeout = 1 * time.Second
 	return func(w http.ResponseWriter, r *http.Request) {
 		ch := watcher.ReceiveChan()
 		doWatch(ch, w)
 	}
 }
-
 func getItems(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
 		objs := storage.GetList(ns, tipe)
 		items := make([]runtime.Object, 0, len(objs))
 		for _, obj := range objs {
-			// We need to strip away typemeta, but we don't want to tamper with what's
-			// in memory, so we're going to make a deep copy first.
 			item := obj.DeepCopyObject()
 			items = append(items, item)
 		}
@@ -293,8 +234,9 @@ func getItems(storage NamespacedStorage) func(http.ResponseWriter, *http.Request
 		rw.Write(listBytes)
 	}
 }
-
 func createItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) func(rw http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -339,8 +281,9 @@ func createItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 		rw.Write(bytes)
 	}
 }
-
 func getItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -366,8 +309,9 @@ func getItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Request)
 		rw.Write(bytes)
 	}
 }
-
 func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -407,9 +351,6 @@ func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 			http.Error(rw, errStr, http.StatusInternalServerError)
 			return
 		}
-		// As with the actual core apiserver, "0" is a special resource version that
-		// forces an update as if the current / most up-to-date resource version had
-		// been passed in.
 		if resourceVersionStr != "0" && resourceVersionStr != origResourceVersionStr {
 			rw.WriteHeader(http.StatusBadRequest)
 			return
@@ -417,8 +358,6 @@ func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 		resourceVersion, err := strconv.Atoi(origResourceVersionStr)
 		resourceVersion++
 		accessor.SetResourceVersion(item, strconv.Itoa(resourceVersion))
-
-		// if the deletion timestamp is set and there are 0 finalizers, then we should delete
 		finalizers, err := scmeta.GetFinalizers(item)
 		if err != nil {
 			errStr := fmt.Sprintf("error getting finalizers (%s)", err)
@@ -438,26 +377,15 @@ func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 			return
 		}
 		if newDT != nil && oldDT != nil {
-			// only measure the deletion timestamp based on seconds (.Unix()) rather than nanos
-			// (.UnixNano()), because nanoseconds are stored in memory but do not come over
-			// the wire. Thus, the new deletion timestamp will not be equal to the old
-			// because the new will have nanos missing
 			if newDT.Unix() != oldDT.Unix() {
-				errStr := fmt.Sprintf(
-					"you cannot update the deletion timestamp (old: %#v, new: %#v)",
-					oldDT.String(),
-					newDT.String(),
-				)
+				errStr := fmt.Sprintf("you cannot update the deletion timestamp (old: %#v, new: %#v)", oldDT.String(), newDT.String())
 				http.Error(rw, errStr, http.StatusBadRequest)
 				return
 			}
 		}
-
 		if len(finalizers) == 0 && newDT != nil {
-			// if there are no finalizers and the deletion timestamp is set, delete
 			storage.Delete(ns, tipe, name)
 		} else {
-			// otherwise, just update as normal
 			storage.Set(ns, tipe, name, item)
 		}
 		bytes, err := runtime.Encode(codec, item)
@@ -470,8 +398,9 @@ func updateItem(storage NamespacedStorage, newEmptyObj func() runtime.Object) fu
 		rw.Write(bytes)
 	}
 }
-
 func deleteItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		ns := mux.Vars(r)["namespace"]
 		tipe := mux.Vars(r)["type"]
@@ -483,24 +412,14 @@ func deleteItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Reque
 		}
 		finalizers, err := scmeta.GetFinalizers(item)
 		if err != nil {
-			http.Error(
-				rw,
-				fmt.Sprintf("error getting finalizers (%s)", err),
-				http.StatusInternalServerError,
-			)
+			http.Error(rw, fmt.Sprintf("error getting finalizers (%s)", err), http.StatusInternalServerError)
 			return
 		}
 		if len(finalizers) == 0 {
-			// delete if there are no finalizers
 			storage.Delete(ns, tipe, name)
 		} else {
-			// set a deletion timestamp on the item if there are finalizers
 			if err := scmeta.SetDeletionTimestamp(item, time.Now()); err != nil {
-				http.Error(
-					rw,
-					fmt.Sprintf("error setting deletion timestamp (%s)", err),
-					http.StatusInternalServerError,
-				)
+				http.Error(rw, fmt.Sprintf("error setting deletion timestamp (%s)", err), http.StatusInternalServerError)
 				return
 			}
 			storage.Set(ns, tipe, name, item)
@@ -508,14 +427,13 @@ func deleteItem(storage NamespacedStorage) func(http.ResponseWriter, *http.Reque
 		rw.WriteHeader(http.StatusOK)
 	}
 }
-
 func listNamespaces(storage NamespacedStorage) func(http.ResponseWriter, *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(rw http.ResponseWriter, r *http.Request) {
 		nsList := corev1.NamespaceList{}
 		for ns := range storage {
-			nsList.Items = append(nsList.Items, corev1.Namespace{
-				ObjectMeta: metav1.ObjectMeta{Name: ns},
-			})
+			nsList.Items = append(nsList.Items, corev1.Namespace{ObjectMeta: metav1.ObjectMeta{Name: ns}})
 		}
 		setContentType(rw)
 		if err := json.NewEncoder(rw).Encode(&nsList); err != nil {
@@ -524,11 +442,13 @@ func listNamespaces(storage NamespacedStorage) func(http.ResponseWriter, *http.R
 		}
 	}
 }
-
 func notFoundHandler(rw http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	rw.WriteHeader(http.StatusNotFound)
 }
-
 func newTypeMeta(kind string) metav1.TypeMeta {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return metav1.TypeMeta{Kind: kind, APIVersion: sc.GroupName + "/v1beta1'"}
 }

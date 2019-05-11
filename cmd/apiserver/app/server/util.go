@@ -1,19 +1,3 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package server
 
 import (
@@ -23,10 +7,8 @@ import (
 	"os"
 	"strings"
 	"time"
-
 	"github.com/go-openapi/spec"
 	"k8s.io/klog"
-
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/apiserver/pkg/admission"
@@ -39,7 +21,6 @@ import (
 	kubeinformers "k8s.io/client-go/informers"
 	kubeclientset "k8s.io/client-go/kubernetes"
 	restclient "k8s.io/client-go/rest"
-
 	"github.com/kubernetes-incubator/service-catalog/pkg/api"
 	scadmission "github.com/kubernetes-incubator/service-catalog/pkg/apiserver/admission"
 	"github.com/kubernetes-incubator/service-catalog/pkg/apiserver/authenticator"
@@ -54,26 +35,20 @@ const (
 	inClusterNamespacePath = "/var/run/secrets/kubernetes.io/serviceaccount/namespace"
 )
 
-// serviceCatalogConfig is a placeholder for configuration
 type serviceCatalogConfig struct {
-	// the shared informers that know how to speak back to this apiserver
-	sharedInformers informers.SharedInformerFactory
-	// the shared informers that know how to speak back to kube apiserver
-	kubeSharedInformers kubeinformers.SharedInformerFactory
-	// the configured loopback client for this apiserver
-	client internalclientset.Interface
-	// the configured client for kube apiserver
-	kubeClient kubeclientset.Interface
+	sharedInformers		informers.SharedInformerFactory
+	kubeSharedInformers	kubeinformers.SharedInformerFactory
+	client				internalclientset.Interface
+	kubeClient			kubeclientset.Interface
 }
 
-// buildGenericConfig takes the server options and produces the genericapiserver.RecommendedConfig associated with it
 func buildGenericConfig(s *ServiceCatalogServerOptions) (*genericapiserver.RecommendedConfig, *serviceCatalogConfig, error) {
-	// check if we are running in standalone mode (for test scenarios)
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s.StandaloneMode {
 		klog.Infof("service catalog is in standalone mode")
 	}
-	// server configuration options
-	if err := s.SecureServingOptions.MaybeDefaultWithSelfSignedCerts(s.GenericServerRunOptions.AdvertiseAddress.String(), nil /*alternateDNS*/, []net.IP{net.ParseIP("127.0.0.1")}); err != nil {
+	if err := s.SecureServingOptions.MaybeDefaultWithSelfSignedCerts(s.GenericServerRunOptions.AdvertiseAddress.String(), nil, []net.IP{net.ParseIP("127.0.0.1")}); err != nil {
 		return nil, nil, err
 	}
 	genericConfig := genericapiserver.NewRecommendedConfig(api.Codecs)
@@ -91,28 +66,19 @@ func buildGenericConfig(s *ServiceCatalogServerOptions) (*genericapiserver.Recom
 			return nil, nil, err
 		}
 	} else {
-		// always warn when auth is disabled, since this should only be used for testing
 		klog.Warning("Authentication and authorization disabled for testing purposes")
 		genericConfig.Authentication.Authenticator = &authenticator.AnyUserAuthenticator{}
 		genericConfig.Authorization.Authorizer = authorizerfactory.NewAlwaysAllowAuthorizer()
 	}
-
 	namespace, err := getInClusterNamespace("service-catalog")
 	if err != nil {
 		return nil, nil, err
 	}
-	if err := s.AuditOptions.ApplyTo(
-		&genericConfig.Config,
-		genericConfig.ClientConfig,
-		genericConfig.SharedInformerFactory,
-		genericserveroptions.NewProcessInfo("service-catalog-apiserver", namespace),
-		nil); err != nil {
+	if err := s.AuditOptions.ApplyTo(&genericConfig.Config, genericConfig.ClientConfig, genericConfig.SharedInformerFactory, genericserveroptions.NewProcessInfo("service-catalog-apiserver", namespace), nil); err != nil {
 		return nil, nil, err
 	}
-
 	if s.ServeOpenAPISpec {
-		genericConfig.OpenAPIConfig = genericapiserver.DefaultOpenAPIConfig(
-			openapi.GetOpenAPIDefinitions, apiopenapi.NewDefinitionNamer(api.Scheme))
+		genericConfig.OpenAPIConfig = genericapiserver.DefaultOpenAPIConfig(openapi.GetOpenAPIDefinitions, apiopenapi.NewDefinitionNamer(api.Scheme))
 		if genericConfig.OpenAPIConfig.Info == nil {
 			genericConfig.OpenAPIConfig.Info = &spec.Info{}
 		}
@@ -126,33 +92,21 @@ func buildGenericConfig(s *ServiceCatalogServerOptions) (*genericapiserver.Recom
 	} else {
 		klog.Warning("OpenAPI spec will not be served")
 	}
-
 	genericConfig.SwaggerConfig = genericapiserver.DefaultSwaggerConfig()
-	// TODO: investigate if we need metrics unique to service catalog, but take defaults for now
-	// see https://github.com/kubernetes-incubator/service-catalog/issues/677
 	genericConfig.EnableMetrics = true
-	// TODO: add support to default these values in build
-	// see https://github.com/kubernetes-incubator/service-catalog/issues/722
 	serviceCatalogVersion := version.Get()
 	genericConfig.Version = &serviceCatalogVersion
-
-	// FUTURE: use protobuf for communication back to itself?
 	client, err := internalclientset.NewForConfig(genericConfig.LoopbackClientConfig)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to create clientset for service catalog self-communication: %v", err)
 	}
 	sharedInformers := informers.NewSharedInformerFactory(client, 10*time.Minute)
-
-	scConfig := &serviceCatalogConfig{
-		client:          client,
-		sharedInformers: sharedInformers,
-	}
+	scConfig := &serviceCatalogConfig{client: client, sharedInformers: sharedInformers}
 	if !s.StandaloneMode {
 		clusterConfig, err := kube.LoadConfig(s.KubeconfigPath, "")
 		if err != nil {
 			return nil, nil, fmt.Errorf("failed to parse kube client config: %v", err)
 		}
-		// If clusterConfig is nil, look at the default in-cluster config.
 		if clusterConfig == nil {
 			clusterConfig, err = restclient.InClusterConfig()
 			if err != nil {
@@ -160,64 +114,43 @@ func buildGenericConfig(s *ServiceCatalogServerOptions) (*genericapiserver.Recom
 			}
 		}
 		clusterConfig.GroupVersion = &schema.GroupVersion{}
-
 		kubeClient, err := kubeclientset.NewForConfig(clusterConfig)
 		if err != nil {
 			return nil, nil, fmt.Errorf("failed to create clientset interface: %v", err)
 		}
-
 		kubeSharedInformers := kubeinformers.NewSharedInformerFactory(kubeClient, 10*time.Minute)
 		genericConfig.SharedInformerFactory = kubeSharedInformers
-
-		// TODO: we need upstream to package AlwaysAdmit, or stop defaulting to it!
-		// NOTE: right now, we only run admission controllers when on kube cluster.
 		genericConfig.AdmissionControl, err = buildAdmission(genericConfig, s, client, sharedInformers, kubeClient, kubeSharedInformers)
 		if err != nil {
 			return nil, nil, fmt.Errorf("failed to initialize admission: %v", err)
 		}
-
 		scConfig.kubeClient = kubeClient
 		scConfig.kubeSharedInformers = kubeSharedInformers
 	}
-
 	return genericConfig, scConfig, nil
 }
-
-// buildAdmission constructs the admission chain
-// TODO nilebox: Switch to RecommendedOptions and use method (a *AdmissionOptions) ApplyTo
-func buildAdmission(c *genericapiserver.RecommendedConfig, s *ServiceCatalogServerOptions,
-	client internalclientset.Interface, sharedInformers informers.SharedInformerFactory,
-	kubeClient kubeclientset.Interface, kubeSharedInformers kubeinformers.SharedInformerFactory) (admission.Interface, error) {
-
+func buildAdmission(c *genericapiserver.RecommendedConfig, s *ServiceCatalogServerOptions, client internalclientset.Interface, sharedInformers informers.SharedInformerFactory, kubeClient kubeclientset.Interface, kubeSharedInformers kubeinformers.SharedInformerFactory) (admission.Interface, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pluginNames := enabledPluginNames(s.AdmissionOptions)
 	klog.Infof("Admission control plugin names: %v", pluginNames)
-
 	genericInitializer := initializer.New(kubeClient, kubeSharedInformers, c.Authorization.Authorizer, api.Scheme)
 	scPluginInitializer := scadmission.NewPluginInitializer(client, sharedInformers, kubeClient, kubeSharedInformers)
-	initializersChain := admission.PluginInitializers{
-		scPluginInitializer,
-		genericInitializer,
-	}
-
+	initializersChain := admission.PluginInitializers{scPluginInitializer, genericInitializer}
 	pluginsConfigProvider, err := admission.ReadAdmissionConfiguration(pluginNames, s.AdmissionOptions.ConfigFile, api.Scheme)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read plugin config: %v", err)
 	}
 	return s.AdmissionOptions.Plugins.NewFromPlugins(pluginNames, pluginsConfigProvider, initializersChain, admission.DecoratorFunc(admissionmetrics.WithControllerMetrics))
 }
-
-// enabledPluginNames makes use of RecommendedPluginOrder, DefaultOffPlugins,
-// EnablePlugins, DisablePlugins fields
-// to prepare a list of ordered plugin names that are enabled.
-// TODO nilebox: remove this method once switched to RecommendedOptions
 func enabledPluginNames(a *genericserveroptions.AdmissionOptions) []string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	allOffPlugins := append(a.DefaultOffPlugins.List(), a.DisablePlugins...)
 	disabledPlugins := sets.NewString(allOffPlugins...)
 	enabledPlugins := sets.NewString(a.EnablePlugins...)
 	disabledPlugins = disabledPlugins.Difference(enabledPlugins)
-
 	resultPlugins := sets.NewString()
-	// First, add core plugins in a recommended order
 	orderedPlugins := []string{}
 	for _, plugin := range a.RecommendedPluginOrder {
 		if !disabledPlugins.Has(plugin) {
@@ -225,20 +158,17 @@ func enabledPluginNames(a *genericserveroptions.AdmissionOptions) []string {
 			resultPlugins.Insert(plugin)
 		}
 	}
-	// Second, add all missing Service Catalog plugins
-	// Note that those plugins are added in no specific order
 	for plugin := range enabledPlugins {
 		if !resultPlugins.Has(plugin) {
 			orderedPlugins = append(orderedPlugins, plugin)
 			resultPlugins.Insert(plugin)
 		}
 	}
-
 	return orderedPlugins
 }
-
-// addPostStartHooks adds the common post start hooks we invoke when using either server storage option.
 func addPostStartHooks(server *genericapiserver.GenericAPIServer, scConfig *serviceCatalogConfig, stopCh <-chan struct{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	server.AddPostStartHook("start-service-catalog-apiserver-informers", func(context genericapiserver.PostStartHookContext) error {
 		klog.Infof("Starting shared informers")
 		scConfig.sharedInformers.Start(stopCh)
@@ -249,20 +179,16 @@ func addPostStartHooks(server *genericapiserver.GenericAPIServer, scConfig *serv
 		return nil
 	})
 }
-
 func getInClusterNamespace(defaultNamespace string) (string, error) {
-	// Check whether the namespace file exists.
-	// If not, we are not running in cluster so can't guess the namespace.
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := os.Stat(inClusterNamespacePath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			// not running in-cluster, using default namespace
 			return defaultNamespace, nil
 		}
 		return "", fmt.Errorf("error checking namespace file: %v", err)
 	}
-
-	// Load the namespace file and return its content
 	namespace, err := ioutil.ReadFile(inClusterNamespacePath)
 	if err != nil {
 		return "", fmt.Errorf("error reading namespace file: %v", err)

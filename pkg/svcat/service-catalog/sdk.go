@@ -1,24 +1,7 @@
-/*
-Copyright 2018 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package servicecatalog
 
 import (
 	"time"
-
 	apiv1beta1 "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/v1beta1"
 	"github.com/kubernetes-incubator/service-catalog/pkg/client/clientset_generated/clientset"
 	"github.com/kubernetes-incubator/service-catalog/pkg/client/clientset_generated/clientset/typed/servicecatalog/v1beta1"
@@ -29,8 +12,6 @@ import (
 	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 )
 
-// SvcatClient is an interface containing the various actions in the svcat pkg lib
-// This interface is then faked with Counterfeiter for the cmd/svcat unit tests
 type SvcatClient interface {
 	Bind(string, string, string, string, string, interface{}, map[string]string) (*apiv1beta1.ServiceBinding, error)
 	BindingParentHierarchy(*apiv1beta1.ServiceBinding) (*apiv1beta1.ServiceInstance, *apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, *apiv1beta1.ClusterServiceBroker, error)
@@ -43,7 +24,6 @@ type SvcatClient interface {
 	RetrieveBindingsByInstance(*apiv1beta1.ServiceInstance) ([]apiv1beta1.ServiceBinding, error)
 	Unbind(string, string) ([]types.NamespacedName, error)
 	WaitForBinding(string, string, time.Duration, *time.Duration) (*apiv1beta1.ServiceBinding, error)
-
 	Deregister(string, *ScopeOptions) error
 	RetrieveBrokers(opts ScopeOptions) ([]Broker, error)
 	RetrieveBroker(string) (*apiv1beta1.ClusterServiceBroker, error)
@@ -51,13 +31,11 @@ type SvcatClient interface {
 	Register(string, string, *RegisterOptions, *ScopeOptions) (Broker, error)
 	Sync(string, ScopeOptions, int) error
 	WaitForBroker(string, time.Duration, *time.Duration) (Broker, error)
-
 	RetrieveClasses(ScopeOptions) ([]Class, error)
 	RetrieveClassByName(string, ScopeOptions) (Class, error)
 	RetrieveClassByID(string) (*apiv1beta1.ClusterServiceClass, error)
 	RetrieveClassByPlan(Plan) (*apiv1beta1.ClusterServiceClass, error)
 	CreateClassFrom(CreateClassFromOptions) (Class, error)
-
 	Deprovision(string, string) error
 	InstanceParentHierarchy(*apiv1beta1.ServiceInstance) (*apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, *apiv1beta1.ClusterServiceBroker, error)
 	InstanceToServiceClassAndPlan(*apiv1beta1.ServiceInstance) (*apiv1beta1.ClusterServiceClass, *apiv1beta1.ClusterServicePlan, error)
@@ -71,32 +49,26 @@ type SvcatClient interface {
 	TouchInstance(string, string, int) error
 	WaitForInstance(string, string, time.Duration, *time.Duration) (*apiv1beta1.ServiceInstance, error)
 	WaitForInstanceToNotExist(string, string, time.Duration, *time.Duration) (*apiv1beta1.ServiceInstance, error)
-
 	RetrievePlans(string, ScopeOptions) ([]Plan, error)
 	RetrievePlanByName(string, ScopeOptions) (Plan, error)
 	RetrievePlanByClassAndName(string, string, ScopeOptions) (Plan, error)
 	RetrievePlanByClassIDAndName(string, string, ScopeOptions) (Plan, error)
 	RetrievePlanByID(string, ScopeOptions) (Plan, error)
-
 	RetrieveSecretByBinding(*apiv1beta1.ServiceBinding) (*apicorev1.Secret, error)
-
 	ServerVersion() (*version.Info, error)
 }
-
-// SDK wrapper around the generated Go client for the Kubernetes Service Catalog
 type SDK struct {
-	K8sClient            kubernetes.Interface
-	ServiceCatalogClient clientset.Interface
+	K8sClient				kubernetes.Interface
+	ServiceCatalogClient	clientset.Interface
 }
 
-// ServiceCatalog is the underlying generated Service Catalog versioned interface
-// It should be used instead of accessing the client directly.
 func (sdk *SDK) ServiceCatalog() v1beta1.ServicecatalogV1beta1Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.ServiceCatalogClient.ServicecatalogV1beta1()
 }
-
-// Core is the underlying generated Core API versioned interface
-// It should be used instead of accessing the client directly.
 func (sdk *SDK) Core() corev1.CoreV1Interface {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return sdk.K8sClient.CoreV1()
 }

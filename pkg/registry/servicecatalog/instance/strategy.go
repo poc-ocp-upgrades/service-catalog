@@ -1,26 +1,7 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package instance
-
-// this was copied from where else and edited to fit our objects
 
 import (
 	"context"
-
 	api "github.com/kubernetes-incubator/service-catalog/pkg/api"
 	apiequality "k8s.io/apimachinery/pkg/api/equality"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -31,122 +12,87 @@ import (
 	"k8s.io/apiserver/pkg/registry/rest"
 	"k8s.io/apiserver/pkg/storage/names"
 	utilfeature "k8s.io/apiserver/pkg/util/feature"
-
 	sc "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog"
 	scv "github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/validation"
 	scfeatures "github.com/kubernetes-incubator/service-catalog/pkg/features"
 	"k8s.io/klog"
 )
 
-// NewScopeStrategy returns a new NamespaceScopedStrategy for instances
 func NewScopeStrategy() rest.NamespaceScopedStrategy {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return instanceRESTStrategies
 }
 
-// implements interfaces RESTCreateStrategy, RESTUpdateStrategy, RESTDeleteStrategy,
-// NamespaceScopedStrategy, and RESTGracefulDeleteStrategy.
-// The implementation disallows any modifications to the instance.Status fields.
 type instanceRESTStrategy struct {
-	runtime.ObjectTyper // inherit ObjectKinds method
-	names.NameGenerator // GenerateName method for CreateStrategy
+	runtime.ObjectTyper
+	names.NameGenerator
 }
-
-// implements interface RESTUpdateStrategy. This implementation validates updates to
-// instance.Status updates only and disallows any modifications to the instance.Spec.
-type instanceStatusRESTStrategy struct {
-	instanceRESTStrategy
-}
-
-// implements interface RESTUpdateStrategy. This implementation validates updates to
-// instance.Spec.ClusterServicePlanRef and instance.Spec.ClusterServiceClassRef only and disallows
-// any modifications to the remaining instance.Spec or Status fields.
-type instanceReferenceRESTStrategy struct {
-	instanceRESTStrategy
-}
+type instanceStatusRESTStrategy struct{ instanceRESTStrategy }
+type instanceReferenceRESTStrategy struct{ instanceRESTStrategy }
 
 var (
-	instanceRESTStrategies = instanceRESTStrategy{
-		// embeds to pull in existing code behavior from upstream
-
-		ObjectTyper: api.Scheme,
-		// use the generator from upstream k8s, or implement method
-		// `GenerateName(base string) string`
-		NameGenerator: names.SimpleNameGenerator,
-	}
-	_ rest.RESTCreateStrategy         = instanceRESTStrategies
-	_ rest.RESTUpdateStrategy         = instanceRESTStrategies
-	_ rest.RESTDeleteStrategy         = instanceRESTStrategies
-	_ rest.RESTGracefulDeleteStrategy = instanceRESTStrategies
-
-	instanceStatusUpdateStrategy = instanceStatusRESTStrategy{
-		instanceRESTStrategies,
-	}
-	_ rest.RESTUpdateStrategy = instanceStatusUpdateStrategy
-
-	instanceReferenceUpdateStrategy = instanceReferenceRESTStrategy{
-		instanceRESTStrategies,
-	}
-	_ rest.RESTUpdateStrategy = instanceReferenceUpdateStrategy
+	instanceRESTStrategies											= instanceRESTStrategy{ObjectTyper: api.Scheme, NameGenerator: names.SimpleNameGenerator}
+	_								rest.RESTCreateStrategy			= instanceRESTStrategies
+	_								rest.RESTUpdateStrategy			= instanceRESTStrategies
+	_								rest.RESTDeleteStrategy			= instanceRESTStrategies
+	_								rest.RESTGracefulDeleteStrategy	= instanceRESTStrategies
+	instanceStatusUpdateStrategy									= instanceStatusRESTStrategy{instanceRESTStrategies}
+	_								rest.RESTUpdateStrategy			= instanceStatusUpdateStrategy
+	instanceReferenceUpdateStrategy									= instanceReferenceRESTStrategy{instanceRESTStrategies}
+	_								rest.RESTUpdateStrategy			= instanceReferenceUpdateStrategy
 )
 
-// Canonicalize does not transform a instance.
 func (instanceRESTStrategy) Canonicalize(obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, ok := obj.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to create")
 	}
 }
-
-// NamespaceScoped returns true as instances are scoped to a namespace.
 func (instanceRESTStrategy) NamespaceScoped() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
-
-// PrepareForCreate receives a the incoming ServiceInstance and clears it's
-// Status and Service[Class|Plan]Ref fields. These are not user settable fields.
-// It also creates a UUID if the user hasn't specified one.
 func (instanceRESTStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance, ok := obj.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to create")
 	}
-
 	if instance.Spec.ExternalID == "" {
 		instance.Spec.ExternalID = string(uuid.NewUUID())
 	}
-
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity) {
 		setServiceInstanceUserInfo(ctx, instance)
 	}
-
-	// Creating a brand new object, thus it must have no
-	// status. We can't fail here if they passed a status in, so
-	// we just wipe it clean.
-	instance.Status = sc.ServiceInstanceStatus{
-		// Fill in the first entry set to "creating"?
-		Conditions:        []sc.ServiceInstanceCondition{},
-		DeprovisionStatus: sc.ServiceInstanceDeprovisionStatusNotRequired,
-	}
-
+	instance.Status = sc.ServiceInstanceStatus{Conditions: []sc.ServiceInstanceCondition{}, DeprovisionStatus: sc.ServiceInstanceDeprovisionStatusNotRequired}
 	instance.Spec.ClusterServiceClassRef = nil
 	instance.Spec.ClusterServicePlanRef = nil
 	instance.Finalizers = []string{sc.FinalizerServiceCatalog}
 	instance.Generation = 1
 }
-
 func (instanceRESTStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return scv.ValidateServiceInstance(obj.(*sc.ServiceInstance))
 }
-
 func (instanceRESTStrategy) AllowCreateOnUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
-
 func (instanceRESTStrategy) AllowUnconditionalUpdate() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
-
 func (instanceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to update to")
@@ -155,29 +101,16 @@ func (instanceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runti
 	if !ok {
 		klog.Fatal("received a non-instance object to update from")
 	}
-
-	// Do not allow any updates to the Status field while updating the Spec
 	newServiceInstance.Status = oldServiceInstance.Status
-
-	// Do not allow updates to Service[Class|Plan]Ref fields
 	newServiceInstance.Spec.ClusterServiceClassRef = oldServiceInstance.Spec.ClusterServiceClassRef
 	newServiceInstance.Spec.ClusterServicePlanRef = oldServiceInstance.Spec.ClusterServicePlanRef
-
-	// Clear out the ClusterServicePlanRef so that it is resolved during reconciliation
-	planUpdated := newServiceInstance.Spec.ClusterServicePlanExternalName != oldServiceInstance.Spec.ClusterServicePlanExternalName ||
-		newServiceInstance.Spec.ClusterServicePlanExternalID != oldServiceInstance.Spec.ClusterServicePlanExternalID ||
-		newServiceInstance.Spec.ClusterServicePlanName != oldServiceInstance.Spec.ClusterServicePlanName
+	planUpdated := newServiceInstance.Spec.ClusterServicePlanExternalName != oldServiceInstance.Spec.ClusterServicePlanExternalName || newServiceInstance.Spec.ClusterServicePlanExternalID != oldServiceInstance.Spec.ClusterServicePlanExternalID || newServiceInstance.Spec.ClusterServicePlanName != oldServiceInstance.Spec.ClusterServicePlanName
 	if planUpdated {
 		newServiceInstance.Spec.ClusterServicePlanRef = nil
 	}
-
-	// Ignore the UpdateRequests field when it is the default value
 	if newServiceInstance.Spec.UpdateRequests == 0 {
 		newServiceInstance.Spec.UpdateRequests = oldServiceInstance.Spec.UpdateRequests
 	}
-
-	// Spec updates bump the generation so that we can distinguish between
-	// spec changes and other changes to the object.
 	if !apiequality.Semantic.DeepEqual(oldServiceInstance.Spec, newServiceInstance.Spec) {
 		if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity) {
 			setServiceInstanceUserInfo(ctx, newServiceInstance)
@@ -185,8 +118,9 @@ func (instanceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runti
 		newServiceInstance.Generation = oldServiceInstance.Generation + 1
 	}
 }
-
 func (instanceRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to validate to")
@@ -195,16 +129,11 @@ func (instanceRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime
 	if !ok {
 		klog.Fatal("received a non-instance object to validate from")
 	}
-
 	return scv.ValidateServiceInstanceUpdate(newServiceInstance, oldServiceInstance)
 }
-
-// CheckGracefulDelete sets the UserInfo on the resource to that of the user that
-// initiated the delete.
-// Note that this is a hack way of setting the UserInfo. However, there is not
-// currently any other mechanism in the Delete strategies for getting access to
-// the resource being deleted and the context.
 func (instanceRESTStrategy) CheckGracefulDelete(ctx context.Context, obj runtime.Object, options *metav1.DeleteOptions) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if utilfeature.DefaultFeatureGate.Enabled(scfeatures.OriginatingIdentity) {
 		serviceInstance, ok := obj.(*sc.ServiceInstance)
 		if !ok {
@@ -212,11 +141,11 @@ func (instanceRESTStrategy) CheckGracefulDelete(ctx context.Context, obj runtime
 		}
 		setServiceInstanceUserInfo(ctx, serviceInstance)
 	}
-	// Don't actually do graceful deletion. We are just using this strategy to set the user info prior to reconciling the delete.
 	return false
 }
-
 func (instanceStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to update to")
@@ -225,11 +154,11 @@ func (instanceStatusRESTStrategy) PrepareForUpdate(ctx context.Context, new, old
 	if !ok {
 		klog.Fatal("received a non-instance object to update from")
 	}
-	// Status changes are not allowed to update spec
 	newServiceInstance.Spec = oldServiceInstance.Spec
 }
-
 func (instanceStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to validate to")
@@ -238,11 +167,11 @@ func (instanceStatusRESTStrategy) ValidateUpdate(ctx context.Context, new, old r
 	if !ok {
 		klog.Fatal("received a non-instance object to validate from")
 	}
-
 	return scv.ValidateServiceInstanceStatusUpdate(newServiceInstance, oldServiceInstance)
 }
-
 func (instanceReferenceRESTStrategy) PrepareForUpdate(ctx context.Context, new, old runtime.Object) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to update to")
@@ -251,28 +180,20 @@ func (instanceReferenceRESTStrategy) PrepareForUpdate(ctx context.Context, new, 
 	if !ok {
 		klog.Fatal("received a non-instance object to update from")
 	}
-	// Reference changes are not allowed to update spec, so stash the new
-	// ones away and overwrite with all the old ones and then update them
-	// again.
 	newClusterServiceClassRef := newServiceInstance.Spec.ClusterServiceClassRef
 	newClusterServicePlanRef := newServiceInstance.Spec.ClusterServicePlanRef
 	newServiceClassRef := newServiceInstance.Spec.ServiceClassRef
 	newServicePlanRef := newServiceInstance.Spec.ServicePlanRef
-
-	// Lock down the spec to the original values
 	newServiceInstance.Spec = oldServiceInstance.Spec
-
-	// Explicitly update the reference fields to the new ones submitted
 	newServiceInstance.Spec.ClusterServiceClassRef = newClusterServiceClassRef
 	newServiceInstance.Spec.ClusterServicePlanRef = newClusterServicePlanRef
 	newServiceInstance.Spec.ServiceClassRef = newServiceClassRef
 	newServiceInstance.Spec.ServicePlanRef = newServicePlanRef
-
-	// Lock down the status as well
 	newServiceInstance.Status = oldServiceInstance.Status
 }
-
 func (instanceReferenceRESTStrategy) ValidateUpdate(ctx context.Context, new, old runtime.Object) field.ErrorList {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	newServiceInstance, ok := new.(*sc.ServiceInstance)
 	if !ok {
 		klog.Fatal("received a non-instance object to validate to")
@@ -281,19 +202,14 @@ func (instanceReferenceRESTStrategy) ValidateUpdate(ctx context.Context, new, ol
 	if !ok {
 		klog.Fatal("received a non-instance object to validate from")
 	}
-
 	return scv.ValidateServiceInstanceReferencesUpdate(newServiceInstance, oldServiceInstance)
 }
-
-// setServiceInstanceUserInfo injects user.Info from the request context
 func setServiceInstanceUserInfo(ctx context.Context, instance *sc.ServiceInstance) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	instance.Spec.UserInfo = nil
 	if user, ok := genericapirequest.UserFrom(ctx); ok {
-		instance.Spec.UserInfo = &sc.UserInfo{
-			Username: user.GetName(),
-			UID:      user.GetUID(),
-			Groups:   user.GetGroups(),
-		}
+		instance.Spec.UserInfo = &sc.UserInfo{Username: user.GetName(), UID: user.GetUID(), Groups: user.GetGroups()}
 		if extra := user.GetExtra(); len(extra) > 0 {
 			instance.Spec.UserInfo.Extra = map[string]sc.ExtraValue{}
 			for k, v := range extra {

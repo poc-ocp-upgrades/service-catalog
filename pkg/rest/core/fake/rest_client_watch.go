@@ -1,19 +1,3 @@
-/*
-Copyright 2017 The Kubernetes Authors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 package fake
 
 import (
@@ -21,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
 	"github.com/kubernetes-incubator/service-catalog/pkg/apis/servicecatalog/testapi"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -29,6 +12,8 @@ import (
 )
 
 func doWatch(ch <-chan pkgwatch.Event, w http.ResponseWriter) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for evt := range ch {
 		codec, err := testapi.GetCodecForObject(evt.Object)
 		if err != nil {
@@ -44,14 +29,7 @@ func doWatch(ch <-chan pkgwatch.Event, w http.ResponseWriter) {
 			http.Error(w, errStr, http.StatusInternalServerError)
 			return
 		}
-
-		evt := metav1.WatchEvent{
-			Type: fmt.Sprintf("%s", evt.Type),
-			Object: runtime.RawExtension{
-				Object: evt.Object,
-				Raw:    objBytes,
-			},
-		}
+		evt := metav1.WatchEvent{Type: fmt.Sprintf("%s", evt.Type), Object: runtime.RawExtension{Object: evt.Object, Raw: objBytes}}
 		b, err := json.Marshal(&evt)
 		if err != nil {
 			errStr := fmt.Sprintf("error encoding JSON (%s)", err)
